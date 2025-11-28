@@ -71,21 +71,35 @@ const Header = () => {
             {/* Mobile Navigation */}
             <Sheet>
               <SheetTrigger asChild className="lg:hidden">
-                <Button variant="ghost" size="icon">
-                  <Menu className="h-4 w-4" />
+                <Button variant="ghost" size="icon" className="relative group">
+                  <div className="flex flex-col gap-1">
+                    <span className="block w-5 h-0.5 bg-current transition-transform group-hover:translate-y-[-1px]" />
+                    <span className="block w-5 h-0.5 bg-current" />
+                    <span className="block w-5 h-0.5 bg-current transition-transform group-hover:translate-y-[1px]" />
+                  </div>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="pixel-border">
-                <nav className="flex flex-col gap-3 mt-8">
-                  {navLinks.map((link) => (
+              <SheetContent side="right" className="pixel-border bg-background/95 backdrop-blur-sm">
+                {/* Pixel grid overlay */}
+                <div className="absolute inset-0 opacity-5 pointer-events-none" style={{
+                  backgroundImage: `
+                    linear-gradient(to right, hsl(var(--foreground)) 1px, transparent 1px),
+                    linear-gradient(to bottom, hsl(var(--foreground)) 1px, transparent 1px)
+                  `,
+                  backgroundSize: '8px 8px'
+                }} />
+                
+                <nav className="flex flex-col gap-3 mt-8 relative z-10">
+                  {navLinks.map((link, index) => (
                     <Link
                       key={link.href}
                       to={link.href}
-                      className={`px-4 py-3 text-xs font-bold uppercase pixel-border ${
+                      className={`mobile-menu-item px-4 py-3 text-xs font-bold uppercase pixel-border transition-all hover:translate-x-1 ${
                         location.pathname === link.href
-                          ? "bg-primary text-primary-foreground" 
-                          : "bg-background text-foreground"
+                          ? "bg-primary text-primary-foreground animate-pixel-pulse" 
+                          : "bg-background text-foreground hover:bg-accent"
                       }`}
+                      style={{ animationDelay: `${index * 0.05}s` }}
                     >
                       {link.label}
                     </Link>

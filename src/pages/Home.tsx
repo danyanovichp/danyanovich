@@ -1,8 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Target, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import PixelCharacter from "@/components/pixel-art/PixelCharacter";
+import PixelIcon from "@/components/pixel-art/PixelIcons";
+import PixelDecorations from "@/components/pixel-art/PixelDecorations";
+import PageTransition from "@/components/PageTransition";
 
 const Home = () => {
   const { t } = useTranslation();
@@ -15,163 +19,151 @@ const Home = () => {
 
   const expertise = [
     {
-      icon: Target,
+      icon: 'notion' as const,
       title: t('home.expertise.notion.title'),
       description: t('home.expertise.notion.description'),
-      link: "/portfolio",
+      link: "/templates"
     },
     {
-      icon: Sparkles,
+      icon: 'ai' as const,
       title: t('home.expertise.ai.title'),
       description: t('home.expertise.ai.description'),
-      link: "/ai-prompts",
-    },
+      link: "/ai-prompts"
+    }
   ];
 
   const process = [
     {
-      number: "01",
+      step: "01",
       title: t('home.workflow.step1.title'),
-      description: t('home.workflow.step1.description'),
+      description: t('home.workflow.step1.description')
     },
     {
-      number: "02",
+      step: "02",
       title: t('home.workflow.step2.title'),
-      description: t('home.workflow.step2.description'),
+      description: t('home.workflow.step2.description')
     },
     {
-      number: "03",
+      step: "03",
       title: t('home.workflow.step3.title'),
-      description: t('home.workflow.step3.description'),
+      description: t('home.workflow.step3.description')
     },
     {
-      number: "04",
+      step: "04",
       title: t('home.workflow.step4.title'),
-      description: t('home.workflow.step4.description'),
-    },
+      description: t('home.workflow.step4.description')
+    }
   ];
 
   return (
-    <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative bg-primary text-primary-foreground py-16 md:py-24 border-b-4 border-border">
-        <div className="container">
-          <div className="max-w-3xl space-y-6">
-            <h1 className="text-2xl md:text-4xl">
-              {t('home.hero.title')}
-            </h1>
-            <p className="text-sm md:text-base opacity-90">
-              {t('home.hero.subtitle')}
-            </p>
-            <p className="text-xs md:text-sm opacity-80 max-w-2xl">
-              {t('home.hero.description')}
-            </p>
-            <div className="flex flex-wrap gap-3 pt-4">
-              <Button size="lg" variant="secondary" asChild>
-                <Link to="/portfolio">
-                  {t('home.hero.ctaPortfolio')}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link to="/contact">{t('home.hero.ctaContact')}</Link>
-              </Button>
+    <PageTransition>
+      <div className="min-h-screen relative">
+        <PixelDecorations />
+        
+        {/* Hero Section */}
+        <section className="container mx-auto px-4 py-12 md:py-20 relative">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="space-y-6">
+              <h1 className="text-3xl md:text-5xl font-bold leading-tight hover:animate-glitch cursor-default">
+                {t('home.hero.title')}
+              </h1>
+              <p className="text-lg md:text-xl text-muted-foreground">
+                {t('home.hero.subtitle')}
+              </p>
+              <p className="text-sm md:text-base">
+                {t('home.hero.description')}
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Button asChild size="lg" className="animate-pixel-bounce">
+                  <Link to="/portfolio">
+                    {t('home.hero.ctaPortfolio')}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link to="/contact">{t('home.hero.ctaContact')}</Link>
+                </Button>
+              </div>
+            </div>
+            <div className="hidden md:flex justify-center items-center">
+              <PixelCharacter />
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Stats Section */}
-      <section className="py-12 bg-secondary">
-        <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="pixel-border p-6 bg-background text-center"
-              >
-                <div className="text-2xl md:text-3xl font-bold mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-xs text-muted-foreground uppercase">{stat.label}</div>
-              </div>
-            ))}
+        {/* Stats Section */}
+        <section className="bg-muted/50 py-12 md:py-16">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+              {stats.map((stat, index) => (
+                <Card key={index} className="p-6 text-center pixel-border hover:translate-y-[-4px] transition-transform">
+                  <div className="text-3xl md:text-4xl font-bold text-primary mb-2 animate-pixel-pulse">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-muted-foreground uppercase">
+                    {stat.label}
+                  </div>
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Mission Section */}
-      <section className="py-16 md:py-20">
-        <div className="container">
+        {/* Mission Section */}
+        <section className="container mx-auto px-4 py-12 md:py-16">
           <div className="max-w-3xl mx-auto text-center space-y-4">
-            <h2 className="text-xl md:text-2xl">{t('home.mission.title')}</h2>
-            <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+            <h2 className="text-2xl md:text-4xl font-bold">{t('home.mission.title')}</h2>
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
               {t('home.mission.description')}
             </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Expertise Section */}
-      <section className="py-16 md:py-20 bg-secondary">
-        <div className="container">
-          <h2 className="text-xl md:text-2xl text-center mb-12">
-            {t('home.expertise.title')}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {expertise.map((item, index) => (
-              <Card
-                key={index}
-                className="pixel-border pixel-border-hover group"
-              >
-                <CardContent className="p-6 space-y-4">
-                  <div className="inline-flex p-3 pixel-border bg-primary">
-                    <item.icon className="h-6 w-6 text-primary-foreground" />
+        {/* Expertise Section */}
+        <section className="bg-muted/50 py-12 md:py-20">
+          <div className="container mx-auto px-4">
+            <h2 className="text-2xl md:text-4xl font-bold text-center mb-12">
+              {t('home.expertise.title')}
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              {expertise.map((item, index) => (
+                <Card key={index} className="p-8 pixel-border hover:translate-x-[-4px] hover:translate-y-[-4px] transition-all group">
+                  <div className="w-16 h-16 mb-4 group-hover:animate-pixel-bounce">
+                    <PixelIcon type={item.icon} />
                   </div>
-                  <h3 className="text-base font-bold">{item.title}</h3>
-                  <p className="text-xs text-muted-foreground">{item.description}</p>
-                  <Button
-                    variant="ghost"
-                    className="p-0 text-xs"
-                    asChild
-                  >
+                  <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+                  <p className="text-muted-foreground mb-6">{item.description}</p>
+                  <Button asChild variant="outline">
                     <Link to={item.link}>
                       {t('common.learnMore')}
-                      <ArrowRight className="ml-2 h-3 w-3" />
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
-                </CardContent>
-              </Card>
-            ))}
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Process Section */}
-      <section className="py-16 md:py-20">
-        <div className="container">
-          <h2 className="text-xl md:text-2xl text-center mb-4">
-            {t('home.workflow.title')}
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mt-12">
-            {process.map((step, index) => (
-              <div
-                key={index}
-                className="pixel-border p-6 bg-background space-y-3"
-              >
-                <div className="text-4xl font-bold opacity-20">
-                  {step.number}
-                </div>
-                <h3 className="text-sm font-bold">{step.title}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
-            ))}
+        {/* Process Section */}
+        <section className="container mx-auto px-4 py-12 md:py-20">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-2xl md:text-4xl font-bold text-center mb-12">
+              {t('home.workflow.title')}
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {process.map((item, index) => (
+                <Card key={index} className="p-6 pixel-border hover:translate-y-[-4px] transition-transform">
+                  <div className="text-4xl font-bold text-primary mb-4 animate-pixel-pulse">{item.step}</div>
+                  <h3 className="text-lg font-bold mb-2">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.description}</p>
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </PageTransition>
   );
 };
 

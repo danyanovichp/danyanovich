@@ -15,6 +15,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import PageTransition from "./components/PageTransition";
 
 const queryClient = new QueryClient();
 
@@ -30,14 +31,14 @@ const App = () => (
             <main className="flex-1">
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/portfolio" element={<Portfolio />} />
-                <Route path="/templates" element={<Templates />} />
-                <Route path="/courses" element={<Courses />} />
-                <Route path="/ai-prompts" element={<AIPrompts />} />
-                <Route path="/packages" element={<Packages />} />
-                <Route path="/contact" element={<Contact />} />
+                <Route path="/portfolio" element={<PageTransition><Portfolio /></PageTransition>} />
+                <Route path="/templates" element={<PageTransition><Templates /></PageTransition>} />
+                <Route path="/courses" element={<PageTransition><Courses /></PageTransition>} />
+                <Route path="/ai-prompts" element={<PageTransition><AIPrompts /></PageTransition>} />
+                <Route path="/packages" element={<PageTransition><Packages /></PageTransition>} />
+                <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
+                <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
               </Routes>
             </main>
             <Footer />

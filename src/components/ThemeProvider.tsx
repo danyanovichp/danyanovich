@@ -15,11 +15,22 @@ const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undef
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(() => {
-    // Check for saved preference
-    const saved = localStorage.getItem("theme") as Theme | null;
-    if (saved) return saved;
+    // Check for manual preference
+    const manualTheme = localStorage.getItem("theme-manual");
+    if (manualTheme) {
+      const saved = localStorage.getItem("theme") as Theme | null;
+      if (saved) return saved;
+    }
     
-    // Auto-detect based on time of day
+    // Check system preference
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return "dark";
+    }
+    if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+      return "light";
+    }
+    
+    // Fallback to time of day
     const hour = new Date().getHours();
     return hour >= 6 && hour < 18 ? "light" : "dark";
   });
@@ -31,15 +42,34 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  // Auto-update theme based on time of day if no manual preference
+  // Listen to system theme changes
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    const handleChange = (e: MediaQueryListEvent) => {
+      const manualTheme = localStorage.getItem("theme-manual");
+      if (!manualTheme) {
+        setTheme(e.matches ? "dark" : "light");
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  // Auto-update theme based on time of day if no manual or system preference
   useEffect(() => {
     const checkTime = () => {
-      const hour = new Date().getHours();
-      const autoTheme = hour >= 6 && hour < 18 ? "light" : "dark";
-      const saved = localStorage.getItem("theme-manual");
+      const manualTheme = localStorage.getItem("theme-manual");
+      const hasSystemPreference = window.matchMedia('(prefers-color-scheme: dark)').matches || 
+                                  window.matchMedia('(prefers-color-scheme: light)').matches;
       
-      if (!saved && autoTheme !== theme) {
-        setTheme(autoTheme);
+      if (!manualTheme && !hasSystemPreference) {
+        const hour = new Date().getHours();
+        const autoTheme = hour >= 6 && hour < 18 ? "light" : "dark";
+        if (autoTheme !== theme) {
+          setTheme(autoTheme);
+        }
       }
     };
 
