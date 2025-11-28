@@ -57,6 +57,18 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        brand: {
+          indigo: "hsl(var(--brand-indigo))",
+          "indigo-light": "hsl(var(--brand-indigo-light))",
+          amber: "hsl(var(--brand-amber))",
+          "amber-light": "hsl(var(--brand-amber-light))",
+        },
+      },
+      boxShadow: {
+        'sm': 'var(--shadow-sm)',
+        'md': 'var(--shadow-md)',
+        'lg': 'var(--shadow-lg)',
+        'accent': 'var(--shadow-accent)',
       },
       borderRadius: {
         lg: "var(--radius)",
