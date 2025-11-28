@@ -1,29 +1,29 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Lightbulb, Sparkles, Target, Users } from "lucide-react";
+import { ArrowRight, Target, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+  const { t } = useTranslation();
+
   const stats = [
-    { value: "50+", label: "Реализованных проектов" },
-    { value: "30%", label: "Рост эффективности" },
-    { value: "100+", label: "Часов обучения" },
-    { value: "4+", label: "Года опыта" },
+    { value: "50+", label: t('home.stats.projects') },
+    { value: "100+", label: t('home.stats.hours') },
+    { value: "+30%", label: t('home.stats.efficiency') },
   ];
 
   const expertise = [
     {
       icon: Target,
-      title: "Notion Эксперт",
-      description:
-        "Создаю шаблоны и консультирую по внедрению Notion. Помогаю организовать рабочие процессы для максимальной продуктивности.",
+      title: t('home.expertise.notion.title'),
+      description: t('home.expertise.notion.description'),
       link: "/portfolio",
     },
     {
       icon: Sparkles,
-      title: "AI Решения",
-      description:
-        "Разрабатываю AI-промпты и автоматизирую задачи с использованием современных AI-инструментов для вашего бизнеса.",
+      title: t('home.expertise.ai.title'),
+      description: t('home.expertise.ai.description'),
       link: "/ai-prompts",
     },
   ];
@@ -31,66 +31,50 @@ const Home = () => {
   const process = [
     {
       number: "01",
-      title: "Анализ потребностей",
-      description:
-        "Изучаю ваши задачи, определяю, что нужно автоматизировать и оптимизировать для максимальной эффективности",
+      title: t('home.workflow.step1.title'),
+      description: t('home.workflow.step1.description'),
     },
     {
       number: "02",
-      title: "Создание решения",
-      description:
-        "Разрабатываю индивидуальный шаблон или адаптирую готовое решение под ваши специфические процессы",
+      title: t('home.workflow.step2.title'),
+      description: t('home.workflow.step2.description'),
     },
     {
       number: "03",
-      title: "Обучение и демо",
-      description:
-        "Создаю демо-версию для тестирования, записываю обучающие материалы и инструкции по использованию",
+      title: t('home.workflow.step3.title'),
+      description: t('home.workflow.step3.description'),
     },
     {
       number: "04",
-      title: "Поддержка",
-      description:
-        "Предоставляю готовый продукт и оказываю поддержку для расширения ваших возможностей",
+      title: t('home.workflow.step4.title'),
+      description: t('home.workflow.step4.description'),
     },
   ];
 
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground py-20 md:py-32">
-        <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,transparent,black)]" />
-        <div className="container relative">
-          <div className="max-w-3xl animate-fade-in">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              Дэн Янович
+      <section className="relative bg-primary text-primary-foreground py-16 md:py-24 border-b-4 border-border">
+        <div className="container">
+          <div className="max-w-3xl space-y-6">
+            <h1 className="text-2xl md:text-4xl">
+              {t('home.hero.title')}
             </h1>
-            <p className="text-xl md:text-2xl mb-4 text-primary-foreground/90">
-              Создаю шаблоны | Эксперт по Notion и AI
+            <p className="text-sm md:text-base opacity-90">
+              {t('home.hero.subtitle')}
             </p>
-            <p className="text-lg mb-8 text-primary-foreground/80 max-w-2xl">
-              С 2020 создаю и консультирую рабочие пространства, реализовал более 50
-              проектов по внедрению Notion, Buildin.AI и других инструментов.
+            <p className="text-xs md:text-sm opacity-80 max-w-2xl">
+              {t('home.hero.description')}
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Button
-                size="lg"
-                variant="secondary"
-                className="shadow-accent"
-                asChild
-              >
+            <div className="flex flex-wrap gap-3 pt-4">
+              <Button size="lg" variant="secondary" asChild>
                 <Link to="/portfolio">
-                  Портфолио
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  {t('home.hero.ctaPortfolio')}
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-primary-foreground/10 border-primary-foreground/20 hover:bg-primary-foreground/20"
-                asChild
-              >
-                <Link to="/contact">Связаться</Link>
+              <Button size="lg" variant="outline" asChild>
+                <Link to="/contact">{t('home.hero.ctaContact')}</Link>
               </Button>
             </div>
           </div>
@@ -98,19 +82,18 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 bg-secondary/30">
+      <section className="py-12 bg-secondary">
         <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="text-center animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="pixel-border p-6 bg-background text-center"
               >
-                <div className="text-3xl md:text-4xl font-bold text-gradient-brand mb-2">
+                <div className="text-2xl md:text-3xl font-bold mb-2">
                   {stat.value}
                 </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <div className="text-xs text-muted-foreground uppercase">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -118,48 +101,43 @@ const Home = () => {
       </section>
 
       {/* Mission Section */}
-      <section className="py-20">
+      <section className="py-16 md:py-20">
         <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Моя Миссия</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Я делаю продуктивность в Notion доступной для всех — от новичка до профи
-              за минимальное время. Быстро превращаю хаос задач и разрозненные
-              инструменты в лёгкие, производительные Notion‑системы с понятной логикой
-              и интерфейсами. Мои готовые решения и обучающие программы помогают
-              командам и соло‑специалистам начать работать по‑новому без перегруза
-              процессами.
+          <div className="max-w-3xl mx-auto text-center space-y-4">
+            <h2 className="text-xl md:text-2xl">{t('home.mission.title')}</h2>
+            <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+              {t('home.mission.description')}
             </p>
           </div>
         </div>
       </section>
 
       {/* Expertise Section */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-16 md:py-20 bg-secondary">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            Экспертиза
+          <h2 className="text-xl md:text-2xl text-center mb-12">
+            {t('home.expertise.title')}
           </h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {expertise.map((item, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                className="pixel-border pixel-border-hover group"
               >
-                <CardContent className="p-8">
-                  <div className="mb-6 inline-flex p-3 rounded-lg bg-brand-amber/10">
-                    <item.icon className="h-8 w-8 text-accent" />
+                <CardContent className="p-6 space-y-4">
+                  <div className="inline-flex p-3 pixel-border bg-primary">
+                    <item.icon className="h-6 w-6 text-primary-foreground" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
-                  <p className="text-muted-foreground mb-6">{item.description}</p>
+                  <h3 className="text-base font-bold">{item.title}</h3>
+                  <p className="text-xs text-muted-foreground">{item.description}</p>
                   <Button
                     variant="ghost"
-                    className="group-hover:text-accent p-0"
+                    className="p-0 text-xs"
                     asChild
                   >
                     <Link to={item.link}>
-                      Узнать больше
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      {t('common.learnMore')}
+                      <ArrowRight className="ml-2 h-3 w-3" />
                     </Link>
                   </Button>
                 </CardContent>
@@ -170,57 +148,26 @@ const Home = () => {
       </section>
 
       {/* Process Section */}
-      <section className="py-20">
+      <section className="py-16 md:py-20">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            Как Я Работаю
+          <h2 className="text-xl md:text-2xl text-center mb-4">
+            {t('home.workflow.title')}
           </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Простой и прозрачный процесс создания шаблонов — от идеи до готового
-            продукта
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mt-12">
             {process.map((step, index) => (
               <div
                 key={index}
-                className="relative animate-slide-up"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="pixel-border p-6 bg-background space-y-3"
               >
-                <div className="text-6xl font-bold text-brand-indigo-light mb-4">
+                <div className="text-4xl font-bold opacity-20">
                   {step.number}
                 </div>
-                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <h3 className="text-sm font-bold">{step.title}</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
                   {step.description}
                 </p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-primary to-primary/90">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center text-primary-foreground">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Готовы начать работать эффективнее?
-            </h2>
-            <p className="text-lg mb-8 text-primary-foreground/90">
-              Свяжитесь со мной, чтобы обсудить ваш проект и узнать, как я могу помочь
-              вам достичь ваших целей.
-            </p>
-            <Button
-              size="lg"
-              variant="secondary"
-              className="shadow-accent"
-              asChild
-            >
-              <Link to="/contact">
-                Начать сотрудничество
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
           </div>
         </div>
       </section>

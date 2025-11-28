@@ -2,9 +2,13 @@ import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Packages = () => {
-  const packages = [
+  const { t, i18n } = useTranslation();
+
+  const packages = i18n.language === 'ru' ? [
     {
       name: "Стартовый",
       price: "от 15 000 ₽",
@@ -49,83 +53,99 @@ const Packages = () => {
       ],
       popular: false,
     },
-  ];
-
-  const additionalServices = [
+  ] : [
     {
-      title: "Индивидуальное обучение",
-      description: "Персональные занятия по Notion",
-      price: "5 000 ₽/час",
+      name: "Starter",
+      price: "from $200",
+      description: "Perfect for beginners and small businesses",
+      features: [
+        "1 hour consultation",
+        "1 ready template",
+        "Basic setup",
+        "Usage instructions",
+        "1 week support",
+      ],
+      popular: false,
     },
     {
-      title: "Доработка шаблона",
-      description: "Модификация существующих решений",
-      price: "от 10 000 ₽",
+      name: "Professional",
+      price: "from $450",
+      description: "For teams and growing businesses",
+      features: [
+        "3 hours consultation",
+        "3 custom templates",
+        "Full task customization",
+        "Team training (up to 5 people)",
+        "Service integrations",
+        "1 month support",
+        "Video tutorials",
+      ],
+      popular: true,
     },
     {
-      title: "AI-автоматизация",
-      description: "Интеграция AI-инструментов",
-      price: "от 20 000 ₽",
-    },
-    {
-      title: "Техническая поддержка",
-      description: "Ежемесячная поддержка и консультации",
-      price: "от 15 000 ₽/мес",
+      name: "Corporate",
+      price: "from $950",
+      description: "Comprehensive solution for large companies",
+      features: [
+        "Unlimited consultations",
+        "Individual workspace",
+        "Process automation",
+        "Full team training",
+        "Integrations and API",
+        "Continuous support",
+        "Updates and improvements",
+        "Data migration",
+      ],
+      popular: false,
     },
   ];
 
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-secondary/20 to-background py-20">
+      <section className="bg-secondary py-16 md:py-20 border-b-4 border-border">
         <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Пакеты Услуг
-            </h1>
-            <p className="text-xl text-muted-foreground">
-              Выберите подходящий пакет или создайте индивидуальное предложение
+          <div className="max-w-3xl space-y-4">
+            <h1 className="text-2xl md:text-3xl">{t('packages.title')}</h1>
+            <p className="text-xs md:text-sm text-muted-foreground">
+              {t('packages.subtitle')}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Packages Section */}
-      <section className="py-20">
+      {/* Packages Grid */}
+      <section className="py-16 md:py-20">
         <div className="container">
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {packages.map((pkg, index) => (
               <Card
                 key={index}
-                className={`relative ${
-                  pkg.popular
-                    ? "border-primary shadow-lg scale-105 md:scale-110"
-                    : ""
+                className={`pixel-border pixel-border-hover relative ${
+                  pkg.popular ? "border-4" : ""
                 }`}
               >
                 {pkg.popular && (
-                  <Badge
-                    className="absolute -top-3 left-1/2 -translate-x-1/2"
-                    variant="default"
-                  >
-                    Популярный
+                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs uppercase pixel-border">
+                    {i18n.language === 'ru' ? 'Популярно' : 'Popular'}
                   </Badge>
                 )}
-                <CardHeader className="text-center pb-8">
-                  <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
-                  <div className="text-3xl font-bold text-gradient-brand mb-2">
-                    {pkg.price}
-                  </div>
-                  <p className="text-sm text-muted-foreground">
+                <CardHeader className="space-y-3 text-center">
+                  <h3 className="text-base font-bold">{pkg.name}</h3>
+                  <div className="text-2xl font-bold">{pkg.price}</div>
+                  <p className="text-xs text-muted-foreground">
                     {pkg.description}
                   </p>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-3">
+                  <ul className="space-y-2">
                     {pkg.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                        <span className="text-sm">{feature}</span>
+                      <li
+                        key={featureIndex}
+                        className="flex items-start gap-2 text-xs"
+                      >
+                        <Check className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
+                        <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -136,105 +156,13 @@ const Packages = () => {
                     variant={pkg.popular ? "default" : "outline"}
                     asChild
                   >
-                    <a href="/contact">Выбрать пакет</a>
+                    <Link to="/contact">
+                      {i18n.language === 'ru' ? 'Выбрать пакет' : 'Choose Package'}
+                    </Link>
                   </Button>
                 </CardFooter>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Additional Services */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container">
-          <h2 className="text-3xl font-bold text-center mb-4">
-            Дополнительные Услуги
-          </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Расширьте возможности вашего пакета дополнительными опциями
-          </p>
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {additionalServices.map((service, index) => (
-              <Card key={index} className="hover:shadow-md transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {service.description}
-                      </p>
-                    </div>
-                    <Badge variant="secondary" className="ml-4">
-                      {service.price}
-                    </Badge>
-                  </div>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-20">
-        <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
-              Как мы работаем
-            </h2>
-            <div className="grid md:grid-cols-4 gap-8">
-              {[
-                {
-                  step: "1",
-                  title: "Консультация",
-                  description: "Обсуждаем ваши задачи и выбираем решение",
-                },
-                {
-                  step: "2",
-                  title: "Разработка",
-                  description: "Создаем и настраиваем систему под ваши нужды",
-                },
-                {
-                  step: "3",
-                  title: "Обучение",
-                  description: "Показываем как работать с новой системой",
-                },
-                {
-                  step: "4",
-                  title: "Поддержка",
-                  description: "Помогаем в процессе использования",
-                },
-              ].map((item, index) => (
-                <div key={index} className="text-center">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground font-bold text-xl mb-4">
-                    {item.step}
-                  </div>
-                  <h3 className="font-bold mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-primary to-primary/90">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center text-primary-foreground">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Не нашли подходящий пакет?
-            </h2>
-            <p className="text-lg mb-8 text-primary-foreground/90">
-              Я могу создать индивидуальное предложение специально для ваших задач и
-              бюджета
-            </p>
-            <Button size="lg" variant="secondary" className="shadow-accent" asChild>
-              <a href="/contact">Обсудить индивидуальное решение</a>
-            </Button>
           </div>
         </div>
       </section>

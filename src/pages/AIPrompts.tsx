@@ -1,180 +1,124 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Sparkles, Brain, Zap, Target } from "lucide-react";
+import { Brain, Zap, Target } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const AIPrompts = () => {
+  const { t, i18n } = useTranslation();
+
   const features = [
     {
       icon: Brain,
-      title: "Интеллектуальные промпты",
-      description:
-        "Коллекция тщательно проработанных промптов для различных AI-моделей",
+      title: i18n.language === 'ru' ? "Интеллектуальные промпты" : "Smart Prompts",
+      description: i18n.language === 'ru'
+        ? "Коллекция тщательно проработанных промптов для различных AI-моделей"
+        : "Collection of carefully crafted prompts for various AI models",
     },
     {
       icon: Zap,
-      title: "Быстрая автоматизация",
-      description:
-        "Ускорьте рабочие процессы с помощью готовых AI-решений",
+      title: i18n.language === 'ru' ? "Быстрая автоматизация" : "Fast Automation",
+      description: i18n.language === 'ru'
+        ? "Ускорьте рабочие процессы с помощью готовых AI-решений"
+        : "Speed up workflows with ready-made AI solutions",
     },
     {
       icon: Target,
-      title: "Точные результаты",
-      description:
-        "Получайте качественные ответы от AI благодаря оптимизированным промптам",
+      title: i18n.language === 'ru' ? "Точные результаты" : "Precise Results",
+      description: i18n.language === 'ru'
+        ? "Получайте качественные ответы от AI благодаря оптимизированным промптам"
+        : "Get quality AI responses with optimized prompts",
     },
   ];
 
   const categories = [
     {
-      title: "Бизнес и маркетинг",
-      description: "Промпты для создания контента, стратегий и анализа",
-      count: "12+ промптов",
+      title: i18n.language === 'ru' ? "Бизнес и маркетинг" : "Business & Marketing",
+      description: i18n.language === 'ru' 
+        ? "Промпты для создания контента, стратегий и анализа"
+        : "Prompts for content creation, strategies and analysis",
+      count: i18n.language === 'ru' ? "12+ промптов" : "12+ prompts",
     },
     {
-      title: "Разработка",
-      description: "Помощь в написании кода и решении технических задач",
-      count: "15+ промптов",
+      title: i18n.language === 'ru' ? "Разработка" : "Development",
+      description: i18n.language === 'ru' 
+        ? "Помощь в написании кода и решении технических задач"
+        : "Help with coding and solving technical problems",
+      count: i18n.language === 'ru' ? "15+ промптов" : "15+ prompts",
     },
     {
-      title: "Креатив",
-      description: "Генерация идей, сценариев и креативного контента",
-      count: "10+ промптов",
+      title: i18n.language === 'ru' ? "Креатив" : "Creative",
+      description: i18n.language === 'ru' 
+        ? "Генерация идей, сценариев и креативного контента"
+        : "Generating ideas, scripts and creative content",
+      count: i18n.language === 'ru' ? "10+ промптов" : "10+ prompts",
     },
     {
-      title: "Анализ данных",
-      description: "Обработка и интерпретация данных с помощью AI",
-      count: "8+ промптов",
+      title: i18n.language === 'ru' ? "Анализ данных" : "Data Analysis",
+      description: i18n.language === 'ru' 
+        ? "Обработка и интерпретация данных с помощью AI"
+        : "Processing and interpreting data with AI",
+      count: i18n.language === 'ru' ? "8+ промптов" : "8+ prompts",
     },
   ];
 
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-accent via-accent/90 to-accent/80 text-accent-foreground py-20 md:py-32">
-        <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,transparent,black)]" />
-        <div className="container relative">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-foreground/10 mb-6">
-              <Sparkles className="h-4 w-4" />
-              <span className="text-sm font-medium">AI Промпты</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Коллекция промптов для работы с искусственным интеллектом
-            </h1>
-            <p className="text-xl mb-8 text-accent-foreground/90">
-              Простой и эффективный способ работы с искусственным интеллектом
+      <section className="bg-primary text-primary-foreground py-16 md:py-20 border-b-4 border-border">
+        <div className="container">
+          <div className="max-w-3xl space-y-4">
+            <h1 className="text-2xl md:text-3xl">{t('aiPrompts.title')}</h1>
+            <p className="text-xs md:text-sm opacity-90">
+              {t('aiPrompts.subtitle')}
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Button
-                size="lg"
-                variant="secondary"
-                className="shadow-lg"
-              >
-                Начать
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-accent-foreground/10 border-accent-foreground/20 hover:bg-accent-foreground/20"
-              >
-                Узнать больше
-              </Button>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20">
+      <section className="py-16 md:py-20 bg-secondary">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            Создавайте с AI
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {features.map((feature, index) => (
-              <Card key={index} className="text-center">
-                <CardHeader>
-                  <div className="mx-auto mb-4 inline-flex p-3 rounded-lg bg-accent/10">
-                    <feature.icon className="h-8 w-8 text-accent" />
-                  </div>
-                  <h3 className="text-xl font-bold">{feature.title}</h3>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                </CardContent>
-              </Card>
+              <div
+                key={index}
+                className="pixel-border p-6 bg-background space-y-3 text-center"
+              >
+                <div className="inline-flex p-3 pixel-border bg-primary mx-auto">
+                  <feature.icon className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <h3 className="text-sm font-bold">{feature.title}</h3>
+                <p className="text-xs text-muted-foreground">
+                  {feature.description}
+                </p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Categories Section */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-16 md:py-20">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            Категории промптов
+          <h2 className="text-xl md:text-2xl text-center mb-12">
+            {i18n.language === 'ru' ? 'Категории промптов' : 'Prompt Categories'}
           </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Выберите категорию, которая соответствует вашим задачам
-          </p>
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {categories.map((category, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                className="pixel-border pixel-border-hover"
               >
                 <CardHeader>
-                  <div className="flex items-start justify-between mb-2">
-                    <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
-                      {category.title}
-                    </h3>
-                    <span className="text-sm font-medium text-accent">
-                      {category.count}
-                    </span>
-                  </div>
-                  <p className="text-muted-foreground">{category.description}</p>
+                  <h3 className="text-base font-bold">{category.title}</h3>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    {category.description}
+                  </p>
                 </CardHeader>
+                <CardContent>
+                  <p className="text-xs font-bold">{category.count}</p>
+                </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section className="py-20">
-        <div className="container">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-              О Дэн Янович AI
-            </h2>
-            <Card>
-              <CardContent className="p-8">
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Я создаю инновационные AI решения для бизнеса. Моя миссия - сделать
-                  искусственный интеллект доступным и простым в использовании. С опытом
-                  работы с различными AI-моделями, я помогаю компаниям и частным лицам
-                  эффективно использовать современные технологии для решения их задач.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-primary to-primary/90">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center text-primary-foreground">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Начните использовать AI эффективно
-            </h2>
-            <p className="text-lg mb-8 text-primary-foreground/90">
-              Свяжитесь со мной, чтобы узнать больше о промптах и AI-решениях для
-              вашего бизнеса.
-            </p>
-            <Button size="lg" variant="secondary" className="shadow-accent" asChild>
-              <a href="/contact">Связаться</a>
-            </Button>
           </div>
         </div>
       </section>
