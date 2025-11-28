@@ -1,52 +1,62 @@
+import { useTranslation } from "react-i18next";
 import { Youtube, MessageCircle } from "lucide-react";
 import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const { t, i18n } = useTranslation();
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-border/40 bg-muted/30">
-      <div className="container py-12">
+    <footer className="border-t-4 border-border bg-background mt-auto">
+      <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div>
-            <h3 className="text-xl font-bold text-gradient-brand mb-4">
-              Дэн Янович
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              Эксперт по Notion и AI-решениям. Помогаю оптимизировать рабочие процессы
-              и повышать продуктивность.
+            <div className="text-sm font-bold pixel-border px-3 py-2 bg-primary text-primary-foreground inline-block mb-4">
+              [ДЯ]
+            </div>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              {i18n.language === 'ru' 
+                ? 'Эксперт по Notion и AI-решениям. Помогаю оптимизировать рабочие процессы и повышать продуктивность.'
+                : 'Notion and AI solutions expert. I help optimize workflows and increase productivity.'}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4">Быстрые ссылки</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <h4 className="font-bold text-xs mb-4 uppercase">
+              {i18n.language === 'ru' ? 'Быстрые ссылки' : 'Quick Links'}
+            </h4>
+            <ul className="space-y-2 text-xs">
               <li>
-                <a href="/portfolio" className="hover:text-primary transition-colors">
-                  Портфолио
-                </a>
+                <Link to="/portfolio" className="text-muted-foreground hover:text-foreground transition-colors">
+                  {t('nav.portfolio')}
+                </Link>
               </li>
               <li>
-                <a href="/templates" className="hover:text-primary transition-colors">
-                  Шаблоны
-                </a>
+                <Link to="/templates" className="text-muted-foreground hover:text-foreground transition-colors">
+                  {t('nav.templates')}
+                </Link>
               </li>
               <li>
-                <a href="/ai-prompts" className="hover:text-primary transition-colors">
-                  AI Промпты
-                </a>
+                <Link to="/ai-prompts" className="text-muted-foreground hover:text-foreground transition-colors">
+                  {t('nav.aiPrompts')}
+                </Link>
               </li>
               <li>
-                <a href="/contact" className="hover:text-primary transition-colors">
-                  Контакты
-                </a>
+                <Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
+                  {t('nav.contact')}
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* Social */}
           <div>
-            <h4 className="font-semibold mb-4">Соц. сети</h4>
+            <h4 className="font-bold text-xs mb-4 uppercase">
+              {i18n.language === 'ru' ? 'Соц. сети' : 'Social'}
+            </h4>
             <div className="flex gap-2">
               <Button
                 variant="outline"
@@ -59,7 +69,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   aria-label="YouTube"
                 >
-                  <Youtube className="h-5 w-5" />
+                  <Youtube className="h-4 w-4" />
                 </a>
               </Button>
               <Button
@@ -73,15 +83,17 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   aria-label="Telegram"
                 >
-                  <MessageCircle className="h-5 w-5" />
+                  <MessageCircle className="h-4 w-4" />
                 </a>
               </Button>
             </div>
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-border/40 text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Дэн Янович. Все права защищены.</p>
+        <div className="mt-8 pt-8 border-t-4 border-border text-center">
+          <p className="text-xs text-muted-foreground">
+            © {currentYear} {i18n.language === 'ru' ? 'Дэн Янович. Все права защищены.' : 'Dan Yanovich. All rights reserved.'}
+          </p>
         </div>
       </div>
     </footer>
