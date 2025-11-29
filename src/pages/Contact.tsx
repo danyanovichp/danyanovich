@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Youtube, MessageCircle, FileText } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import PixelDecorations from "@/components/pixel-art/PixelDecorations";
@@ -84,20 +83,14 @@ const Contact = () => {
                     <p className="text-xs text-muted-foreground">
                       {social.description}
                     </p>
-                    <p className="text-xs font-bold">{social.handle}</p>
-                    <Button
-                      variant="outline"
-                      className="w-full"
-                      asChild
+                    <a
+                      href={social.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-bold hover:text-primary transition-colors inline-flex items-center gap-1"
                     >
-                      <a
-                        href={social.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {i18n.language === 'ru' ? 'Перейти' : 'Visit'}
-                      </a>
-                    </Button>
+                      {social.handle}
+                    </a>
                   </CardContent>
                 </Card>
               ))}
