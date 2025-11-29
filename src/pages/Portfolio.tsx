@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import PixelDecorations from "@/components/pixel-art/PixelDecorations";
 
 const Portfolio = () => {
   const { t, i18n } = useTranslation();
@@ -47,9 +48,11 @@ const Portfolio = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen relative">
+      <PixelDecorations />
+      
       {/* Hero Section */}
-      <section className="bg-secondary py-16 md:py-20 border-b-4 border-border">
+      <section className="bg-secondary py-16 md:py-20 border-b-4 border-border relative">
         <div className="container">
           <div className="max-w-3xl space-y-4">
             <h1 className="text-2xl md:text-3xl">{t('portfolio.title')}</h1>

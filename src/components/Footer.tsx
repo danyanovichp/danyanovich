@@ -14,7 +14,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <div className="text-sm font-bold pixel-border px-3 py-2 bg-primary text-primary-foreground inline-block mb-4">
-              [ДЯ]
+              {i18n.language === 'ru' ? '[ДЯ]' : '[DY]'}
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">
               {i18n.language === 'ru' 
@@ -30,23 +30,28 @@ const Footer = () => {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link to="/portfolio" className="text-muted-foreground hover:text-foreground transition-colors">
-                  {t('nav.portfolio')}
-                </Link>
-              </li>
-              <li>
                 <Link to="/templates" className="text-muted-foreground hover:text-foreground transition-colors">
                   {t('nav.templates')}
                 </Link>
               </li>
               <li>
-                <Link to="/ai-prompts" className="text-muted-foreground hover:text-foreground transition-colors">
-                  {t('nav.aiPrompts')}
+                <Link to="/consulting" className="text-muted-foreground hover:text-foreground transition-colors">
+                  {t('nav.consulting')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/faq" className="text-muted-foreground hover:text-foreground transition-colors">
+                  {t('nav.faq')}
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
                   {t('nav.contact')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/portfolio" className="text-muted-foreground hover:text-foreground transition-colors">
+                  {t('nav.portfolio')}
                 </Link>
               </li>
             </ul>
@@ -64,7 +69,7 @@ const Footer = () => {
                 asChild
               >
                 <a
-                  href="https://www.youtube.com/@262ai"
+                  href="https://www.youtube.com/@danyanovich"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="YouTube"
@@ -78,7 +83,7 @@ const Footer = () => {
                 asChild
               >
                 <a
-                  href="https://t.me/notion262"
+                  href="https://t.me/danyanovichp"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Telegram"

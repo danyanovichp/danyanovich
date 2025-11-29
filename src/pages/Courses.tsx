@@ -1,8 +1,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { BookOpen, Clock, Users, CheckCircle } from "lucide-react";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import PixelDecorations from "@/components/pixel-art/PixelDecorations";
 
 const Courses = () => {
   const { t, i18n } = useTranslation();
@@ -48,20 +47,23 @@ const Courses = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-primary text-primary-foreground py-16 md:py-20 border-b-4 border-border">
+    <div className="flex flex-col min-h-screen relative">
+      <PixelDecorations />
+      
+      {/* Hero Section with "In Development" Banner */}
+      <section className="bg-primary text-primary-foreground py-16 md:py-20 border-b-4 border-border relative">
         <div className="container">
           <div className="max-w-3xl space-y-6">
+            {/* In Development Badge */}
+            <div className="inline-flex items-center gap-2 pixel-border px-4 py-2 bg-brand-amber text-background font-bold text-xs uppercase animate-pixel-pulse">
+              <span>🚧</span>
+              <span>{t('common.inDevelopment')}</span>
+            </div>
+
             <h1 className="text-2xl md:text-3xl">{t('courses.title')}</h1>
             <p className="text-xs md:text-sm opacity-90">
               {t('courses.subtitle')}
             </p>
-            <Button size="lg" variant="secondary" asChild>
-              <Link to="/contact">
-                {i18n.language === 'ru' ? 'Записаться на курс' : 'Enroll in Course'}
-              </Link>
-            </Button>
           </div>
         </div>
       </section>

@@ -74,9 +74,9 @@ const Home = () => {
                 {t('home.hero.description')}
               </p>
               <div className="flex flex-wrap gap-3">
-                <Button asChild size="lg" className="animate-pixel-bounce">
-                  <Link to="/portfolio">
-                    {t('home.hero.ctaPortfolio')}
+                <Button asChild size="lg">
+                  <Link to="/templates">
+                    {t('common.viewTemplates')}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -135,7 +135,7 @@ const Home = () => {
                   <p className="text-muted-foreground mb-6">{item.description}</p>
                   <Button asChild variant="outline">
                     <Link to={item.link}>
-                      {t('common.learnMore')}
+                      {item.icon === 'notion' ? t('common.viewTemplates') : t('common.learnMore')}
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
@@ -148,9 +148,14 @@ const Home = () => {
         {/* Process Section */}
         <section className="container mx-auto px-4 py-12 md:py-20">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl md:text-4xl font-bold text-center mb-12">
-              {t('home.workflow.title')}
-            </h2>
+            <div className="text-center mb-12 space-y-2">
+              <h2 className="text-2xl md:text-4xl font-bold">
+                {t('home.workflow.title')}
+              </h2>
+              <p className="text-xs text-muted-foreground uppercase pixel-border inline-block px-3 py-1 bg-brand-amber text-background">
+                ({t('common.inDevelopment')})
+              </p>
+            </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {process.map((item, index) => (
                 <Card key={index} className="p-6 pixel-border hover:translate-y-[-4px] transition-transform">
