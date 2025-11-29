@@ -26,15 +26,6 @@ const Contact = () => {
       link: "https://t.me/danyanovichp",
     },
     {
-      icon: MessageCircle,
-      title: i18n.language === 'ru' ? "Связаться в Telegram" : "Contact on Telegram",
-      description: i18n.language === 'ru' 
-        ? "Напишите мне напрямую для консультации"
-        : "Message me directly for consultation",
-      handle: "@danyanovich",
-      link: "https://t.me/danyanovich",
-    },
-    {
       icon: FileText,
       title: "Notion Marketplace",
       description: i18n.language === 'ru' 
