@@ -23,12 +23,6 @@ const Home = () => {
       title: t('home.expertise.notion.title'),
       description: t('home.expertise.notion.description'),
       link: "/templates"
-    },
-    {
-      icon: 'ai' as const,
-      title: t('home.expertise.ai.title'),
-      description: t('home.expertise.ai.description'),
-      link: "/ai-prompts"
     }
   ];
 
@@ -125,7 +119,7 @@ const Home = () => {
             <h2 className="text-2xl md:text-4xl font-bold text-center mb-12">
               {t('home.expertise.title')}
             </h2>
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-1 gap-8 max-w-2xl mx-auto">
               {expertise.map((item, index) => (
                 <Card key={index} className="p-8 pixel-border hover:translate-x-[-4px] hover:translate-y-[-4px] transition-all group">
                   <div className="w-16 h-16 mb-4 group-hover:animate-pixel-bounce">
@@ -135,7 +129,7 @@ const Home = () => {
                   <p className="text-muted-foreground mb-6">{item.description}</p>
                   <Button asChild variant="outline">
                     <Link to={item.link}>
-                      {item.icon === 'notion' ? t('common.viewTemplates') : t('common.learnMore')}
+                      {t('common.viewTemplates')}
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>

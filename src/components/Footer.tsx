@@ -35,23 +35,8 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/consulting" className="text-muted-foreground hover:text-foreground transition-colors">
-                  {t('nav.consulting')}
-                </Link>
-              </li>
-              <li>
-                <Link to="/faq" className="text-muted-foreground hover:text-foreground transition-colors">
-                  {t('nav.faq')}
-                </Link>
-              </li>
-              <li>
                 <Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
                   {t('nav.contact')}
-                </Link>
-              </li>
-              <li>
-                <Link to="/portfolio" className="text-muted-foreground hover:text-foreground transition-colors">
-                  {t('nav.portfolio')}
                 </Link>
               </li>
             </ul>
