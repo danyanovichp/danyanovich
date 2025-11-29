@@ -7,12 +7,15 @@ const resources = {
     translation: {
       nav: {
         home: 'ГЛАВНАЯ',
-        portfolio: 'ПОРТФОЛИО',
         templates: 'ШАБЛОНЫ',
         courses: 'КУРСЫ',
         aiPrompts: 'AI ПРОМПТЫ',
+        consulting: 'КОНСАЛТИНГ',
         packages: 'ПАКЕТЫ',
+        reviews: 'ОТЗЫВЫ',
+        faq: 'FAQ',
         contact: 'КОНТАКТЫ',
+        portfolio: 'ПОРТФОЛИО',
       },
       home: {
         hero: {
@@ -94,10 +97,26 @@ const resources = {
         subtitle: 'Свяжитесь со мной',
         social: 'Социальные сети',
       },
+      faq: {
+        title: 'Часто задаваемые вопросы',
+        subtitle: 'Ответы на популярные вопросы',
+      },
+      reviews: {
+        title: 'Отзывы клиентов',
+        subtitle: 'Что говорят о моих услугах',
+        comingSoon: 'Отзывы появятся здесь в будущем',
+      },
+      consulting: {
+        title: 'Консалтинговые услуги',
+        subtitle: 'Индивидуальные решения для вашего бизнеса',
+      },
       common: {
         learnMore: 'Узнать больше',
         getStarted: 'Начать',
         viewAll: 'Смотреть все',
+        viewTemplates: 'Посмотреть шаблоны',
+        inDevelopment: 'В разработке',
+        comingSoon: 'Скоро',
       },
     },
   },
@@ -105,12 +124,15 @@ const resources = {
     translation: {
       nav: {
         home: 'HOME',
-        portfolio: 'PORTFOLIO',
         templates: 'TEMPLATES',
         courses: 'COURSES',
         aiPrompts: 'AI PROMPTS',
+        consulting: 'CONSULTING',
         packages: 'PACKAGES',
+        reviews: 'REVIEWS',
+        faq: 'FAQ',
         contact: 'CONTACT',
+        portfolio: 'PORTFOLIO',
       },
       home: {
         hero: {
@@ -192,10 +214,26 @@ const resources = {
         subtitle: 'Get in touch with me',
         social: 'Social Media',
       },
+      faq: {
+        title: 'Frequently Asked Questions',
+        subtitle: 'Answers to popular questions',
+      },
+      reviews: {
+        title: 'Client Reviews',
+        subtitle: 'What people say about my services',
+        comingSoon: 'Reviews will appear here soon',
+      },
+      consulting: {
+        title: 'Consulting Services',
+        subtitle: 'Custom solutions for your business',
+      },
       common: {
         learnMore: 'Learn More',
         getStarted: 'Get Started',
         viewAll: 'View All',
+        viewTemplates: 'View Templates',
+        inDevelopment: 'In Development',
+        comingSoon: 'Coming Soon',
       },
     },
   },

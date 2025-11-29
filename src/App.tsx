@@ -12,6 +12,9 @@ import Courses from "./pages/Courses";
 import AIPrompts from "./pages/AIPrompts";
 import Packages from "./pages/Packages";
 import Contact from "./pages/Contact";
+import FAQ from "./pages/FAQ";
+import Reviews from "./pages/Reviews";
+import Consulting from "./pages/Consulting";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -31,12 +34,15 @@ const App = () => (
             <main className="flex-1">
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/portfolio" element={<PageTransition><Portfolio /></PageTransition>} />
                 <Route path="/templates" element={<PageTransition><Templates /></PageTransition>} />
                 <Route path="/courses" element={<PageTransition><Courses /></PageTransition>} />
                 <Route path="/ai-prompts" element={<PageTransition><AIPrompts /></PageTransition>} />
+                <Route path="/consulting" element={<PageTransition><Consulting /></PageTransition>} />
                 <Route path="/packages" element={<PageTransition><Packages /></PageTransition>} />
+                <Route path="/reviews" element={<PageTransition><Reviews /></PageTransition>} />
+                <Route path="/faq" element={<PageTransition><FAQ /></PageTransition>} />
                 <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+                <Route path="/portfolio" element={<PageTransition><Portfolio /></PageTransition>} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
               </Routes>
