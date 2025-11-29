@@ -17,14 +17,7 @@ const Header = () => {
   const navLinks = [
     { href: "/", label: t('nav.home') },
     { href: "/templates", label: t('nav.templates') },
-    { href: "/courses", label: t('nav.courses') },
-    { href: "/ai-prompts", label: t('nav.aiPrompts') },
-    { href: "/consulting", label: t('nav.consulting') },
-    { href: "/packages", label: t('nav.packages') },
-    { href: "/reviews", label: t('nav.reviews') },
-    { href: "/faq", label: t('nav.faq') },
     { href: "/contact", label: t('nav.contact') },
-    { href: "/portfolio", label: t('nav.portfolio') },
   ];
 
   return (
