@@ -70,20 +70,21 @@ const Portfolio = () => {
             {projects.map((project, index) => (
               <Card
                 key={index}
-                className="pixel-border pixel-border-hover group"
+                className="pixel-border pixel-border-hover group transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(var(--primary),0.3)] hover:animate-pixel-float"
               >
-                <CardHeader className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <Badge variant="secondary" className="text-xs uppercase">
+                <CardHeader className="space-y-3 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity group-hover:animate-pixel-pulse" />
+                  <div className="flex items-center justify-between relative z-10">
+                    <Badge variant="secondary" className="text-xs uppercase pixel-border group-hover:animate-pixel-bounce">
                       {project.category}
                     </Badge>
                   </div>
-                  <h3 className="text-sm font-bold leading-tight">
+                  <h3 className="text-sm font-bold leading-tight relative z-10 group-hover:translate-x-1 transition-transform">
                     {project.title}
                   </h3>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -91,7 +92,7 @@ const Portfolio = () => {
                       <Badge
                         key={tagIndex}
                         variant="outline"
-                        className="text-xs"
+                        className="text-xs group-hover:bg-primary/10 transition-colors"
                       >
                         {tag}
                       </Badge>
@@ -99,7 +100,7 @@ const Portfolio = () => {
                   </div>
                   <Button
                     variant="outline"
-                    className="w-full text-xs"
+                    className="w-full text-xs group-hover:bg-primary group-hover:text-primary-foreground transition-all"
                     asChild
                   >
                     <a
@@ -108,7 +109,7 @@ const Portfolio = () => {
                       rel="noopener noreferrer"
                     >
                       {i18n.language === 'ru' ? 'Открыть проект' : 'Open Project'}
-                      <ExternalLink className="ml-2 h-3 w-3" />
+                      <ExternalLink className="ml-2 h-3 w-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </a>
                   </Button>
                 </CardContent>
