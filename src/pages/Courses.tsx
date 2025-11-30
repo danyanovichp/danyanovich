@@ -1,7 +1,6 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { BookOpen, Clock, Users, CheckCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import PixelDecorations from "@/components/pixel-art/PixelDecorations";
 
 const Courses = () => {
   const { t, i18n } = useTranslation();
@@ -47,44 +46,43 @@ const Courses = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen relative">
-      <PixelDecorations />
+    <div className="flex flex-col min-h-screen">
       
       {/* Hero Section with "In Development" Banner */}
-      <section className="bg-primary text-primary-foreground py-16 md:py-20 border-b-4 border-border relative">
+      <section className="bg-muted/30 py-16 md:py-20 border-b">
         <div className="container">
-          <div className="max-w-3xl space-y-6">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
             {/* In Development Badge */}
-            <div className="inline-flex items-center gap-2 pixel-border px-4 py-2 bg-brand-amber text-background font-bold text-xs uppercase animate-pixel-pulse">
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-md text-base font-medium">
               <span>🚧</span>
               <span>{t('common.inDevelopment')}</span>
             </div>
 
-            <h1 className="text-2xl md:text-3xl">{t('courses.title')}</h1>
-            <p className="text-xs md:text-sm opacity-90">
-              {t('courses.subtitle')}
+            <h1 className="text-3xl md:text-5xl font-bold">{t('courses.title')}</h1>
+            <p className="text-base md:text-lg text-muted-foreground">{t('courses.subtitle')}
             </p>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-16 md:py-20 bg-secondary">
+      <section className="py-16 md:py-20 bg-muted/30">
         <div className="container">
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {courseFeatures.map((feature, index) => (
-              <div
-                key={index}
-                className="pixel-border p-6 bg-background space-y-3 text-center"
-              >
-                <div className="inline-flex p-3 pixel-border bg-primary mx-auto">
-                  <feature.icon className="h-6 w-6 text-primary-foreground" />
-                </div>
-                <h3 className="text-sm font-bold">{feature.title}</h3>
-                <p className="text-xs text-muted-foreground">
-                  {feature.description}
-                </p>
-              </div>
+              <Card key={index} className="text-center">
+                <CardHeader className="space-y-4">
+                  <div className="inline-flex p-4 bg-primary text-primary-foreground rounded-lg mx-auto">
+                    <feature.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-lg font-bold">{feature.title}</h3>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    {feature.description}
+                  </p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
@@ -93,17 +91,14 @@ const Courses = () => {
       {/* Benefits Section */}
       <section className="py-16 md:py-20">
         <div className="container">
-          <h2 className="text-xl md:text-2xl text-center mb-12">
+          <h2 className="text-2xl md:text-3xl text-center mb-12 font-bold">
             {i18n.language === 'ru' ? 'Что вы получите' : 'What You Get'}
           </h2>
           <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {benefits.map((benefit, index) => (
-              <div
-                key={index}
-                className="flex items-start gap-3 pixel-border p-4 bg-background"
-              >
-                <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-1" />
-                <span className="text-xs">{benefit}</span>
+              <div key={index} className="flex items-start gap-3 border rounded-lg p-4 bg-background">
+                <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm">{benefit}</span>
               </div>
             ))}
           </div>
