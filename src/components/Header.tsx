@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Moon, Sun, Globe, Menu } from "lucide-react";
+import { Moon, Sun, Globe } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 import { useTranslation } from "react-i18next";
 import { Button } from "./ui/button";
@@ -21,23 +21,27 @@ const Header = () => {
   ];
 
   return (
-    <header className="border-b-4 border-border bg-background sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-3">
+    <header className="sticky top-0 z-50 bg-background/70 backdrop-blur-xl border-b border-border/20">
+      <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="text-sm font-bold pixel-border px-3 py-2 bg-primary text-primary-foreground">
-            {i18n.language === 'ru' ? '[ДЯ]' : '[DY]'}
+          {/* Logo - glass pill */}
+          <Link 
+            to="/" 
+            className="px-4 py-2 rounded-xl bg-primary/90 backdrop-blur-sm text-primary-foreground text-sm font-bold hover:bg-primary hover:shadow-glass transition-all"
+          >
+            {i18n.language === 'ru' ? 'ДЯ' : 'DY'}
           </Link>
           
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-2">
+          {/* Desktop Navigation - glass pill container */}
+          <nav className="hidden lg:flex items-center gap-2 p-1.5 rounded-2xl bg-muted/30 backdrop-blur-xl border border-border/20">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
-                className={`px-3 py-2 text-xs font-bold uppercase pixel-border transition-all ${
+                className={`px-4 py-2 text-sm font-medium rounded-xl transition-all ${
                   location.pathname === link.href
-                    ? "bg-primary text-primary-foreground" 
-                    : "bg-background text-foreground hover:translate-x-[-2px] hover:translate-y-[-2px]"
+                    ? "bg-primary text-primary-foreground shadow-glass" 
+                    : "text-foreground hover:bg-background/50 hover:backdrop-blur-sm"
                 }`}
               >
                 {link.label}
@@ -45,12 +49,14 @@ const Header = () => {
             ))}
           </nav>
 
+          {/* Controls */}
           <div className="flex items-center gap-2">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              title={theme === "light" ? "DARK" : "LIGHT"}
+              title={theme === "light" ? "Dark Mode" : "Light Mode"}
+              className="rounded-xl"
             >
               {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
             </Button>
@@ -60,6 +66,7 @@ const Header = () => {
               size="icon"
               onClick={toggleLanguage}
               title={i18n.language === 'ru' ? 'EN' : 'RU'}
+              className="rounded-xl"
             >
               <Globe className="h-4 w-4" />
             </Button>
@@ -67,7 +74,7 @@ const Header = () => {
             {/* Mobile Navigation */}
             <Sheet>
               <SheetTrigger asChild className="lg:hidden">
-                <Button variant="ghost" size="icon" className="relative group">
+                <Button variant="ghost" size="icon" className="rounded-xl relative group">
                   <div className="flex flex-col gap-1">
                     <span className="block w-5 h-0.5 bg-current transition-transform group-hover:translate-y-[-1px]" />
                     <span className="block w-5 h-0.5 bg-current" />
@@ -75,25 +82,16 @@ const Header = () => {
                   </div>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="pixel-border bg-background/95 backdrop-blur-sm">
-                {/* Pixel grid overlay */}
-                <div className="absolute inset-0 opacity-5 pointer-events-none" style={{
-                  backgroundImage: `
-                    linear-gradient(to right, hsl(var(--foreground)) 1px, transparent 1px),
-                    linear-gradient(to bottom, hsl(var(--foreground)) 1px, transparent 1px)
-                  `,
-                  backgroundSize: '8px 8px'
-                }} />
-                
-                <nav className="flex flex-col gap-3 mt-8 relative z-10">
+              <SheetContent side="right" className="bg-background/80 backdrop-blur-2xl border-l border-border/20">
+                <nav className="flex flex-col gap-3 mt-8">
                   {navLinks.map((link, index) => (
                     <Link
                       key={link.href}
                       to={link.href}
-                      className={`mobile-menu-item px-4 py-3 text-xs font-bold uppercase pixel-border transition-all hover:translate-x-1 ${
+                      className={`mobile-menu-item px-4 py-3 text-sm font-medium rounded-xl backdrop-blur-sm border border-border/20 transition-all hover:translate-x-1 ${
                         location.pathname === link.href
-                          ? "bg-primary text-primary-foreground animate-pixel-pulse" 
-                          : "bg-background text-foreground hover:bg-accent"
+                          ? "bg-primary text-primary-foreground shadow-glass" 
+                          : "bg-background/50 text-foreground hover:bg-background/70"
                       }`}
                       style={{ animationDelay: `${index * 0.05}s` }}
                     >

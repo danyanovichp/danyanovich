@@ -5,15 +5,15 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium rounded-md border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium rounded-xl backdrop-blur-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground border-primary hover:shadow-md",
-        destructive: "bg-destructive text-destructive-foreground border-destructive hover:shadow-md",
-        outline: "bg-background text-foreground border-border hover:bg-muted hover:shadow-sm",
-        secondary: "bg-secondary text-secondary-foreground border-secondary hover:shadow-md",
-        ghost: "border-transparent hover:bg-muted hover:text-foreground",
+        default: "bg-primary/90 text-primary-foreground backdrop-blur-xl border border-primary/20 hover:bg-primary hover:shadow-glass hover:scale-[1.02]",
+        destructive: "bg-destructive/90 text-destructive-foreground backdrop-blur-xl border border-destructive/20 hover:bg-destructive hover:shadow-glass",
+        outline: "bg-background/50 backdrop-blur-xl text-foreground border border-border/30 hover:bg-background/70 hover:shadow-glass",
+        secondary: "bg-secondary/80 text-secondary-foreground backdrop-blur-xl border border-secondary/20 hover:bg-secondary hover:shadow-glass",
+        ghost: "border-transparent hover:bg-muted/50 backdrop-blur-sm",
         link: "border-transparent text-primary underline-offset-4 hover:underline",
       },
       size: {

@@ -8,13 +8,13 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t-4 border-border bg-background mt-auto">
+    <footer className="bg-muted/30 backdrop-blur-xl border-t border-border/20 mt-auto">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div>
-            <div className="text-sm font-bold pixel-border px-3 py-2 bg-primary text-primary-foreground inline-block mb-4">
-              {i18n.language === 'ru' ? '[ДЯ]' : '[DY]'}
+            <div className="text-sm font-bold px-4 py-2 rounded-xl bg-primary/90 backdrop-blur-sm text-primary-foreground inline-block mb-4">
+              {i18n.language === 'ru' ? 'ДЯ' : 'DY'}
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">
               {i18n.language === 'ru' 
@@ -52,6 +52,7 @@ const Footer = () => {
                 variant="outline"
                 size="icon"
                 asChild
+                className="rounded-xl"
               >
                 <a
                   href="https://www.youtube.com/@danyanovich"
@@ -66,6 +67,7 @@ const Footer = () => {
                 variant="outline"
                 size="icon"
                 asChild
+                className="rounded-xl"
               >
                 <a
                   href="https://t.me/danyanovichp"
@@ -80,7 +82,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t-4 border-border text-center">
+        <div className="mt-8 pt-8 border-t border-border/20 text-center">
           <p className="text-xs text-muted-foreground">
             © {currentYear} {i18n.language === 'ru' ? 'Дэн Янович. Все права защищены.' : 'Dan Yanovich. All rights reserved.'}
           </p>
