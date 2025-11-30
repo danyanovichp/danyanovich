@@ -1,7 +1,6 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Brain, Zap, Target } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import PixelDecorations from "@/components/pixel-art/PixelDecorations";
 
 const AIPrompts = () => {
   const { t, i18n } = useTranslation();
@@ -62,21 +61,20 @@ const AIPrompts = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen relative">
-      <PixelDecorations />
+    <div className="flex flex-col min-h-screen">
       
       {/* Hero Section with "In Development" Banner */}
-      <section className="bg-primary text-primary-foreground py-16 md:py-20 border-b-4 border-border relative">
+      <section className="bg-muted/30 py-16 md:py-20 border-b">
         <div className="container">
-          <div className="max-w-3xl space-y-6">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
             {/* In Development Badge */}
-            <div className="inline-flex items-center gap-2 pixel-border px-4 py-2 bg-brand-amber text-background font-bold text-xs uppercase animate-pixel-pulse">
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-md text-base font-medium">
               <span>🚧</span>
               <span>{t('common.inDevelopment')}</span>
             </div>
 
-            <h1 className="text-2xl md:text-3xl">{t('aiPrompts.title')}</h1>
-            <p className="text-xs md:text-sm opacity-90">
+            <h1 className="text-3xl md:text-5xl font-bold">{t('aiPrompts.title')}</h1>
+            <p className="text-base md:text-lg text-muted-foreground">
               {t('aiPrompts.subtitle')}
             </p>
           </div>
@@ -84,22 +82,23 @@ const AIPrompts = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 md:py-20 bg-secondary">
+      <section className="py-16 md:py-20 bg-muted/30">
         <div className="container">
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {features.map((feature, index) => (
-              <div
-                key={index}
-                className="pixel-border p-6 bg-background space-y-3 text-center"
-              >
-                <div className="inline-flex p-3 pixel-border bg-primary mx-auto">
-                  <feature.icon className="h-6 w-6 text-primary-foreground" />
-                </div>
-                <h3 className="text-sm font-bold">{feature.title}</h3>
-                <p className="text-xs text-muted-foreground">
-                  {feature.description}
-                </p>
-              </div>
+              <Card key={index} className="text-center">
+                <CardHeader className="space-y-4">
+                  <div className="inline-flex p-4 bg-primary text-primary-foreground rounded-lg mx-auto">
+                    <feature.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-lg font-bold">{feature.title}</h3>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    {feature.description}
+                  </p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
@@ -108,23 +107,20 @@ const AIPrompts = () => {
       {/* Categories Section */}
       <section className="py-16 md:py-20">
         <div className="container">
-          <h2 className="text-xl md:text-2xl text-center mb-12">
+          <h2 className="text-2xl md:text-3xl text-center mb-12 font-bold">
             {i18n.language === 'ru' ? 'Категории промптов' : 'Prompt Categories'}
           </h2>
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {categories.map((category, index) => (
-              <Card
-                key={index}
-                className="pixel-border pixel-border-hover"
-              >
+              <Card key={index}>
                 <CardHeader>
-                  <h3 className="text-base font-bold">{category.title}</h3>
-                  <p className="text-xs text-muted-foreground mt-2">
+                  <h3 className="text-lg font-bold">{category.title}</h3>
+                  <p className="text-sm text-muted-foreground mt-2">
                     {category.description}
                   </p>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-xs font-bold">{category.count}</p>
+                  <p className="text-sm font-medium">{category.count}</p>
                 </CardContent>
               </Card>
             ))}

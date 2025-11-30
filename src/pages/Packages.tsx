@@ -4,7 +4,6 @@ import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import PixelDecorations from "@/components/pixel-art/PixelDecorations";
 
 const Packages = () => {
   const { t, i18n } = useTranslation();
@@ -102,22 +101,20 @@ const Packages = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen relative">
-      <PixelDecorations />
+    <div className="flex flex-col min-h-screen">
       
       {/* Hero Section with "In Development" Banner */}
-      <section className="bg-secondary py-16 md:py-20 border-b-4 border-border relative">
+      <section className="bg-muted/30 py-16 md:py-20 border-b">
         <div className="container">
-          <div className="max-w-3xl space-y-6">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
             {/* In Development Badge */}
-            <div className="inline-flex items-center gap-2 pixel-border px-4 py-2 bg-brand-amber text-background font-bold text-xs uppercase animate-pixel-pulse">
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-md text-base font-medium">
               <span>🚧</span>
               <span>{t('common.inDevelopment')}</span>
             </div>
 
-            <h1 className="text-2xl md:text-3xl">{t('packages.title')}</h1>
-            <p className="text-xs md:text-sm text-muted-foreground">
-              {t('packages.subtitle')}
+            <h1 className="text-3xl md:text-5xl font-bold">{t('packages.title')}</h1>
+            <p className="text-base md:text-lg text-muted-foreground">{t('packages.subtitle')}
             </p>
           </div>
         </div>
@@ -126,34 +123,34 @@ const Packages = () => {
       {/* Packages Grid */}
       <section className="py-16 md:py-20">
         <div className="container">
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {packages.map((pkg, index) => (
               <Card
                 key={index}
-                className={`pixel-border pixel-border-hover relative ${
-                  pkg.popular ? "border-4" : ""
+                className={`relative ${
+                  pkg.popular ? "ring-2 ring-primary" : ""
                 }`}
               >
                 {pkg.popular && (
-                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs uppercase pixel-border">
+                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 text-sm bg-primary text-primary-foreground">
                     {i18n.language === 'ru' ? 'Популярно' : 'Popular'}
                   </Badge>
                 )}
-                <CardHeader className="space-y-3 text-center">
-                  <h3 className="text-base font-bold">{pkg.name}</h3>
-                  <div className="text-2xl font-bold">{pkg.price}</div>
-                  <p className="text-xs text-muted-foreground">
+                <CardHeader className="space-y-4 text-center">
+                  <h3 className="text-xl font-bold">{pkg.name}</h3>
+                  <div className="text-3xl font-bold">{pkg.price}</div>
+                  <p className="text-sm text-muted-foreground">
                     {pkg.description}
                   </p>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2">
+                  <ul className="space-y-3">
                     {pkg.features.map((feature, featureIndex) => (
                       <li
                         key={featureIndex}
-                        className="flex items-start gap-2 text-xs"
+                        className="flex items-start gap-3 text-sm"
                       >
-                        <Check className="h-3 w-3 text-primary flex-shrink-0 mt-0.5" />
+                        <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                         <span>{feature}</span>
                       </li>
                     ))}

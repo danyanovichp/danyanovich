@@ -1,7 +1,6 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Youtube, MessageCircle, FileText } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import PixelDecorations from "@/components/pixel-art/PixelDecorations";
 
 const Contact = () => {
   const { t, i18n } = useTranslation();
@@ -37,14 +36,13 @@ const Contact = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen relative">
-      <PixelDecorations />
+    <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="bg-secondary py-16 md:py-20 border-b-4 border-border">
+      <section className="bg-muted/30 py-16 md:py-20 border-b">
         <div className="container">
-          <div className="max-w-3xl space-y-4">
-            <h1 className="text-2xl md:text-3xl">{t('contact.title')}</h1>
-            <p className="text-xs md:text-sm text-muted-foreground">
+          <div className="max-w-3xl mx-auto text-center space-y-4">
+            <h1 className="text-3xl md:text-5xl font-bold">{t('contact.title')}</h1>
+            <p className="text-base md:text-lg text-muted-foreground">
               {t('contact.subtitle')}
             </p>
           </div>
@@ -55,30 +53,27 @@ const Contact = () => {
       <section className="py-16 md:py-20">
         <div className="container">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-xl md:text-2xl text-center mb-12">
+            <h2 className="text-2xl md:text-3xl text-center mb-12 font-bold">
               {t('contact.social')}
             </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
               {socialLinks.map((social, index) => (
-                <Card
-                  key={index}
-                  className="pixel-border pixel-border-hover"
-                >
+                <Card key={index} className="group">
                   <CardHeader className="space-y-4">
-                    <div className="inline-flex p-3 pixel-border bg-primary w-fit">
-                      <social.icon className="h-6 w-6 text-primary-foreground" />
+                    <div className="inline-flex p-4 bg-primary text-primary-foreground rounded-lg w-fit">
+                      <social.icon className="h-6 w-6" />
                     </div>
-                    <h3 className="text-base font-bold">{social.title}</h3>
+                    <h3 className="text-lg font-bold">{social.title}</h3>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-sm text-muted-foreground">
                       {social.description}
                     </p>
                     <a
                       href={social.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-bold hover:text-primary transition-colors inline-flex items-center gap-1"
+                      className="text-sm font-medium hover:text-primary transition-colors inline-flex items-center gap-2 group-hover:underline"
                     >
                       {social.handle}
                     </a>

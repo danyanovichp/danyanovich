@@ -3,7 +3,6 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import PixelDecorations from "@/components/pixel-art/PixelDecorations";
 
 const Portfolio = () => {
   const { t, i18n } = useTranslation();
@@ -48,16 +47,14 @@ const Portfolio = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen relative">
-      <PixelDecorations />
+    <div className="flex flex-col min-h-screen">
       
       {/* Hero Section */}
-      <section className="bg-secondary py-16 md:py-20 border-b-4 border-border relative">
+      <section className="bg-muted/30 py-16 md:py-20 border-b">
         <div className="container">
-          <div className="max-w-3xl space-y-4">
-            <h1 className="text-2xl md:text-3xl">{t('portfolio.title')}</h1>
-            <p className="text-xs md:text-sm text-muted-foreground">
-              {t('portfolio.subtitle')}
+          <div className="max-w-3xl mx-auto text-center space-y-4">
+            <h1 className="text-3xl md:text-5xl font-bold">{t('portfolio.title')}</h1>
+            <p className="text-base md:text-lg text-muted-foreground">{t('portfolio.subtitle')}
             </p>
           </div>
         </div>
@@ -66,25 +63,21 @@ const Portfolio = () => {
       {/* Projects Grid */}
       <section className="py-16 md:py-20">
         <div className="container">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <Card
-                key={index}
-                className="pixel-border pixel-border-hover group transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(var(--primary),0.3)] hover:animate-pixel-float"
-              >
-                <CardHeader className="space-y-3 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity group-hover:animate-pixel-pulse" />
-                  <div className="flex items-center justify-between relative z-10">
-                    <Badge variant="secondary" className="text-xs uppercase pixel-border group-hover:animate-pixel-bounce">
+              <Card key={index} className="group">
+                <CardHeader className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <Badge variant="secondary" className="text-sm">
                       {project.category}
                     </Badge>
                   </div>
-                  <h3 className="text-sm font-bold leading-tight relative z-10 group-hover:translate-x-1 transition-transform">
+                  <h3 className="text-lg font-bold leading-tight">
                     {project.title}
                   </h3>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">
+                  <p className="text-sm text-muted-foreground">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -92,7 +85,7 @@ const Portfolio = () => {
                       <Badge
                         key={tagIndex}
                         variant="outline"
-                        className="text-xs group-hover:bg-primary/10 transition-colors"
+                        className="text-xs"
                       >
                         {tag}
                       </Badge>
@@ -100,7 +93,7 @@ const Portfolio = () => {
                   </div>
                   <Button
                     variant="outline"
-                    className="w-full text-xs group-hover:bg-primary group-hover:text-primary-foreground transition-all"
+                    className="w-full text-sm group-hover:bg-primary group-hover:text-primary-foreground transition-all"
                     asChild
                   >
                     <a
@@ -109,7 +102,7 @@ const Portfolio = () => {
                       rel="noopener noreferrer"
                     >
                       {i18n.language === 'ru' ? 'Открыть проект' : 'Open Project'}
-                      <ExternalLink className="ml-2 h-3 w-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      <ExternalLink className="ml-2 h-4 w-4" />
                     </a>
                   </Button>
                 </CardContent>

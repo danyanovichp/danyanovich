@@ -1,10 +1,8 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { User, Briefcase, Sparkles, Eye } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import PixelDecorations from "@/components/pixel-art/PixelDecorations";
 import { useState } from "react";
 
 const Templates = () => {
@@ -48,15 +46,14 @@ const Templates = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen relative">
-      <PixelDecorations />
+    <div className="flex flex-col min-h-screen">
       
       {/* Hero Section */}
-      <section className="bg-secondary py-16 md:py-20 border-b-4 border-border relative">
+      <section className="bg-muted/30 py-16 md:py-20 border-b">
         <div className="container">
-          <div className="max-w-3xl space-y-4">
-            <h1 className="text-2xl md:text-3xl">{t('templates.title')}</h1>
-            <p className="text-xs md:text-sm text-muted-foreground">
+          <div className="max-w-3xl mx-auto text-center space-y-4">
+            <h1 className="text-3xl md:text-5xl font-bold">{t('templates.title')}</h1>
+            <p className="text-base md:text-lg text-muted-foreground">
               {t('templates.subtitle')}
             </p>
           </div>
@@ -66,66 +63,66 @@ const Templates = () => {
       {/* FREE Templates Section */}
       <section className="py-16 md:py-20">
         <div className="container">
-          <div className="max-w-5xl mx-auto space-y-8">
+          <div className="max-w-5xl mx-auto space-y-12">
             {/* FREE Header */}
             <div className="flex items-center gap-4">
-              <Badge className="pixel-border px-4 py-2 bg-green-600 text-white font-bold uppercase text-sm">
+              <Badge className="px-6 py-3 bg-primary text-primary-foreground text-base font-medium">
                 {i18n.language === 'ru' ? '🎁 Бесплатно' : '🎁 Free'}
               </Badge>
-              <div className="flex-1 h-1 bg-border" />
+              <div className="flex-1 h-px bg-border" />
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-8">
               {freeTemplates.map((template, index) => (
                 <Dialog key={index}>
                   <DialogTrigger asChild>
                     <Card
-                      className="pixel-border pixel-border-hover cursor-pointer group transition-all hover:scale-105 hover:animate-pixel-pulse"
+                      className="cursor-pointer group"
                       onClick={() => setSelectedTemplate(template)}
                     >
-                      <div className="relative overflow-hidden">
-                        <div className="aspect-video bg-muted pixel-border-b flex items-center justify-center group-hover:animate-pixel-float">
-                          <template.icon className="h-12 w-12 text-primary animate-pixel-bounce" />
+                      <div className="relative overflow-hidden rounded-t-lg">
+                        <div className="aspect-video bg-muted flex items-center justify-center group-hover:bg-muted/80 transition-colors">
+                          <template.icon className="h-16 w-16 text-primary" />
                         </div>
                       </div>
                       <CardHeader className="space-y-4">
                         <div className="flex items-center justify-between">
-                          <div className="inline-flex p-3 pixel-border bg-primary w-fit">
-                            <template.icon className="h-6 w-6 text-primary-foreground" />
+                          <div className="inline-flex p-3 bg-primary text-primary-foreground rounded-lg">
+                            <template.icon className="h-6 w-6" />
                           </div>
-                          <Eye className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <Eye className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                         </div>
-                        <h3 className="text-base font-bold">{template.title}</h3>
+                        <h3 className="text-xl font-bold">{template.title}</h3>
                       </CardHeader>
                       <CardContent className="space-y-3">
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-sm text-muted-foreground">
                           {template.description}
                         </p>
-                        <p className="text-xs font-bold">{template.count}</p>
+                        <p className="text-sm font-medium">{template.count}</p>
                       </CardContent>
                     </Card>
                   </DialogTrigger>
-                  <DialogContent className="max-w-2xl pixel-border">
+                  <DialogContent className="max-w-2xl">
                     <DialogHeader>
-                      <DialogTitle className="flex items-center gap-3">
-                        <div className="inline-flex p-2 pixel-border bg-primary">
-                          <template.icon className="h-5 w-5 text-primary-foreground" />
+                      <DialogTitle className="flex items-center gap-3 text-2xl">
+                        <div className="inline-flex p-3 bg-primary text-primary-foreground rounded-lg">
+                          <template.icon className="h-6 w-6" />
                         </div>
                         {template.title}
                       </DialogTitle>
                     </DialogHeader>
                     <div className="space-y-6">
-                      <div className="aspect-video bg-muted pixel-border flex items-center justify-center">
-                        <template.icon className="h-16 w-16 text-primary animate-pixel-pulse" />
+                      <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
+                        <template.icon className="h-20 w-20 text-primary" />
                       </div>
                       <div className="space-y-4">
-                        <p className="text-sm text-muted-foreground">{template.details}</p>
-                        <div className="space-y-2">
-                          <h4 className="text-sm font-bold">{i18n.language === 'ru' ? 'Возможности:' : 'Features:'}</h4>
-                          <ul className="space-y-1">
+                        <p className="text-base text-muted-foreground">{template.details}</p>
+                        <div className="space-y-3">
+                          <h4 className="text-base font-bold">{i18n.language === 'ru' ? 'Возможности:' : 'Features:'}</h4>
+                          <ul className="space-y-2">
                             {template.features?.map((feature: string, i: number) => (
-                              <li key={i} className="text-xs flex items-center gap-2">
-                                <div className="w-1.5 h-1.5 bg-primary pixel-border" />
+                              <li key={i} className="text-sm flex items-center gap-3">
+                                <div className="w-1.5 h-1.5 bg-primary rounded-full" />
                                 {feature}
                               </li>
                             ))}
@@ -142,73 +139,73 @@ const Templates = () => {
       </section>
 
       {/* PREMIUM Templates Section */}
-      <section className="py-16 md:py-20 bg-muted/50">
+      <section className="py-16 md:py-20 bg-muted/30">
         <div className="container">
-          <div className="max-w-5xl mx-auto space-y-8">
+          <div className="max-w-5xl mx-auto space-y-12">
             {/* PREMIUM Header */}
             <div className="flex items-center gap-4">
-              <Badge className="pixel-border px-4 py-2 bg-brand-amber text-background font-bold uppercase text-sm animate-pixel-pulse">
-                <Sparkles className="mr-1 h-3 w-3 inline" />
+              <Badge className="px-6 py-3 bg-primary text-primary-foreground text-base font-medium">
+                <Sparkles className="mr-2 h-4 w-4 inline" />
                 {i18n.language === 'ru' ? 'Премиум' : 'Premium'}
               </Badge>
-              <div className="flex-1 h-1 bg-border" />
+              <div className="flex-1 h-px bg-border" />
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-8">
               {premiumTemplates.map((template, index) => (
                 <Dialog key={index}>
                   <DialogTrigger asChild>
                     <Card
-                      className="pixel-border pixel-border-hover bg-background cursor-pointer group transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(251,191,36,0.3)]"
+                      className="cursor-pointer group"
                       onClick={() => setSelectedTemplate(template)}
                     >
-                      <div className="relative overflow-hidden">
-                        <div className="aspect-video bg-brand-amber/10 pixel-border-b flex items-center justify-center group-hover:animate-pixel-pulse">
-                          <template.icon className="h-12 w-12 text-brand-amber animate-pixel-float" />
+                      <div className="relative overflow-hidden rounded-t-lg">
+                        <div className="aspect-video bg-muted flex items-center justify-center group-hover:bg-muted/80 transition-colors">
+                          <template.icon className="h-16 w-16 text-foreground" />
                         </div>
                       </div>
                       <CardHeader className="space-y-4">
                         <div className="flex items-center justify-between">
-                          <div className="inline-flex p-3 pixel-border bg-brand-amber w-fit">
-                            <template.icon className="h-6 w-6 text-background" />
+                          <div className="inline-flex p-3 bg-primary text-primary-foreground rounded-lg">
+                            <template.icon className="h-6 w-6" />
                           </div>
-                          <Eye className="h-4 w-4 text-brand-amber opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <Eye className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                         </div>
-                        <h3 className="text-base font-bold">{template.title}</h3>
+                        <h3 className="text-xl font-bold">{template.title}</h3>
                       </CardHeader>
                       <CardContent className="space-y-3">
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-sm text-muted-foreground">
                           {template.description}
                         </p>
-                        <p className="text-xs font-bold text-brand-amber">{template.count}</p>
+                        <p className="text-sm font-medium">{template.count}</p>
                       </CardContent>
                     </Card>
                   </DialogTrigger>
-                  <DialogContent className="max-w-2xl pixel-border">
+                  <DialogContent className="max-w-2xl">
                     <DialogHeader>
-                      <DialogTitle className="flex items-center gap-3">
-                        <div className="inline-flex p-2 pixel-border bg-brand-amber">
-                          <template.icon className="h-5 w-5 text-background" />
+                      <DialogTitle className="flex items-center gap-3 text-2xl">
+                        <div className="inline-flex p-3 bg-primary text-primary-foreground rounded-lg">
+                          <template.icon className="h-6 w-6" />
                         </div>
                         {template.title}
-                        <Badge className="pixel-border bg-brand-amber text-background">
+                        <Badge className="bg-primary text-primary-foreground">
                           <Sparkles className="mr-1 h-3 w-3 inline" />
                           PREMIUM
                         </Badge>
                       </DialogTitle>
                     </DialogHeader>
                     <div className="space-y-6">
-                      <div className="aspect-video bg-brand-amber/10 pixel-border flex items-center justify-center">
-                        <template.icon className="h-16 w-16 text-brand-amber animate-pixel-pulse" />
+                      <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
+                        <template.icon className="h-20 w-20 text-foreground" />
                       </div>
                       <div className="space-y-4">
-                        <p className="text-sm text-muted-foreground">{template.details}</p>
-                        <div className="space-y-2">
-                          <h4 className="text-sm font-bold">{i18n.language === 'ru' ? 'Возможности:' : 'Features:'}</h4>
-                          <ul className="space-y-1">
+                        <p className="text-base text-muted-foreground">{template.details}</p>
+                        <div className="space-y-3">
+                          <h4 className="text-base font-bold">{i18n.language === 'ru' ? 'Возможности:' : 'Features:'}</h4>
+                          <ul className="space-y-2">
                             {template.features?.map((feature: string, i: number) => (
-                              <li key={i} className="text-xs flex items-center gap-2">
-                                <div className="w-1.5 h-1.5 bg-brand-amber pixel-border" />
+                              <li key={i} className="text-sm flex items-center gap-3">
+                                <div className="w-1.5 h-1.5 bg-primary rounded-full" />
                                 {feature}
                               </li>
                             ))}

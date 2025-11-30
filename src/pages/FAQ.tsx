@@ -5,7 +5,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import PixelDecorations from "@/components/pixel-art/PixelDecorations";
 
 const FAQ = () => {
   const { t, i18n } = useTranslation();
@@ -63,15 +62,14 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen relative">
-      <PixelDecorations />
+    <div className="flex flex-col min-h-screen">
 
       {/* Hero Section */}
-      <section className="bg-secondary py-16 md:py-20 border-b-4 border-border relative">
+      <section className="bg-muted/30 py-16 md:py-20 border-b">
         <div className="container">
-          <div className="max-w-3xl space-y-4">
-            <h1 className="text-2xl md:text-3xl">{t('faq.title')}</h1>
-            <p className="text-xs md:text-sm text-muted-foreground">
+          <div className="max-w-3xl mx-auto text-center space-y-4">
+            <h1 className="text-3xl md:text-5xl font-bold">{t('faq.title')}</h1>
+            <p className="text-base md:text-lg text-muted-foreground">
               {t('faq.subtitle')}
             </p>
           </div>
@@ -87,13 +85,12 @@ const FAQ = () => {
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}
-                  className="pixel-border bg-background px-6"
+                  className="border rounded-lg bg-background px-6"
                 >
-                  <AccordionTrigger className="text-sm font-bold hover:no-underline py-4">
+                  <AccordionTrigger className="text-base font-bold hover:no-underline py-4">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-xs text-muted-foreground pb-4">
-                    {faq.answer}
+                  <AccordionContent className="text-sm text-muted-foreground pb-4">{faq.answer}
                   </AccordionContent>
                 </AccordionItem>
               ))}
