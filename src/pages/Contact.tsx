@@ -38,7 +38,7 @@ const Contact = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="bg-muted/30 py-16 md:py-20 border-b">
+      <section className="bg-muted/30 backdrop-blur-sm py-16 md:py-20 border-b border-border/20">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center space-y-4">
             <h1 className="text-3xl md:text-5xl font-bold">{t('contact.title')}</h1>
@@ -50,8 +50,12 @@ const Contact = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 md:py-20">
-        <div className="container">
+      <section className="relative py-16 md:py-20 overflow-hidden">
+        {/* Decorative orbs */}
+        <div className="glass-orb top-20 left-1/4 w-64 h-64 bg-muted/30 animate-float" />
+        <div className="glass-orb bottom-20 right-1/4 w-80 h-80 bg-muted/40 animate-float" style={{ animationDelay: '1.5s' }} />
+        
+        <div className="container relative z-10">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl md:text-3xl text-center mb-12 font-bold">
               {t('contact.social')}
@@ -60,7 +64,7 @@ const Contact = () => {
               {socialLinks.map((social, index) => (
                 <Card key={index} className="group">
                   <CardHeader className="space-y-4">
-                    <div className="inline-flex p-4 bg-primary text-primary-foreground rounded-lg w-fit">
+                    <div className="inline-flex p-4 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-2xl w-fit">
                       <social.icon className="h-6 w-6" />
                     </div>
                     <h3 className="text-lg font-bold">{social.title}</h3>

@@ -49,7 +49,7 @@ const Templates = () => {
     <div className="flex flex-col min-h-screen">
       
       {/* Hero Section */}
-      <section className="bg-muted/30 py-16 md:py-20 border-b">
+      <section className="bg-muted/30 backdrop-blur-sm py-16 md:py-20 border-b border-border/20">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center space-y-4">
             <h1 className="text-3xl md:text-5xl font-bold">{t('templates.title')}</h1>
@@ -61,15 +61,18 @@ const Templates = () => {
       </section>
 
       {/* FREE Templates Section */}
-      <section className="py-16 md:py-20">
-        <div className="container">
+      <section className="relative py-16 md:py-20 overflow-hidden">
+        {/* Decorative orb */}
+        <div className="glass-orb top-10 right-10 w-64 h-64 bg-muted/30 animate-float" />
+        
+        <div className="container relative z-10">
           <div className="max-w-5xl mx-auto space-y-12">
             {/* FREE Header */}
             <div className="flex items-center gap-4">
-              <Badge className="px-6 py-3 bg-primary text-primary-foreground text-base font-medium">
+              <Badge className="px-6 py-3 bg-primary/90 backdrop-blur-sm text-primary-foreground text-base font-medium rounded-full">
                 {i18n.language === 'ru' ? '🎁 Бесплатно' : '🎁 Free'}
               </Badge>
-              <div className="flex-1 h-px bg-border" />
+              <div className="flex-1 h-px bg-border/20" />
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -80,14 +83,14 @@ const Templates = () => {
                       className="cursor-pointer group"
                       onClick={() => setSelectedTemplate(template)}
                     >
-                      <div className="relative overflow-hidden rounded-t-lg">
-                        <div className="aspect-video bg-muted flex items-center justify-center group-hover:bg-muted/80 transition-colors">
+                      <div className="relative overflow-hidden rounded-t-2xl">
+                        <div className="aspect-video bg-muted/50 backdrop-blur-xl flex items-center justify-center group-hover:bg-muted/70 transition-colors">
                           <template.icon className="h-16 w-16 text-primary" />
                         </div>
                       </div>
                       <CardHeader className="space-y-4">
                         <div className="flex items-center justify-between">
-                          <div className="inline-flex p-3 bg-primary text-primary-foreground rounded-lg">
+                          <div className="inline-flex p-3 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-xl">
                             <template.icon className="h-6 w-6" />
                           </div>
                           <Eye className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -102,17 +105,17 @@ const Templates = () => {
                       </CardContent>
                     </Card>
                   </DialogTrigger>
-                  <DialogContent className="max-w-2xl">
+                  <DialogContent className="max-w-2xl bg-background/95 backdrop-blur-2xl border-border/20">
                     <DialogHeader>
                       <DialogTitle className="flex items-center gap-3 text-2xl">
-                        <div className="inline-flex p-3 bg-primary text-primary-foreground rounded-lg">
+                        <div className="inline-flex p-3 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-xl">
                           <template.icon className="h-6 w-6" />
                         </div>
                         {template.title}
                       </DialogTitle>
                     </DialogHeader>
                     <div className="space-y-6">
-                      <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
+                      <div className="aspect-video bg-muted/50 backdrop-blur-xl rounded-2xl flex items-center justify-center">
                         <template.icon className="h-20 w-20 text-primary" />
                       </div>
                       <div className="space-y-4">
@@ -139,16 +142,19 @@ const Templates = () => {
       </section>
 
       {/* PREMIUM Templates Section */}
-      <section className="py-16 md:py-20 bg-muted/30">
-        <div className="container">
+      <section className="relative py-16 md:py-20 bg-muted/30 backdrop-blur-sm overflow-hidden">
+        {/* Decorative orb */}
+        <div className="glass-orb bottom-10 left-10 w-80 h-80 bg-muted/40 animate-float" style={{ animationDelay: '1s' }} />
+        
+        <div className="container relative z-10">
           <div className="max-w-5xl mx-auto space-y-12">
             {/* PREMIUM Header */}
             <div className="flex items-center gap-4">
-              <Badge className="px-6 py-3 bg-primary text-primary-foreground text-base font-medium">
+              <Badge className="px-6 py-3 bg-primary/90 backdrop-blur-sm text-primary-foreground text-base font-medium rounded-full">
                 <Sparkles className="mr-2 h-4 w-4 inline" />
                 {i18n.language === 'ru' ? 'Премиум' : 'Premium'}
               </Badge>
-              <div className="flex-1 h-px bg-border" />
+              <div className="flex-1 h-px bg-border/20" />
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -159,14 +165,14 @@ const Templates = () => {
                       className="cursor-pointer group"
                       onClick={() => setSelectedTemplate(template)}
                     >
-                      <div className="relative overflow-hidden rounded-t-lg">
-                        <div className="aspect-video bg-muted flex items-center justify-center group-hover:bg-muted/80 transition-colors">
+                      <div className="relative overflow-hidden rounded-t-2xl">
+                        <div className="aspect-video bg-muted/50 backdrop-blur-xl flex items-center justify-center group-hover:bg-muted/70 transition-colors">
                           <template.icon className="h-16 w-16 text-foreground" />
                         </div>
                       </div>
                       <CardHeader className="space-y-4">
                         <div className="flex items-center justify-between">
-                          <div className="inline-flex p-3 bg-primary text-primary-foreground rounded-lg">
+                          <div className="inline-flex p-3 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-xl">
                             <template.icon className="h-6 w-6" />
                           </div>
                           <Eye className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -181,21 +187,21 @@ const Templates = () => {
                       </CardContent>
                     </Card>
                   </DialogTrigger>
-                  <DialogContent className="max-w-2xl">
+                  <DialogContent className="max-w-2xl bg-background/95 backdrop-blur-2xl border-border/20">
                     <DialogHeader>
                       <DialogTitle className="flex items-center gap-3 text-2xl">
-                        <div className="inline-flex p-3 bg-primary text-primary-foreground rounded-lg">
+                        <div className="inline-flex p-3 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-xl">
                           <template.icon className="h-6 w-6" />
                         </div>
                         {template.title}
-                        <Badge className="bg-primary text-primary-foreground">
+                        <Badge className="bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-full">
                           <Sparkles className="mr-1 h-3 w-3 inline" />
                           PREMIUM
                         </Badge>
                       </DialogTitle>
                     </DialogHeader>
                     <div className="space-y-6">
-                      <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
+                      <div className="aspect-video bg-muted/50 backdrop-blur-xl rounded-2xl flex items-center justify-center">
                         <template.icon className="h-20 w-20 text-foreground" />
                       </div>
                       <div className="space-y-4">
