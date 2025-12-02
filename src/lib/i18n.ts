@@ -14,7 +14,7 @@ const resources = {
         packages: 'ПАКЕТЫ',
         reviews: 'ОТЗЫВЫ',
         faq: 'FAQ',
-        contact: 'КОНТАКТЫ',
+        contact: 'СОЦ. СЕТИ',
         portfolio: 'ПОРТФОЛИО',
       },
       home: {
@@ -93,9 +93,9 @@ const resources = {
         subtitle: 'Выберите подходящий пакет',
       },
       contact: {
-        title: 'Контакты',
-        subtitle: 'Свяжитесь со мной',
-        social: 'Социальные сети',
+        title: 'Соц. Сети',
+        subtitle: 'Подписывайтесь на меня',
+        social: 'Мои каналы',
       },
       faq: {
         title: 'Часто задаваемые вопросы',
@@ -131,7 +131,7 @@ const resources = {
         packages: 'PACKAGES',
         reviews: 'REVIEWS',
         faq: 'FAQ',
-        contact: 'CONTACT',
+        contact: 'SOCIAL',
         portfolio: 'PORTFOLIO',
       },
       home: {
@@ -210,9 +210,9 @@ const resources = {
         subtitle: 'Choose the right package',
       },
       contact: {
-        title: 'Contact',
-        subtitle: 'Get in touch with me',
-        social: 'Social Media',
+        title: 'Social Networks',
+        subtitle: 'Follow me',
+        social: 'My Channels',
       },
       faq: {
         title: 'Frequently Asked Questions',
