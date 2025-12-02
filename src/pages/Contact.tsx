@@ -13,7 +13,7 @@ const Contact = () => {
         ? "Обучающие видео по Notion и автоматизации"
         : "Educational videos on Notion and automation",
       handle: "@danyanovich",
-      link: "https://www.youtube.com/@danyanovich",
+      link: "https://www.youtube.com/channel/UCzcTrBkzXgA9aaH05cWVi2g",
     },
     {
       icon: MessageCircle,

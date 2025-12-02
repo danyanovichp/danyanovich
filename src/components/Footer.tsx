@@ -55,7 +55,7 @@ const Footer = () => {
                 className="rounded-xl"
               >
                 <a
-                  href="https://www.youtube.com/@danyanovich"
+                  href="https://www.youtube.com/channel/UCzcTrBkzXgA9aaH05cWVi2g"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="YouTube"
