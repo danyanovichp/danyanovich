@@ -62,27 +62,30 @@ const Contact = () => {
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
               {socialLinks.map((social, index) => (
-                <Card key={index} className="group">
-                  <CardHeader className="space-y-4">
-                    <div className="inline-flex p-4 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-2xl w-fit">
-                      <social.icon className="h-6 w-6" />
-                    </div>
-                    <h3 className="text-lg font-bold">{social.title}</h3>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-sm text-muted-foreground">
-                      {social.description}
-                    </p>
-                    <a
-                      href={social.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm font-medium hover:text-primary transition-colors inline-flex items-center gap-2 group-hover:underline"
-                    >
-                      {social.handle}
-                    </a>
-                  </CardContent>
-                </Card>
+                <a
+                  key={index}
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <Card className="group cursor-pointer h-full transition-all hover:scale-[1.02]">
+                    <CardHeader className="space-y-4">
+                      <div className="inline-flex p-4 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-2xl w-fit">
+                        <social.icon className="h-6 w-6" />
+                      </div>
+                      <h3 className="text-lg font-bold">{social.title}</h3>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <p className="text-sm text-muted-foreground">
+                        {social.description}
+                      </p>
+                      <span className="text-sm font-medium text-primary inline-flex items-center gap-2 group-hover:underline">
+                        {social.handle}
+                      </span>
+                    </CardContent>
+                  </Card>
+                </a>
               ))}
             </div>
           </div>
