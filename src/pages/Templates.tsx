@@ -213,7 +213,7 @@ const Templates = () => {
             {isPremium && (
               <Badge className="bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-full">
                 <Sparkles className="mr-1 h-3 w-3 inline" />
-                PREMIUM
+                {i18n.language === 'ru' ? 'ПРЕМИУМ' : 'PREMIUM'}
               </Badge>
             )}
           </DialogTitle>
@@ -349,7 +349,7 @@ const Templates = () => {
               </Badge>
               <Badge className="px-4 py-2 bg-amber-500/90 backdrop-blur-sm text-white text-sm font-medium rounded-full">
                 <Sparkles className="mr-1 h-3 w-3 inline" />
-                Premium
+                {i18n.language === 'ru' ? 'Премиум' : 'Premium'}
               </Badge>
               <div className="flex-1 h-px bg-border/20" />
             </div>
