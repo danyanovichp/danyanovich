@@ -21,7 +21,7 @@ const resources = {
         hero: {
           title: 'Дэн Янович',
           subtitle: 'Эксперт по Notion | AI-Инструменты',
-          description: 'Создаю рабочие пространства для компаний, готовых заменить хаос в таблицах на централизованную операционную систему',
+          description: 'Создаю рабочие пространства для компаний, готовых заменить хаос в таблицах на централизованную операционную систему на основе Notion, Buildin.AI, YoNote',
           ctaPortfolio: 'Посмотреть портфолио',
           ctaContact: 'Связаться',
         },
@@ -138,7 +138,7 @@ const resources = {
         hero: {
           title: 'Dan Yanovich',
           subtitle: 'Notion Expert | AI Tools',
-          description: 'I create workspaces for companies ready to replace spreadsheet chaos with a centralized operating system',
+          description: 'I create workspaces for companies ready to replace spreadsheet chaos with a centralized operating system based on Notion, Buildin.AI, YoNote',
           ctaPortfolio: 'View Portfolio',
           ctaContact: 'Contact Me',
         },
