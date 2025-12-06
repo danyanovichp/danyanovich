@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { User, Briefcase, Sparkles, Eye, GraduationCap, BookOpen, Video, FileText, Layout, Database, Notebook, ExternalLink } from "lucide-react";
+import { User, Briefcase, Sparkles, Eye, GraduationCap, BookOpen, Video, FileText, Layout, Database, Notebook, ExternalLink, Calendar, ShoppingCart } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -93,6 +93,18 @@ const Templates = () => {
         ? "Следите за конкурентами и их стратегиями"
         : "Track competitors and their strategies",
       link: "https://danyanovich.notion.site/2ac1cf04d998817f800bc1b9dc259742?source=copy_link",
+    },
+  ];
+
+  const notionPaidTemplates = [
+    {
+      icon: Calendar,
+      title: i18n.language === 'ru' ? "Мероприятия OS Lite" : "Events OS Lite",
+      description: i18n.language === 'ru' 
+        ? "Легкий операционный шаблон для управления мероприятиями: связывает мероприятия, задачи, поставщиков и базу знаний в одном рабочем пространстве"
+        : "Lightweight operational template for event management: connects events, tasks, vendors and knowledge base in one workspace",
+      price: "500 ₽",
+      link: "https://web.tribute.tg/p/nQe",
     },
   ];
 
@@ -311,6 +323,58 @@ const Templates = () => {
                           <template.icon className="h-6 w-6" />
                         </div>
                         <ExternalLink className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                      <h3 className="text-lg font-bold group-hover:text-primary transition-colors">{template.title}</h3>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground">{template.description}</p>
+                    </CardContent>
+                  </Card>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Notion Paid Templates Section */}
+      <section className="relative py-16 md:py-20 overflow-hidden">
+        <div className="glass-orb bottom-20 left-20 w-56 h-56 bg-muted/40 animate-float" style={{ animationDelay: '0.3s' }} />
+        
+        <div className="container relative z-10">
+          <div className="max-w-5xl mx-auto space-y-12">
+            <div className="flex items-center gap-4">
+              <Badge className="px-6 py-3 bg-foreground/90 backdrop-blur-sm text-background text-base font-medium rounded-full">
+                📝 Notion
+              </Badge>
+              <Badge className="px-4 py-2 bg-amber-500/90 backdrop-blur-sm text-white text-sm font-medium rounded-full">
+                <Sparkles className="mr-1 h-3 w-3 inline" />
+                Premium
+              </Badge>
+              <div className="flex-1 h-px bg-border/20" />
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {notionPaidTemplates.map((template, index) => (
+                <a 
+                  key={index}
+                  href={template.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <Card className="cursor-pointer group h-full border-amber-500/20 hover:border-amber-500/40 transition-colors">
+                    <CardHeader className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="inline-flex p-3 bg-amber-500/90 backdrop-blur-sm text-white rounded-xl">
+                          <template.icon className="h-6 w-6" />
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Badge className="bg-primary text-primary-foreground font-bold">
+                            {template.price}
+                          </Badge>
+                          <ShoppingCart className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
                       </div>
                       <h3 className="text-lg font-bold group-hover:text-primary transition-colors">{template.title}</h3>
                     </CardHeader>
