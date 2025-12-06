@@ -55,7 +55,7 @@ const Header = () => {
               variant="ghost"
               size="icon"
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              title={theme === "light" ? "Dark Mode" : "Light Mode"}
+              title={theme === "light" ? (i18n.language === 'ru' ? "Тёмная тема" : "Dark Mode") : (i18n.language === 'ru' ? "Светлая тема" : "Light Mode")}
               className="rounded-xl"
             >
               {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
