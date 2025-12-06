@@ -217,7 +217,7 @@ const Home = () => {
                             {template.title}
                             <Badge className="bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-full">
                               <Sparkles className="mr-1 h-3 w-3 inline" />
-                              PREMIUM
+                              {i18n.language === 'ru' ? 'ПРЕМИУМ' : 'PREMIUM'}
                             </Badge>
                           </DialogTitle>
                         </DialogHeader>

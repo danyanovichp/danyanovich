@@ -105,6 +105,7 @@ const Templates = () => {
         : "Lightweight operational template for event management: connects events, tasks, vendors and knowledge base in one workspace",
       price: "500 ₽",
       link: "https://web.tribute.tg/p/nQe",
+      image: "/images/events-os-lite.jpg",
     },
   ];
 
@@ -363,7 +364,16 @@ const Templates = () => {
                   rel="noopener noreferrer"
                   className="block"
                 >
-                  <Card className="cursor-pointer group h-full border-amber-500/20 hover:border-amber-500/40 transition-colors">
+                  <Card className="cursor-pointer group h-full border-amber-500/20 hover:border-amber-500/40 transition-colors overflow-hidden">
+                    {template.image && (
+                      <div className="aspect-video overflow-hidden">
+                        <img 
+                          src={template.image} 
+                          alt={template.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                    )}
                     <CardHeader className="space-y-4">
                       <div className="flex items-center justify-between">
                         <div className="inline-flex p-3 bg-amber-500/90 backdrop-blur-sm text-white rounded-xl">
