@@ -21,7 +21,7 @@ const resources = {
         hero: {
           title: 'Дэн Янович',
           subtitle: 'Эксперт по Notion | AI-Инструменты',
-          description: 'Помогаю бизнесу и профессионалам оптимизировать рабочие процессы с помощью Notion',
+          description: 'Создаю рабочие пространства для компаний, готовых заменить хаос в таблицах на централизованную операционную систему',
           ctaPortfolio: 'Посмотреть портфолио',
           ctaContact: 'Связаться',
         },
@@ -138,7 +138,7 @@ const resources = {
         hero: {
           title: 'Dan Yanovich',
           subtitle: 'Notion Expert | AI Tools',
-          description: 'I help businesses and professionals optimize workflows using Notion',
+          description: 'I create workspaces for companies ready to replace spreadsheet chaos with a centralized operating system',
           ctaPortfolio: 'View Portfolio',
           ctaContact: 'Contact Me',
         },
