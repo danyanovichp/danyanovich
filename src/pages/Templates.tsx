@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { User, Briefcase, Sparkles, Eye, GraduationCap, BookOpen, Video, FileText, Layout, Database, Notebook } from "lucide-react";
+import { User, Briefcase, Sparkles, Eye, GraduationCap, BookOpen, Video, FileText, Layout, Database, Notebook, ExternalLink } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -37,21 +37,62 @@ const Templates = () => {
     },
   ];
 
-  const notionTemplates = [
+  const notionFreeTemplates = [
+    {
+      icon: Sparkles,
+      title: i18n.language === 'ru' ? "Карта Достижений" : "Achievement Map",
+      description: i18n.language === 'ru' 
+        ? "Визуализируйте свои достижения и прогресс"
+        : "Visualize your achievements and progress",
+      link: "https://danyanovich.notion.site/2811cf04d99880ec9f77f10682451e6f?source=copy_link",
+    },
+    {
+      icon: FileText,
+      title: i18n.language === 'ru' ? "Простые Задачи" : "Simple Tasks",
+      description: i18n.language === 'ru' 
+        ? "Минималистичный трекер задач"
+        : "Minimalist task tracker",
+      link: "https://danyanovich.notion.site/2901cf04d99881be8320e6d6894a3a12?source=copy_link",
+    },
+    {
+      icon: FileText,
+      title: i18n.language === 'ru' ? "Еженедельные отчеты" : "Weekly Reports",
+      description: i18n.language === 'ru' 
+        ? "Шаблон для еженедельной отчетности"
+        : "Template for weekly reporting",
+      link: "https://danyanovich.notion.site/2ac1cf04d99881889b66ffdd7f7d23a5?source=copy_link",
+    },
+    {
+      icon: Briefcase,
+      title: i18n.language === 'ru' ? "M&A (Слияния и поглощения)" : "M&A (Mergers & Acquisitions)",
+      description: i18n.language === 'ru' 
+        ? "Управление процессами слияний и поглощений"
+        : "Manage merger and acquisition processes",
+      link: "https://danyanovich.notion.site/M-A-2ac1cf04d998813393decb71e55f935c?source=copy_link",
+    },
     {
       icon: User,
-      title: i18n.language === 'ru' ? "Личное" : "Personal",
+      title: i18n.language === 'ru' ? "Развитие клиентов" : "Customer Development",
       description: i18n.language === 'ru' 
-        ? "Шаблоны для личной продуктивности, целей и самоорганизации"
-        : "Templates for personal productivity, goals and self-organization",
-      count: i18n.language === 'ru' ? "1 шаблон" : "1 template",
-      details: i18n.language === 'ru' 
-        ? "Полноценная система для управления личными проектами, задачами и целями. Включает трекер привычек, планировщик целей, систему заметок и дневник достижений."
-        : "Complete system for managing personal projects, tasks and goals. Includes habit tracker, goal planner, note system and achievement journal.",
-      features: i18n.language === 'ru' 
-        ? ["Трекер привычек", "Планировщик целей", "Система заметок", "Дневник достижений", "Календарь задач"]
-        : ["Habit Tracker", "Goal Planner", "Note System", "Achievement Journal", "Task Calendar"],
-      preview: "/placeholder.svg",
+        ? "Отслеживайте развитие клиентских отношений"
+        : "Track customer relationship development",
+      link: "https://danyanovich.notion.site/2ac1cf04d998816f9612ff78d3f2c758?source=copy_link",
+    },
+    {
+      icon: BookOpen,
+      title: i18n.language === 'ru' ? "Список желаний" : "Wishlist",
+      description: i18n.language === 'ru' 
+        ? "Организуйте свои желания и мечты"
+        : "Organize your wishes and dreams",
+      link: "https://danyanovich.notion.site/2ac1cf04d998819087d2e57f08798030?source=copy_link",
+    },
+    {
+      icon: Eye,
+      title: i18n.language === 'ru' ? "Анализ конкурентов" : "Competitor Analysis",
+      description: i18n.language === 'ru' 
+        ? "Следите за конкурентами и их стратегиями"
+        : "Track competitors and their strategies",
+      link: "https://danyanovich.notion.site/2ac1cf04d998817f800bc1b9dc259742?source=copy_link",
     },
   ];
 
@@ -238,7 +279,7 @@ const Templates = () => {
         </div>
       </section>
 
-      {/* Notion Templates Section */}
+      {/* Notion Free Templates Section */}
       <section className="relative py-16 md:py-20 bg-muted/30 backdrop-blur-sm overflow-hidden">
         <div className="glass-orb top-10 right-10 w-64 h-64 bg-muted/30 animate-float" />
         
@@ -248,11 +289,37 @@ const Templates = () => {
               <Badge className="px-6 py-3 bg-foreground/90 backdrop-blur-sm text-background text-base font-medium rounded-full">
                 📝 Notion
               </Badge>
+              <Badge className="px-4 py-2 bg-primary/90 backdrop-blur-sm text-primary-foreground text-sm font-medium rounded-full">
+                🎁 {i18n.language === 'ru' ? 'Бесплатно' : 'Free'}
+              </Badge>
               <div className="flex-1 h-px bg-border/20" />
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              {notionTemplates.map((template, index) => renderTemplateCard(template, index))}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {notionFreeTemplates.map((template, index) => (
+                <a 
+                  key={index}
+                  href={template.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <Card className="cursor-pointer group h-full">
+                    <CardHeader className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="inline-flex p-3 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-xl">
+                          <template.icon className="h-6 w-6" />
+                        </div>
+                        <ExternalLink className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                      <h3 className="text-lg font-bold group-hover:text-primary transition-colors">{template.title}</h3>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground">{template.description}</p>
+                    </CardContent>
+                  </Card>
+                </a>
+              ))}
             </div>
           </div>
         </div>
