@@ -37,27 +37,75 @@ const Contact = () => {
 
   const reviews = [
     {
-      name: i18n.language === 'ru' ? "Алексей К." : "Alex K.",
-      company: i18n.language === 'ru' ? "IT-компания" : "IT Company",
+      name: "Dmitri_Str",
+      project: i18n.language === 'ru' ? "Оптимизация шаблона Notion" : "Notion Template Optimization",
       text: i18n.language === 'ru' 
-        ? "Дэн полностью перестроил наше рабочее пространство в Notion. Теперь вся команда работает в единой системе, а время на рутинные задачи сократилось вдвое."
-        : "Dan completely rebuilt our Notion workspace. Now the whole team works in a unified system, and time spent on routine tasks has been cut in half.",
+        ? "Очень редко сейчас встретишь профессионалов такого уровня, очень быстро разобрался в задаче, максимально приветлив, предложил хорошие идеи, что в итоге улучшило изначально задуманное. Быстро и качественно выполнил. Если вам нужно качество и профессионал, то однозначно рекомендую!"
+        : "Very rare to find professionals of this level. Quickly understood the task, very friendly, suggested good ideas that improved the original concept. Fast and quality work. Highly recommend!",
       rating: 5,
     },
     {
-      name: i18n.language === 'ru' ? "Мария С." : "Maria S.",
-      company: i18n.language === 'ru' ? "Маркетинговое агентство" : "Marketing Agency",
+      name: "edgadirov",
+      project: i18n.language === 'ru' ? "Notion база данных + шаблон" : "Notion Database + Template",
       text: i18n.language === 'ru' 
-        ? "Благодаря консультации смогли настроить автоматизацию контент-плана. Экономим около 10 часов в неделю на планировании."
-        : "Thanks to the consultation, we were able to set up content plan automation. We save about 10 hours a week on planning.",
+        ? "Отличная работа! Данил очень ответственный человек. К работе подошел с профессионализмом. Делали шаблон для облегчения работы учеников. Даже несколько раз созвонились, помог разобраться в notion и помог найти лучшее решение. Все сделано идеально!"
+        : "Excellent work! Danil is very responsible. Approached the work professionally. Made a template for students. Even had several calls, helped understand Notion and find the best solution. Everything done perfectly!",
       rating: 5,
     },
     {
-      name: i18n.language === 'ru' ? "Игорь П." : "Igor P.",
-      company: i18n.language === 'ru' ? "Стартап" : "Startup",
+      name: "nesmeyanna",
+      project: i18n.language === 'ru' ? "Notion 2 доски" : "Notion 2 Boards",
       text: i18n.language === 'ru' 
-        ? "Обучающие сессии были очень полезными. Теперь наша команда использует Notion на максимум, и все процессы стали прозрачными."
-        : "The training sessions were very helpful. Now our team uses Notion to the fullest, and all processes have become transparent.",
+        ? "Данила восхитителен! В работе была простая задача, он дополнил её так, как я и не могла предположить, не зная о всех возможностях Notion. Рекомендую как профессионала, с удовольствием обращусь ещё."
+        : "Danila is amazing! It was a simple task, but he enhanced it in ways I couldn't imagine, not knowing all of Notion's capabilities. Recommend as a professional!",
+      rating: 5,
+    },
+    {
+      name: "Aram_G",
+      project: i18n.language === 'ru' ? "Notion Шаблон" : "Notion Template",
+      text: i18n.language === 'ru' 
+        ? "У меня был достаточно большой заказ, но Данила прекрасно и быстро со всем справился! Сразу видно опыт и умения! Очень рекомендую! Обязательно обращусь еще!"
+        : "I had a fairly large order, but Danila handled everything perfectly and quickly! You can immediately see the experience and skills! Highly recommend!",
+      rating: 5,
+    },
+    {
+      name: "viguroo",
+      project: i18n.language === 'ru' ? "База данных Notion" : "Notion Database",
+      text: i18n.language === 'ru' 
+        ? "Регулярно заказываю базы в notion, очень довольна качеством работы! Искренне рекомендую всем заказчикам!! Спасибо!!"
+        : "Regularly order databases in Notion, very happy with the quality of work! Sincerely recommend to all clients!! Thank you!!",
+      rating: 5,
+    },
+    {
+      name: "Yulia_step",
+      project: i18n.language === 'ru' ? "Консультация по Notion" : "Notion Consultation",
+      text: i18n.language === 'ru' 
+        ? "Очень быстро договорились про созвон и Данила на консультации подробно ответил на вопросы, показал возможные решения под наши и аналогичные задачи. Спасибо большое, прямо то, что нужно!"
+        : "Quickly arranged a call and Danila answered all questions in detail during the consultation, showed possible solutions for our tasks. Thank you, exactly what we needed!",
+      rating: 5,
+    },
+    {
+      name: "Yaii",
+      project: i18n.language === 'ru' ? "Создам шаблон Notion" : "Notion Template Creation",
+      text: i18n.language === 'ru' 
+        ? "Я поняла, что самостоятельно потрачу очень много времени на изучении Notion. Поэтому решила обратиться к специалисту. Даня понял мою задачу, хорошо и быстро справился с ней. Рекомендую!"
+        : "I realized I would spend too much time learning Notion myself. So I decided to contact a specialist. Danya understood my task, did it well and quickly. Recommend!",
+      rating: 5,
+    },
+    {
+      name: "krekov13",
+      project: i18n.language === 'ru' ? "RPG Шаблон Notion" : "RPG Notion Template",
+      text: i18n.language === 'ru' 
+        ? "На просторах всемирной сети то чего я попросил и как было сделано аналогов нет, буду обращаться точно только сюда, и всем советую!"
+        : "On the entire internet, there's nothing like what I asked for and how it was done. Will definitely come back, and recommend to everyone!",
+      rating: 5,
+    },
+    {
+      name: "miko9301",
+      project: i18n.language === 'ru' ? "База данных в Notion" : "Notion Database",
+      text: i18n.language === 'ru' 
+        ? "Все четко сделал по тз. Спасибо Данилу за работу."
+        : "Everything done clearly according to specs. Thank you Danil for the work.",
       rating: 5,
     },
   ];
@@ -143,7 +191,7 @@ const Contact = () => {
                     </p>
                     <div className="pt-2 border-t border-border/50">
                       <p className="font-semibold text-sm">{review.name}</p>
-                      <p className="text-xs text-muted-foreground">{review.company}</p>
+                      <p className="text-xs text-muted-foreground">{review.project}</p>
                     </div>
                   </CardContent>
                 </Card>
