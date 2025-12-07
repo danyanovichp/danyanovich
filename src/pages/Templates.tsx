@@ -103,7 +103,7 @@ const Templates = () => {
       description: i18n.language === 'ru' 
         ? "Легкий операционный шаблон для управления мероприятиями: связывает мероприятия, задачи, поставщиков и базу знаний в одном рабочем пространстве"
         : "Lightweight operational template for event management: connects events, tasks, vendors and knowledge base in one workspace",
-      price: "500 ₽",
+      price: "300 ₽",
       link: "https://web.tribute.tg/p/nQe",
       image: "/images/events-os-lite.jpg",
     },
