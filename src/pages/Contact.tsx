@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Youtube, MessageCircle, FileText, Star, Quote } from "lucide-react";
+import { Youtube, MessageCircle, FileText, Star, Quote, ExternalLink } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/button";
 
 const Contact = () => {
   const { t, i18n } = useTranslation();
@@ -108,6 +109,22 @@ const Contact = () => {
         : "Everything done clearly according to specs. Thank you Danil for the work.",
       rating: 5,
     },
+    {
+      name: "artem_prgb",
+      project: i18n.language === 'ru' ? "Notion БД" : "Notion Database",
+      text: i18n.language === 'ru' 
+        ? "Задание было объемным и сложным, Дэн выполнил все по ТЗ, проявил внимание к деталям, достаточно отзывчив и приятен в общении. Я доволен, буду обращаться еще)"
+        : "The task was large and complex, Dan completed everything according to specs, paid attention to details, very responsive and pleasant to communicate with. Satisfied, will come back!",
+      rating: 5,
+    },
+    {
+      name: "krekov13",
+      project: i18n.language === 'ru' ? "RPG планер" : "RPG Planner",
+      text: i18n.language === 'ru' 
+        ? "RPG планер, любой каприз только лучше! На все 100% понравилась работа!"
+        : "RPG planner, every request made even better! 100% satisfied with the work!",
+      rating: 5,
+    },
   ];
 
   return (
@@ -170,7 +187,7 @@ const Contact = () => {
       {/* Reviews Section */}
       <section className="py-16 md:py-20 bg-muted/20">
         <div className="container">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl md:text-3xl text-center mb-12 font-bold">
               {i18n.language === 'ru' ? 'Отзывы' : 'Reviews'}
             </h2>
@@ -196,6 +213,20 @@ const Contact = () => {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+            
+            {/* Kwork Link */}
+            <div className="mt-12 text-center">
+              <a 
+                href="https://kwork.ru/user/danyanovich" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <Button variant="outline" className="gap-2">
+                  <ExternalLink className="h-4 w-4" />
+                  {i18n.language === 'ru' ? 'Все отзывы на Kwork' : 'All reviews on Kwork'}
+                </Button>
+              </a>
             </div>
           </div>
         </div>
