@@ -14,7 +14,7 @@ const resources = {
         packages: 'ПАКЕТЫ',
         reviews: 'ОТЗЫВЫ',
         faq: 'FAQ',
-        contact: 'СОЦ. СЕТИ',
+        contact: 'ОБО МНЕ',
         portfolio: 'ПОРТФОЛИО',
       },
       home: {
@@ -93,8 +93,8 @@ const resources = {
         subtitle: 'Выберите подходящий пакет',
       },
       contact: {
-        title: 'Соц. Сети',
-        subtitle: 'Подписывайтесь на меня',
+        title: 'Обо мне',
+        subtitle: 'С 2020 создаю и консультирую рабочие пространства, реализовал более 50 проектов по внедрению Notion, Buildin.AI и других инструментов для компаний различного масштаба. Разработал комплексные решения, повысившие эффективность рабочих процессов клиентов в среднем на 30%, создал библиотеку специализированных шаблонов для различных бизнес-задач и провел более 100 часов обучающих сессий, помогая командам максимально использовать возможности пространств.',
         social: 'Мои каналы',
       },
       faq: {
@@ -131,7 +131,7 @@ const resources = {
         packages: 'PACKAGES',
         reviews: 'REVIEWS',
         faq: 'FAQ',
-        contact: 'SOCIAL',
+        contact: 'ABOUT ME',
         portfolio: 'PORTFOLIO',
       },
       home: {
@@ -210,8 +210,8 @@ const resources = {
         subtitle: 'Choose the right package',
       },
       contact: {
-        title: 'Social Networks',
-        subtitle: 'Follow me',
+        title: 'About Me',
+        subtitle: 'Since 2020, I have been creating and consulting workspaces, implementing over 50 projects with Notion, Buildin.AI and other tools for companies of various sizes. I developed comprehensive solutions that increased client workflow efficiency by an average of 30%, created a library of specialized templates for various business tasks, and conducted over 100 hours of training sessions, helping teams maximize workspace capabilities.',
         social: 'My Channels',
       },
       faq: {
