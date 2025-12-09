@@ -257,6 +257,74 @@ const Templates = () => {
         </div>
       </section>
 
+      {/* Notion Paid Templates Section - Premium at top */}
+      <section className="relative py-16 md:py-20 overflow-hidden">
+        <div className="glass-orb bottom-20 left-20 w-56 h-56 bg-muted/40 animate-float" style={{ animationDelay: '0.3s' }} />
+        
+        <div className="container relative z-10">
+          <div className="max-w-5xl mx-auto space-y-12">
+            <div className="flex items-center gap-4">
+              <Badge className="px-6 py-3 bg-foreground/90 backdrop-blur-sm text-background text-base font-medium rounded-full">
+                📝 Notion
+              </Badge>
+              <Badge className="px-4 py-2 bg-amber-500/90 backdrop-blur-sm text-white text-sm font-medium rounded-full">
+                <Sparkles className="mr-1 h-3 w-3 inline" />
+                {i18n.language === 'ru' ? 'Премиум' : 'Premium'}
+              </Badge>
+              <div className="flex-1 h-px bg-border/20" />
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {notionPaidTemplates.map((template, index) => (
+                <a 
+                  key={index}
+                  href={template.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <Card className="cursor-pointer group h-full border-amber-500/30 hover:border-amber-500/50 transition-colors">
+                    <div className="relative overflow-hidden rounded-t-2xl">
+                      {template.image ? (
+                        <img 
+                          src={template.image} 
+                          alt={template.title}
+                          className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      ) : (
+                        <div className="aspect-video bg-muted/50 backdrop-blur-xl flex items-center justify-center group-hover:bg-muted/70 transition-colors">
+                          <template.icon className="h-16 w-16 text-primary" />
+                        </div>
+                      )}
+                      <div className="absolute top-3 right-3">
+                        <Badge className="bg-amber-500/90 backdrop-blur-sm text-white text-sm font-bold rounded-full px-3 py-1">
+                          {template.price}
+                        </Badge>
+                      </div>
+                    </div>
+                    <CardHeader className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="inline-flex p-3 bg-amber-500/90 backdrop-blur-sm text-white rounded-xl">
+                          <template.icon className="h-6 w-6" />
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <ShoppingCart className="h-5 w-5 text-amber-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <ExternalLink className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
+                      </div>
+                      <h3 className="text-lg font-bold group-hover:text-amber-500 transition-colors">{template.title}</h3>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground">{template.description}</p>
+                    </CardContent>
+                  </Card>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Education Section */}
       <section className="relative py-16 md:py-20 overflow-hidden">
         <div className="glass-orb top-10 left-10 w-48 h-48 bg-muted/30 animate-float" />
@@ -338,66 +406,6 @@ const Templates = () => {
         </div>
       </section>
 
-      {/* Notion Paid Templates Section */}
-      <section className="relative py-16 md:py-20 overflow-hidden">
-        <div className="glass-orb bottom-20 left-20 w-56 h-56 bg-muted/40 animate-float" style={{ animationDelay: '0.3s' }} />
-        
-        <div className="container relative z-10">
-          <div className="max-w-5xl mx-auto space-y-12">
-            <div className="flex items-center gap-4">
-              <Badge className="px-6 py-3 bg-foreground/90 backdrop-blur-sm text-background text-base font-medium rounded-full">
-                📝 Notion
-              </Badge>
-              <Badge className="px-4 py-2 bg-amber-500/90 backdrop-blur-sm text-white text-sm font-medium rounded-full">
-                <Sparkles className="mr-1 h-3 w-3 inline" />
-                {i18n.language === 'ru' ? 'Премиум' : 'Premium'}
-              </Badge>
-              <div className="flex-1 h-px bg-border/20" />
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {notionPaidTemplates.map((template, index) => (
-                <a 
-                  key={index}
-                  href={template.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <Card className="cursor-pointer group h-full border-amber-500/20 hover:border-amber-500/40 transition-colors overflow-hidden">
-                    {template.image && (
-                      <div className="aspect-video overflow-hidden">
-                        <img 
-                          src={template.image} 
-                          alt={template.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                    )}
-                    <CardHeader className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div className="inline-flex p-3 bg-amber-500/90 backdrop-blur-sm text-white rounded-xl">
-                          <template.icon className="h-6 w-6" />
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Badge className="bg-primary text-primary-foreground font-bold">
-                            {template.price}
-                          </Badge>
-                          <ShoppingCart className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </div>
-                      </div>
-                      <h3 className="text-lg font-bold group-hover:text-primary transition-colors">{template.title}</h3>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground">{template.description}</p>
-                    </CardContent>
-                  </Card>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Buildin.AI Templates Section */}
       <section className="relative py-16 md:py-20 overflow-hidden">
