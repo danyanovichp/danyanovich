@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { User, Briefcase, Sparkles, Eye, GraduationCap, BookOpen, Video, FileText, Layout, Database, Notebook, ExternalLink, Calendar, ShoppingCart } from "lucide-react";
+import { User, Briefcase, Sparkles, Eye, GraduationCap, BookOpen, Video, FileText, Layout, Database, Notebook, ExternalLink, Calendar, ShoppingCart, Star, Quote, Workflow } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -443,6 +443,105 @@ const Templates = () => {
 
             <div className="grid md:grid-cols-2 gap-8">
               {yonoteTemplates.map((template, index) => renderTemplateCard(template, index))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* n8n Section */}
+      <section className="relative py-16 md:py-20 overflow-hidden">
+        <div className="glass-orb bottom-10 left-20 w-64 h-64 bg-muted/30 animate-float" style={{ animationDelay: '0.8s' }} />
+        
+        <div className="container relative z-10">
+          <div className="max-w-5xl mx-auto space-y-12">
+            <div className="flex items-center gap-4">
+              <Badge className="px-6 py-3 bg-orange-500/90 backdrop-blur-sm text-white text-base font-medium rounded-full">
+                <Workflow className="mr-2 h-4 w-4 inline" />
+                n8n
+              </Badge>
+              <Badge className="px-4 py-2 bg-muted/90 backdrop-blur-sm text-muted-foreground text-sm font-medium rounded-full">
+                🚧 {i18n.language === 'ru' ? 'В разработке' : 'In Development'}
+              </Badge>
+              <div className="flex-1 h-px bg-border/20" />
+            </div>
+
+            <Card className="border-dashed border-2 border-border/40">
+              <CardContent className="py-16 text-center">
+                <Workflow className="h-16 w-16 mx-auto text-orange-500/50 mb-6" />
+                <h3 className="text-xl font-bold mb-2">
+                  {i18n.language === 'ru' ? 'В разработке' : 'In Development'}
+                </h3>
+                <p className="text-muted-foreground">
+                  {i18n.language === 'ru' 
+                    ? 'Шаблоны автоматизаций n8n скоро будут доступны'
+                    : 'n8n automation templates coming soon'}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Template Reviews Section */}
+      <section className="relative py-16 md:py-20 bg-muted/30 backdrop-blur-sm overflow-hidden">
+        <div className="glass-orb top-10 right-10 w-72 h-72 bg-muted/40 animate-float" style={{ animationDelay: '1.2s' }} />
+        
+        <div className="container relative z-10">
+          <div className="max-w-5xl mx-auto space-y-12">
+            <div className="text-center space-y-4">
+              <h2 className="text-2xl md:text-4xl font-bold">
+                {i18n.language === 'ru' ? 'Отзывы о шаблонах' : 'Template Reviews'}
+              </h2>
+              <p className="text-base text-muted-foreground max-w-2xl mx-auto">
+                {i18n.language === 'ru' 
+                  ? 'Что говорят пользователи о наших шаблонах'
+                  : 'What users say about our templates'}
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  name: "Dmitri_Str",
+                  text: i18n.language === 'ru' 
+                    ? "Очень редко сейчас встретишь профессионалов такого уровня. Быстро разобрался в задаче, предложил хорошие идеи. Быстро и качественно!"
+                    : "Very rare to find professionals of this level. Quickly understood the task, suggested good ideas. Fast and quality!",
+                  rating: 5,
+                },
+                {
+                  name: "edgadirov",
+                  text: i18n.language === 'ru' 
+                    ? "Отличная работа! Данил очень ответственный. Помог разобраться в notion и найти лучшее решение. Все сделано идеально!"
+                    : "Excellent work! Danil is very responsible. Helped understand Notion and find the best solution. Perfect!",
+                  rating: 5,
+                },
+                {
+                  name: "nesmeyanna",
+                  text: i18n.language === 'ru' 
+                    ? "Данила восхитителен! Дополнил задачу так, как я и не могла предположить. Рекомендую как профессионала!"
+                    : "Danila is amazing! Enhanced the task in ways I couldn't imagine. Recommend as a professional!",
+                  rating: 5,
+                },
+              ].map((review, index) => (
+                <Card key={index} className="h-full">
+                  <CardHeader className="pb-2">
+                    <Quote className="h-8 w-8 text-primary/40 mb-2" />
+                    <div className="flex gap-0.5 mb-2">
+                      {Array.from({ length: review.rating }).map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                      ))}
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <p className="text-sm text-muted-foreground italic">
+                      "{review.text}"
+                    </p>
+                    <div className="pt-2 border-t border-border/50">
+                      <p className="font-semibold text-sm">{review.name}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </div>
