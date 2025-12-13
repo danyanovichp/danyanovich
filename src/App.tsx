@@ -8,6 +8,7 @@ import "./lib/i18n";
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
 import Templates from "./pages/Templates";
+import TemplateLanding from "./pages/TemplateLanding";
 import Courses from "./pages/Courses";
 import AIPrompts from "./pages/AIPrompts";
 import Packages from "./pages/Packages";
@@ -35,6 +36,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/templates" element={<PageTransition><Templates /></PageTransition>} />
+                <Route path="/templates/:templateId" element={<PageTransition><TemplateLanding /></PageTransition>} />
                 <Route path="/courses" element={<PageTransition><Courses /></PageTransition>} />
                 <Route path="/ai-prompts" element={<PageTransition><AIPrompts /></PageTransition>} />
                 <Route path="/consulting" element={<PageTransition><Consulting /></PageTransition>} />
