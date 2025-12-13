@@ -5,6 +5,7 @@ import { User, Briefcase, Sparkles, Eye, GraduationCap, BookOpen, Video, FileTex
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { premiumTemplates } from "@/data/premiumTemplates";
 
 const Templates = () => {
   const { t, i18n } = useTranslation();
@@ -93,235 +94,6 @@ const Templates = () => {
         ? "Следите за конкурентами и их стратегиями"
         : "Track competitors and their strategies",
       link: "https://danyanovich.notion.site/2ac1cf04d998817f800bc1b9dc259742?source=copy_link",
-    },
-  ];
-
-  const notionPaidTemplates = [
-    {
-      icon: Database,
-      title: i18n.language === 'ru' ? "Разработка OS" : "Development OS",
-      description: i18n.language === 'ru' 
-        ? "Полная система управления разработкой проектов"
-        : "Complete project development management system",
-      price: "500 ₽",
-      link: "#",
-    },
-    {
-      icon: BookOpen,
-      title: i18n.language === 'ru' ? "Языки OS" : "Languages OS",
-      description: i18n.language === 'ru' 
-        ? "Система для изучения иностранных языков"
-        : "System for learning foreign languages",
-      price: "400 ₽",
-      link: "#",
-    },
-    {
-      icon: User,
-      title: "CRM OS",
-      description: i18n.language === 'ru' 
-        ? "Управление клиентами и продажами"
-        : "Customer and sales management",
-      price: "600 ₽",
-      link: "#",
-    },
-    {
-      icon: User,
-      title: i18n.language === 'ru' ? "Семья OS" : "Family OS",
-      description: i18n.language === 'ru' 
-        ? "Организация семейной жизни и планирование"
-        : "Family life organization and planning",
-      price: "400 ₽",
-      link: "#",
-    },
-    {
-      icon: Database,
-      title: i18n.language === 'ru' ? "База знаний OS" : "Knowledge Base OS",
-      description: i18n.language === 'ru' 
-        ? "Структурированное хранение и поиск информации"
-        : "Structured storage and information retrieval",
-      price: "450 ₽",
-      link: "#",
-    },
-    {
-      icon: FileText,
-      title: i18n.language === 'ru' ? "Контент OS" : "Content OS",
-      description: i18n.language === 'ru' 
-        ? "Планирование и создание контента"
-        : "Content planning and creation",
-      price: "500 ₽",
-      link: "#",
-    },
-    {
-      icon: ShoppingCart,
-      title: i18n.language === 'ru' ? "Продажи OS" : "Sales OS",
-      description: i18n.language === 'ru' 
-        ? "Управление воронкой продаж и сделками"
-        : "Sales funnel and deals management",
-      price: "550 ₽",
-      link: "#",
-    },
-    {
-      icon: Sparkles,
-      title: i18n.language === 'ru' ? "Маркетинг OS" : "Marketing OS",
-      description: i18n.language === 'ru' 
-        ? "Планирование маркетинговых кампаний"
-        : "Marketing campaign planning",
-      price: "500 ₽",
-      link: "#",
-    },
-    {
-      icon: Briefcase,
-      title: i18n.language === 'ru' ? "Строй OS" : "Construction OS",
-      description: i18n.language === 'ru' 
-        ? "Управление строительными проектами"
-        : "Construction project management",
-      price: "600 ₽",
-      link: "#",
-    },
-    {
-      icon: Eye,
-      title: i18n.language === 'ru' ? "Путешествия OS" : "Travel OS",
-      description: i18n.language === 'ru' 
-        ? "Планирование путешествий и поездок"
-        : "Travel and trip planning",
-      price: "400 ₽",
-      link: "#",
-    },
-    {
-      icon: Sparkles,
-      title: i18n.language === 'ru' ? "Стартап OS" : "Startup OS",
-      description: i18n.language === 'ru' 
-        ? "Запуск и развитие стартапа"
-        : "Startup launch and development",
-      price: "700 ₽",
-      link: "#",
-    },
-    {
-      icon: GraduationCap,
-      title: i18n.language === 'ru' ? "Студент OS" : "Student OS",
-      description: i18n.language === 'ru' 
-        ? "Организация учебы и студенческой жизни"
-        : "Study and student life organization",
-      price: "350 ₽",
-      link: "#",
-    },
-    {
-      icon: User,
-      title: i18n.language === 'ru' ? "Жизнь OS" : "Life OS",
-      description: i18n.language === 'ru' 
-        ? "Полное управление личной жизнью"
-        : "Complete personal life management",
-      price: "600 ₽",
-      link: "#",
-    },
-    {
-      icon: Sparkles,
-      title: i18n.language === 'ru' ? "Привычки OS" : "Habits OS",
-      description: i18n.language === 'ru' 
-        ? "Формирование и отслеживание привычек"
-        : "Habit formation and tracking",
-      price: "350 ₽",
-      link: "#",
-    },
-    {
-      icon: BookOpen,
-      title: i18n.language === 'ru' ? "Кухня OS" : "Kitchen OS",
-      description: i18n.language === 'ru' 
-        ? "Рецепты, меню и планирование питания"
-        : "Recipes, menus and meal planning",
-      price: "400 ₽",
-      link: "#",
-    },
-    {
-      icon: Briefcase,
-      title: i18n.language === 'ru' ? "Бизнес OS" : "Business OS",
-      description: i18n.language === 'ru' 
-        ? "Комплексное управление бизнесом"
-        : "Comprehensive business management",
-      price: "800 ₽",
-      link: "#",
-    },
-    {
-      icon: Database,
-      title: i18n.language === 'ru' ? "Финансы OS" : "Finance OS",
-      description: i18n.language === 'ru' 
-        ? "Учет финансов и бюджетирование"
-        : "Finance tracking and budgeting",
-      price: "500 ₽",
-      link: "#",
-    },
-    {
-      icon: Calendar,
-      title: i18n.language === 'ru' ? "Мероприятия OS" : "Events OS",
-      description: i18n.language === 'ru' 
-        ? "Полное управление мероприятиями"
-        : "Complete event management",
-      price: "600 ₽",
-      link: "#",
-    },
-    {
-      icon: Briefcase,
-      title: i18n.language === 'ru' ? "Карьера OS" : "Career OS",
-      description: i18n.language === 'ru' 
-        ? "Планирование карьерного роста"
-        : "Career growth planning",
-      price: "450 ₽",
-      link: "#",
-    },
-    {
-      icon: User,
-      title: i18n.language === 'ru' ? "Команда OS" : "Team OS",
-      description: i18n.language === 'ru' 
-        ? "Управление командой и задачами"
-        : "Team and task management",
-      price: "550 ₽",
-      link: "#",
-    },
-    {
-      icon: Briefcase,
-      title: i18n.language === 'ru' ? "Компания OS" : "Company OS",
-      description: i18n.language === 'ru' 
-        ? "Управление компанией и процессами"
-        : "Company and process management",
-      price: "900 ₽",
-      link: "#",
-    },
-    {
-      icon: GraduationCap,
-      title: i18n.language === 'ru' ? "Мастерство OS" : "Mastery OS",
-      description: i18n.language === 'ru' 
-        ? "Развитие навыков и экспертизы"
-        : "Skill and expertise development",
-      price: "450 ₽",
-      link: "#",
-    },
-    {
-      icon: Notebook,
-      title: i18n.language === 'ru' ? "Дневник OS" : "Journal OS",
-      description: i18n.language === 'ru' 
-        ? "Ведение личного дневника и рефлексия"
-        : "Personal journaling and reflection",
-      price: "350 ₽",
-      link: "#",
-    },
-    {
-      icon: Layout,
-      title: i18n.language === 'ru' ? "Проекты OS" : "Projects OS",
-      description: i18n.language === 'ru' 
-        ? "Управление проектами любой сложности"
-        : "Project management of any complexity",
-      price: "550 ₽",
-      link: "#",
-    },
-    {
-      icon: Calendar,
-      title: i18n.language === 'ru' ? "Мероприятия OS Lite" : "Events OS Lite",
-      description: i18n.language === 'ru' 
-        ? "Легкий шаблон для управления мероприятиями"
-        : "Lightweight template for event management",
-      price: "300 ₽",
-      link: "https://web.tribute.tg/p/nQe",
-      image: "/images/events-os-lite.jpg",
     },
   ];
 
@@ -491,51 +263,60 @@ const Templates = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {notionPaidTemplates.map((template, index) => (
-                <a 
-                  key={index}
-                  href={template.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <Card className="cursor-pointer group h-full border-amber-500/30 hover:border-amber-500/50 transition-colors">
-                    <div className="relative overflow-hidden rounded-t-2xl">
-                      {template.image ? (
-                        <img 
-                          src={template.image} 
-                          alt={template.title}
-                          className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      ) : (
-                        <div className="aspect-video bg-muted/50 backdrop-blur-xl flex items-center justify-center group-hover:bg-muted/70 transition-colors">
-                          <template.icon className="h-16 w-16 text-primary" />
-                        </div>
-                      )}
-                      <div className="absolute top-3 right-3">
-                        <Badge className="bg-amber-500/90 backdrop-blur-sm text-white text-sm font-bold rounded-full px-3 py-1">
-                          {template.price}
-                        </Badge>
-                      </div>
-                    </div>
-                    <CardHeader className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div className="inline-flex p-3 bg-amber-500/90 backdrop-blur-sm text-white rounded-xl">
-                          <template.icon className="h-6 w-6" />
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <ShoppingCart className="h-5 w-5 text-amber-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                          <ExternalLink className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+              {premiumTemplates.map((template, index) => {
+                const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
+                const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
+                const isAvailable = template.status === 'available';
+                
+                return (
+                  <Link 
+                    key={index}
+                    to={`/templates/${template.id}`}
+                    className="block"
+                  >
+                    <Card className={`cursor-pointer group h-full transition-colors ${isAvailable ? 'border-green-500/30 hover:border-green-500/50' : 'border-amber-500/30 hover:border-amber-500/50'}`}>
+                      <div className="relative overflow-hidden rounded-t-2xl">
+                        {template.image ? (
+                          <img 
+                            src={template.image} 
+                            alt={title}
+                            className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        ) : (
+                          <div className="aspect-video bg-muted/50 backdrop-blur-xl flex items-center justify-center group-hover:bg-muted/70 transition-colors">
+                            <template.icon className="h-16 w-16 text-primary" />
+                          </div>
+                        )}
+                        <div className="absolute top-3 right-3 flex flex-col gap-2">
+                          <Badge className="bg-amber-500/90 backdrop-blur-sm text-white text-sm font-bold rounded-full px-3 py-1">
+                            {template.price}
+                          </Badge>
+                          {!isAvailable && (
+                            <Badge className="bg-muted/90 backdrop-blur-sm text-muted-foreground text-xs rounded-full px-2 py-1">
+                              🚧 {i18n.language === 'ru' ? 'В разработке' : 'In Dev'}
+                            </Badge>
+                          )}
                         </div>
                       </div>
-                      <h3 className="text-lg font-bold group-hover:text-amber-500 transition-colors">{template.title}</h3>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground">{template.description}</p>
-                    </CardContent>
-                  </Card>
-                </a>
-              ))}
+                      <CardHeader className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <div className={`inline-flex p-3 backdrop-blur-sm text-white rounded-xl ${isAvailable ? 'bg-green-500/90' : 'bg-amber-500/90'}`}>
+                            <template.icon className="h-6 w-6" />
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <ShoppingCart className={`h-5 w-5 opacity-0 group-hover:opacity-100 transition-opacity ${isAvailable ? 'text-green-500' : 'text-amber-500'}`} />
+                            <ExternalLink className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                          </div>
+                        </div>
+                        <h3 className={`text-lg font-bold transition-colors ${isAvailable ? 'group-hover:text-green-500' : 'group-hover:text-amber-500'}`}>{title}</h3>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-sm text-muted-foreground">{description}</p>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
