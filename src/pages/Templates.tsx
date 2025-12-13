@@ -98,11 +98,227 @@ const Templates = () => {
 
   const notionPaidTemplates = [
     {
+      icon: Database,
+      title: i18n.language === 'ru' ? "Разработка OS" : "Development OS",
+      description: i18n.language === 'ru' 
+        ? "Полная система управления разработкой проектов"
+        : "Complete project development management system",
+      price: "500 ₽",
+      link: "#",
+    },
+    {
+      icon: BookOpen,
+      title: i18n.language === 'ru' ? "Языки OS" : "Languages OS",
+      description: i18n.language === 'ru' 
+        ? "Система для изучения иностранных языков"
+        : "System for learning foreign languages",
+      price: "400 ₽",
+      link: "#",
+    },
+    {
+      icon: User,
+      title: "CRM OS",
+      description: i18n.language === 'ru' 
+        ? "Управление клиентами и продажами"
+        : "Customer and sales management",
+      price: "600 ₽",
+      link: "#",
+    },
+    {
+      icon: User,
+      title: i18n.language === 'ru' ? "Семья OS" : "Family OS",
+      description: i18n.language === 'ru' 
+        ? "Организация семейной жизни и планирование"
+        : "Family life organization and planning",
+      price: "400 ₽",
+      link: "#",
+    },
+    {
+      icon: Database,
+      title: i18n.language === 'ru' ? "База знаний OS" : "Knowledge Base OS",
+      description: i18n.language === 'ru' 
+        ? "Структурированное хранение и поиск информации"
+        : "Structured storage and information retrieval",
+      price: "450 ₽",
+      link: "#",
+    },
+    {
+      icon: FileText,
+      title: i18n.language === 'ru' ? "Контент OS" : "Content OS",
+      description: i18n.language === 'ru' 
+        ? "Планирование и создание контента"
+        : "Content planning and creation",
+      price: "500 ₽",
+      link: "#",
+    },
+    {
+      icon: ShoppingCart,
+      title: i18n.language === 'ru' ? "Продажи OS" : "Sales OS",
+      description: i18n.language === 'ru' 
+        ? "Управление воронкой продаж и сделками"
+        : "Sales funnel and deals management",
+      price: "550 ₽",
+      link: "#",
+    },
+    {
+      icon: Sparkles,
+      title: i18n.language === 'ru' ? "Маркетинг OS" : "Marketing OS",
+      description: i18n.language === 'ru' 
+        ? "Планирование маркетинговых кампаний"
+        : "Marketing campaign planning",
+      price: "500 ₽",
+      link: "#",
+    },
+    {
+      icon: Briefcase,
+      title: i18n.language === 'ru' ? "Строй OS" : "Construction OS",
+      description: i18n.language === 'ru' 
+        ? "Управление строительными проектами"
+        : "Construction project management",
+      price: "600 ₽",
+      link: "#",
+    },
+    {
+      icon: Eye,
+      title: i18n.language === 'ru' ? "Путешествия OS" : "Travel OS",
+      description: i18n.language === 'ru' 
+        ? "Планирование путешествий и поездок"
+        : "Travel and trip planning",
+      price: "400 ₽",
+      link: "#",
+    },
+    {
+      icon: Sparkles,
+      title: i18n.language === 'ru' ? "Стартап OS" : "Startup OS",
+      description: i18n.language === 'ru' 
+        ? "Запуск и развитие стартапа"
+        : "Startup launch and development",
+      price: "700 ₽",
+      link: "#",
+    },
+    {
+      icon: GraduationCap,
+      title: i18n.language === 'ru' ? "Студент OS" : "Student OS",
+      description: i18n.language === 'ru' 
+        ? "Организация учебы и студенческой жизни"
+        : "Study and student life organization",
+      price: "350 ₽",
+      link: "#",
+    },
+    {
+      icon: User,
+      title: i18n.language === 'ru' ? "Жизнь OS" : "Life OS",
+      description: i18n.language === 'ru' 
+        ? "Полное управление личной жизнью"
+        : "Complete personal life management",
+      price: "600 ₽",
+      link: "#",
+    },
+    {
+      icon: Sparkles,
+      title: i18n.language === 'ru' ? "Привычки OS" : "Habits OS",
+      description: i18n.language === 'ru' 
+        ? "Формирование и отслеживание привычек"
+        : "Habit formation and tracking",
+      price: "350 ₽",
+      link: "#",
+    },
+    {
+      icon: BookOpen,
+      title: i18n.language === 'ru' ? "Кухня OS" : "Kitchen OS",
+      description: i18n.language === 'ru' 
+        ? "Рецепты, меню и планирование питания"
+        : "Recipes, menus and meal planning",
+      price: "400 ₽",
+      link: "#",
+    },
+    {
+      icon: Briefcase,
+      title: i18n.language === 'ru' ? "Бизнес OS" : "Business OS",
+      description: i18n.language === 'ru' 
+        ? "Комплексное управление бизнесом"
+        : "Comprehensive business management",
+      price: "800 ₽",
+      link: "#",
+    },
+    {
+      icon: Database,
+      title: i18n.language === 'ru' ? "Финансы OS" : "Finance OS",
+      description: i18n.language === 'ru' 
+        ? "Учет финансов и бюджетирование"
+        : "Finance tracking and budgeting",
+      price: "500 ₽",
+      link: "#",
+    },
+    {
+      icon: Calendar,
+      title: i18n.language === 'ru' ? "Мероприятия OS" : "Events OS",
+      description: i18n.language === 'ru' 
+        ? "Полное управление мероприятиями"
+        : "Complete event management",
+      price: "600 ₽",
+      link: "#",
+    },
+    {
+      icon: Briefcase,
+      title: i18n.language === 'ru' ? "Карьера OS" : "Career OS",
+      description: i18n.language === 'ru' 
+        ? "Планирование карьерного роста"
+        : "Career growth planning",
+      price: "450 ₽",
+      link: "#",
+    },
+    {
+      icon: User,
+      title: i18n.language === 'ru' ? "Команда OS" : "Team OS",
+      description: i18n.language === 'ru' 
+        ? "Управление командой и задачами"
+        : "Team and task management",
+      price: "550 ₽",
+      link: "#",
+    },
+    {
+      icon: Briefcase,
+      title: i18n.language === 'ru' ? "Компания OS" : "Company OS",
+      description: i18n.language === 'ru' 
+        ? "Управление компанией и процессами"
+        : "Company and process management",
+      price: "900 ₽",
+      link: "#",
+    },
+    {
+      icon: GraduationCap,
+      title: i18n.language === 'ru' ? "Мастерство OS" : "Mastery OS",
+      description: i18n.language === 'ru' 
+        ? "Развитие навыков и экспертизы"
+        : "Skill and expertise development",
+      price: "450 ₽",
+      link: "#",
+    },
+    {
+      icon: Notebook,
+      title: i18n.language === 'ru' ? "Дневник OS" : "Journal OS",
+      description: i18n.language === 'ru' 
+        ? "Ведение личного дневника и рефлексия"
+        : "Personal journaling and reflection",
+      price: "350 ₽",
+      link: "#",
+    },
+    {
+      icon: Layout,
+      title: i18n.language === 'ru' ? "Проекты OS" : "Projects OS",
+      description: i18n.language === 'ru' 
+        ? "Управление проектами любой сложности"
+        : "Project management of any complexity",
+      price: "550 ₽",
+      link: "#",
+    },
+    {
       icon: Calendar,
       title: i18n.language === 'ru' ? "Мероприятия OS Lite" : "Events OS Lite",
       description: i18n.language === 'ru' 
-        ? "Легкий операционный шаблон для управления мероприятиями: связывает мероприятия, задачи, поставщиков и базу знаний в одном рабочем пространстве"
-        : "Lightweight operational template for event management: connects events, tasks, vendors and knowledge base in one workspace",
+        ? "Легкий шаблон для управления мероприятиями"
+        : "Lightweight template for event management",
       price: "300 ₽",
       link: "https://web.tribute.tg/p/nQe",
       image: "/images/events-os-lite.jpg",
