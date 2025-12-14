@@ -245,7 +245,7 @@ const Templates = () => {
         </div>
       </section>
 
-      {/* Notion Paid Templates Section - Premium at top */}
+      {/* Available Templates Section */}
       <section className="relative py-16 md:py-20 overflow-hidden">
         <div className="glass-orb bottom-20 left-20 w-56 h-56 bg-muted/40 animate-float" style={{ animationDelay: '0.3s' }} />
         
@@ -255,18 +255,17 @@ const Templates = () => {
               <Badge className="px-6 py-3 bg-foreground/90 backdrop-blur-sm text-background text-base font-medium rounded-full">
                 📝 Notion
               </Badge>
-              <Badge className="px-4 py-2 bg-amber-500/90 backdrop-blur-sm text-white text-sm font-medium rounded-full">
+              <Badge className="px-4 py-2 bg-green-500/90 backdrop-blur-sm text-white text-sm font-medium rounded-full">
                 <Sparkles className="mr-1 h-3 w-3 inline" />
-                {i18n.language === 'ru' ? 'Премиум' : 'Premium'}
+                {i18n.language === 'ru' ? 'В продаже' : 'Available'}
               </Badge>
               <div className="flex-1 h-px bg-border/20" />
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {premiumTemplates.map((template, index) => {
+              {premiumTemplates.filter(t => t.status === 'available').map((template, index) => {
                 const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
                 const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
-                const isAvailable = template.status === 'available';
                 
                 return (
                   <Link 
@@ -274,7 +273,7 @@ const Templates = () => {
                     to={`/templates/${template.id}`}
                     className="block"
                   >
-                    <Card className={`cursor-pointer group h-full transition-colors ${isAvailable ? 'border-green-500/30 hover:border-green-500/50' : 'border-amber-500/30 hover:border-amber-500/50'}`}>
+                    <Card className="cursor-pointer group h-full transition-colors border-green-500/30 hover:border-green-500/50">
                       <div className="relative overflow-hidden rounded-t-2xl">
                         {template.image ? (
                           <img 
@@ -287,28 +286,81 @@ const Templates = () => {
                             <template.icon className="h-16 w-16 text-primary" />
                           </div>
                         )}
-                        <div className="absolute top-3 right-3 flex flex-col gap-2">
-                          <Badge className="bg-amber-500/90 backdrop-blur-sm text-white text-sm font-bold rounded-full px-3 py-1">
+                        <div className="absolute top-3 right-3">
+                          <Badge className="bg-green-500/90 backdrop-blur-sm text-white text-sm font-bold rounded-full px-3 py-1">
                             {template.price}
                           </Badge>
-                          {!isAvailable && (
-                            <Badge className="bg-muted/90 backdrop-blur-sm text-muted-foreground text-xs rounded-full px-2 py-1">
-                              🚧 {i18n.language === 'ru' ? 'В разработке' : 'In Dev'}
-                            </Badge>
-                          )}
                         </div>
                       </div>
                       <CardHeader className="space-y-4">
                         <div className="flex items-center justify-between">
-                          <div className={`inline-flex p-3 backdrop-blur-sm text-white rounded-xl ${isAvailable ? 'bg-green-500/90' : 'bg-amber-500/90'}`}>
+                          <div className="inline-flex p-3 bg-green-500/90 backdrop-blur-sm text-white rounded-xl">
                             <template.icon className="h-6 w-6" />
                           </div>
                           <div className="flex items-center gap-2">
-                            <ShoppingCart className={`h-5 w-5 opacity-0 group-hover:opacity-100 transition-opacity ${isAvailable ? 'text-green-500' : 'text-amber-500'}`} />
+                            <ShoppingCart className="h-5 w-5 text-green-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                             <ExternalLink className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                           </div>
                         </div>
-                        <h3 className={`text-lg font-bold transition-colors ${isAvailable ? 'group-hover:text-green-500' : 'group-hover:text-amber-500'}`}>{title}</h3>
+                        <h3 className="text-lg font-bold group-hover:text-green-500 transition-colors">{title}</h3>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-sm text-muted-foreground">{description}</p>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* In Development Templates Section */}
+      <section className="relative py-16 md:py-20 overflow-hidden">
+        <div className="glass-orb top-10 right-10 w-48 h-48 bg-muted/30 animate-float" style={{ animationDelay: '0.5s' }} />
+        
+        <div className="container relative z-10">
+          <div className="max-w-5xl mx-auto space-y-12">
+            <div className="flex items-center gap-4">
+              <Badge className="px-6 py-3 bg-foreground/90 backdrop-blur-sm text-background text-base font-medium rounded-full">
+                📝 Notion
+              </Badge>
+              <Badge className="px-4 py-2 bg-amber-500/90 backdrop-blur-sm text-white text-sm font-medium rounded-full">
+                🚧 {i18n.language === 'ru' ? 'В разработке' : 'In Development'}
+              </Badge>
+              <div className="flex-1 h-px bg-border/20" />
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {premiumTemplates.filter(t => t.status === 'development').map((template, index) => {
+                const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
+                const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
+                
+                return (
+                  <Link 
+                    key={index}
+                    to={`/templates/${template.id}`}
+                    className="block"
+                  >
+                    <Card className="cursor-pointer group h-full transition-colors border-amber-500/30 hover:border-amber-500/50 opacity-80">
+                      <div className="relative overflow-hidden rounded-t-2xl">
+                        <div className="aspect-video bg-muted/50 backdrop-blur-xl flex items-center justify-center group-hover:bg-muted/70 transition-colors">
+                          <template.icon className="h-16 w-16 text-amber-500/70" />
+                        </div>
+                        <div className="absolute top-3 right-3 flex flex-col gap-2">
+                          <Badge className="bg-amber-500/90 backdrop-blur-sm text-white text-sm font-bold rounded-full px-3 py-1">
+                            {template.price}
+                          </Badge>
+                        </div>
+                      </div>
+                      <CardHeader className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <div className="inline-flex p-3 bg-amber-500/90 backdrop-blur-sm text-white rounded-xl">
+                            <template.icon className="h-6 w-6" />
+                          </div>
+                        </div>
+                        <h3 className="text-lg font-bold group-hover:text-amber-500 transition-colors">{title}</h3>
                       </CardHeader>
                       <CardContent>
                         <p className="text-sm text-muted-foreground">{description}</p>
