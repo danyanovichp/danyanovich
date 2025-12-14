@@ -42,7 +42,7 @@ export const premiumTemplates: PremiumTemplate[] = [
     titleEn: "Events OS Lite",
     descriptionRu: "Легкий шаблон для управления мероприятиями",
     descriptionEn: "Lightweight template for event management",
-    price: "49 000 ₽",
+    price: "300 ₽",
     link: "https://web.tribute.tg/p/nQe",
     image: "/images/events-os-lite.jpg",
     status: 'available',
