@@ -135,11 +135,21 @@ const Contact = () => {
         <div className="container">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <h1 className="text-3xl md:text-5xl font-bold">{t('contact.title')}</h1>
-            <div className="relative">
-              <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-primary/60 via-primary/30 to-transparent rounded-full hidden md:block" />
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed md:leading-loose tracking-wide text-left md:text-justify md:pl-6 max-w-3xl mx-auto">
-                {t('contact.subtitle')}
-              </p>
+            
+            {/* Bio Callout */}
+            <div className="relative bg-card/50 backdrop-blur-sm border border-border/40 rounded-2xl p-6 md:p-8 text-left max-w-3xl mx-auto">
+              <div className="absolute left-0 top-6 bottom-6 w-1 bg-gradient-to-b from-primary via-primary/50 to-transparent rounded-full" />
+              <div className="pl-6 space-y-4">
+                <p className="text-base md:text-lg text-foreground/90 leading-relaxed">
+                  {t('contact.bio1')}
+                </p>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                  {t('contact.bio2')}
+                </p>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                  {t('contact.bio3')}
+                </p>
+              </div>
             </div>
           </div>
         </div>
