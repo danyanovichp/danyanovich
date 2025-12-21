@@ -130,13 +130,17 @@ const Contact = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="bg-muted/30 backdrop-blur-sm py-16 md:py-20 border-b border-border/20">
+      {/* Hero Section */}
+      <section className="bg-muted/30 backdrop-blur-sm py-16 md:py-24 border-b border-border/20">
         <div className="container">
-          <div className="max-w-3xl mx-auto text-center space-y-4">
+          <div className="max-w-4xl mx-auto text-center space-y-8">
             <h1 className="text-3xl md:text-5xl font-bold">{t('contact.title')}</h1>
-            <p className="text-base md:text-lg text-muted-foreground">
-              {t('contact.subtitle')}
-            </p>
+            <div className="relative">
+              <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-primary/60 via-primary/30 to-transparent rounded-full hidden md:block" />
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed md:leading-loose tracking-wide text-left md:text-justify md:pl-6 max-w-3xl mx-auto">
+                {t('contact.subtitle')}
+              </p>
+            </div>
           </div>
         </div>
       </section>
