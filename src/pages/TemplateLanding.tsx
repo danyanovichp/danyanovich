@@ -3,10 +3,12 @@ import { useTranslation } from "react-i18next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Check, ShoppingCart, Sparkles, ExternalLink, ImageIcon, Play, Star, Quote, Home, ChevronRight } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { ArrowLeft, Check, ShoppingCart, Sparkles, ExternalLink, ImageIcon, Play, Star, Quote, Home, ChevronRight, HelpCircle } from "lucide-react";
 import { premiumTemplates } from "@/data/premiumTemplates";
 import { secondBrainFeatureSections, secondBrainReviews } from "@/data/secondBrainData";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import SEO from "@/components/SEO";
 
 const TemplateLanding = () => {
   const { templateId } = useParams();
@@ -43,9 +45,90 @@ const TemplateLanding = () => {
   const featureSections = isSecondBrain ? secondBrainFeatureSections : null;
   const reviews = isSecondBrain ? secondBrainReviews : null;
 
+  // Generate FAQ items for templates
+  const faqItems = i18n.language === 'ru' ? [
+    {
+      question: `Как получить доступ к шаблону ${title}?`,
+      answer: isAvailable 
+        ? 'После оплаты вы получите ссылку на дублирование шаблона в ваш Notion аккаунт. Процесс занимает несколько секунд.'
+        : 'Шаблон находится в разработке. Подпишитесь на обновления, чтобы узнать о релизе первыми.',
+    },
+    {
+      question: 'Нужен ли платный аккаунт Notion?',
+      answer: 'Нет, шаблон работает на бесплатном аккаунте Notion. Все основные функции доступны без подписки.',
+    },
+    {
+      question: 'Получу ли я обновления шаблона?',
+      answer: 'Да, все значительные обновления бесплатны. Вы получите уведомление на email о новых версиях.',
+    },
+    {
+      question: 'Могу ли я изменять шаблон под себя?',
+      answer: 'Абсолютно! Шаблон полностью редактируемый. Вы можете настроить его под свои нужды.',
+    },
+    {
+      question: 'Есть ли поддержка после покупки?',
+      answer: 'Да, я предоставляю поддержку через Telegram. Отвечаю на вопросы и помогаю с настройкой.',
+    },
+  ] : [
+    {
+      question: `How do I get access to ${title}?`,
+      answer: isAvailable 
+        ? 'After payment, you will receive a link to duplicate the template to your Notion account. The process takes a few seconds.'
+        : 'The template is in development. Subscribe to updates to be the first to know about the release.',
+    },
+    {
+      question: 'Do I need a paid Notion account?',
+      answer: 'No, the template works on a free Notion account. All core features are available without a subscription.',
+    },
+    {
+      question: 'Will I get template updates?',
+      answer: 'Yes, all major updates are free. You will receive an email notification about new versions.',
+    },
+    {
+      question: 'Can I customize the template?',
+      answer: 'Absolutely! The template is fully editable. You can customize it to fit your needs.',
+    },
+    {
+      question: 'Is there support after purchase?',
+      answer: 'Yes, I provide support via Telegram. I answer questions and help with setup.',
+    },
+  ];
+
+  // Generate structured data for SEO
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: title,
+    description: fullDescription,
+    image: template.image || 'https://danyanovich.com/placeholder.svg',
+    brand: {
+      '@type': 'Brand',
+      name: 'Дэн Янович',
+    },
+    offers: {
+      '@type': 'Offer',
+      price: template.priceValue,
+      priceCurrency: 'RUB',
+      availability: isAvailable ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
+      url: `https://danyanovich.com/templates/${template.id}`,
+    },
+    aggregateRating: isSecondBrain && reviews ? {
+      '@type': 'AggregateRating',
+      ratingValue: '5',
+      reviewCount: reviews.length.toString(),
+    } : undefined,
+  };
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
+      <SEO
+        title={`${title} | Дэн Янович`}
+        description={fullDescription}
+        keywords={`${title}, Notion шаблон, ${template.category}, продуктивность, ${features.join(', ')}`}
+        url={`https://danyanovich.com/templates/${template.id}`}
+        type="product"
+        structuredData={structuredData}
+      />
       <section className="bg-gradient-to-b from-muted/50 to-background py-16 md:py-24 border-b border-border/20">
         <div className="container">
           <div className="max-w-5xl mx-auto">
@@ -386,6 +469,43 @@ const TemplateLanding = () => {
                 </Card>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 md:py-24">
+        <div className="container">
+          <div className="max-w-3xl mx-auto space-y-12">
+            <div className="text-center space-y-4">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full">
+                <HelpCircle className="h-5 w-5 text-primary" />
+                <span className="text-sm font-medium text-primary">FAQ</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold">
+                {i18n.language === 'ru' ? 'Часто задаваемые вопросы' : 'Frequently Asked Questions'}
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                {i18n.language === 'ru' ? 'Ответы на популярные вопросы о шаблоне' : 'Answers to popular questions about the template'}
+              </p>
+            </div>
+            
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              {faqItems.map((item, index) => (
+                <AccordionItem 
+                  key={index} 
+                  value={`item-${index}`}
+                  className="border border-border/50 rounded-xl px-6 data-[state=open]:bg-muted/30"
+                >
+                  <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-5">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground text-base pb-5">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </section>
