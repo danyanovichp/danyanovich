@@ -293,7 +293,10 @@ const Templates = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredTemplates.filter(t => t.status === 'available').map((template, index) => {
-                  >
+                const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
+                const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
+                return (
+                  <Link to={`/templates/${template.id}`} key={index}>
                     <Card className="cursor-pointer group h-full transition-colors border-green-500/30 hover:border-green-500/50">
                       <div className="relative overflow-hidden rounded-t-2xl">
                         {template.image ? (
@@ -355,7 +358,10 @@ const Templates = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredTemplates.filter(t => t.status === 'development').map((template, index) => {
-                  >
+                const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
+                const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
+                return (
+                  <Link to={`/templates/${template.id}`} key={index}>
                     <Card className="cursor-pointer group h-full transition-colors border-amber-500/30 hover:border-amber-500/50 opacity-80">
                       <div className="relative overflow-hidden rounded-t-2xl">
                         <div className="aspect-video bg-muted/50 backdrop-blur-xl flex items-center justify-center group-hover:bg-muted/70 transition-colors">
