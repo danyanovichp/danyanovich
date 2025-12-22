@@ -275,23 +275,24 @@ const Templates = () => {
       </section>
 
       {/* Available Templates Section */}
-      <section className="relative py-16 md:py-20 overflow-hidden">
-        <div className="glass-orb bottom-20 left-20 w-56 h-56 bg-muted/40 animate-float" style={{ animationDelay: '0.3s' }} />
-        
-        <div className="container relative z-10">
-          <div className="max-w-5xl mx-auto space-y-12">
-            <div className="flex items-center gap-4">
-              <Badge className="px-6 py-3 bg-foreground/90 backdrop-blur-sm text-background text-base font-medium rounded-full">
-                📝 Notion
-              </Badge>
-              <Badge className="px-4 py-2 bg-green-500/90 backdrop-blur-sm text-white text-sm font-medium rounded-full">
-                <Sparkles className="mr-1 h-3 w-3 inline" />
-                {i18n.language === 'ru' ? 'В продаже' : 'Available'}
-              </Badge>
-              <div className="flex-1 h-px bg-border/20" />
-            </div>
+      {filteredTemplates.filter(t => t.status === 'available').length > 0 && (
+        <section className="relative py-16 md:py-20 overflow-hidden">
+          <div className="glass-orb bottom-20 left-20 w-56 h-56 bg-muted/40 animate-float" style={{ animationDelay: '0.3s' }} />
+          
+          <div className="container relative z-10">
+            <div className="max-w-5xl mx-auto space-y-12">
+              <div className="flex items-center gap-4">
+                <Badge className="px-6 py-3 bg-foreground/90 backdrop-blur-sm text-background text-base font-medium rounded-full">
+                  📝 Notion
+                </Badge>
+                <Badge className="px-4 py-2 bg-green-500/90 backdrop-blur-sm text-white text-sm font-medium rounded-full">
+                  <Sparkles className="mr-1 h-3 w-3 inline" />
+                  {i18n.language === 'ru' ? 'В продаже' : 'Available'}
+                </Badge>
+                <div className="flex-1 h-px bg-border/20" />
+              </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredTemplates.filter(t => t.status === 'available').map((template, index) => {
                 const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
                 const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
@@ -335,28 +336,30 @@ const Templates = () => {
                   </Link>
                 );
               })}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* In Development Templates Section */}
-      <section className="relative py-16 md:py-20 overflow-hidden">
-        <div className="glass-orb top-10 right-10 w-48 h-48 bg-muted/30 animate-float" style={{ animationDelay: '0.5s' }} />
-        
-        <div className="container relative z-10">
-          <div className="max-w-5xl mx-auto space-y-12">
-            <div className="flex items-center gap-4">
-              <Badge className="px-6 py-3 bg-foreground/90 backdrop-blur-sm text-background text-base font-medium rounded-full">
-                📝 Notion
-              </Badge>
-              <Badge className="px-4 py-2 bg-amber-500/90 backdrop-blur-sm text-white text-sm font-medium rounded-full">
-                🚧 {i18n.language === 'ru' ? 'В разработке' : 'In Development'}
-              </Badge>
-              <div className="flex-1 h-px bg-border/20" />
-            </div>
+      {filteredTemplates.filter(t => t.status === 'development').length > 0 && (
+        <section className="relative py-16 md:py-20 overflow-hidden">
+          <div className="glass-orb top-10 right-10 w-48 h-48 bg-muted/30 animate-float" style={{ animationDelay: '0.5s' }} />
+          
+          <div className="container relative z-10">
+            <div className="max-w-5xl mx-auto space-y-12">
+              <div className="flex items-center gap-4">
+                <Badge className="px-6 py-3 bg-foreground/90 backdrop-blur-sm text-background text-base font-medium rounded-full">
+                  📝 Notion
+                </Badge>
+                <Badge className="px-4 py-2 bg-amber-500/90 backdrop-blur-sm text-white text-sm font-medium rounded-full">
+                  🚧 {i18n.language === 'ru' ? 'В разработке' : 'In Development'}
+                </Badge>
+                <div className="flex-1 h-px bg-border/20" />
+              </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredTemplates.filter(t => t.status === 'development').map((template, index) => {
                 const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
                 const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
@@ -388,10 +391,24 @@ const Templates = () => {
                   </Link>
                 );
               })}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* No Results */}
+      {filteredTemplates.length === 0 && (
+        <section className="py-16 md:py-20">
+          <div className="container">
+            <div className="text-center py-12">
+              <p className="text-lg text-muted-foreground">
+                {i18n.language === 'ru' ? 'Шаблоны не найдены. Попробуйте изменить фильтры.' : 'No templates found. Try changing filters.'}
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Education Section */}
       <section className="relative py-16 md:py-20 overflow-hidden">
