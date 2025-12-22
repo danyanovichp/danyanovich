@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Youtube, MessageCircle, FileText, Star, Quote, ExternalLink } from "lucide-react";
+import { Youtube, MessageCircle, FileText, Star, Quote, ExternalLink, User } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 
@@ -139,16 +139,25 @@ const Contact = () => {
             {/* Bio Callout */}
             <div className="relative bg-card/50 backdrop-blur-sm border border-border/40 rounded-2xl p-6 md:p-8 text-left max-w-3xl mx-auto">
               <div className="absolute left-0 top-6 bottom-6 w-1 bg-gradient-to-b from-primary via-primary/50 to-transparent rounded-full" />
-              <div className="pl-6 space-y-4">
-                <p className="text-base md:text-lg text-foreground/90 leading-relaxed">
-                  {t('contact.bio1')}
-                </p>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  {t('contact.bio2')}
-                </p>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  {t('contact.bio3')}
-                </p>
+              <div className="flex gap-5">
+                {/* Avatar */}
+                <div className="flex-shrink-0">
+                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 flex items-center justify-center">
+                    <User className="w-7 h-7 md:w-8 md:h-8 text-primary" />
+                  </div>
+                </div>
+                {/* Bio Text */}
+                <div className="space-y-4">
+                  <p className="text-base md:text-lg text-foreground/90 leading-relaxed">
+                    {t('contact.bio1')}
+                  </p>
+                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                    {t('contact.bio2')}
+                  </p>
+                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                    {t('contact.bio3')}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
