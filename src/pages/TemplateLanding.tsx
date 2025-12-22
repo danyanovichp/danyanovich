@@ -94,6 +94,21 @@ const TemplateLanding = () => {
     },
   ];
 
+  // SEO content based on language
+  const isRu = i18n.language === 'ru';
+  
+  const seoTitle = isRu 
+    ? `${title} | Notion шаблон | Дэн Янович`
+    : `${title} | Notion Template | Dan Yanovich`;
+  
+  const seoDescription = isRu
+    ? `${fullDescription} Купить Notion шаблон ${title} для ${template.category === 'business' ? 'бизнеса' : template.category === 'personal' ? 'личного использования' : template.category === 'productivity' ? 'продуктивности' : 'финансов'}.`
+    : `${fullDescription} Buy ${title} Notion template for ${template.category}.`;
+  
+  const seoKeywords = isRu
+    ? `${title}, Notion шаблон, ${template.category === 'business' ? 'бизнес' : template.category === 'personal' ? 'личное' : template.category === 'productivity' ? 'продуктивность' : 'финансы'}, шаблон Notion, ${features.join(', ')}, купить шаблон`
+    : `${title}, Notion template, ${template.category}, productivity, ${features.join(', ')}, buy template`;
+
   // Generate structured data for SEO
   const structuredData = {
     '@context': 'https://schema.org',
@@ -103,7 +118,7 @@ const TemplateLanding = () => {
     image: template.image || 'https://danyanovich.com/placeholder.svg',
     brand: {
       '@type': 'Brand',
-      name: 'Дэн Янович',
+      name: isRu ? 'Дэн Янович' : 'Dan Yanovich',
     },
     offers: {
       '@type': 'Offer',
@@ -117,18 +132,34 @@ const TemplateLanding = () => {
       ratingValue: '5',
       reviewCount: reviews.length.toString(),
     } : undefined,
+    inLanguage: isRu ? 'ru' : 'en',
+  };
+
+  // FAQ structured data for SEO
+  const faqStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map(item => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
   };
 
   return (
     <div className="min-h-screen">
       <SEO
-        title={`${title} | Дэн Янович`}
-        description={fullDescription}
-        keywords={`${title}, Notion шаблон, ${template.category}, продуктивность, ${features.join(', ')}`}
+        title={seoTitle}
+        description={seoDescription}
+        keywords={seoKeywords}
         url={`https://danyanovich.com/templates/${template.id}`}
         type="product"
-        structuredData={structuredData}
+        structuredData={[structuredData, faqStructuredData]}
       />
+      {/* Hero Section */}
       <section className="bg-gradient-to-b from-muted/50 to-background py-16 md:py-24 border-b border-border/20">
         <div className="container">
           <div className="max-w-5xl mx-auto">
