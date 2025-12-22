@@ -2,18 +2,33 @@ import { useTranslation } from "react-i18next";
 import { Youtube, MessageCircle } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
+import NewsletterSignup from "./NewsletterSignup";
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
   const currentYear = new Date().getFullYear();
 
+  const productLinks = [
+    { to: '/templates', labelRu: 'Шаблоны', labelEn: 'Templates' },
+    { to: '/courses', labelRu: 'Курсы', labelEn: 'Courses' },
+    { to: '/ai-prompts', labelRu: 'AI Промпты', labelEn: 'AI Prompts' },
+    { to: '/packages', labelRu: 'Пакеты', labelEn: 'Packages' },
+  ];
+
+  const resourceLinks = [
+    { to: '/faq', labelRu: 'FAQ', labelEn: 'FAQ' },
+    { to: '/consulting', labelRu: 'Консалтинг', labelEn: 'Consulting' },
+    { to: '/portfolio', labelRu: 'Портфолио', labelEn: 'Portfolio' },
+    { to: '/reviews', labelRu: 'Отзывы', labelEn: 'Reviews' },
+  ];
+
   return (
     <footer className="bg-muted/30 backdrop-blur-xl border-t border-border/20 mt-auto">
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
-          <div>
-            <div className="text-sm font-bold px-4 py-2 rounded-xl bg-primary/90 backdrop-blur-sm text-primary-foreground inline-block mb-4">
+          <div className="space-y-4">
+            <div className="text-sm font-bold px-4 py-2 rounded-xl bg-primary/90 backdrop-blur-sm text-primary-foreground inline-block">
               {i18n.language === 'ru' ? 'ДЯ' : 'DY'}
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">
@@ -21,38 +36,13 @@ const Footer = () => {
                 ? 'Эксперт по Notion и AI-решениям. Помогаю оптимизировать рабочие процессы и повышать продуктивность.'
                 : 'Notion and AI solutions expert. I help optimize workflows and increase productivity.'}
             </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-bold text-xs mb-4 uppercase">
-              {i18n.language === 'ru' ? 'Быстрые ссылки' : 'Quick Links'}
-            </h4>
-            <ul className="space-y-2 text-xs">
-              <li>
-                <Link to="/templates" className="text-muted-foreground hover:text-foreground transition-colors">
-                  {t('nav.templates')}
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
-                  {t('nav.contact')}
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Social */}
-          <div>
-            <h4 className="font-bold text-xs mb-4 uppercase">
-              {i18n.language === 'ru' ? 'Соц. сети' : 'Social'}
-            </h4>
-            <div className="flex gap-2">
+            {/* Social Icons */}
+            <div className="flex gap-2 pt-2">
               <Button
                 variant="outline"
                 size="icon"
                 asChild
-                className="rounded-xl"
+                className="rounded-xl h-9 w-9"
               >
                 <a
                   href="https://www.youtube.com/channel/UCzcTrBkzXgA9aaH05cWVi2g"
@@ -67,7 +57,7 @@ const Footer = () => {
                 variant="outline"
                 size="icon"
                 asChild
-                className="rounded-xl"
+                className="rounded-xl h-9 w-9"
               >
                 <a
                   href="https://t.me/danyanovichp"
@@ -80,12 +70,70 @@ const Footer = () => {
               </Button>
             </div>
           </div>
+
+          {/* Products */}
+          <div>
+            <h4 className="font-bold text-xs mb-4 uppercase">
+              {i18n.language === 'ru' ? 'Продукты' : 'Products'}
+            </h4>
+            <ul className="space-y-2 text-xs">
+              {productLinks.map((link) => (
+                <li key={link.to}>
+                  <Link 
+                    to={link.to} 
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {i18n.language === 'ru' ? link.labelRu : link.labelEn}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h4 className="font-bold text-xs mb-4 uppercase">
+              {i18n.language === 'ru' ? 'Ресурсы' : 'Resources'}
+            </h4>
+            <ul className="space-y-2 text-xs">
+              {resourceLinks.map((link) => (
+                <li key={link.to}>
+                  <Link 
+                    to={link.to} 
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {i18n.language === 'ru' ? link.labelRu : link.labelEn}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div>
+            <h4 className="font-bold text-xs mb-4 uppercase">
+              {i18n.language === 'ru' ? 'Рассылка' : 'Newsletter'}
+            </h4>
+            <NewsletterSignup />
+          </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-border/20 text-center">
+        <div className="mt-12 pt-8 border-t border-border/20 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-muted-foreground">
             © {currentYear} {i18n.language === 'ru' ? 'Дэн Янович. Все права защищены.' : 'Dan Yanovich. All rights reserved.'}
           </p>
+          <div className="flex gap-4 text-xs">
+            <Link 
+              to="/contact" 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {i18n.language === 'ru' ? 'Обо мне' : 'About Me'}
+            </Link>
+            <span className="text-muted-foreground/50">|</span>
+            <span className="text-muted-foreground cursor-not-allowed" title={i18n.language === 'ru' ? 'Скоро' : 'Coming Soon'}>
+              {i18n.language === 'ru' ? 'Политика конфиденциальности' : 'Privacy Policy'}
+            </span>
+          </div>
         </div>
       </div>
     </footer>

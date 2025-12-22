@@ -2,6 +2,9 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Youtube, MessageCircle, FileText, Star, Quote, ExternalLink, User } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+import StatsSection from "@/components/StatsSection";
+import AnimatedSection from "@/components/AnimatedSection";
+import SEO from "@/components/SEO";
 
 const Contact = () => {
   const { t, i18n } = useTranslation();
@@ -129,37 +132,58 @@ const Contact = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
+      <SEO 
+        title={i18n.language === 'ru' ? 'Обо мне | Дэн Янович' : 'About Me | Dan Yanovich'}
+        description={i18n.language === 'ru' 
+          ? 'Узнайте больше о Дэне Яновиче — эксперте по Notion и AI инструментам. Более 50 проектов и 100+ часов обучения.'
+          : 'Learn more about Dan Yanovich — Notion and AI tools expert. Over 50 projects and 100+ training hours.'}
+      />
+
       {/* Hero Section */}
       <section className="bg-muted/30 backdrop-blur-sm py-16 md:py-24 border-b border-border/20">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h1 className="text-3xl md:text-5xl font-bold">{t('contact.title')}</h1>
+            <AnimatedSection>
+              <h1 className="text-3xl md:text-5xl font-bold">{t('contact.title')}</h1>
+            </AnimatedSection>
             
             {/* Bio Callout */}
-            <div className="relative bg-card/50 backdrop-blur-sm border border-border/40 rounded-2xl p-6 md:p-8 text-left max-w-3xl mx-auto">
-              <div className="absolute left-0 top-6 bottom-6 w-1 bg-gradient-to-b from-primary via-primary/50 to-transparent rounded-full" />
-              <div className="flex gap-5">
-                {/* Avatar */}
-                <div className="flex-shrink-0">
-                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 flex items-center justify-center">
-                    <User className="w-7 h-7 md:w-8 md:h-8 text-primary" />
+            <AnimatedSection delay={100}>
+              <div className="relative bg-card/50 backdrop-blur-sm border border-border/40 rounded-2xl p-6 md:p-8 text-left max-w-3xl mx-auto">
+                <div className="absolute left-0 top-6 bottom-6 w-1 bg-gradient-to-b from-primary via-primary/50 to-transparent rounded-full" />
+                <div className="flex gap-5">
+                  {/* Avatar */}
+                  <div className="flex-shrink-0">
+                    <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 flex items-center justify-center">
+                      <User className="w-7 h-7 md:w-8 md:h-8 text-primary" />
+                    </div>
+                  </div>
+                  {/* Bio Text */}
+                  <div className="space-y-4">
+                    <p className="text-base md:text-lg text-foreground/90 leading-relaxed">
+                      {t('contact.bio1')}
+                    </p>
+                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                      {t('contact.bio2')}
+                    </p>
+                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                      {t('contact.bio3')}
+                    </p>
                   </div>
                 </div>
-                {/* Bio Text */}
-                <div className="space-y-4">
-                  <p className="text-base md:text-lg text-foreground/90 leading-relaxed">
-                    {t('contact.bio1')}
-                  </p>
-                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                    {t('contact.bio2')}
-                  </p>
-                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                    {t('contact.bio3')}
-                  </p>
-                </div>
               </div>
-            </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Statistics Section */}
+      <section className="py-16 md:py-20 bg-muted/10">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <AnimatedSection delay={200}>
+              <StatsSection />
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -172,35 +196,38 @@ const Contact = () => {
         
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl text-center mb-12 font-bold">
-              {t('contact.social')}
-            </h2>
+            <AnimatedSection>
+              <h2 className="text-2xl md:text-3xl text-center mb-12 font-bold">
+                {t('contact.social')}
+              </h2>
+            </AnimatedSection>
             <div className="grid md:grid-cols-3 gap-6">
               {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <Card className="group cursor-pointer h-full transition-all hover:scale-[1.02]">
-                    <CardHeader className="space-y-4">
-                      <div className="inline-flex p-4 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-2xl w-fit">
-                        <social.icon className="h-6 w-6" />
-                      </div>
-                      <h3 className="text-lg font-bold">{social.title}</h3>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <p className="text-sm text-muted-foreground">
-                        {social.description}
-                      </p>
-                      <span className="text-sm font-medium text-primary inline-flex items-center gap-2 group-hover:underline">
-                        {social.handle}
-                      </span>
-                    </CardContent>
-                  </Card>
-                </a>
+                <AnimatedSection key={index} delay={index * 100}>
+                  <a
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block h-full"
+                  >
+                    <Card className="group cursor-pointer h-full transition-all hover:scale-[1.02]">
+                      <CardHeader className="space-y-4">
+                        <div className="inline-flex p-4 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-2xl w-fit">
+                          <social.icon className="h-6 w-6" />
+                        </div>
+                        <h3 className="text-lg font-bold">{social.title}</h3>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <p className="text-sm text-muted-foreground">
+                          {social.description}
+                        </p>
+                        <span className="text-sm font-medium text-primary inline-flex items-center gap-2 group-hover:underline">
+                          {social.handle}
+                        </span>
+                      </CardContent>
+                    </Card>
+                  </a>
+                </AnimatedSection>
               ))}
             </div>
           </div>
@@ -211,46 +238,52 @@ const Contact = () => {
       <section className="py-16 md:py-20 bg-muted/20">
         <div className="container">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-2xl md:text-3xl text-center mb-12 font-bold">
-              {i18n.language === 'ru' ? 'Отзывы' : 'Reviews'}
-            </h2>
+            <AnimatedSection>
+              <h2 className="text-2xl md:text-3xl text-center mb-12 font-bold">
+                {i18n.language === 'ru' ? 'Отзывы' : 'Reviews'}
+              </h2>
+            </AnimatedSection>
             <div className="grid md:grid-cols-3 gap-6">
               {reviews.map((review, index) => (
-                <Card key={index} className="h-full">
-                  <CardHeader className="pb-2">
-                    <Quote className="h-8 w-8 text-primary/40 mb-2" />
-                    <div className="flex gap-0.5 mb-2">
-                      {Array.from({ length: review.rating }).map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-primary text-primary" />
-                      ))}
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-sm text-muted-foreground italic">
-                      "{review.text}"
-                    </p>
-                    <div className="pt-2 border-t border-border/50">
-                      <p className="font-semibold text-sm">{review.name}</p>
-                      <p className="text-xs text-muted-foreground">{review.project}</p>
-                    </div>
-                  </CardContent>
-                </Card>
+                <AnimatedSection key={index} delay={index * 50}>
+                  <Card className="h-full">
+                    <CardHeader className="pb-2">
+                      <Quote className="h-8 w-8 text-primary/40 mb-2" />
+                      <div className="flex gap-0.5 mb-2">
+                        {Array.from({ length: review.rating }).map((_, i) => (
+                          <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                        ))}
+                      </div>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <p className="text-sm text-muted-foreground italic">
+                        "{review.text}"
+                      </p>
+                      <div className="pt-2 border-t border-border/50">
+                        <p className="font-semibold text-sm">{review.name}</p>
+                        <p className="text-xs text-muted-foreground">{review.project}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </AnimatedSection>
               ))}
             </div>
             
             {/* Kwork Link */}
-            <div className="mt-12 text-center">
-              <a 
-                href="https://kwork.ru/user/danyanovich" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <Button variant="outline" className="gap-2">
-                  <ExternalLink className="h-4 w-4" />
-                  {i18n.language === 'ru' ? 'Все отзывы на Kwork' : 'All reviews on Kwork'}
-                </Button>
-              </a>
-            </div>
+            <AnimatedSection delay={300}>
+              <div className="mt-12 text-center">
+                <a 
+                  href="https://kwork.ru/user/danyanovich" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="outline" className="gap-2">
+                    <ExternalLink className="h-4 w-4" />
+                    {i18n.language === 'ru' ? 'Все отзывы на Kwork' : 'All reviews on Kwork'}
+                  </Button>
+                </a>
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
