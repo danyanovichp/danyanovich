@@ -3,9 +3,10 @@ import { useTranslation } from "react-i18next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Check, ShoppingCart, Sparkles, ExternalLink, ImageIcon, Play, Star, Quote } from "lucide-react";
+import { ArrowLeft, Check, ShoppingCart, Sparkles, ExternalLink, ImageIcon, Play, Star, Quote, Home, ChevronRight } from "lucide-react";
 import { premiumTemplates } from "@/data/premiumTemplates";
 import { secondBrainFeatureSections, secondBrainReviews } from "@/data/secondBrainData";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 
 const TemplateLanding = () => {
   const { templateId } = useParams();
@@ -48,10 +49,35 @@ const TemplateLanding = () => {
       <section className="bg-gradient-to-b from-muted/50 to-background py-16 md:py-24 border-b border-border/20">
         <div className="container">
           <div className="max-w-5xl mx-auto">
-            <Link to="/templates" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors group">
-              <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-              {i18n.language === 'ru' ? 'Все шаблоны' : 'All templates'}
-            </Link>
+            {/* Breadcrumbs */}
+            <Breadcrumb className="mb-8">
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/" className="flex items-center gap-1">
+                      <Home className="h-4 w-4" />
+                      {i18n.language === 'ru' ? 'Главная' : 'Home'}
+                    </Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator>
+                  <ChevronRight className="h-4 w-4" />
+                </BreadcrumbSeparator>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/templates">
+                      {i18n.language === 'ru' ? 'Шаблоны' : 'Templates'}
+                    </Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator>
+                  <ChevronRight className="h-4 w-4" />
+                </BreadcrumbSeparator>
+                <BreadcrumbItem>
+                  <BreadcrumbPage>{title}</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
             
             <div className="flex flex-col lg:flex-row gap-12 items-center">
               <div className="flex-1 space-y-6">
