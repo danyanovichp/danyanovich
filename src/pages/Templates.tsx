@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { premiumTemplates } from "@/data/premiumTemplates";
-import TemplateFilters, { TemplateCategory, TemplateStatus } from "@/components/TemplateFilters";
+import TemplateFilters, { TemplateCategory, TemplateStatus, SortOption } from "@/components/TemplateFilters";
 
 const Templates = () => {
   const { t, i18n } = useTranslation();
@@ -14,9 +14,10 @@ const Templates = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<TemplateCategory>('all');
   const [selectedStatus, setSelectedStatus] = useState<TemplateStatus>('all');
+  const [sortBy, setSortBy] = useState<SortOption>('popularity');
 
   const filteredTemplates = useMemo(() => {
-    return premiumTemplates.filter(template => {
+    let filtered = premiumTemplates.filter(template => {
       const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
       const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
       const matchesSearch = searchQuery === '' || 
@@ -28,7 +29,28 @@ const Templates = () => {
         (selectedStatus === 'development' && template.status === 'development');
       return matchesSearch && matchesCategory && matchesStatus;
     });
-  }, [searchQuery, selectedCategory, selectedStatus, i18n.language]);
+
+    // Apply sorting
+    switch (sortBy) {
+      case 'popularity':
+        filtered = [...filtered].sort((a, b) => b.popularity - a.popularity);
+        break;
+      case 'price-asc':
+        filtered = [...filtered].sort((a, b) => a.priceValue - b.priceValue);
+        break;
+      case 'price-desc':
+        filtered = [...filtered].sort((a, b) => b.priceValue - a.priceValue);
+        break;
+      case 'date-newest':
+        filtered = [...filtered].sort((a, b) => new Date(b.addedDate).getTime() - new Date(a.addedDate).getTime());
+        break;
+      case 'date-oldest':
+        filtered = [...filtered].sort((a, b) => new Date(a.addedDate).getTime() - new Date(b.addedDate).getTime());
+        break;
+    }
+
+    return filtered;
+  }, [searchQuery, selectedCategory, selectedStatus, sortBy, i18n.language]);
 
   const educationItems = [
     {
@@ -269,6 +291,8 @@ const Templates = () => {
               onCategoryChange={setSelectedCategory}
               selectedStatus={selectedStatus}
               onStatusChange={setSelectedStatus}
+              sortBy={sortBy}
+              onSortChange={setSortBy}
             />
           </div>
         </div>
