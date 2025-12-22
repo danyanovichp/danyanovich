@@ -3,13 +3,32 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { User, Briefcase, Sparkles, Eye, GraduationCap, BookOpen, Video, FileText, Layout, Database, Notebook, ExternalLink, Calendar, ShoppingCart, Star, Quote, Workflow } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { premiumTemplates } from "@/data/premiumTemplates";
+import TemplateFilters, { TemplateCategory, TemplateStatus } from "@/components/TemplateFilters";
 
 const Templates = () => {
   const { t, i18n } = useTranslation();
   const [selectedTemplate, setSelectedTemplate] = useState<any>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<TemplateCategory>('all');
+  const [selectedStatus, setSelectedStatus] = useState<TemplateStatus>('all');
+
+  const filteredTemplates = useMemo(() => {
+    return premiumTemplates.filter(template => {
+      const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
+      const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
+      const matchesSearch = searchQuery === '' || 
+        title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        description.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesCategory = selectedCategory === 'all' || template.category === selectedCategory;
+      const matchesStatus = selectedStatus === 'all' || 
+        (selectedStatus === 'available' && template.status === 'available') ||
+        (selectedStatus === 'development' && template.status === 'development');
+      return matchesSearch && matchesCategory && matchesStatus;
+    });
+  }, [searchQuery, selectedCategory, selectedStatus, i18n.language]);
 
   const educationItems = [
     {
@@ -236,11 +255,21 @@ const Templates = () => {
       {/* Hero Section */}
       <section className="bg-muted/30 backdrop-blur-sm py-16 md:py-20 border-b border-border/20">
         <div className="container">
-          <div className="max-w-3xl mx-auto text-center space-y-4">
+          <div className="max-w-3xl mx-auto text-center space-y-4 mb-8">
             <h1 className="text-3xl md:text-5xl font-bold">{t('templates.title')}</h1>
             <p className="text-base md:text-lg text-muted-foreground">
               {t('templates.subtitle')}
             </p>
+          </div>
+          <div className="max-w-2xl mx-auto">
+            <TemplateFilters
+              searchQuery={searchQuery}
+              onSearchChange={setSearchQuery}
+              selectedCategory={selectedCategory}
+              onCategoryChange={setSelectedCategory}
+              selectedStatus={selectedStatus}
+              onStatusChange={setSelectedStatus}
+            />
           </div>
         </div>
       </section>
@@ -263,15 +292,7 @@ const Templates = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {premiumTemplates.filter(t => t.status === 'available').map((template, index) => {
-                const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
-                const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
-                
-                return (
-                  <Link 
-                    key={index}
-                    to={`/templates/${template.id}`}
-                    className="block"
+              {filteredTemplates.filter(t => t.status === 'available').map((template, index) => {
                   >
                     <Card className="cursor-pointer group h-full transition-colors border-green-500/30 hover:border-green-500/50">
                       <div className="relative overflow-hidden rounded-t-2xl">
@@ -333,15 +354,7 @@ const Templates = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {premiumTemplates.filter(t => t.status === 'development').map((template, index) => {
-                const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
-                const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
-                
-                return (
-                  <Link 
-                    key={index}
-                    to={`/templates/${template.id}`}
-                    className="block"
+              {filteredTemplates.filter(t => t.status === 'development').map((template, index) => {
                   >
                     <Card className="cursor-pointer group h-full transition-colors border-amber-500/30 hover:border-amber-500/50 opacity-80">
                       <div className="relative overflow-hidden rounded-t-2xl">
