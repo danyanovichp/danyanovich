@@ -14,12 +14,15 @@ const Header = () => {
     i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
   };
 
-  const navLinks = [
+  const mainLinks = [
     { href: "/", label: t('nav.home') },
     { href: "/templates", label: t('nav.templates') },
-    { href: "/cases", label: i18n.language === 'ru' ? 'Кейсы' : 'Cases' },
-    { href: "/blog", label: i18n.language === 'ru' ? 'Блог' : 'Blog' },
     { href: "/contact", label: t('nav.contact') },
+  ];
+
+  const secondaryLinks = [
+    { href: "/cases", label: i18n.language === 'ru' ? 'КЕЙСЫ' : 'CASES' },
+    { href: "/blog", label: i18n.language === 'ru' ? 'БЛОГ' : 'BLOG' },
   ];
 
   return (
@@ -36,7 +39,7 @@ const Header = () => {
           
           {/* Desktop Navigation - glass pill container */}
           <nav className="hidden lg:flex items-center gap-2 p-1.5 rounded-2xl bg-muted/30 backdrop-blur-xl border border-border/20">
-            {navLinks.map((link) => (
+            {mainLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
@@ -44,6 +47,23 @@ const Header = () => {
                   location.pathname === link.href
                     ? "bg-primary text-primary-foreground shadow-glass" 
                     : "text-foreground hover:bg-background/50 hover:backdrop-blur-sm"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Secondary Navigation - Cases & Blog */}
+          <nav className="hidden lg:flex items-center gap-4">
+            {secondaryLinks.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                className={`text-xs font-bold tracking-wider transition-all ${
+                  location.pathname === link.href
+                    ? "text-primary" 
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {link.label}
@@ -86,7 +106,7 @@ const Header = () => {
               </SheetTrigger>
               <SheetContent side="right" className="bg-background/80 backdrop-blur-2xl border-l border-border/20">
                 <nav className="flex flex-col gap-3 mt-8">
-                  {navLinks.map((link, index) => (
+                  {[...mainLinks, ...secondaryLinks].map((link, index) => (
                     <Link
                       key={link.href}
                       to={link.href}
