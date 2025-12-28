@@ -282,46 +282,47 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Expertise Blocks */}
-      {expertiseBlocks.map((block, index) => (
-        <section 
-          key={block.id}
-          id={block.id}
-          className={`py-16 md:py-20 ${index % 2 === 0 ? 'bg-muted/5' : 'bg-muted/20'} scroll-mt-20`}
-        >
-          <div className="container">
-            <div className="max-w-4xl mx-auto">
-              <AnimatedSection delay={100}>
-                <Card className="overflow-hidden border-primary/20 hover:border-primary/40 transition-colors">
-                  <CardHeader className="pb-4">
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-primary/10 rounded-xl">
-                        <block.icon className="h-8 w-8 text-primary" />
+      {/* Expertise Blocks - 2 Column Grid */}
+      <section className="py-16 md:py-20 bg-muted/10 scroll-mt-20">
+        <div className="container">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-6">
+              {expertiseBlocks.map((block, index) => (
+                <AnimatedSection key={block.id} delay={index * 100}>
+                  <Card 
+                    id={block.id}
+                    className="h-full overflow-hidden border-primary/20 hover:border-primary/40 transition-colors scroll-mt-20"
+                  >
+                    <CardHeader className="pb-4">
+                      <div className="flex items-center gap-4">
+                        <div className="p-3 bg-primary/10 rounded-xl">
+                          <block.icon className="h-8 w-8 text-primary" />
+                        </div>
+                        <h2 className="text-xl md:text-2xl font-bold">{block.title}</h2>
                       </div>
-                      <h2 className="text-2xl md:text-3xl font-bold">{block.title}</h2>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-muted-foreground leading-relaxed">
-                      {block.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      {block.highlights.map((highlight, i) => (
-                        <span 
-                          key={i}
-                          className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full font-medium"
-                        >
-                          {highlight}
-                        </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </AnimatedSection>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+                        {block.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2 pt-2">
+                        {block.highlights.map((highlight, i) => (
+                          <span 
+                            key={i}
+                            className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full font-medium"
+                          >
+                            {highlight}
+                          </span>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </AnimatedSection>
+              ))}
             </div>
           </div>
-        </section>
-      ))}
+        </div>
+      </section>
 
       {/* Websites Section */}
       <section id="websites" className="py-16 md:py-20 bg-gradient-to-b from-muted/10 to-muted/30 scroll-mt-20">
@@ -387,29 +388,29 @@ const Contact = () => {
                 </div>
                 <p className="text-muted-foreground">
                   {isRu 
-                    ? 'Программы и приложения созданные для бизнеса'
-                    : 'Programs and applications created for business'}
+                    ? 'В разработке — скоро здесь появятся программы для бизнеса'
+                    : 'In development — business programs coming soon'}
                 </p>
               </div>
             </AnimatedSection>
             
-            <div className="grid md:grid-cols-3 gap-6">
-              {programs.map((program, index) => (
-                <AnimatedSection key={index} delay={index * 100}>
-                  <Card className="h-full hover:border-primary/40 transition-all">
-                    <CardContent className="p-6 space-y-3">
-                      <div className="p-2 bg-primary/10 rounded-lg w-fit">
-                        <Zap className="h-5 w-5 text-primary" />
-                      </div>
-                      <h3 className="font-semibold">{program.title}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {program.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </AnimatedSection>
-              ))}
-            </div>
+            <AnimatedSection delay={100}>
+              <Card className="border-dashed border-2 border-muted-foreground/30 bg-muted/20">
+                <CardContent className="p-12 text-center space-y-4">
+                  <div className="p-4 bg-primary/10 rounded-full w-fit mx-auto">
+                    <Zap className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-muted-foreground">
+                    {isRu ? 'В разработке' : 'In Development'}
+                  </h3>
+                  <p className="text-sm text-muted-foreground max-w-md mx-auto">
+                    {isRu 
+                      ? 'Сейчас я работаю над созданием полезных программ для бизнеса. Следите за обновлениями!'
+                      : 'I am currently working on creating useful business programs. Stay tuned for updates!'}
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
           </div>
         </div>
       </section>
