@@ -146,6 +146,8 @@
   .mobile-menu-item:nth-child(1) { animation-delay: 0.05s; }
   .mobile-menu-item:nth-child(2) { animation-delay: 0.1s; }
   .mobile-menu-item:nth-child(3) { animation-delay: 0.15s; }
+  .mobile-menu-item:nth-child(4) { animation-delay: 0.2s; }
+  .mobile-menu-item:nth-child(5) { animation-delay: 0.25s; }
 
   @keyframes fade-in-slide {
     from {
@@ -155,6 +157,81 @@
     to {
       opacity: 1;
       transform: translateX(0);
+    }
+  }
+
+  /* Pulse slow animation for widgets */
+  .animate-pulse-slow {
+    animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 hsl(200 80% 50% / 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 12px hsl(200 80% 50% / 0);
+    }
+  }
+
+  /* Enhanced hover effects for cards */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-glass-lg);
+  }
+
+  /* Button hover glow */
+  .btn-glow {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+  }
+
+  .btn-glow:hover::before {
+    transform: translateX(100%);
+  }
+
+  /* Fade in animation */
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Scale in animation */
+  .animate-scale-in {
+    animation: scale-in 0.2s ease-out;
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 

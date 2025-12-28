@@ -1,7 +1,9 @@
+import { useState, useEffect, useCallback } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Youtube, MessageCircle, FileText, Star, Quote, ExternalLink, User, Code2, Bot, Workflow, Zap, Globe, Gamepad2, AppWindow, ChevronRight } from "lucide-react";
+import { Youtube, MessageCircle, FileText, Star, Quote, ExternalLink, User, Code2, Bot, Workflow, Zap, Globe, Gamepad2, AppWindow, ChevronRight, ChevronLeft, Award } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import StatsSection from "@/components/StatsSection";
 import AnimatedSection from "@/components/AnimatedSection";
 import SEO from "@/components/SEO";
@@ -519,60 +521,149 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Reviews Section */}
-      <section className="py-16 md:py-20 bg-muted/20">
-        <div className="container">
-          <div className="max-w-5xl mx-auto">
-            <AnimatedSection>
-              <h2 className="text-2xl md:text-3xl text-center mb-12 font-bold">
-                {isRu ? 'Отзывы' : 'Reviews'}
+      {/* Enhanced Reviews Section with Carousel */}
+      <ReviewsCarousel reviews={reviews} isRu={isRu} />
+    </div>
+  );
+};
+
+// Reviews Carousel Component
+const ReviewsCarousel = ({ reviews, isRu }: { reviews: any[]; isRu: boolean }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % reviews.length);
+  }, [reviews.length]);
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
+  };
+
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    const interval = setInterval(nextSlide, 5000);
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, nextSlide]);
+
+  const visibleReviews = [
+    reviews[(currentIndex - 1 + reviews.length) % reviews.length],
+    reviews[currentIndex],
+    reviews[(currentIndex + 1) % reviews.length],
+  ];
+
+  return (
+    <section className="py-16 md:py-20 bg-muted/20">
+      <div className="container">
+        <div className="max-w-6xl mx-auto">
+          <AnimatedSection>
+            <div className="text-center mb-12">
+              <Badge variant="outline" className="mb-4">
+                <Award className="h-3 w-3 mr-1" />
+                Kwork PRO
+              </Badge>
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">
+                {isRu ? 'Отзывы клиентов' : 'Client Reviews'}
               </h2>
-            </AnimatedSection>
-            <div className="grid md:grid-cols-3 gap-6">
-              {reviews.map((review, index) => (
-                <AnimatedSection key={index} delay={index * 50}>
-                  <Card className="h-full">
-                    <CardHeader className="pb-2">
-                      <Quote className="h-8 w-8 text-primary/40 mb-2" />
-                      <div className="flex gap-0.5 mb-2">
-                        {Array.from({ length: review.rating }).map((_, i) => (
-                          <Star key={i} className="h-4 w-4 fill-primary text-primary" />
-                        ))}
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <p className="text-sm text-muted-foreground italic">
-                        "{review.text}"
-                      </p>
-                      <div className="pt-2 border-t border-border/50">
-                        <p className="font-semibold text-sm">{review.name}</p>
-                        <p className="text-xs text-muted-foreground">{review.project}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </AnimatedSection>
+              <p className="text-muted-foreground">
+                {isRu ? `${reviews.length}+ положительных отзывов на Kwork` : `${reviews.length}+ positive reviews on Kwork`}
+              </p>
+            </div>
+          </AnimatedSection>
+
+          {/* Carousel Container */}
+          <div 
+            className="relative"
+            onMouseEnter={() => setIsAutoPlaying(false)}
+            onMouseLeave={() => setIsAutoPlaying(true)}
+          >
+            {/* Navigation Buttons */}
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={prevSlide}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 hidden md:flex rounded-full shadow-glass"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={nextSlide}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 hidden md:flex rounded-full shadow-glass"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </Button>
+
+            {/* Reviews Grid */}
+            <div className="grid md:grid-cols-3 gap-6 px-4 md:px-8">
+              {visibleReviews.map((review, index) => (
+                <Card 
+                  key={`${review.name}-${currentIndex}-${index}`}
+                  className={`h-full transition-all duration-500 ${
+                    index === 1 ? 'md:scale-105 shadow-glass-lg border-primary/30' : 'opacity-70 md:opacity-100'
+                  }`}
+                >
+                  <CardHeader className="pb-2">
+                    <Quote className="h-8 w-8 text-primary/40 mb-2" />
+                    <div className="flex gap-0.5 mb-2">
+                      {Array.from({ length: review.rating }).map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                      ))}
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <p className="text-sm text-muted-foreground italic line-clamp-4">
+                      "{review.text}"
+                    </p>
+                    <div className="pt-2 border-t border-border/50">
+                      <p className="font-semibold text-sm">{review.name}</p>
+                      <p className="text-xs text-muted-foreground">{review.project}</p>
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
-            
-            {/* Kwork Link */}
-            <AnimatedSection delay={300}>
-              <div className="mt-12 text-center">
-                <a 
-                  href="https://kwork.ru/user/danyanovich" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  <Button variant="outline" className="gap-2">
-                    <ExternalLink className="h-4 w-4" />
-                    {isRu ? 'Все отзывы на Kwork' : 'All reviews on Kwork'}
-                  </Button>
-                </a>
-              </div>
-            </AnimatedSection>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center gap-2 mt-6">
+              {reviews.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    index === currentIndex 
+                      ? 'bg-primary w-6' 
+                      : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
+          
+          {/* Kwork Link with Badge */}
+          <AnimatedSection delay={300}>
+            <div className="mt-12 text-center">
+              <a 
+                href="https://kwork.ru/user/danyanovich" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex flex-col items-center gap-3"
+              >
+                <Badge className="bg-green-500/10 text-green-600 border-green-500/30 hover:bg-green-500/20">
+                  <Star className="h-3 w-3 mr-1 fill-current" />
+                  {isRu ? 'PRO продавец' : 'PRO seller'}
+                </Badge>
+                <Button variant="outline" className="gap-2 group">
+                  <ExternalLink className="h-4 w-4 group-hover:rotate-12 transition-transform" />
+                  {isRu ? 'Все отзывы на Kwork' : 'All reviews on Kwork'}
+                </Button>
+              </a>
+            </div>
+          </AnimatedSection>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 

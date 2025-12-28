@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import PageTransition from "@/components/PageTransition";
+import SEO from "@/components/SEO";
 import { useState } from "react";
 
 const Home = () => {
@@ -51,8 +52,13 @@ const Home = () => {
 
   return (
     <PageTransition>
+      <SEO 
+        title={i18n.language === 'ru' ? 'Дэн Янович | Notion и AI Эксперт' : 'Dan Yanovich | Notion & AI Expert'}
+        description={i18n.language === 'ru' 
+          ? 'Создаю шаблоны Notion и консультирую по внедрению AI-инструментов. Более 50 проектов, 100+ часов обучения.'
+          : 'Creating Notion templates and consulting on AI tools implementation. 50+ projects, 100+ hours of training.'}
+      />
       <div className="min-h-screen">
-        
         {/* Hero Section */}
         <section className="relative container mx-auto px-4 py-16 md:py-24 overflow-hidden">
           {/* Decorative glass orbs */}
