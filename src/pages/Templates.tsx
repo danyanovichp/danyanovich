@@ -7,6 +7,7 @@ import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { premiumTemplates } from "@/data/premiumTemplates";
 import TemplateFilters, { TemplateCategory, TemplateStatus, SortOption } from "@/components/TemplateFilters";
+import SEO from "@/components/SEO";
 
 const Templates = () => {
   const { t, i18n } = useTranslation();
@@ -276,6 +277,13 @@ const Templates = () => {
       
       {/* Hero Section */}
       <section className="bg-muted/30 backdrop-blur-sm py-16 md:py-20 border-b border-border/20">
+        <SEO 
+          title={i18n.language === 'ru' ? 'Шаблоны Notion | Дэн Янович' : 'Notion Templates | Dan Yanovich'}
+          description={i18n.language === 'ru' 
+            ? 'Премиум шаблоны Notion для продуктивности и бизнеса. Second Brain, CRM, управление проектами.'
+            : 'Premium Notion templates for productivity and business. Second Brain, CRM, project management.'}
+          url="https://danyanovich.com/templates"
+        />
         <div className="container">
           <div className="max-w-3xl mx-auto text-center space-y-4 mb-8">
             <h1 className="text-3xl md:text-5xl font-bold">{t('templates.title')}</h1>

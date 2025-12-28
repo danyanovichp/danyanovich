@@ -11,6 +11,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PageTransition from "./components/PageTransition";
 
+import ScrollToTop from "./components/ScrollToTop";
+import TelegramWidget from "./components/TelegramWidget";
+
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
 const Portfolio = lazy(() => import("./pages/Portfolio"));
@@ -23,6 +26,8 @@ const Contact = lazy(() => import("./pages/Contact"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Reviews = lazy(() => import("./pages/Reviews"));
 const Consulting = lazy(() => import("./pages/Consulting"));
+const Cases = lazy(() => import("./pages/Cases"));
+const Blog = lazy(() => import("./pages/Blog"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -57,11 +62,15 @@ const App = () => (
                     <Route path="/faq" element={<PageTransition><FAQ /></PageTransition>} />
                     <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
                     <Route path="/portfolio" element={<PageTransition><Portfolio /></PageTransition>} />
+                    <Route path="/cases" element={<PageTransition><Cases /></PageTransition>} />
+                    <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
                     <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
                   </Routes>
                 </Suspense>
               </main>
               <Footer />
+              <ScrollToTop />
+              <TelegramWidget />
             </div>
           </BrowserRouter>
         </TooltipProvider>
