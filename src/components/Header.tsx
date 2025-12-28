@@ -55,15 +55,15 @@ const Header = () => {
           </nav>
 
           {/* Secondary Navigation - Cases & Blog */}
-          <nav className="hidden lg:flex items-center gap-4">
+          <nav className="hidden lg:flex items-center gap-2 p-1.5 rounded-2xl bg-muted/30 backdrop-blur-xl border border-border/20">
             {secondaryLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
-                className={`text-xs font-bold tracking-wider transition-all ${
+                className={`px-4 py-2 text-xs font-bold tracking-wider rounded-xl transition-all ${
                   location.pathname === link.href
-                    ? "text-primary" 
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "bg-primary text-primary-foreground shadow-glass" 
+                    : "text-foreground hover:bg-background/50 hover:backdrop-blur-sm"
                 }`}
               >
                 {link.label}
