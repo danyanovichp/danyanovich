@@ -1,60 +1,64 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, User, Briefcase, Sparkles, Eye } from "lucide-react";
+import { ArrowRight, Layout, GraduationCap, Bot, MessageSquare, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import PageTransition from "@/components/PageTransition";
 import SEO from "@/components/SEO";
-import { useState } from "react";
+import { premiumTemplates } from "@/data/premiumTemplates";
 
 const Home = () => {
   const { t, i18n } = useTranslation();
-  const [selectedTemplate, setSelectedTemplate] = useState<any>(null);
+  const isRu = i18n.language === 'ru';
 
-  const freeTemplates = [
+  // Product categories with links to pages
+  const productCategories = [
     {
-      icon: User,
-      title: i18n.language === 'ru' ? "Личное" : "Personal",
-      description: i18n.language === 'ru' 
-        ? "Шаблоны для личной продуктивности, целей и самоорганизации"
-        : "Templates for personal productivity, goals and self-organization",
-      count: i18n.language === 'ru' ? "1 шаблон" : "1 template",
-      details: i18n.language === 'ru' 
-        ? "Полноценная система для управления личными проектами, задачами и целями. Включает трекер привычек, планировщик целей, систему заметок и дневник достижений."
-        : "Complete system for managing personal projects, tasks and goals. Includes habit tracker, goal planner, note system and achievement journal.",
-      features: i18n.language === 'ru' 
-        ? ["Трекер привычек", "Планировщик целей", "Система заметок", "Дневник достижений", "Календарь задач"]
-        : ["Habit Tracker", "Goal Planner", "Note System", "Achievement Journal", "Task Calendar"],
-      preview: "/placeholder.svg",
+      icon: Layout,
+      title: isRu ? "Шаблоны" : "Templates",
+      description: isRu ? "Notion шаблоны для продуктивности" : "Notion templates for productivity",
+      count: `${premiumTemplates.length}+`,
+      href: "/templates",
+      color: "bg-primary",
+    },
+    {
+      icon: GraduationCap,
+      title: isRu ? "Курсы" : "Courses",
+      description: isRu ? "Обучающие программы и уроки" : "Training programs and lessons",
+      count: "3",
+      href: "/courses",
+      color: "bg-emerald-500",
+    },
+    {
+      icon: Bot,
+      title: isRu ? "AI Промпты" : "AI Prompts",
+      description: isRu ? "Готовые промпты для нейросетей" : "Ready-made prompts for AI",
+      count: "50+",
+      href: "/ai-prompts",
+      color: "bg-violet-500",
+    },
+    {
+      icon: MessageSquare,
+      title: isRu ? "Консалтинг" : "Consulting",
+      description: isRu ? "Персональные консультации" : "Personal consultations",
+      count: isRu ? "Услуги" : "Services",
+      href: "/consulting",
+      color: "bg-amber-500",
     },
   ];
 
-  const premiumTemplates = [
-    {
-      icon: Briefcase,
-      title: i18n.language === 'ru' ? "Бизнес" : "Business",
-      description: i18n.language === 'ru' 
-        ? "Профессиональные решения для команд и бизнес-процессов"
-        : "Professional solutions for teams and business processes",
-      count: i18n.language === 'ru' ? "Скоро" : "Coming Soon",
-      details: i18n.language === 'ru' 
-        ? "Комплексное решение для управления бизнес-процессами, командной работой и проектами. Включает CRM систему, управление задачами, документацию и аналитику."
-        : "Comprehensive solution for business process management, teamwork and projects. Includes CRM system, task management, documentation and analytics.",
-      features: i18n.language === 'ru' 
-        ? ["CRM система", "Управление проектами", "База знаний", "Аналитика", "Командный планировщик"]
-        : ["CRM System", "Project Management", "Knowledge Base", "Analytics", "Team Planner"],
-      preview: "/placeholder.svg",
-    },
-  ];
-
+  // Get popular available products
+  const popularProducts = premiumTemplates
+    .filter(t => t.status === 'available')
+    .sort((a, b) => b.popularity - a.popularity)
+    .slice(0, 4);
 
   return (
     <PageTransition>
       <SEO 
-        title={i18n.language === 'ru' ? 'Дэн Янович | Notion и AI Эксперт' : 'Dan Yanovich | Notion & AI Expert'}
-        description={i18n.language === 'ru' 
+        title={isRu ? 'Дэн Янович | Notion и AI Эксперт' : 'Dan Yanovich | Notion & AI Expert'}
+        description={isRu 
           ? 'Создаю шаблоны Notion и консультирую по внедрению AI-инструментов. Более 50 проектов, 100+ часов обучения.'
           : 'Creating Notion templates and consulting on AI tools implementation. 50+ projects, 100+ hours of training.'}
       />
@@ -86,175 +90,100 @@ const Home = () => {
           </div>
         </section>
 
-
-        {/* Templates Section */}
+        {/* Products Section */}
         <section className="relative bg-muted/30 backdrop-blur-sm py-16 md:py-24 overflow-hidden">
-          {/* Decorative orb */}
           <div className="glass-orb top-1/2 right-0 w-64 h-64 bg-muted/30 animate-float" style={{ animationDelay: '2s' }} />
           
           <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-5xl mx-auto space-y-12">
+            <div className="max-w-6xl mx-auto space-y-12">
               <div className="text-center space-y-4">
-                <h2 className="text-3xl md:text-5xl font-bold">{t('templates.title')}</h2>
+                <h2 className="text-3xl md:text-5xl font-bold">
+                  {isRu ? "📦 Продукты" : "📦 Products"}
+                </h2>
                 <p className="text-base md:text-lg text-muted-foreground">
-                  {t('templates.subtitle')}
+                  {isRu ? "Всё что можно получить или купить" : "Everything available to get or purchase"}
                 </p>
               </div>
 
-              {/* FREE Templates */}
-              <div className="space-y-8">
-                <div className="flex items-center gap-4">
-                  <Badge className="px-6 py-3 bg-primary/90 backdrop-blur-sm text-primary-foreground text-base font-medium rounded-full">
-                    {i18n.language === 'ru' ? '🎁 Бесплатно' : '🎁 Free'}
-                  </Badge>
-                  <div className="flex-1 h-px bg-border/20" />
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-8">
-                  {freeTemplates.map((template, index) => (
-                    <Dialog key={index}>
-                      <DialogTrigger asChild>
-                        <Card
-                          className="cursor-pointer group"
-                          onClick={() => setSelectedTemplate(template)}
-                        >
-                          <div className="relative overflow-hidden rounded-t-2xl">
-                            <div className="aspect-video bg-muted/50 backdrop-blur-xl flex items-center justify-center group-hover:bg-muted/70 transition-colors">
-                              <template.icon className="h-16 w-16 text-primary" />
-                            </div>
+              {/* Product Categories */}
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {productCategories.map((category) => (
+                  <Link key={category.href} to={category.href}>
+                    <Card className="h-full cursor-pointer group hover:border-primary/40 transition-all">
+                      <CardHeader className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <div className={`inline-flex p-3 ${category.color} text-white rounded-xl`}>
+                            <category.icon className="h-6 w-6" />
                           </div>
-                          <CardHeader className="space-y-4">
-                            <div className="flex items-center justify-between">
-                              <div className="inline-flex p-3 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-xl">
-                                <template.icon className="h-6 w-6" />
-                              </div>
-                              <Eye className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                            </div>
-                            <h3 className="text-xl font-bold">{template.title}</h3>
-                          </CardHeader>
-                          <CardContent className="space-y-3">
-                            <p className="text-sm text-muted-foreground">
-                              {template.description}
-                            </p>
-                            <p className="text-sm font-medium">{template.count}</p>
-                          </CardContent>
-                        </Card>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-2xl bg-background/95 backdrop-blur-2xl border-border/20">
-                        <DialogHeader>
-                          <DialogTitle className="flex items-center gap-3 text-2xl">
-                            <div className="inline-flex p-3 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-xl">
-                              <template.icon className="h-6 w-6" />
-                            </div>
-                            {template.title}
-                          </DialogTitle>
-                        </DialogHeader>
-                        <div className="space-y-6">
-                          <div className="aspect-video bg-muted/50 backdrop-blur-xl rounded-2xl flex items-center justify-center">
-                            <template.icon className="h-20 w-20 text-primary" />
-                          </div>
-                          <div className="space-y-4">
-                            <p className="text-base text-muted-foreground">{template.details}</p>
-                            <div className="space-y-3">
-                              <h4 className="text-base font-bold">{i18n.language === 'ru' ? 'Возможности:' : 'Features:'}</h4>
-                              <ul className="space-y-2">
-                                {template.features?.map((feature: string, i: number) => (
-                                  <li key={i} className="text-sm flex items-center gap-3">
-                                    <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                                    {feature}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </div>
+                          <ArrowRight className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                         </div>
-                      </DialogContent>
-                    </Dialog>
-                  ))}
-                </div>
+                        <h3 className="text-xl font-bold">{category.title}</h3>
+                      </CardHeader>
+                      <CardContent className="space-y-3">
+                        <p className="text-sm text-muted-foreground">
+                          {category.description}
+                        </p>
+                        <Badge variant="secondary" className="text-xs">
+                          {category.count}
+                        </Badge>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                ))}
               </div>
 
-              {/* PREMIUM Templates */}
-              <div className="space-y-8">
-                <div className="flex items-center gap-4">
-                  <Badge className="px-6 py-3 bg-primary/90 backdrop-blur-sm text-primary-foreground text-base font-medium rounded-full">
-                    <Sparkles className="mr-2 h-4 w-4 inline" />
-                    {i18n.language === 'ru' ? 'Премиум' : 'Premium'}
-                  </Badge>
-                  <div className="flex-1 h-px bg-border/20" />
-                </div>
+              {/* Popular Products */}
+              {popularProducts.length > 0 && (
+                <div className="space-y-8 pt-8">
+                  <div className="flex items-center gap-4">
+                    <Badge className="px-6 py-3 bg-primary/90 backdrop-blur-sm text-primary-foreground text-base font-medium rounded-full">
+                      🔥 {isRu ? "Популярные" : "Popular"}
+                    </Badge>
+                    <div className="flex-1 h-px bg-border/20" />
+                  </div>
 
-                <div className="grid md:grid-cols-2 gap-8">
-                  {premiumTemplates.map((template, index) => (
-                    <Dialog key={index}>
-                      <DialogTrigger asChild>
-                        <Card
-                          className="cursor-pointer group"
-                          onClick={() => setSelectedTemplate(template)}
-                        >
-                          <div className="relative overflow-hidden rounded-t-2xl">
-                            <div className="aspect-video bg-muted/50 backdrop-blur-xl flex items-center justify-center group-hover:bg-muted/70 transition-colors">
-                              <template.icon className="h-16 w-16 text-foreground" />
-                            </div>
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {popularProducts.map((product) => (
+                      <Card key={product.id} className="group hover:border-primary/40 transition-all">
+                        <CardHeader className="space-y-4">
+                          <div className="aspect-video bg-muted/50 rounded-xl flex items-center justify-center overflow-hidden">
+                            {product.image ? (
+                              <img 
+                                src={product.image} 
+                                alt={isRu ? product.titleRu : product.titleEn}
+                                className="w-full h-full object-cover"
+                              />
+                            ) : (
+                              <product.icon className="h-12 w-12 text-primary" />
+                            )}
                           </div>
-                          <CardHeader className="space-y-4">
-                            <div className="flex items-center justify-between">
-                              <div className="inline-flex p-3 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-xl">
-                                <template.icon className="h-6 w-6" />
-                              </div>
-                              <Eye className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                            </div>
-                            <h3 className="text-xl font-bold">{template.title}</h3>
-                          </CardHeader>
-                          <CardContent className="space-y-3">
-                            <p className="text-sm text-muted-foreground">
-                              {template.description}
-                            </p>
-                            <p className="text-sm font-medium">{template.count}</p>
-                          </CardContent>
-                        </Card>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-2xl bg-background/95 backdrop-blur-2xl border-border/20">
-                        <DialogHeader>
-                          <DialogTitle className="flex items-center gap-3 text-2xl">
-                            <div className="inline-flex p-3 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-xl">
-                              <template.icon className="h-6 w-6" />
-                            </div>
-                            {template.title}
-                            <Badge className="bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-full">
-                              <Sparkles className="mr-1 h-3 w-3 inline" />
-                              {i18n.language === 'ru' ? 'ПРЕМИУМ' : 'PREMIUM'}
-                            </Badge>
-                          </DialogTitle>
-                        </DialogHeader>
-                        <div className="space-y-6">
-                          <div className="aspect-video bg-muted/50 backdrop-blur-xl rounded-2xl flex items-center justify-center">
-                            <template.icon className="h-20 w-20 text-foreground" />
+                          <h3 className="text-lg font-bold line-clamp-1">
+                            {isRu ? product.titleRu : product.titleEn}
+                          </h3>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <p className="text-sm text-muted-foreground line-clamp-2">
+                            {isRu ? product.descriptionRu : product.descriptionEn}
+                          </p>
+                          <div className="flex items-center justify-between">
+                            <span className="text-lg font-bold text-primary">{product.price}</span>
+                            <Button asChild size="sm">
+                              <a href={product.link} target="_blank" rel="noopener noreferrer">
+                                {isRu ? "Купить" : "Buy"}
+                                <ExternalLink className="ml-2 h-3 w-3" />
+                              </a>
+                            </Button>
                           </div>
-                          <div className="space-y-4">
-                            <p className="text-base text-muted-foreground">{template.details}</p>
-                            <div className="space-y-3">
-                              <h4 className="text-base font-bold">{i18n.language === 'ru' ? 'Возможности:' : 'Features:'}</h4>
-                              <ul className="space-y-2">
-                                {template.features?.map((feature: string, i: number) => (
-                                  <li key={i} className="text-sm flex items-center gap-3">
-                                    <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                                    {feature}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </DialogContent>
-                    </Dialog>
-                  ))}
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* View All Button */}
               <div className="flex justify-center pt-8">
-                <Button asChild size="lg">
+                <Button asChild size="lg" variant="outline">
                   <Link to="/templates">
                     {t('common.viewAll')}
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -264,7 +193,6 @@ const Home = () => {
             </div>
           </div>
         </section>
-
       </div>
     </PageTransition>
   );
