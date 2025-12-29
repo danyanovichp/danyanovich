@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, Layout, GraduationCap, Bot, MessageSquare, ExternalLink } from "lucide-react";
+import { useState, useMemo } from "react";
+import { ArrowRight, Layout, GraduationCap, Bot, MessageSquare, ExternalLink, Gamepad2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,51 +9,60 @@ import PageTransition from "@/components/PageTransition";
 import SEO from "@/components/SEO";
 import { premiumTemplates } from "@/data/premiumTemplates";
 
+type ProductType = 'all' | 'templates' | 'courses' | 'ai-prompts' | 'consulting' | 'games';
+
 const Home = () => {
   const { t, i18n } = useTranslation();
   const isRu = i18n.language === 'ru';
+  const [activeFilter, setActiveFilter] = useState<ProductType>('all');
 
-  // Product categories with links to pages
-  const productCategories = [
-    {
-      icon: Layout,
-      title: isRu ? "Шаблоны" : "Templates",
-      description: isRu ? "Notion шаблоны для продуктивности" : "Notion templates for productivity",
-      count: `${premiumTemplates.length}+`,
-      href: "/templates",
-      color: "bg-primary",
-    },
-    {
-      icon: GraduationCap,
-      title: isRu ? "Курсы" : "Courses",
-      description: isRu ? "Обучающие программы и уроки" : "Training programs and lessons",
-      count: "3",
-      href: "/courses",
-      color: "bg-emerald-500",
-    },
-    {
-      icon: Bot,
-      title: isRu ? "AI Промпты" : "AI Prompts",
-      description: isRu ? "Готовые промпты для нейросетей" : "Ready-made prompts for AI",
-      count: "50+",
-      href: "/ai-prompts",
-      color: "bg-violet-500",
-    },
-    {
-      icon: MessageSquare,
-      title: isRu ? "Консалтинг" : "Consulting",
-      description: isRu ? "Персональные консультации" : "Personal consultations",
-      count: isRu ? "Услуги" : "Services",
-      href: "/consulting",
-      color: "bg-amber-500",
-    },
+  // Filter categories as small chips
+  const filterCategories = [
+    { id: 'all' as ProductType, label: isRu ? "Все" : "All", icon: null },
+    { id: 'templates' as ProductType, label: isRu ? "Шаблоны" : "Templates", icon: Layout },
+    { id: 'courses' as ProductType, label: isRu ? "Курсы" : "Courses", icon: GraduationCap },
+    { id: 'ai-prompts' as ProductType, label: isRu ? "AI Промпты" : "AI Prompts", icon: Bot },
+    { id: 'consulting' as ProductType, label: isRu ? "Консалтинг" : "Consulting", icon: MessageSquare },
+    { id: 'games' as ProductType, label: isRu ? "Игры" : "Games", icon: Gamepad2 },
   ];
 
-  // Get popular available products
-  const popularProducts = premiumTemplates
-    .filter(t => t.status === 'available')
-    .sort((a, b) => b.popularity - a.popularity)
-    .slice(0, 4);
+  // All products combined (templates from data + mock products for other categories)
+  const allProducts = useMemo(() => {
+    const templateProducts = premiumTemplates.map(t => ({
+      id: t.id,
+      type: 'templates' as ProductType,
+      title: isRu ? t.titleRu : t.titleEn,
+      description: isRu ? t.descriptionRu : t.descriptionEn,
+      price: t.price,
+      link: t.link,
+      image: t.image,
+      icon: t.icon,
+      status: t.status,
+      popularity: t.popularity,
+    }));
+
+    // Mock products for other categories
+    const otherProducts = [
+      { id: 'course-notion-basics', type: 'courses' as ProductType, title: isRu ? 'Notion с нуля' : 'Notion Basics', description: isRu ? 'Полный курс для начинающих' : 'Complete course for beginners', price: '2 990 ₽', link: '/courses', image: undefined as string | undefined, icon: GraduationCap, status: 'available' as const, popularity: 90 },
+      { id: 'course-notion-advanced', type: 'courses' as ProductType, title: isRu ? 'Notion PRO' : 'Notion PRO', description: isRu ? 'Продвинутые техники' : 'Advanced techniques', price: '4 990 ₽', link: '/courses', image: undefined as string | undefined, icon: GraduationCap, status: 'available' as const, popularity: 85 },
+      { id: 'ai-prompt-pack', type: 'ai-prompts' as ProductType, title: isRu ? 'ChatGPT Pack' : 'ChatGPT Pack', description: isRu ? '50 промптов для ChatGPT' : '50 prompts for ChatGPT', price: '990 ₽', link: '/ai-prompts', image: undefined as string | undefined, icon: Bot, status: 'available' as const, popularity: 88 },
+      { id: 'ai-prompt-midjourney', type: 'ai-prompts' as ProductType, title: isRu ? 'Midjourney Pack' : 'Midjourney Pack', description: isRu ? 'Промпты для генерации изображений' : 'Prompts for image generation', price: '1 490 ₽', link: '/ai-prompts', image: undefined as string | undefined, icon: Bot, status: 'available' as const, popularity: 82 },
+      { id: 'consulting-hour', type: 'consulting' as ProductType, title: isRu ? 'Консультация 1 час' : '1 Hour Consultation', description: isRu ? 'Персональная консультация' : 'Personal consultation', price: '5 000 ₽', link: '/consulting', image: undefined as string | undefined, icon: MessageSquare, status: 'available' as const, popularity: 75 },
+      { id: 'game-notion-quest', type: 'games' as ProductType, title: isRu ? 'Notion Quest' : 'Notion Quest', description: isRu ? 'Игра-квест в Notion' : 'Quest game in Notion', price: '490 ₽', link: '#', image: undefined as string | undefined, icon: Gamepad2, status: 'development' as const, popularity: 70 },
+      { id: 'game-productivity-rpg', type: 'games' as ProductType, title: isRu ? 'Productivity RPG' : 'Productivity RPG', description: isRu ? 'RPG-система продуктивности' : 'Productivity RPG system', price: '790 ₽', link: '#', image: undefined as string | undefined, icon: Gamepad2, status: 'development' as const, popularity: 65 },
+    ];
+
+    return [...templateProducts, ...otherProducts];
+  }, [isRu]);
+
+  // Filtered products
+  const filteredProducts = useMemo(() => {
+    let products = activeFilter === 'all' 
+      ? allProducts 
+      : allProducts.filter(p => p.type === activeFilter);
+    
+    return products.sort((a, b) => b.popularity - a.popularity);
+  }, [allProducts, activeFilter]);
 
   return (
     <PageTransition>
@@ -79,14 +89,6 @@ const Home = () => {
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
               {t('home.hero.description')}
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Button asChild size="lg">
-                <Link to="/templates">
-                  {t('common.viewTemplates')}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
           </div>
         </section>
 
@@ -95,7 +97,7 @@ const Home = () => {
           <div className="glass-orb top-1/2 right-0 w-64 h-64 bg-muted/30 animate-float" style={{ animationDelay: '2s' }} />
           
           <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-6xl mx-auto space-y-12">
+            <div className="max-w-6xl mx-auto space-y-8">
               <div className="text-center space-y-4">
                 <h2 className="text-3xl md:text-5xl font-bold">
                   {isRu ? "📦 Продукты" : "📦 Products"}
@@ -105,84 +107,77 @@ const Home = () => {
                 </p>
               </div>
 
-              {/* Product Categories */}
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {productCategories.map((category) => (
-                  <Link key={category.href} to={category.href}>
-                    <Card className="h-full cursor-pointer group hover:border-primary/40 transition-all">
-                      <CardHeader className="space-y-4">
-                        <div className="flex items-center justify-between">
-                          <div className={`inline-flex p-3 ${category.color} text-white rounded-xl`}>
-                            <category.icon className="h-6 w-6" />
-                          </div>
-                          <ArrowRight className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        </div>
-                        <h3 className="text-xl font-bold">{category.title}</h3>
-                      </CardHeader>
-                      <CardContent className="space-y-3">
-                        <p className="text-sm text-muted-foreground">
-                          {category.description}
-                        </p>
-                        <Badge variant="secondary" className="text-xs">
-                          {category.count}
-                        </Badge>
-                      </CardContent>
-                    </Card>
-                  </Link>
+              {/* Filter Chips */}
+              <div className="flex flex-wrap justify-center gap-2">
+                {filterCategories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveFilter(category.id)}
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                      activeFilter === category.id
+                        ? 'bg-primary text-primary-foreground shadow-md'
+                        : 'bg-background/60 backdrop-blur-sm border border-border/30 text-foreground hover:bg-background/80'
+                    }`}
+                  >
+                    {category.icon && <category.icon className="h-4 w-4" />}
+                    {category.label}
+                  </button>
                 ))}
               </div>
 
-              {/* Popular Products */}
-              {popularProducts.length > 0 && (
-                <div className="space-y-8 pt-8">
-                  <div className="flex items-center gap-4">
-                    <Badge className="px-6 py-3 bg-primary/90 backdrop-blur-sm text-primary-foreground text-base font-medium rounded-full">
-                      🔥 {isRu ? "Популярные" : "Popular"}
-                    </Badge>
-                    <div className="flex-1 h-px bg-border/20" />
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {popularProducts.map((product) => (
-                      <Card key={product.id} className="group hover:border-primary/40 transition-all">
-                        <CardHeader className="space-y-4">
-                          <div className="aspect-video bg-muted/50 rounded-xl flex items-center justify-center overflow-hidden">
-                            {product.image ? (
-                              <img 
-                                src={product.image} 
-                                alt={isRu ? product.titleRu : product.titleEn}
-                                className="w-full h-full object-cover"
-                              />
-                            ) : (
-                              <product.icon className="h-12 w-12 text-primary" />
-                            )}
-                          </div>
-                          <h3 className="text-lg font-bold line-clamp-1">
-                            {isRu ? product.titleRu : product.titleEn}
-                          </h3>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                          <p className="text-sm text-muted-foreground line-clamp-2">
-                            {isRu ? product.descriptionRu : product.descriptionEn}
-                          </p>
-                          <div className="flex items-center justify-between">
-                            <span className="text-lg font-bold text-primary">{product.price}</span>
-                            <Button asChild size="sm">
-                              <a href={product.link} target="_blank" rel="noopener noreferrer">
-                                {isRu ? "Купить" : "Buy"}
-                                <ExternalLink className="ml-2 h-3 w-3" />
-                              </a>
-                            </Button>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </div>
-              )}
+              {/* Products Grid */}
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {filteredProducts.slice(0, 12).map((product) => (
+                  <Card key={product.id} className="group hover:border-primary/40 transition-all">
+                    <CardHeader className="p-4 space-y-3">
+                      <div className="aspect-[4/3] bg-muted/50 rounded-xl flex items-center justify-center overflow-hidden">
+                        {product.image ? (
+                          <img 
+                            src={product.image} 
+                            alt={product.title}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <product.icon className="h-10 w-10 text-primary" />
+                        )}
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <h3 className="text-base font-bold line-clamp-1">{product.title}</h3>
+                          {product.status === 'development' && (
+                            <Badge variant="secondary" className="text-xs shrink-0">
+                              {isRu ? 'Скоро' : 'Soon'}
+                            </Badge>
+                          )}
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="p-4 pt-0 space-y-3">
+                      <p className="text-sm text-muted-foreground line-clamp-2">
+                        {product.description}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-base font-bold">{product.price}</span>
+                        {product.status === 'available' && product.link !== '#' ? (
+                          <Button asChild size="sm" variant="default">
+                            <a href={product.link} target={product.link.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
+                              {isRu ? "Купить" : "Buy"}
+                              <ExternalLink className="ml-1.5 h-3 w-3" />
+                            </a>
+                          </Button>
+                        ) : (
+                          <Button size="sm" variant="secondary" disabled>
+                            {isRu ? "Скоро" : "Soon"}
+                          </Button>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
 
               {/* View All Button */}
-              <div className="flex justify-center pt-8">
+              <div className="flex justify-center pt-4">
                 <Button asChild size="lg" variant="outline">
                   <Link to="/templates">
                     {t('common.viewAll')}
