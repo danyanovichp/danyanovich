@@ -48,6 +48,7 @@ const Home = () => {
       { id: 'ai-prompt-pack', type: 'ai-prompts' as ProductType, title: isRu ? 'ChatGPT Pack' : 'ChatGPT Pack', description: isRu ? '50 промптов для ChatGPT' : '50 prompts for ChatGPT', price: '990 ₽', link: '/ai-prompts', image: undefined as string | undefined, icon: Bot, status: 'available' as const, popularity: 88 },
       { id: 'ai-prompt-midjourney', type: 'ai-prompts' as ProductType, title: isRu ? 'Midjourney Pack' : 'Midjourney Pack', description: isRu ? 'Промпты для генерации изображений' : 'Prompts for image generation', price: '1 490 ₽', link: '/ai-prompts', image: undefined as string | undefined, icon: Bot, status: 'available' as const, popularity: 82 },
       { id: 'consulting-hour', type: 'consulting' as ProductType, title: isRu ? 'Консультация 1 час' : '1 Hour Consultation', description: isRu ? 'Персональная консультация' : 'Personal consultation', price: '5 000 ₽', link: '/consulting', image: undefined as string | undefined, icon: MessageSquare, status: 'available' as const, popularity: 75 },
+      { id: 'pixel-cafe-tycoon', type: 'games' as ProductType, title: 'Pixel Cafe Tycoon', description: isRu ? 'Интерактивная игра-симулятор кафе' : 'Interactive cafe simulator game', price: isRu ? 'Бесплатно' : 'Free', link: '/games/pixel-cafe-tycoon', image: undefined as string | undefined, icon: Gamepad2, status: 'available' as const, popularity: 95 },
       { id: 'game-notion-quest', type: 'games' as ProductType, title: isRu ? 'Notion Quest' : 'Notion Quest', description: isRu ? 'Игра-квест в Notion' : 'Quest game in Notion', price: '490 ₽', link: '#', image: undefined as string | undefined, icon: Gamepad2, status: 'development' as const, popularity: 70 },
       { id: 'game-productivity-rpg', type: 'games' as ProductType, title: isRu ? 'Productivity RPG' : 'Productivity RPG', description: isRu ? 'RPG-система продуктивности' : 'Productivity RPG system', price: '790 ₽', link: '#', image: undefined as string | undefined, icon: Gamepad2, status: 'development' as const, popularity: 65 },
     ];
@@ -107,22 +108,34 @@ const Home = () => {
                 </p>
               </div>
 
-              {/* Filter Chips */}
+              {/* Filter Chips - Colorful */}
               <div className="flex flex-wrap justify-center gap-2">
-                {filterCategories.map((category) => (
-                  <button
-                    key={category.id}
-                    onClick={() => setActiveFilter(category.id)}
-                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                      activeFilter === category.id
-                        ? 'bg-primary text-primary-foreground shadow-md'
-                        : 'bg-background/60 backdrop-blur-sm border border-border/30 text-foreground hover:bg-background/80'
-                    }`}
-                  >
-                    {category.icon && <category.icon className="h-4 w-4" />}
-                    {category.label}
-                  </button>
-                ))}
+                {filterCategories.map((category, index) => {
+                  const colors = [
+                    'from-violet-500 to-purple-600',
+                    'from-blue-500 to-cyan-500',
+                    'from-emerald-500 to-teal-500',
+                    'from-amber-500 to-orange-500',
+                    'from-pink-500 to-rose-500',
+                    'from-orange-500 to-red-500',
+                  ];
+                  const colorClass = colors[index % colors.length];
+                  
+                  return (
+                    <button
+                      key={category.id}
+                      onClick={() => setActiveFilter(category.id)}
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
+                        activeFilter === category.id
+                          ? `bg-gradient-to-r ${colorClass} text-white shadow-lg scale-105`
+                          : 'bg-background/80 backdrop-blur-sm border border-border/50 text-foreground hover:border-border hover:shadow-md'
+                      }`}
+                    >
+                      {category.icon && <category.icon className="h-3.5 w-3.5" />}
+                      {category.label}
+                    </button>
+                  );
+                })}
               </div>
 
               {/* Products Grid */}

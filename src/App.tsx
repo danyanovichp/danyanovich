@@ -28,6 +28,7 @@ const Reviews = lazy(() => import("./pages/Reviews"));
 const Consulting = lazy(() => import("./pages/Consulting"));
 const Cases = lazy(() => import("./pages/Cases"));
 const Blog = lazy(() => import("./pages/Blog"));
+const PixelCafeTycoon = lazy(() => import("./pages/PixelCafeTycoon"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -64,6 +65,7 @@ const App = () => (
                     <Route path="/portfolio" element={<PageTransition><Portfolio /></PageTransition>} />
                     <Route path="/cases" element={<PageTransition><Cases /></PageTransition>} />
                     <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
+                    <Route path="/games/pixel-cafe-tycoon" element={<PageTransition><PixelCafeTycoon /></PageTransition>} />
                     <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
                   </Routes>
                 </Suspense>
