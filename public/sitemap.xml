@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://danyanovich.com/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.com/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://danyanovich.com/templates</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.com/templates"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.com/templates"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://danyanovich.com/courses</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.com/courses"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.com/courses"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://danyanovich.com/ai-prompts</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.com/ai-prompts"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.com/ai-prompts"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://danyanovich.com/consulting</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.com/consulting"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.com/consulting"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://danyanovich.com/packages</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.com/packages"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.com/packages"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://danyanovich.com/portfolio</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.com/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.com/portfolio"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://danyanovich.com/cases</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.com/cases"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.com/cases"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://danyanovich.com/reviews</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.com/reviews"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.com/reviews"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://danyanovich.com/blog</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.com/blog"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://danyanovich.com/faq</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.com/faq"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.com/faq"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://danyanovich.com/contact</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.com/contact"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://danyanovich.com/games/pixel-cafe-tycoon</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.com/games/pixel-cafe-tycoon"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.com/games/pixel-cafe-tycoon"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+</urlset>
