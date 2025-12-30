@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/AnimatedSection';
-import SEO from '@/components/SEO';
+import SEO, { getBlogSchema, getBreadcrumbSchema } from '@/components/SEO';
 import { Link } from 'react-router-dom';
 
 const Blog = () => {
@@ -30,6 +30,12 @@ const Blog = () => {
     },
   ];
 
+  const blogSchema = getBlogSchema(isRu);
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: isRu ? 'Главная' : 'Home', url: 'https://danyanovich.com' },
+    { name: isRu ? 'Блог' : 'Blog', url: 'https://danyanovich.com/blog' },
+  ]);
+
   return (
     <>
       <SEO 
@@ -38,6 +44,7 @@ const Blog = () => {
         descriptionRu="Статьи о Notion, AI, автоматизации и продуктивности. Практические гайды и советы."
         descriptionEn="Articles about Notion, AI, automation and productivity. Practical guides and tips."
         url="https://danyanovich.com/blog"
+        structuredData={[blogSchema, breadcrumbSchema]}
       />
       
       <div className="min-h-screen py-20">
