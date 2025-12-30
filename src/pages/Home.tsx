@@ -68,10 +68,10 @@ const Home = () => {
   return (
     <PageTransition>
       <SEO 
-        title={isRu ? 'Дэн Янович | Notion и AI Эксперт' : 'Dan Yanovich | Notion & AI Expert'}
-        description={isRu 
-          ? 'Создаю шаблоны Notion и консультирую по внедрению AI-инструментов. Более 50 проектов, 100+ часов обучения.'
-          : 'Creating Notion templates and consulting on AI tools implementation. 50+ projects, 100+ hours of training.'}
+        titleRu="Дэн Янович | Notion и AI Эксперт"
+        titleEn="Dan Yanovich | Notion & AI Expert"
+        descriptionRu="Создаю шаблоны Notion и консультирую по внедрению AI-инструментов. Более 50 проектов, 100+ часов обучения."
+        descriptionEn="Creating Notion templates and consulting on AI tools implementation. 50+ projects, 100+ hours of training."
       />
       <div className="min-h-screen">
         {/* Hero Section */}

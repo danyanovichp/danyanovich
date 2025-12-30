@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import SEO from "@/components/SEO";
 
 const Packages = () => {
   const { t, i18n } = useTranslation();
@@ -102,6 +103,13 @@ const Packages = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <SEO 
+        titleRu="Пакеты услуг | Дэн Янович"
+        titleEn="Service Packages | Dan Yanovich"
+        descriptionRu="Готовые пакеты услуг для бизнеса и личного использования. Консультации, шаблоны, обучение и поддержка."
+        descriptionEn="Ready-made service packages for business and personal use. Consultations, templates, training and support."
+        url="https://danyanovich.com/packages"
+      />
       
       {/* Hero Section with "In Development" Banner */}
       <section className="bg-muted/30 py-16 md:py-20 border-b">

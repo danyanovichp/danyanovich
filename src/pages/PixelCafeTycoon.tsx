@@ -14,10 +14,10 @@ const PixelCafeTycoon = () => {
   return (
     <PageTransition>
       <SEO 
-        title={isRu ? 'Pixel Cafe Tycoon | Игра' : 'Pixel Cafe Tycoon | Game'}
-        description={isRu 
-          ? 'Pixel Cafe Tycoon — интерактивная игра-симулятор кафе, созданная с помощью AI'
-          : 'Pixel Cafe Tycoon — an interactive cafe simulator game created with AI'}
+        titleRu="Pixel Cafe Tycoon | Игра"
+        titleEn="Pixel Cafe Tycoon | Game"
+        descriptionRu="Pixel Cafe Tycoon — интерактивная игра-симулятор кафе, созданная с помощью AI"
+        descriptionEn="Pixel Cafe Tycoon — an interactive cafe simulator game created with AI"
       />
       <div className="min-h-screen">
         <section className="container mx-auto px-4 py-12 md:py-20">

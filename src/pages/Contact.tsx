@@ -211,10 +211,10 @@ const Contact = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <SEO 
-        title={isRu ? 'Обо мне | Дэн Янович' : 'About Me | Dan Yanovich'}
-        description={isRu 
-          ? 'Узнайте больше о Дэне Яновиче — эксперте по Notion, AI инструментам, n8n и вайб-кодингу. Создал 10+ сайтов и программы для бизнеса.'
-          : 'Learn more about Dan Yanovich — Notion, AI tools, n8n, and vibe coding expert. Created 10+ websites and business programs.'}
+        titleRu="Обо мне | Дэн Янович"
+        titleEn="About Me | Dan Yanovich"
+        descriptionRu="Узнайте больше о Дэне Яновиче — эксперте по Notion, AI инструментам, n8n и вайб-кодингу. Создал 10+ сайтов и программы для бизнеса."
+        descriptionEn="Learn more about Dan Yanovich — Notion, AI tools, n8n, and vibe coding expert. Created 10+ websites and business programs."
       />
 
       {/* Hero Section */}
