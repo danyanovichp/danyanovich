@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Brain, Zap, Target } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import SEO from "@/components/SEO";
 
 const AIPrompts = () => {
   const { t, i18n } = useTranslation();
@@ -62,6 +63,13 @@ const AIPrompts = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <SEO 
+        titleRu="AI Промпты | Дэн Янович"
+        titleEn="AI Prompts | Dan Yanovich"
+        descriptionRu="Коллекция эффективных промптов для ChatGPT, Claude и других AI-моделей. Промпты для бизнеса, разработки и креатива."
+        descriptionEn="Collection of effective prompts for ChatGPT, Claude and other AI models. Prompts for business, development and creativity."
+        url="https://danyanovich.com/ai-prompts"
+      />
       
       {/* Hero Section with "In Development" Banner */}
       <section className="bg-muted/30 py-16 md:py-20 border-b">

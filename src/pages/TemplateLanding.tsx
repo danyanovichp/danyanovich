@@ -97,17 +97,15 @@ const TemplateLanding = () => {
   // SEO content based on language
   const isRu = i18n.language === 'ru';
   
-  const seoTitle = isRu 
-    ? `${title} | Notion шаблон | Дэн Янович`
-    : `${title} | Notion Template | Dan Yanovich`;
+  const seoTitleRu = `${template.titleRu || title} | Notion шаблон | Дэн Янович`;
+  const seoTitleEn = `${template.titleEn || title} | Notion Template | Dan Yanovich`;
   
-  const seoDescription = isRu
-    ? `${fullDescription} Купить Notion шаблон ${title} для ${template.category === 'business' ? 'бизнеса' : template.category === 'personal' ? 'личного использования' : template.category === 'productivity' ? 'продуктивности' : 'финансов'}.`
-    : `${fullDescription} Buy ${title} Notion template for ${template.category}.`;
+  const seoDescriptionRu = `${template.fullDescriptionRu || fullDescription} Купить Notion шаблон ${template.titleRu || title} для ${template.category === 'business' ? 'бизнеса' : template.category === 'personal' ? 'личного использования' : template.category === 'productivity' ? 'продуктивности' : 'финансов'}.`;
+  const seoDescriptionEn = `${template.fullDescriptionEn || fullDescription} Buy ${template.titleEn || title} Notion template for ${template.category}.`;
   
   const seoKeywords = isRu
-    ? `${title}, Notion шаблон, ${template.category === 'business' ? 'бизнес' : template.category === 'personal' ? 'личное' : template.category === 'productivity' ? 'продуктивность' : 'финансы'}, шаблон Notion, ${features.join(', ')}, купить шаблон`
-    : `${title}, Notion template, ${template.category}, productivity, ${features.join(', ')}, buy template`;
+    ? `${template.titleRu || title}, Notion шаблон, ${template.category === 'business' ? 'бизнес' : template.category === 'personal' ? 'личное' : template.category === 'productivity' ? 'продуктивность' : 'финансы'}, шаблон Notion, ${features.join(', ')}, купить шаблон`
+    : `${template.titleEn || title}, Notion template, ${template.category}, productivity, ${features.join(', ')}, buy template`;
 
   // Generate structured data for SEO
   const structuredData = {
@@ -152,8 +150,10 @@ const TemplateLanding = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title={seoTitle}
-        description={seoDescription}
+        titleRu={seoTitleRu}
+        titleEn={seoTitleEn}
+        descriptionRu={seoDescriptionRu}
+        descriptionEn={seoDescriptionEn}
         keywords={seoKeywords}
         url={`https://danyanovich.com/templates/${template.id}`}
         type="product"

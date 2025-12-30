@@ -214,10 +214,10 @@ const FAQ = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <SEO 
-        title={i18n.language === 'ru' ? 'FAQ | Дэн Янович' : 'FAQ | Dan Yanovich'}
-        description={i18n.language === 'ru' 
-          ? 'Ответы на часто задаваемые вопросы о шаблонах Notion, оплате, поддержке и услугах.'
-          : 'Answers to frequently asked questions about Notion templates, payment, support, and services.'}
+        titleRu="FAQ | Дэн Янович"
+        titleEn="FAQ | Dan Yanovich"
+        descriptionRu="Ответы на часто задаваемые вопросы о шаблонах Notion, оплате, поддержке и услугах."
+        descriptionEn="Answers to frequently asked questions about Notion templates, payment, support, and services."
       />
 
       {/* Hero Section */}

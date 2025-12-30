@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { MessageCircle, Target, Users, Zap } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const Consulting = () => {
   const { t, i18n } = useTranslation();
@@ -42,7 +43,13 @@ const Consulting = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-
+      <SEO 
+        titleRu="Консалтинг | Дэн Янович"
+        titleEn="Consulting | Dan Yanovich"
+        descriptionRu="Персональные консультации по Notion и AI-инструментам. Стратегия, обучение и автоматизация бизнес-процессов."
+        descriptionEn="Personal Notion and AI consulting. Strategy, training, and business process automation."
+        url="https://danyanovich.com/consulting"
+      />
       {/* Hero Section with "In Development" Banner */}
       <section className="bg-muted/30 py-16 md:py-20 border-b">
         <div className="container">

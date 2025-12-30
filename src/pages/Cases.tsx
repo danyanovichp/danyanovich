@@ -77,10 +77,10 @@ const Cases = () => {
   return (
     <>
       <SEO 
-        title={isRu ? 'Кейсы | Дэн Янович' : 'Cases | Dan Yanovich'}
-        description={isRu 
-          ? 'Примеры реальных проектов: Notion шаблоны, AI автоматизации, веб-разработка. Узнайте как я решаю задачи клиентов.'
-          : 'Real project examples: Notion templates, AI automations, web development. See how I solve client challenges.'}
+        titleRu="Кейсы | Дэн Янович"
+        titleEn="Cases | Dan Yanovich"
+        descriptionRu="Примеры реальных проектов: Notion шаблоны, AI автоматизации, веб-разработка. Узнайте как я решаю задачи клиентов."
+        descriptionEn="Real project examples: Notion templates, AI automations, web development. See how I solve client challenges."
         url="https://danyanovich.com/cases"
       />
       

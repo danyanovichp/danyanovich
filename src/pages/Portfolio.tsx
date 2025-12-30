@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import SEO from "@/components/SEO";
 
 const Portfolio = () => {
   const { t, i18n } = useTranslation();
@@ -48,6 +49,13 @@ const Portfolio = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <SEO 
+        titleRu="Портфолио | Дэн Янович"
+        titleEn="Portfolio | Dan Yanovich"
+        descriptionRu="Реализованные проекты и кейсы: Notion шаблоны, рабочие пространства, автоматизация и персональные инструменты."
+        descriptionEn="Completed projects and cases: Notion templates, workspaces, automation and personal tools."
+        url="https://danyanovich.com/portfolio"
+      />
       
       {/* Hero Section */}
       <section className="bg-muted/30 py-16 md:py-20 border-b">

@@ -1,12 +1,20 @@
 import { useTranslation } from "react-i18next";
 import { Star } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import SEO from "@/components/SEO";
 
 const Reviews = () => {
   const { t, i18n } = useTranslation();
 
   return (
     <div className="flex flex-col min-h-screen">
+      <SEO 
+        titleRu="Отзывы клиентов | Дэн Янович"
+        titleEn="Client Reviews | Dan Yanovich"
+        descriptionRu="Отзывы о шаблонах Notion и консультациях от Дэна Яновича. Реальные истории успеха клиентов."
+        descriptionEn="Reviews about Notion templates and consultations from Dan Yanovich. Real client success stories."
+        url="https://danyanovich.com/reviews"
+      />
 
       {/* Hero Section */}
       <section className="bg-muted/30 py-16 md:py-20 border-b">

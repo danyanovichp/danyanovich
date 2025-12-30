@@ -278,10 +278,10 @@ const Templates = () => {
       {/* Hero Section */}
       <section className="bg-muted/30 backdrop-blur-sm py-16 md:py-20 border-b border-border/20">
         <SEO 
-          title={i18n.language === 'ru' ? 'Шаблоны Notion | Дэн Янович' : 'Notion Templates | Dan Yanovich'}
-          description={i18n.language === 'ru' 
-            ? 'Премиум шаблоны Notion для продуктивности и бизнеса. Second Brain, CRM, управление проектами.'
-            : 'Premium Notion templates for productivity and business. Second Brain, CRM, project management.'}
+          titleRu="Шаблоны Notion | Дэн Янович"
+          titleEn="Notion Templates | Dan Yanovich"
+          descriptionRu="Премиум шаблоны Notion для продуктивности и бизнеса. Second Brain, CRM, управление проектами."
+          descriptionEn="Premium Notion templates for productivity and business. Second Brain, CRM, project management."
           url="https://danyanovich.com/templates"
         />
         <div className="container">

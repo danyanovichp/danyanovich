@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { BookOpen, Clock, Users, CheckCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import SEO from "@/components/SEO";
 
 const Courses = () => {
   const { t, i18n } = useTranslation();
@@ -47,6 +48,13 @@ const Courses = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <SEO 
+        titleRu="Курсы по Notion | Дэн Янович"
+        titleEn="Notion Courses | Dan Yanovich"
+        descriptionRu="Обучающие курсы по работе с Notion и AI-инструментами. Практический подход, постоянный доступ к материалам."
+        descriptionEn="Training courses on Notion and AI tools. Practical approach, lifetime access to materials."
+        url="https://danyanovich.com/courses"
+      />
       
       {/* Hero Section with "In Development" Banner */}
       <section className="bg-muted/30 py-16 md:py-20 border-b">

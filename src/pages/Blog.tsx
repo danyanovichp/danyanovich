@@ -33,10 +33,10 @@ const Blog = () => {
   return (
     <>
       <SEO 
-        title={isRu ? 'Блог | Дэн Янович' : 'Blog | Dan Yanovich'}
-        description={isRu 
-          ? 'Статьи о Notion, AI, автоматизации и продуктивности. Практические гайды и советы.'
-          : 'Articles about Notion, AI, automation and productivity. Practical guides and tips.'}
+        titleRu="Блог | Дэн Янович"
+        titleEn="Blog | Dan Yanovich"
+        descriptionRu="Статьи о Notion, AI, автоматизации и продуктивности. Практические гайды и советы."
+        descriptionEn="Articles about Notion, AI, automation and productivity. Practical guides and tips."
         url="https://danyanovich.com/blog"
       />
       
