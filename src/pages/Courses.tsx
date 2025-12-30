@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { BookOpen, Clock, Users, CheckCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import SEO from "@/components/SEO";
+import SEO, { getCourseSchema, getBreadcrumbSchema } from "@/components/SEO";
 
 const Courses = () => {
   const { t, i18n } = useTranslation();
@@ -46,6 +46,13 @@ const Courses = () => {
     "Receive a certificate of completion",
   ];
 
+  const isRu = i18n.language === 'ru';
+  const courseSchema = getCourseSchema(isRu);
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: isRu ? 'Главная' : 'Home', url: 'https://danyanovich.com' },
+    { name: isRu ? 'Курсы' : 'Courses', url: 'https://danyanovich.com/courses' },
+  ]);
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEO 
@@ -54,6 +61,7 @@ const Courses = () => {
         descriptionRu="Обучающие курсы по работе с Notion и AI-инструментами. Практический подход, постоянный доступ к материалам."
         descriptionEn="Training courses on Notion and AI tools. Practical approach, lifetime access to materials."
         url="https://danyanovich.com/courses"
+        structuredData={[courseSchema, breadcrumbSchema]}
       />
       
       {/* Hero Section with "In Development" Banner */}

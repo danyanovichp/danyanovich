@@ -1,10 +1,17 @@
 import { useTranslation } from "react-i18next";
 import { Star } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import SEO from "@/components/SEO";
+import SEO, { getReviewsSchema, getBreadcrumbSchema } from "@/components/SEO";
 
 const Reviews = () => {
   const { t, i18n } = useTranslation();
+
+  const isRu = i18n.language === 'ru';
+  const reviewsSchema = getReviewsSchema(isRu);
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: isRu ? 'Главная' : 'Home', url: 'https://danyanovich.com' },
+    { name: isRu ? 'Отзывы' : 'Reviews', url: 'https://danyanovich.com/reviews' },
+  ]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -14,6 +21,7 @@ const Reviews = () => {
         descriptionRu="Отзывы о шаблонах Notion и консультациях от Дэна Яновича. Реальные истории успеха клиентов."
         descriptionEn="Reviews about Notion templates and consultations from Dan Yanovich. Real client success stories."
         url="https://danyanovich.com/reviews"
+        structuredData={[reviewsSchema, breadcrumbSchema]}
       />
 
       {/* Hero Section */}

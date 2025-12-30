@@ -7,7 +7,7 @@ import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { premiumTemplates } from "@/data/premiumTemplates";
 import TemplateFilters, { TemplateCategory, TemplateStatus, SortOption } from "@/components/TemplateFilters";
-import SEO from "@/components/SEO";
+import SEO, { getTemplatesSchema, getBreadcrumbSchema } from "@/components/SEO";
 
 const Templates = () => {
   const { t, i18n } = useTranslation();
@@ -272,6 +272,13 @@ const Templates = () => {
     </Dialog>
   );
 
+  const isRu = i18n.language === 'ru';
+  const templatesSchema = getTemplatesSchema(isRu);
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: isRu ? 'Главная' : 'Home', url: 'https://danyanovich.com' },
+    { name: isRu ? 'Шаблоны' : 'Templates', url: 'https://danyanovich.com/templates' },
+  ]);
+
   return (
     <div className="flex flex-col min-h-screen">
       
@@ -283,6 +290,7 @@ const Templates = () => {
           descriptionRu="Премиум шаблоны Notion для продуктивности и бизнеса. Second Brain, CRM, управление проектами."
           descriptionEn="Premium Notion templates for productivity and business. Second Brain, CRM, project management."
           url="https://danyanovich.com/templates"
+          structuredData={[templatesSchema, breadcrumbSchema]}
         />
         <div className="container">
           <div className="max-w-3xl mx-auto text-center space-y-4 mb-8">

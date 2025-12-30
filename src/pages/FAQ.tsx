@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AnimatedSection from "@/components/AnimatedSection";
-import SEO from "@/components/SEO";
+import SEO, { getFAQSchema, getBreadcrumbSchema } from "@/components/SEO";
 
 type FAQCategory = 'all' | 'general' | 'templates' | 'payment' | 'support';
 
@@ -211,6 +211,13 @@ const FAQ = () => {
     return faqs.filter(faq => faq.category === category).length;
   };
 
+  // Подготовка данных для FAQ Schema
+  const faqSchemaData = getFAQSchema(faqs.map(faq => ({ question: faq.question, answer: faq.answer })));
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: i18n.language === 'ru' ? 'Главная' : 'Home', url: 'https://danyanovich.com' },
+    { name: 'FAQ', url: 'https://danyanovich.com/faq' },
+  ]);
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEO 
@@ -218,6 +225,8 @@ const FAQ = () => {
         titleEn="FAQ | Dan Yanovich"
         descriptionRu="Ответы на часто задаваемые вопросы о шаблонах Notion, оплате, поддержке и услугах."
         descriptionEn="Answers to frequently asked questions about Notion templates, payment, support, and services."
+        url="https://danyanovich.com/faq"
+        structuredData={[faqSchemaData, breadcrumbSchema]}
       />
 
       {/* Hero Section */}
