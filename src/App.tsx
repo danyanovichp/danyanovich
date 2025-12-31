@@ -13,6 +13,7 @@ import PageTransition from "./components/PageTransition";
 
 import ScrollToTop from "./components/ScrollToTop";
 import TelegramWidget from "./components/TelegramWidget";
+import YandexMetrika from "./components/YandexMetrika";
 
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -73,6 +74,7 @@ const App = () => (
               <Footer />
               <ScrollToTop />
               <TelegramWidget />
+              <YandexMetrika />
             </div>
           </BrowserRouter>
         </TooltipProvider>
