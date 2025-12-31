@@ -35,6 +35,14 @@
   </url>
   
   <url>
+    <loc>https://danyanovich.com/ai-training</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.com/ai-training"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.com/ai-training"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>https://danyanovich.com/consulting</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.com/consulting"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.com/consulting"/>

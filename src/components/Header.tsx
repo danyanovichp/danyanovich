@@ -21,6 +21,7 @@ const Header = () => {
   ];
 
   const secondaryLinks = [
+    { href: "/ai-training", label: i18n.language === 'ru' ? 'ИИ ОБУЧЕНИЕ' : 'AI TRAINING' },
     { href: "/cases", label: i18n.language === 'ru' ? 'КЕЙСЫ' : 'CASES' },
     { href: "/blog", label: i18n.language === 'ru' ? 'БЛОГ' : 'BLOG' },
   ];
