@@ -227,13 +227,24 @@ const TemplateLanding = () => {
                 <div className="flex items-center gap-6 flex-wrap pt-4">
                   <div className="text-4xl md:text-5xl font-bold text-primary">{template.price}</div>
                   {isAvailable ? (
-                    <a href={template.link} target="_blank" rel="noopener noreferrer">
-                      <Button size="lg" className="gap-2 text-lg px-8 py-6">
-                        <ShoppingCart className="h-5 w-5" />
-                        {i18n.language === 'ru' ? 'Купить шаблон' : 'Buy Template'}
-                        <ExternalLink className="h-4 w-4" />
-                      </Button>
-                    </a>
+                    <div className="flex flex-wrap gap-3">
+                      <a href={template.link} target="_blank" rel="noopener noreferrer">
+                        <Button size="lg" className="gap-2 text-lg px-6 py-6">
+                          <ShoppingCart className="h-5 w-5" />
+                          Notion
+                          <ExternalLink className="h-4 w-4" />
+                        </Button>
+                      </a>
+                      {template.buildinLink && (
+                        <a href={template.buildinLink} target="_blank" rel="noopener noreferrer">
+                          <Button size="lg" variant="secondary" className="gap-2 text-lg px-6 py-6">
+                            <ShoppingCart className="h-5 w-5" />
+                            Buildin.AI
+                            <ExternalLink className="h-4 w-4" />
+                          </Button>
+                        </a>
+                      )}
+                    </div>
                   ) : (
                     <Button size="lg" disabled className="gap-2 text-lg px-8 py-6">
                       <Sparkles className="h-5 w-5" />
