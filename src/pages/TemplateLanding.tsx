@@ -4,11 +4,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ArrowLeft, Check, ShoppingCart, Sparkles, ExternalLink, ImageIcon, Play, Star, Quote, Home, ChevronRight, HelpCircle } from "lucide-react";
+import { ArrowLeft, Check, ShoppingCart, Sparkles, ExternalLink, ImageIcon, Play, Star, Quote, Home, ChevronRight, HelpCircle, AlertCircle, Zap, Users } from "lucide-react";
 import { premiumTemplates } from "@/data/premiumTemplates";
 import { secondBrainFeatureSections, secondBrainReviews } from "@/data/secondBrainData";
+import { templateLandingContent } from "@/data/templateLandingContent";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import SEO from "@/components/SEO";
+import AnimatedSection from "@/components/AnimatedSection";
 
 const TemplateLanding = () => {
   const { templateId } = useParams();
@@ -16,6 +18,7 @@ const TemplateLanding = () => {
   
   const template = premiumTemplates.find(t => t.id === templateId);
   const isSecondBrain = templateId === "second-brain-os";
+  const landingContent = templateId ? templateLandingContent[templateId] : null;
   
   if (!template) {
     return (
@@ -159,6 +162,7 @@ const TemplateLanding = () => {
         type="product"
         structuredData={[structuredData, faqStructuredData]}
       />
+      
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-muted/50 to-background py-16 md:py-24 border-b border-border/20">
         <div className="container">
@@ -211,8 +215,12 @@ const TemplateLanding = () => {
                 </div>
                 
                 <div className="space-y-4">
-                  <h1 className="text-4xl md:text-6xl font-bold tracking-tight">{title}</h1>
-                  <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">{description}</p>
+                  <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+                    {landingContent ? landingContent.headline : title}
+                  </h1>
+                  <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
+                    {landingContent ? landingContent.subheadline : description}
+                  </p>
                 </div>
 
                 {/* Quick Features List */}
@@ -295,60 +303,205 @@ const TemplateLanding = () => {
         </div>
       </section>
 
-      {/* Full Description Section */}
-      <section className="py-16 md:py-20 bg-muted/30">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">
-              {i18n.language === 'ru' ? 'О шаблоне' : 'About Template'}
-            </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              {fullDescription}
-            </p>
-            {isSecondBrain && (
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {i18n.language === 'ru' 
-                  ? 'Второй Мозг OS — это комплексная система для организации всей вашей цифровой жизни. Объединяет управление проектами, базу знаний, планирование и привычки в единую связанную систему.'
-                  : 'Second Brain OS is a comprehensive system for organizing your entire digital life. It combines project management, knowledge base, planning and habits into a single connected system.'}
-              </p>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Video Review Section */}
-      <section className="py-16 md:py-24">
-        <div className="container">
-          <div className="max-w-4xl mx-auto space-y-8">
-            <div className="text-center space-y-4">
-              <h2 className="text-3xl md:text-4xl font-bold">
-                {i18n.language === 'ru' ? 'Видеообзор' : 'Video Review'}
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                {i18n.language === 'ru' ? 'Посмотрите, как работает шаблон' : 'See how the template works'}
-              </p>
-            </div>
-            
-            <Card className="overflow-hidden border-2 border-border/40">
-              <CardContent className="p-0">
-                <div className="aspect-video bg-gradient-to-br from-muted/80 to-muted/40 flex items-center justify-center relative group cursor-pointer hover:bg-muted/60 transition-colors">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                      <Play className="h-8 w-8 text-primary-foreground ml-1" />
-                    </div>
+      {/* Pain Points Section - "Знакомо?" */}
+      {landingContent && landingContent.painPoints.length > 0 && (
+        <AnimatedSection animation="fade-up">
+          <section className="py-16 md:py-24 bg-muted/30">
+            <div className="container">
+              <div className="max-w-4xl mx-auto space-y-12">
+                <div className="text-center space-y-4">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-destructive/10 rounded-full">
+                    <AlertCircle className="h-5 w-5 text-destructive" />
+                    <span className="text-sm font-medium text-destructive">
+                      {i18n.language === 'ru' ? 'Знакомо?' : 'Sound familiar?'}
+                    </span>
                   </div>
-                  <p className="absolute bottom-6 text-muted-foreground">
-                    {i18n.language === 'ru' ? 'Видео скоро будет добавлено' : 'Video coming soon'}
+                  <h2 className="text-3xl md:text-4xl font-bold">
+                    {i18n.language === 'ru' ? 'Узнаёшь себя?' : 'Do you recognize yourself?'}
+                  </h2>
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-6">
+                  {landingContent.painPoints.map((point, index) => (
+                    <Card key={index} className="border-destructive/20 bg-destructive/5">
+                      <CardContent className="p-6 flex items-start gap-4">
+                        <div className="shrink-0 w-8 h-8 rounded-full bg-destructive/10 flex items-center justify-center mt-0.5">
+                          <span className="text-destructive font-bold">×</span>
+                        </div>
+                        <p className="text-muted-foreground leading-relaxed">{point}</p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        </AnimatedSection>
+      )}
+
+      {/* Solution Section - "Как это меняет" */}
+      {landingContent && landingContent.solution && (
+        <AnimatedSection animation="fade-up" delay={100}>
+          <section className="py-16 md:py-24">
+            <div className="container">
+              <div className="max-w-4xl mx-auto space-y-12">
+                <div className="text-center space-y-4">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full">
+                    <Zap className="h-5 w-5 text-primary" />
+                    <span className="text-sm font-medium text-primary">
+                      {i18n.language === 'ru' ? 'Решение' : 'Solution'}
+                    </span>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold">
+                    {i18n.language === 'ru' ? 'Представь другую реальность' : 'Imagine a different reality'}
+                  </h2>
+                </div>
+                
+                <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
+                  <CardContent className="p-8 md:p-12">
+                    <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                      {landingContent.solution}
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+        </AnimatedSection>
+      )}
+
+      {/* Features Section - "Что ты получаешь" */}
+      {landingContent && landingContent.features.length > 0 && (
+        <AnimatedSection animation="fade-up" delay={200}>
+          <section className="py-16 md:py-24 bg-muted/30">
+            <div className="container">
+              <div className="max-w-5xl mx-auto space-y-12">
+                <div className="text-center space-y-4">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full">
+                    <Check className="h-5 w-5 text-primary" />
+                    <span className="text-sm font-medium text-primary">
+                      {i18n.language === 'ru' ? 'Возможности' : 'Features'}
+                    </span>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold">
+                    {i18n.language === 'ru' ? 'Что ты получаешь' : 'What you get'}
+                  </h2>
+                </div>
+                
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {landingContent.features.map((feature, index) => (
+                    <Card key={index} className="h-full border-border/50 hover:border-primary/30 transition-colors">
+                      <CardContent className="p-6 space-y-4">
+                        <div className="flex items-center gap-3">
+                          <span className="text-3xl">{feature.icon}</span>
+                          <h3 className="font-semibold text-lg">{feature.title}</h3>
+                        </div>
+                        <p className="text-muted-foreground leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        </AnimatedSection>
+      )}
+
+      {/* Views Section - "Готовые представления" */}
+      {landingContent && landingContent.views && landingContent.views.length > 0 && (
+        <AnimatedSection animation="fade-up" delay={250}>
+          <section className="py-16 md:py-20">
+            <div className="container">
+              <div className="max-w-4xl mx-auto space-y-8">
+                <div className="text-center space-y-4">
+                  <h2 className="text-2xl md:text-3xl font-bold">
+                    {i18n.language === 'ru' ? 'Готовые представления' : 'Ready-made views'}
+                  </h2>
+                  <p className="text-muted-foreground">
+                    {i18n.language === 'ru' 
+                      ? 'На главной странице уже настроены ключевые виды:' 
+                      : 'Key views are already set up on the main page:'}
                   </p>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+                
+                <div className="space-y-3">
+                  {landingContent.views.map((view, index) => (
+                    <div key={index} className="flex items-start gap-3 p-4 rounded-xl bg-muted/50">
+                      <div className="shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                        <Check className="h-3.5 w-3.5 text-primary" />
+                      </div>
+                      <span className="text-muted-foreground">{view}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        </AnimatedSection>
+      )}
 
-      {/* Detailed Feature Sections */}
-      {featureSections ? (
+      {/* Target Audience Section - "Для кого" */}
+      {landingContent && landingContent.targetAudience.length > 0 && (
+        <AnimatedSection animation="fade-up" delay={300}>
+          <section className="py-16 md:py-24 bg-muted/30">
+            <div className="container">
+              <div className="max-w-4xl mx-auto space-y-12">
+                <div className="text-center space-y-4">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/50 rounded-full">
+                    <Users className="h-5 w-5 text-foreground" />
+                    <span className="text-sm font-medium">
+                      {i18n.language === 'ru' ? 'Аудитория' : 'Audience'}
+                    </span>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold">
+                    {i18n.language === 'ru' ? 'Для кого этот шаблон' : 'Who is this template for'}
+                  </h2>
+                </div>
+                
+                <div className="grid md:grid-cols-3 gap-6">
+                  {landingContent.targetAudience.map((audience, index) => (
+                    <Card key={index} className="h-full border-border/50">
+                      <CardContent className="p-6 space-y-3">
+                        {audience.icon && (
+                          <span className="text-3xl">{audience.icon}</span>
+                        )}
+                        <h3 className="font-semibold text-lg">{audience.title}</h3>
+                        <p className="text-muted-foreground leading-relaxed">
+                          {audience.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        </AnimatedSection>
+      )}
+
+      {/* Highlight Section */}
+      {landingContent && landingContent.highlight && (
+        <AnimatedSection animation="scale" delay={350}>
+          <section className="py-12">
+            <div className="container">
+              <div className="max-w-3xl mx-auto">
+                <Card className="border-primary/30 bg-gradient-to-r from-primary/10 to-primary/5">
+                  <CardContent className="p-6 md:p-8 text-center">
+                    <p className="text-lg md:text-xl font-medium">
+                      💡 {landingContent.highlight}
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+        </AnimatedSection>
+      )}
+
+      {/* Fallback: Detailed Feature Sections for Second Brain */}
+      {!landingContent && featureSections && (
         <section className="py-16 md:py-24 bg-muted/30">
           <div className="container">
             <div className="max-w-5xl mx-auto space-y-20">
@@ -417,8 +570,10 @@ const TemplateLanding = () => {
             </div>
           </div>
         </section>
-      ) : (
-        /* Basic Features Section for other templates */
+      )}
+
+      {/* Fallback: Basic Features Section for templates without landing content */}
+      {!landingContent && !featureSections && (
         <section className="py-16 md:py-24 bg-muted/30">
           <div className="container">
             <div className="max-w-4xl mx-auto space-y-12">
@@ -445,9 +600,40 @@ const TemplateLanding = () => {
         </section>
       )}
 
+      {/* Video Review Section */}
+      <section className="py-16 md:py-24">
+        <div className="container">
+          <div className="max-w-4xl mx-auto space-y-8">
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl md:text-4xl font-bold">
+                {i18n.language === 'ru' ? 'Видеообзор' : 'Video Review'}
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                {i18n.language === 'ru' ? 'Посмотрите, как работает шаблон' : 'See how the template works'}
+              </p>
+            </div>
+            
+            <Card className="overflow-hidden border-2 border-border/40">
+              <CardContent className="p-0">
+                <div className="aspect-video bg-gradient-to-br from-muted/80 to-muted/40 flex items-center justify-center relative group cursor-pointer hover:bg-muted/60 transition-colors">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                      <Play className="h-8 w-8 text-primary-foreground ml-1" />
+                    </div>
+                  </div>
+                  <p className="absolute bottom-6 text-muted-foreground">
+                    {i18n.language === 'ru' ? 'Видео скоро будет добавлено' : 'Video coming soon'}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Reviews Section */}
       {reviews && reviews.length > 0 && (
-        <section className="py-16 md:py-24">
+        <section className="py-16 md:py-24 bg-muted/30">
           <div className="container">
             <div className="max-w-5xl mx-auto space-y-12">
               <div className="text-center space-y-4">
@@ -486,7 +672,7 @@ const TemplateLanding = () => {
       )}
 
       {/* Screenshot Gallery */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      <section className="py-16 md:py-24">
         <div className="container">
           <div className="max-w-5xl mx-auto space-y-12">
             <div className="text-center space-y-4">
@@ -516,7 +702,7 @@ const TemplateLanding = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 bg-muted/30">
         <div className="container">
           <div className="max-w-3xl mx-auto space-y-12">
             <div className="text-center space-y-4">
@@ -557,7 +743,7 @@ const TemplateLanding = () => {
         <div className="container">
           <div className="max-w-3xl mx-auto text-center space-y-8">
             <h2 className="text-3xl md:text-5xl font-bold">
-              {i18n.language === 'ru' ? 'Готовы организовать свою жизнь?' : 'Ready to organize your life?'}
+              {i18n.language === 'ru' ? 'Готовы начать?' : 'Ready to start?'}
             </h2>
             <p className="text-xl text-muted-foreground">
               {i18n.language === 'ru' 
@@ -568,13 +754,24 @@ const TemplateLanding = () => {
             <div className="flex items-center justify-center gap-6 flex-wrap pt-4">
               <div className="text-4xl md:text-5xl font-bold text-primary">{template.price}</div>
               {isAvailable ? (
-                <a href={template.link} target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" className="gap-2 text-lg px-8 py-6">
-                    <ShoppingCart className="h-5 w-5" />
-                    {i18n.language === 'ru' ? 'Купить шаблон' : 'Buy Template'}
-                    <ExternalLink className="h-4 w-4" />
-                  </Button>
-                </a>
+                <div className="flex flex-wrap gap-3">
+                  <a href={template.link} target="_blank" rel="noopener noreferrer">
+                    <Button size="lg" className="gap-2 text-lg px-8 py-6">
+                      <ShoppingCart className="h-5 w-5" />
+                      {i18n.language === 'ru' ? 'Купить шаблон' : 'Buy Template'}
+                      <ExternalLink className="h-4 w-4" />
+                    </Button>
+                  </a>
+                  {template.buildinLink && (
+                    <a href={template.buildinLink} target="_blank" rel="noopener noreferrer">
+                      <Button size="lg" variant="secondary" className="gap-2 text-lg px-8 py-6">
+                        <ShoppingCart className="h-5 w-5" />
+                        Buildin.AI
+                        <ExternalLink className="h-4 w-4" />
+                      </Button>
+                    </a>
+                  )}
+                </div>
               ) : (
                 <Button size="lg" disabled className="gap-2 text-lg px-8 py-6">
                   <Sparkles className="h-5 w-5" />
