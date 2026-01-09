@@ -1,0 +1,263 @@
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+import { Json } from "@/integrations/supabase/types";
+
+export interface LandingFeature {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface LandingAudience {
+  icon?: string;
+  title: string;
+  description: string;
+}
+
+export interface LandingData {
+  id?: string;
+  template_id: string;
+  headline: string;
+  subheadline: string;
+  pain_points: string[];
+  solution_intro: string;
+  solution_description: string;
+  features: LandingFeature[];
+  views: string[];
+  target_audience: LandingAudience[];
+}
+
+const emptyLanding: LandingData = {
+  template_id: "",
+  headline: "",
+  subheadline: "",
+  pain_points: [""],
+  solution_intro: "",
+  solution_description: "",
+  features: [{ icon: "✅", title: "", description: "" }],
+  views: [""],
+  target_audience: [{ title: "", description: "" }],
+};
+
+export function useLandingEditor(templateId?: string) {
+  const [landing, setLanding] = useState<LandingData>(emptyLanding);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (templateId) {
+      fetchLanding(templateId);
+    } else {
+      setLanding(emptyLanding);
+    }
+  }, [templateId]);
+
+  const fetchLanding = async (id: string) => {
+    setIsLoading(true);
+    try {
+      const { data, error } = await supabase
+        .from("template_landings")
+        .select("*")
+        .eq("template_id", id)
+        .maybeSingle();
+
+      if (error) throw error;
+
+      if (data) {
+        setLanding({
+          id: data.id,
+          template_id: data.template_id,
+          headline: data.headline || "",
+          subheadline: data.subheadline || "",
+        pain_points: (data.pain_points as unknown as string[]) || [""],
+        solution_intro: data.solution_intro || "",
+        solution_description: data.solution_description || "",
+        features: (data.features as unknown as LandingFeature[]) || [{ icon: "✅", title: "", description: "" }],
+        views: (data.views as unknown as string[]) || [""],
+        target_audience: (data.target_audience as unknown as LandingAudience[]) || [{ title: "", description: "" }],
+        });
+      } else {
+        setLanding({ ...emptyLanding, template_id: id });
+      }
+    } catch (error) {
+      console.error("Error fetching landing:", error);
+      toast({
+        title: "Ошибка",
+        description: "Не удалось загрузить данные лендинга",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const saveLanding = async () => {
+    if (!landing.template_id || !landing.headline) {
+      toast({
+        title: "Ошибка",
+        description: "Заполните обязательные поля (ID шаблона и заголовок)",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    setIsSaving(true);
+    try {
+      const dataToSave = {
+        template_id: landing.template_id,
+        headline: landing.headline,
+        subheadline: landing.subheadline,
+        pain_points: landing.pain_points.filter(p => p.trim()) as unknown as Json,
+        solution_intro: landing.solution_intro,
+        solution_description: landing.solution_description,
+        features: landing.features.filter(f => f.title.trim()) as unknown as Json,
+        views: landing.views.filter(v => v.trim()) as unknown as Json,
+        target_audience: landing.target_audience.filter(a => a.title.trim()) as unknown as Json,
+      };
+
+      if (landing.id) {
+        const { error } = await supabase
+          .from("template_landings")
+          .update(dataToSave)
+          .eq("id", landing.id);
+
+        if (error) throw error;
+      } else {
+        const { data, error } = await supabase
+          .from("template_landings")
+          .insert(dataToSave)
+          .select()
+          .single();
+
+        if (error) throw error;
+        setLanding(prev => ({ ...prev, id: data.id }));
+      }
+
+      toast({
+        title: "Сохранено",
+        description: "Лендинг успешно сохранён",
+      });
+      return true;
+    } catch (error: any) {
+      console.error("Error saving landing:", error);
+      toast({
+        title: "Ошибка",
+        description: error.message || "Не удалось сохранить лендинг",
+        variant: "destructive",
+      });
+      return false;
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const updateField = <K extends keyof LandingData>(field: K, value: LandingData[K]) => {
+    setLanding(prev => ({ ...prev, [field]: value }));
+  };
+
+  const addPainPoint = () => {
+    setLanding(prev => ({
+      ...prev,
+      pain_points: [...prev.pain_points, ""],
+    }));
+  };
+
+  const removePainPoint = (index: number) => {
+    setLanding(prev => ({
+      ...prev,
+      pain_points: prev.pain_points.filter((_, i) => i !== index),
+    }));
+  };
+
+  const updatePainPoint = (index: number, value: string) => {
+    setLanding(prev => ({
+      ...prev,
+      pain_points: prev.pain_points.map((p, i) => (i === index ? value : p)),
+    }));
+  };
+
+  const addFeature = () => {
+    setLanding(prev => ({
+      ...prev,
+      features: [...prev.features, { icon: "✅", title: "", description: "" }],
+    }));
+  };
+
+  const removeFeature = (index: number) => {
+    setLanding(prev => ({
+      ...prev,
+      features: prev.features.filter((_, i) => i !== index),
+    }));
+  };
+
+  const updateFeature = (index: number, field: keyof LandingFeature, value: string) => {
+    setLanding(prev => ({
+      ...prev,
+      features: prev.features.map((f, i) => (i === index ? { ...f, [field]: value } : f)),
+    }));
+  };
+
+  const addView = () => {
+    setLanding(prev => ({
+      ...prev,
+      views: [...prev.views, ""],
+    }));
+  };
+
+  const removeView = (index: number) => {
+    setLanding(prev => ({
+      ...prev,
+      views: prev.views.filter((_, i) => i !== index),
+    }));
+  };
+
+  const updateView = (index: number, value: string) => {
+    setLanding(prev => ({
+      ...prev,
+      views: prev.views.map((v, i) => (i === index ? value : v)),
+    }));
+  };
+
+  const addAudience = () => {
+    setLanding(prev => ({
+      ...prev,
+      target_audience: [...prev.target_audience, { title: "", description: "" }],
+    }));
+  };
+
+  const removeAudience = (index: number) => {
+    setLanding(prev => ({
+      ...prev,
+      target_audience: prev.target_audience.filter((_, i) => i !== index),
+    }));
+  };
+
+  const updateAudience = (index: number, field: keyof LandingAudience, value: string) => {
+    setLanding(prev => ({
+      ...prev,
+      target_audience: prev.target_audience.map((a, i) => (i === index ? { ...a, [field]: value } : a)),
+    }));
+  };
+
+  return {
+    landing,
+    isLoading,
+    isSaving,
+    saveLanding,
+    updateField,
+    addPainPoint,
+    removePainPoint,
+    updatePainPoint,
+    addFeature,
+    removeFeature,
+    updateFeature,
+    addView,
+    removeView,
+    updateView,
+    addAudience,
+    removeAudience,
+    updateAudience,
+  };
+}

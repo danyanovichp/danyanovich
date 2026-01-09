@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { AuthProvider } from "./hooks/useAuth";
 import { HelmetProvider } from "react-helmet-async";
 import "./lib/i18n";
 import Header from "./components/Header";
@@ -32,6 +33,9 @@ const Cases = lazy(() => import("./pages/Cases"));
 const Blog = lazy(() => import("./pages/Blog"));
 const PixelCafeTycoon = lazy(() => import("./pages/PixelCafeTycoon"));
 const AITraining = lazy(() => import("./pages/AITraining"));
+const Auth = lazy(() => import("./pages/Auth"));
+const AdminLandings = lazy(() => import("./pages/AdminLandings"));
+const LandingEditor = lazy(() => import("./pages/LandingEditor"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -46,6 +50,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
       <ThemeProvider>
+        <AuthProvider>
         <TooltipProvider>
           <Toaster />
           <Sonner />
@@ -70,6 +75,10 @@ const App = () => (
                     <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
                     <Route path="/ai-training" element={<PageTransition><AITraining /></PageTransition>} />
                     <Route path="/games/pixel-cafe-tycoon" element={<PageTransition><PixelCafeTycoon /></PageTransition>} />
+                    <Route path="/auth" element={<Auth />} />
+                    <Route path="/admin/landings" element={<AdminLandings />} />
+                    <Route path="/admin/landings/new" element={<LandingEditor />} />
+                    <Route path="/admin/landings/:templateId" element={<LandingEditor />} />
                     <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
                   </Routes>
                 </Suspense>
@@ -82,6 +91,7 @@ const App = () => (
             </div>
           </BrowserRouter>
         </TooltipProvider>
+        </AuthProvider>
       </ThemeProvider>
     </HelmetProvider>
   </QueryClientProvider>
