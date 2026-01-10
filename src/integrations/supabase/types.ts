@@ -22,6 +22,7 @@ export type Database = {
           headline: string
           id: string
           pain_points: Json | null
+          screenshots: Json | null
           solution_description: string | null
           solution_intro: string | null
           subheadline: string | null
@@ -37,6 +38,7 @@ export type Database = {
           headline: string
           id?: string
           pain_points?: Json | null
+          screenshots?: Json | null
           solution_description?: string | null
           solution_intro?: string | null
           subheadline?: string | null
@@ -52,6 +54,7 @@ export type Database = {
           headline?: string
           id?: string
           pain_points?: Json | null
+          screenshots?: Json | null
           solution_description?: string | null
           solution_intro?: string | null
           subheadline?: string | null

@@ -26,6 +26,7 @@ export interface LandingData {
   features: LandingFeature[];
   views: string[];
   target_audience: LandingAudience[];
+  screenshots: string[];
 }
 
 const emptyLanding: LandingData = {
@@ -38,6 +39,7 @@ const emptyLanding: LandingData = {
   features: [{ icon: "✅", title: "", description: "" }],
   views: [""],
   target_audience: [{ title: "", description: "" }],
+  screenshots: [],
 };
 
 export function useLandingEditor(templateId?: string) {
@@ -71,12 +73,13 @@ export function useLandingEditor(templateId?: string) {
           template_id: data.template_id,
           headline: data.headline || "",
           subheadline: data.subheadline || "",
-        pain_points: (data.pain_points as unknown as string[]) || [""],
-        solution_intro: data.solution_intro || "",
-        solution_description: data.solution_description || "",
-        features: (data.features as unknown as LandingFeature[]) || [{ icon: "✅", title: "", description: "" }],
-        views: (data.views as unknown as string[]) || [""],
-        target_audience: (data.target_audience as unknown as LandingAudience[]) || [{ title: "", description: "" }],
+          pain_points: (data.pain_points as unknown as string[]) || [""],
+          solution_intro: data.solution_intro || "",
+          solution_description: data.solution_description || "",
+          features: (data.features as unknown as LandingFeature[]) || [{ icon: "✅", title: "", description: "" }],
+          views: (data.views as unknown as string[]) || [""],
+          target_audience: (data.target_audience as unknown as LandingAudience[]) || [{ title: "", description: "" }],
+          screenshots: (data.screenshots as unknown as string[]) || [],
         });
       } else {
         setLanding({ ...emptyLanding, template_id: id });
@@ -115,6 +118,7 @@ export function useLandingEditor(templateId?: string) {
         features: landing.features.filter(f => f.title.trim()) as unknown as Json,
         views: landing.views.filter(v => v.trim()) as unknown as Json,
         target_audience: landing.target_audience.filter(a => a.title.trim()) as unknown as Json,
+        screenshots: landing.screenshots as unknown as Json,
       };
 
       if (landing.id) {
@@ -241,10 +245,32 @@ export function useLandingEditor(templateId?: string) {
     }));
   };
 
+  const addScreenshot = (url: string) => {
+    setLanding(prev => ({
+      ...prev,
+      screenshots: [...prev.screenshots, url],
+    }));
+  };
+
+  const removeScreenshot = (index: number) => {
+    setLanding(prev => ({
+      ...prev,
+      screenshots: prev.screenshots.filter((_, i) => i !== index),
+    }));
+  };
+
+  const reorderScreenshots = (newOrder: string[]) => {
+    setLanding(prev => ({
+      ...prev,
+      screenshots: newOrder,
+    }));
+  };
+
   return {
     landing,
     isLoading,
     isSaving,
+    setLanding,
     saveLanding,
     updateField,
     addPainPoint,
@@ -259,5 +285,8 @@ export function useLandingEditor(templateId?: string) {
     addAudience,
     removeAudience,
     updateAudience,
+    addScreenshot,
+    removeScreenshot,
+    reorderScreenshots,
   };
 }
