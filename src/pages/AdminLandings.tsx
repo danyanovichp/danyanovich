@@ -6,8 +6,10 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
-import { Loader2, Plus, Edit, ExternalLink, LogOut, Search, FileText } from "lucide-react";
+import { Loader2, Plus, Edit, ExternalLink, LogOut, Search, FileText, Download } from "lucide-react";
 import { premiumTemplates } from "@/data/premiumTemplates";
+import { templateLandingContent } from "@/data/templateLandingContent";
+import { toast } from "sonner";
 
 interface LandingListItem {
   id: string;
@@ -21,6 +23,7 @@ const AdminLandings = () => {
   const navigate = useNavigate();
   const [landings, setLandings] = useState<LandingListItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isImporting, setIsImporting] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
@@ -54,6 +57,57 @@ const AdminLandings = () => {
   const handleSignOut = async () => {
     await signOut();
     navigate("/auth");
+  };
+
+  const handleImportAll = async () => {
+    setIsImporting(true);
+    const existingIds = new Set(landings.map(l => l.template_id));
+    const toImport = Object.values(templateLandingContent).filter(
+      content => !existingIds.has(content.id)
+    );
+
+    if (toImport.length === 0) {
+      toast.info("Все лендинги уже импортированы");
+      setIsImporting(false);
+      return;
+    }
+
+    let imported = 0;
+    let failed = 0;
+
+    for (const content of toImport) {
+      try {
+        const { error } = await supabase.from("template_landings").insert({
+          template_id: content.id,
+          headline: content.headline,
+          subheadline: content.subheadline,
+          pain_points: content.painPoints,
+          solution_intro: content.solution,
+          features: content.features,
+          target_audience: content.targetAudience,
+          views: content.views || [],
+        });
+
+        if (error) {
+          console.error(`Error importing ${content.id}:`, error);
+          failed++;
+        } else {
+          imported++;
+        }
+      } catch (err) {
+        console.error(`Error importing ${content.id}:`, err);
+        failed++;
+      }
+    }
+
+    await fetchLandings();
+    setIsImporting(false);
+
+    if (failed > 0) {
+      toast.warning(`Импортировано ${imported} лендингов, ошибок: ${failed}`);
+    } else {
+      toast.success(`Успешно импортировано ${imported} лендингов`);
+    }
   };
 
   // Get templates without landings
@@ -113,6 +167,19 @@ const AdminLandings = () => {
             </p>
           </div>
           <div className="flex items-center gap-3">
+            <Button 
+              variant="secondary" 
+              onClick={handleImportAll}
+              disabled={isImporting}
+              className="gap-2"
+            >
+              {isImporting ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Download className="h-4 w-4" />
+              )}
+              Импорт из файла
+            </Button>
             <Button onClick={() => navigate("/admin/landings/new")} className="gap-2">
               <Plus className="h-4 w-4" />
               Новый лендинг
