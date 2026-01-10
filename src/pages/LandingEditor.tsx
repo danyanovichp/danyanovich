@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,9 +10,11 @@ import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/hooks/useAuth";
 import { useLandingEditor, LandingFeature, LandingAudience } from "@/hooks/useLandingEditor";
 import { premiumTemplates } from "@/data/premiumTemplates";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 import { 
   Loader2, Save, ArrowLeft, Plus, Trash2, Eye, Edit3, 
-  AlertCircle, Zap, Users, Layout, ExternalLink 
+  AlertCircle, Zap, Users, Layout, ExternalLink, ImagePlus, X, GripVertical
 } from "lucide-react";
 
 const LandingEditor = () => {
@@ -20,6 +22,8 @@ const LandingEditor = () => {
   const navigate = useNavigate();
   const { user, isAdmin, isLoading: authLoading } = useAuth();
   const [viewMode, setViewMode] = useState<"form" | "preview">("form");
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   
   const {
     landing,
@@ -39,7 +43,66 @@ const LandingEditor = () => {
     addAudience,
     removeAudience,
     updateAudience,
+    addScreenshot,
+    removeScreenshot,
+    reorderScreenshots,
   } = useLandingEditor(templateId);
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    setIsUploading(true);
+    
+    for (const file of Array.from(files)) {
+      if (!file.type.startsWith('image/')) {
+        toast.error(`${file.name} не является изображением`);
+        continue;
+      }
+
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${landing.template_id || 'new'}-${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+
+      try {
+        const { error: uploadError } = await supabase.storage
+          .from('landing-screenshots')
+          .upload(fileName, file);
+
+        if (uploadError) throw uploadError;
+
+        const { data: urlData } = supabase.storage
+          .from('landing-screenshots')
+          .getPublicUrl(fileName);
+
+        addScreenshot(urlData.publicUrl);
+        toast.success(`${file.name} загружен`);
+      } catch (error: any) {
+        console.error('Upload error:', error);
+        toast.error(`Ошибка загрузки ${file.name}: ${error.message}`);
+      }
+    }
+
+    setIsUploading(false);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  const handleDeleteScreenshot = async (url: string, index: number) => {
+    // Extract filename from URL
+    const fileName = url.split('/').pop();
+    if (fileName) {
+      try {
+        await supabase.storage
+          .from('landing-screenshots')
+          .remove([fileName]);
+      } catch (error) {
+        console.error('Error deleting file:', error);
+      }
+    }
+    removeScreenshot(index);
+    toast.success('Скриншот удалён');
+  };
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -360,6 +423,69 @@ const LandingEditor = () => {
                 </Button>
               </CardContent>
             </Card>
+
+            {/* Screenshots */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <ImagePlus className="h-5 w-5" />
+                  Скриншоты шаблона
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileUpload}
+                  accept="image/*"
+                  multiple
+                  className="hidden"
+                />
+                
+                {landing.screenshots.length > 0 && (
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    {landing.screenshots.map((url, index) => (
+                      <div key={index} className="relative group aspect-video rounded-lg overflow-hidden border bg-muted">
+                        <img
+                          src={url}
+                          alt={`Screenshot ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                          <Button
+                            size="icon"
+                            variant="destructive"
+                            onClick={() => handleDeleteScreenshot(url, index)}
+                          >
+                            <X className="h-4 w-4" />
+                          </Button>
+                        </div>
+                        <Badge className="absolute top-2 left-2 bg-black/50">
+                          {index + 1}
+                        </Badge>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <Button
+                  variant="outline"
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={isUploading}
+                  className="gap-2"
+                >
+                  {isUploading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <ImagePlus className="h-4 w-4" />
+                  )}
+                  Загрузить скриншоты
+                </Button>
+                <p className="text-xs text-muted-foreground">
+                  Рекомендуемый размер: 1920×1080. Поддерживаются PNG, JPG, WebP.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         ) : (
           /* Preview Mode */
@@ -468,6 +594,26 @@ const LandingEditor = () => {
                         <h3 className="font-semibold">{audience.title}</h3>
                         <p className="text-sm text-muted-foreground mt-2">{audience.description}</p>
                       </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Screenshots Preview */}
+            {landing.screenshots.length > 0 && (
+              <div className="space-y-6">
+                <div className="text-center">
+                  <h2 className="text-2xl font-bold">Скриншоты шаблона</h2>
+                </div>
+                <div className="grid gap-4">
+                  {landing.screenshots.map((url, index) => (
+                    <Card key={index} className="overflow-hidden">
+                      <img
+                        src={url}
+                        alt={`Screenshot ${index + 1}`}
+                        className="w-full"
+                      />
                     </Card>
                   ))}
                 </div>
