@@ -1,20 +1,42 @@
 import { useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ArrowLeft, Check, ShoppingCart, Sparkles, ExternalLink, ImageIcon, Play, Star, Quote, Home, ChevronRight, HelpCircle, AlertCircle, Zap, Users } from "lucide-react";
+import { ArrowLeft, Check, ShoppingCart, Sparkles, ExternalLink, ImageIcon, Play, Star, Quote, Home, ChevronRight, HelpCircle, AlertCircle, Zap, Users, ChevronLeft, ChevronRightIcon } from "lucide-react";
 import { premiumTemplates } from "@/data/premiumTemplates";
 import { secondBrainFeatureSections, secondBrainReviews } from "@/data/secondBrainData";
 import { templateLandingContent } from "@/data/templateLandingContent";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import SEO from "@/components/SEO";
 import AnimatedSection from "@/components/AnimatedSection";
+import { supabase } from "@/integrations/supabase/client";
 
 const TemplateLanding = () => {
   const { templateId } = useParams();
   const { i18n } = useTranslation();
+  const [screenshots, setScreenshots] = useState<string[]>([]);
+  const [selectedScreenshot, setSelectedScreenshot] = useState<number | null>(null);
+  
+  useEffect(() => {
+    const fetchScreenshots = async () => {
+      if (!templateId) return;
+      
+      const { data } = await supabase
+        .from('template_landings')
+        .select('screenshots')
+        .eq('template_id', templateId)
+        .maybeSingle();
+      
+      if (data?.screenshots && Array.isArray(data.screenshots)) {
+        setScreenshots(data.screenshots as string[]);
+      }
+    };
+    
+    fetchScreenshots();
+  }, [templateId]);
   
   const template = premiumTemplates.find(t => t.id === templateId);
   const isSecondBrain = templateId === "second-brain-os";
@@ -672,34 +694,87 @@ const TemplateLanding = () => {
       )}
 
       {/* Screenshot Gallery */}
-      <section className="py-16 md:py-24">
-        <div className="container">
-          <div className="max-w-5xl mx-auto space-y-12">
-            <div className="text-center space-y-4">
-              <h2 className="text-3xl md:text-4xl font-bold">
-                {i18n.language === 'ru' ? 'Галерея скриншотов' : 'Screenshot Gallery'}
-              </h2>
+      {screenshots.length > 0 && (
+        <AnimatedSection animation="fade-up" delay={400}>
+          <section className="py-16 md:py-24">
+            <div className="container">
+              <div className="max-w-5xl mx-auto space-y-12">
+                <div className="text-center space-y-4">
+                  <h2 className="text-3xl md:text-4xl font-bold">
+                    {i18n.language === 'ru' ? 'Галерея скриншотов' : 'Screenshot Gallery'}
+                  </h2>
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-6">
+                  {screenshots.map((screenshot, index) => (
+                    <Card 
+                      key={index} 
+                      className="overflow-hidden border-2 border-border/40 cursor-pointer hover:border-primary/50 transition-colors"
+                      onClick={() => setSelectedScreenshot(index)}
+                    >
+                      <CardContent className="p-0">
+                        <img 
+                          src={screenshot} 
+                          alt={`${title} - ${i18n.language === 'ru' ? 'Скриншот' : 'Screenshot'} ${index + 1}`}
+                          className="w-full aspect-video object-cover"
+                        />
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
             </div>
-            
-            <div className="grid md:grid-cols-2 gap-6">
-              {[1, 2, 3, 4].map((num) => (
-                <Card key={num} className="overflow-hidden border-2 border-border/40">
-                  <CardContent className="p-0">
-                    <div className="aspect-video bg-gradient-to-br from-muted/80 to-muted/40 flex items-center justify-center">
-                      <div className="text-center space-y-2">
-                        <ImageIcon className="h-12 w-12 text-muted-foreground/30 mx-auto" />
-                        <p className="text-sm text-muted-foreground">
-                          {i18n.language === 'ru' ? `Скриншот ${num}` : `Screenshot ${num}`}
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+          </section>
+        </AnimatedSection>
+      )}
+
+      {/* Screenshot Modal */}
+      {selectedScreenshot !== null && (
+        <div 
+          className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setSelectedScreenshot(null)}
+        >
+          <button 
+            className="absolute top-4 right-4 p-2 rounded-full bg-muted hover:bg-muted-foreground/20 transition-colors"
+            onClick={() => setSelectedScreenshot(null)}
+          >
+            <span className="text-2xl">✕</span>
+          </button>
+          
+          <button
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-muted hover:bg-muted-foreground/20 transition-colors disabled:opacity-30"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedScreenshot(prev => prev !== null && prev > 0 ? prev - 1 : prev);
+            }}
+            disabled={selectedScreenshot === 0}
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+          
+          <img 
+            src={screenshots[selectedScreenshot]} 
+            alt={`${title} - ${i18n.language === 'ru' ? 'Скриншот' : 'Screenshot'} ${selectedScreenshot + 1}`}
+            className="max-w-full max-h-[90vh] object-contain rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
+          
+          <button
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-muted hover:bg-muted-foreground/20 transition-colors disabled:opacity-30"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedScreenshot(prev => prev !== null && prev < screenshots.length - 1 ? prev + 1 : prev);
+            }}
+            disabled={selectedScreenshot === screenshots.length - 1}
+          >
+            <ChevronRightIcon className="h-6 w-6" />
+          </button>
+          
+          <div className="absolute bottom-4 text-muted-foreground text-sm">
+            {selectedScreenshot + 1} / {screenshots.length}
           </div>
         </div>
-      </section>
+      )}
 
       {/* FAQ Section */}
       <section className="py-16 md:py-24 bg-muted/30">
