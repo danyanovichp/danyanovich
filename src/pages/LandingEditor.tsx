@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/hooks/useAuth";
-import { useLandingEditor, LandingFeature, LandingAudience } from "@/hooks/useLandingEditor";
+import { useLandingEditor, LandingFeature, LandingAudience, LandingScreenshot } from "@/hooks/useLandingEditor";
 import { premiumTemplates } from "@/data/premiumTemplates";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -47,6 +47,7 @@ const LandingEditor = () => {
     updateAudience,
     addScreenshot,
     removeScreenshot,
+    updateScreenshotCaption,
     reorderScreenshots,
   } = useLandingEditor(templateId);
 
@@ -474,11 +475,11 @@ const LandingEditor = () => {
                 />
                 
                 {landing.screenshots.length > 0 && (
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    {landing.screenshots.map((url, index) => (
+                  <div className="space-y-4">
+                    {landing.screenshots.map((screenshot, index) => (
                       <div 
-                        key={url} 
-                        className={`relative group aspect-video rounded-lg overflow-hidden border bg-muted cursor-grab active:cursor-grabbing transition-all ${
+                        key={screenshot.url} 
+                        className={`relative group p-4 border rounded-lg bg-muted/50 cursor-grab active:cursor-grabbing transition-all ${
                           draggedIndex === index ? 'opacity-50 scale-95' : ''
                         } ${
                           dragOverIndex === index ? 'ring-2 ring-primary ring-offset-2' : ''
@@ -490,29 +491,41 @@ const LandingEditor = () => {
                         onDrop={() => handleDrop(index)}
                         onDragEnd={handleDragEnd}
                       >
-                        <img
-                          src={url}
-                          alt={`Screenshot ${index + 1}`}
-                          className="w-full h-full object-cover pointer-events-none"
-                        />
-                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                          <div className="absolute top-2 right-2">
-                            <GripVertical className="h-5 w-5 text-white" />
+                        <div className="flex gap-4">
+                          <div className="relative w-40 h-24 rounded-lg overflow-hidden shrink-0 border bg-muted">
+                            <img
+                              src={screenshot.url}
+                              alt={`Screenshot ${index + 1}`}
+                              className="w-full h-full object-cover pointer-events-none"
+                            />
+                            <Badge className="absolute top-1 left-1 bg-black/50 text-xs">
+                              {index + 1}
+                            </Badge>
                           </div>
-                          <Button
-                            size="icon"
-                            variant="destructive"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleDeleteScreenshot(url, index);
-                            }}
-                          >
-                            <X className="h-4 w-4" />
-                          </Button>
+                          <div className="flex-1 space-y-2">
+                            <Label htmlFor={`caption-${index}`}>Подпись к скриншоту</Label>
+                            <Input
+                              id={`caption-${index}`}
+                              placeholder="Опишите что показано на скриншоте..."
+                              value={screenshot.caption || ''}
+                              onChange={(e) => updateScreenshotCaption(index, e.target.value)}
+                            />
+                          </div>
+                          <div className="flex flex-col gap-2 items-end">
+                            <GripVertical className="h-5 w-5 text-muted-foreground" />
+                            <Button
+                              size="icon"
+                              variant="ghost"
+                              className="text-destructive hover:bg-destructive/10"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleDeleteScreenshot(screenshot.url, index);
+                              }}
+                            >
+                              <X className="h-4 w-4" />
+                            </Button>
+                          </div>
                         </div>
-                        <Badge className="absolute top-2 left-2 bg-black/50">
-                          {index + 1}
-                        </Badge>
                       </div>
                     ))}
                   </div>
@@ -659,14 +672,19 @@ const LandingEditor = () => {
                 <div className="text-center">
                   <h2 className="text-2xl font-bold">Скриншоты шаблона</h2>
                 </div>
-                <div className="grid gap-4">
-                  {landing.screenshots.map((url, index) => (
-                    <Card key={index} className="overflow-hidden">
+                <div className="grid gap-6">
+                  {landing.screenshots.map((screenshot, index) => (
+                    <Card key={screenshot.url} className="overflow-hidden">
                       <img
-                        src={url}
-                        alt={`Screenshot ${index + 1}`}
+                        src={screenshot.url}
+                        alt={screenshot.caption || `Screenshot ${index + 1}`}
                         className="w-full"
                       />
+                      {screenshot.caption && (
+                        <CardContent className="p-4 bg-muted/50">
+                          <p className="text-sm text-muted-foreground text-center">{screenshot.caption}</p>
+                        </CardContent>
+                      )}
                     </Card>
                   ))}
                 </div>
