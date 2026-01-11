@@ -259,11 +259,16 @@ export function useLandingEditor(templateId?: string) {
     }));
   };
 
-  const reorderScreenshots = (newOrder: string[]) => {
-    setLanding(prev => ({
-      ...prev,
-      screenshots: newOrder,
-    }));
+  const reorderScreenshots = (fromIndex: number, toIndex: number) => {
+    setLanding(prev => {
+      const newScreenshots = [...prev.screenshots];
+      const [movedItem] = newScreenshots.splice(fromIndex, 1);
+      newScreenshots.splice(toIndex, 0, movedItem);
+      return {
+        ...prev,
+        screenshots: newScreenshots,
+      };
+    });
   };
 
   return {

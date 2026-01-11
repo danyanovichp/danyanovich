@@ -23,6 +23,8 @@ const LandingEditor = () => {
   const { user, isAdmin, isLoading: authLoading } = useAuth();
   const [viewMode, setViewMode] = useState<"form" | "preview">("form");
   const [isUploading, setIsUploading] = useState(false);
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   
   const {
@@ -102,6 +104,35 @@ const LandingEditor = () => {
     }
     removeScreenshot(index);
     toast.success('Скриншот удалён');
+  };
+
+  const handleDragStart = (index: number) => {
+    setDraggedIndex(index);
+  };
+
+  const handleDragOver = (e: React.DragEvent, index: number) => {
+    e.preventDefault();
+    if (draggedIndex !== null && draggedIndex !== index) {
+      setDragOverIndex(index);
+    }
+  };
+
+  const handleDragLeave = () => {
+    setDragOverIndex(null);
+  };
+
+  const handleDrop = (index: number) => {
+    if (draggedIndex !== null && draggedIndex !== index) {
+      reorderScreenshots(draggedIndex, index);
+      toast.success('Порядок скриншотов изменён');
+    }
+    setDraggedIndex(null);
+    setDragOverIndex(null);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
+    setDragOverIndex(null);
   };
 
   useEffect(() => {
@@ -445,17 +476,36 @@ const LandingEditor = () => {
                 {landing.screenshots.length > 0 && (
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     {landing.screenshots.map((url, index) => (
-                      <div key={index} className="relative group aspect-video rounded-lg overflow-hidden border bg-muted">
+                      <div 
+                        key={url} 
+                        className={`relative group aspect-video rounded-lg overflow-hidden border bg-muted cursor-grab active:cursor-grabbing transition-all ${
+                          draggedIndex === index ? 'opacity-50 scale-95' : ''
+                        } ${
+                          dragOverIndex === index ? 'ring-2 ring-primary ring-offset-2' : ''
+                        }`}
+                        draggable
+                        onDragStart={() => handleDragStart(index)}
+                        onDragOver={(e) => handleDragOver(e, index)}
+                        onDragLeave={handleDragLeave}
+                        onDrop={() => handleDrop(index)}
+                        onDragEnd={handleDragEnd}
+                      >
                         <img
                           src={url}
                           alt={`Screenshot ${index + 1}`}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover pointer-events-none"
                         />
                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                          <div className="absolute top-2 right-2">
+                            <GripVertical className="h-5 w-5 text-white" />
+                          </div>
                           <Button
                             size="icon"
                             variant="destructive"
-                            onClick={() => handleDeleteScreenshot(url, index)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleDeleteScreenshot(url, index);
+                            }}
                           >
                             <X className="h-4 w-4" />
                           </Button>
@@ -467,6 +517,9 @@ const LandingEditor = () => {
                     ))}
                   </div>
                 )}
+                <p className="text-xs text-muted-foreground">
+                  Перетащите скриншоты для изменения порядка.
+                </p>
 
                 <Button
                   variant="outline"
