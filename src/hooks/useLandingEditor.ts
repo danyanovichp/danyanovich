@@ -15,6 +15,11 @@ export interface LandingAudience {
   description: string;
 }
 
+export interface LandingScreenshot {
+  url: string;
+  caption?: string;
+}
+
 export interface LandingData {
   id?: string;
   template_id: string;
@@ -26,7 +31,7 @@ export interface LandingData {
   features: LandingFeature[];
   views: string[];
   target_audience: LandingAudience[];
-  screenshots: string[];
+  screenshots: LandingScreenshot[];
 }
 
 const emptyLanding: LandingData = {
@@ -68,6 +73,18 @@ export function useLandingEditor(templateId?: string) {
       if (error) throw error;
 
       if (data) {
+        // Handle migration from old string[] format to new object format
+        const rawScreenshots = data.screenshots as unknown;
+        let parsedScreenshots: LandingScreenshot[] = [];
+        if (Array.isArray(rawScreenshots)) {
+          parsedScreenshots = rawScreenshots.map((item: unknown) => {
+            if (typeof item === 'string') {
+              return { url: item, caption: '' };
+            }
+            return item as LandingScreenshot;
+          });
+        }
+        
         setLanding({
           id: data.id,
           template_id: data.template_id,
@@ -79,7 +96,7 @@ export function useLandingEditor(templateId?: string) {
           features: (data.features as unknown as LandingFeature[]) || [{ icon: "✅", title: "", description: "" }],
           views: (data.views as unknown as string[]) || [""],
           target_audience: (data.target_audience as unknown as LandingAudience[]) || [{ title: "", description: "" }],
-          screenshots: (data.screenshots as unknown as string[]) || [],
+          screenshots: parsedScreenshots,
         });
       } else {
         setLanding({ ...emptyLanding, template_id: id });
@@ -245,10 +262,10 @@ export function useLandingEditor(templateId?: string) {
     }));
   };
 
-  const addScreenshot = (url: string) => {
+  const addScreenshot = (url: string, caption?: string) => {
     setLanding(prev => ({
       ...prev,
-      screenshots: [...prev.screenshots, url],
+      screenshots: [...prev.screenshots, { url, caption: caption || '' }],
     }));
   };
 
@@ -256,6 +273,15 @@ export function useLandingEditor(templateId?: string) {
     setLanding(prev => ({
       ...prev,
       screenshots: prev.screenshots.filter((_, i) => i !== index),
+    }));
+  };
+
+  const updateScreenshotCaption = (index: number, caption: string) => {
+    setLanding(prev => ({
+      ...prev,
+      screenshots: prev.screenshots.map((s, i) => 
+        i === index ? { ...s, caption } : s
+      ),
     }));
   };
 
@@ -292,6 +318,7 @@ export function useLandingEditor(templateId?: string) {
     updateAudience,
     addScreenshot,
     removeScreenshot,
+    updateScreenshotCaption,
     reorderScreenshots,
   };
 }

@@ -17,7 +17,7 @@ import { supabase } from "@/integrations/supabase/client";
 const TemplateLanding = () => {
   const { templateId } = useParams();
   const { i18n } = useTranslation();
-  const [screenshots, setScreenshots] = useState<string[]>([]);
+  const [screenshots, setScreenshots] = useState<{url: string, caption?: string}[]>([]);
   const [selectedScreenshot, setSelectedScreenshot] = useState<number | null>(null);
   
   useEffect(() => {
@@ -31,7 +31,14 @@ const TemplateLanding = () => {
         .maybeSingle();
       
       if (data?.screenshots && Array.isArray(data.screenshots)) {
-        setScreenshots(data.screenshots as string[]);
+        // Handle both old string[] format and new object format
+        const parsedScreenshots = data.screenshots.map((item: unknown) => {
+          if (typeof item === 'string') {
+            return { url: item, caption: '' };
+          }
+          return item as {url: string, caption?: string};
+        });
+        setScreenshots(parsedScreenshots);
       }
     };
     
@@ -714,10 +721,15 @@ const TemplateLanding = () => {
                     >
                       <CardContent className="p-0">
                         <img 
-                          src={screenshot} 
-                          alt={`${title} - ${i18n.language === 'ru' ? 'Скриншот' : 'Screenshot'} ${index + 1}`}
+                          src={screenshot.url} 
+                          alt={screenshot.caption || `${title} - ${i18n.language === 'ru' ? 'Скриншот' : 'Screenshot'} ${index + 1}`}
                           className="w-full aspect-video object-cover"
                         />
+                        {screenshot.caption && (
+                          <div className="p-4 bg-muted/30 border-t">
+                            <p className="text-sm text-muted-foreground text-center">{screenshot.caption}</p>
+                          </div>
+                        )}
                       </CardContent>
                     </Card>
                   ))}
@@ -753,9 +765,9 @@ const TemplateLanding = () => {
           </button>
           
           <img 
-            src={screenshots[selectedScreenshot]} 
-            alt={`${title} - ${i18n.language === 'ru' ? 'Скриншот' : 'Screenshot'} ${selectedScreenshot + 1}`}
-            className="max-w-full max-h-[90vh] object-contain rounded-lg"
+            src={screenshots[selectedScreenshot].url} 
+            alt={screenshots[selectedScreenshot].caption || `${title} - ${i18n.language === 'ru' ? 'Скриншот' : 'Screenshot'} ${selectedScreenshot + 1}`}
+            className="max-w-full max-h-[85vh] object-contain rounded-lg"
             onClick={(e) => e.stopPropagation()}
           />
           
@@ -770,8 +782,15 @@ const TemplateLanding = () => {
             <ChevronRightIcon className="h-6 w-6" />
           </button>
           
-          <div className="absolute bottom-4 text-muted-foreground text-sm">
-            {selectedScreenshot + 1} / {screenshots.length}
+          <div className="absolute bottom-4 text-center space-y-1">
+            <span className="text-muted-foreground text-sm">
+              {selectedScreenshot + 1} / {screenshots.length}
+            </span>
+            {screenshots[selectedScreenshot].caption && (
+              <p className="text-sm max-w-2xl text-foreground bg-muted/80 px-4 py-2 rounded-lg">
+                {screenshots[selectedScreenshot].caption}
+              </p>
+            )}
           </div>
         </div>
       )}
