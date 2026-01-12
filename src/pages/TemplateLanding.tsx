@@ -1,11 +1,13 @@
 import { useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ArrowLeft, Check, ShoppingCart, Sparkles, ExternalLink, ImageIcon, Play, Star, Quote, Home, ChevronRight, HelpCircle, AlertCircle, Zap, Users, ChevronLeft, ChevronRightIcon } from "lucide-react";
+import { ArrowLeft, Check, ShoppingCart, Sparkles, ExternalLink, ImageIcon, Play, Star, Quote, Home, ChevronRight, HelpCircle, AlertCircle, Zap, Users, ChevronLeft, ChevronRightIcon, Plus, Trash2, Upload, GripVertical } from "lucide-react";
 import { premiumTemplates } from "@/data/premiumTemplates";
 import { secondBrainFeatureSections, secondBrainReviews } from "@/data/secondBrainData";
 import { templateLandingContent } from "@/data/templateLandingContent";
@@ -13,41 +15,70 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 import SEO from "@/components/SEO";
 import AnimatedSection from "@/components/AnimatedSection";
 import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
+import { useLandingEditor, LandingFeature, LandingAudience, LandingScreenshot } from "@/hooks/useLandingEditor";
+import { InlineEditPanel } from "@/components/InlineEditPanel";
+import { useToast } from "@/hooks/use-toast";
 
 const TemplateLanding = () => {
   const { templateId } = useParams();
   const { i18n } = useTranslation();
-  const [screenshots, setScreenshots] = useState<{url: string, caption?: string}[]>([]);
+  const { isAdmin } = useAuth();
+  const { toast } = useToast();
   const [selectedScreenshot, setSelectedScreenshot] = useState<number | null>(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   
-  useEffect(() => {
-    const fetchScreenshots = async () => {
-      if (!templateId) return;
-      
-      const { data } = await supabase
-        .from('template_landings')
-        .select('screenshots')
-        .eq('template_id', templateId)
-        .maybeSingle();
-      
-      if (data?.screenshots && Array.isArray(data.screenshots)) {
-        // Handle both old string[] format and new object format
-        const parsedScreenshots = data.screenshots.map((item: unknown) => {
-          if (typeof item === 'string') {
-            return { url: item, caption: '' };
-          }
-          return item as {url: string, caption?: string};
-        });
-        setScreenshots(parsedScreenshots);
-      }
-    };
-    
-    fetchScreenshots();
-  }, [templateId]);
-  
+  const {
+    landing,
+    isLoading,
+    isSaving,
+    saveLanding,
+    updateField,
+    addPainPoint,
+    removePainPoint,
+    updatePainPoint,
+    addFeature,
+    removeFeature,
+    updateFeature,
+    addView,
+    removeView,
+    updateView,
+    addAudience,
+    removeAudience,
+    updateAudience,
+    addScreenshot,
+    removeScreenshot,
+    updateScreenshotCaption,
+    reorderScreenshots,
+  } = useLandingEditor(templateId);
+
   const template = premiumTemplates.find(t => t.id === templateId);
   const isSecondBrain = templateId === "second-brain-os";
-  const landingContent = templateId ? templateLandingContent[templateId] : null;
+  const staticLandingContent = templateId ? templateLandingContent[templateId] : null;
+  
+  // Determine which content to display - DB data takes priority
+  const hasDbContent = landing.headline && landing.headline.trim() !== "";
+  const displayHeadline = hasDbContent ? landing.headline : (staticLandingContent?.headline || "");
+  const displaySubheadline = hasDbContent ? landing.subheadline : (staticLandingContent?.subheadline || "");
+  const displayPainPoints = landing.pain_points.filter(p => p.trim()).length > 0 
+    ? landing.pain_points 
+    : (staticLandingContent?.painPoints || []);
+  const displaySolution = hasDbContent 
+    ? { intro: landing.solution_intro, description: landing.solution_description }
+    : (staticLandingContent?.solution ? { intro: "", description: staticLandingContent.solution } : null);
+  const displayFeatures = landing.features.filter(f => f.title.trim()).length > 0
+    ? landing.features
+    : (staticLandingContent?.features || []);
+  const displayViews = landing.views.filter(v => v.trim()).length > 0
+    ? landing.views
+    : (staticLandingContent?.views || []);
+  const displayAudience = landing.target_audience.filter(a => a.title.trim()).length > 0
+    ? landing.target_audience
+    : (staticLandingContent?.targetAudience || []);
+  const displayScreenshots = landing.screenshots;
   
   if (!template) {
     return (
@@ -67,17 +98,81 @@ const TemplateLanding = () => {
     );
   }
 
+  const handleSave = async () => {
+    const success = await saveLanding();
+    if (success) {
+      setHasUnsavedChanges(false);
+    }
+  };
+
+  const handleFieldChange = <K extends keyof typeof landing>(field: K, value: (typeof landing)[K]) => {
+    updateField(field, value);
+    setHasUnsavedChanges(true);
+  };
+
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file || !templateId) return;
+
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${templateId}/${Date.now()}.${fileExt}`;
+      
+      const { data, error } = await supabase.storage
+        .from('landing-screenshots')
+        .upload(fileName, file);
+
+      if (error) throw error;
+
+      const { data: urlData } = supabase.storage
+        .from('landing-screenshots')
+        .getPublicUrl(data.path);
+
+      addScreenshot(urlData.publicUrl);
+      setHasUnsavedChanges(true);
+      toast({
+        title: "Скриншот загружен",
+        description: "Не забудьте сохранить изменения",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Ошибка загрузки",
+        description: error.message,
+        variant: "destructive",
+      });
+    }
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  const handleDragStart = (index: number) => {
+    setDraggedIndex(index);
+  };
+
+  const handleDragOver = (e: React.DragEvent, index: number) => {
+    e.preventDefault();
+    if (draggedIndex !== null && draggedIndex !== index) {
+      reorderScreenshots(draggedIndex, index);
+      setDraggedIndex(index);
+      setHasUnsavedChanges(true);
+    }
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
+  };
+
   const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
   const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
   const fullDescription = i18n.language === 'ru' ? template.fullDescriptionRu : template.fullDescriptionEn;
   const features = i18n.language === 'ru' ? template.featuresRu : template.featuresEn;
   const isAvailable = template.status === 'available';
 
-  // Use enhanced data for Second Brain, fallback to basic for others
   const featureSections = isSecondBrain ? secondBrainFeatureSections : null;
   const reviews = isSecondBrain ? secondBrainReviews : null;
 
-  // Generate FAQ items for templates
   const faqItems = i18n.language === 'ru' ? [
     {
       question: `Как получить доступ к шаблону ${title}?`,
@@ -126,7 +221,6 @@ const TemplateLanding = () => {
     },
   ];
 
-  // SEO content based on language
   const isRu = i18n.language === 'ru';
   
   const seoTitleRu = `${template.titleRu || title} | Notion шаблон | Дэн Янович`;
@@ -139,7 +233,6 @@ const TemplateLanding = () => {
     ? `${template.titleRu || title}, Notion шаблон, ${template.category === 'business' ? 'бизнес' : template.category === 'personal' ? 'личное' : template.category === 'productivity' ? 'продуктивность' : 'финансы'}, шаблон Notion, ${features.join(', ')}, купить шаблон`
     : `${template.titleEn || title}, Notion template, ${template.category}, productivity, ${features.join(', ')}, buy template`;
 
-  // Generate structured data for SEO
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -165,7 +258,6 @@ const TemplateLanding = () => {
     inLanguage: isRu ? 'ru' : 'en',
   };
 
-  // FAQ structured data for SEO
   const faqStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -191,6 +283,18 @@ const TemplateLanding = () => {
         type="product"
         structuredData={[structuredData, faqStructuredData]}
       />
+
+      {/* Admin Edit Panel */}
+      {isAdmin && templateId && (
+        <InlineEditPanel
+          isEditing={isEditing}
+          isSaving={isSaving}
+          templateId={templateId}
+          onToggleEdit={() => setIsEditing(!isEditing)}
+          onSave={handleSave}
+          hasUnsavedChanges={hasUnsavedChanges}
+        />
+      )}
       
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-muted/50 to-background py-16 md:py-24 border-b border-border/20">
@@ -244,12 +348,32 @@ const TemplateLanding = () => {
                 </div>
                 
                 <div className="space-y-4">
-                  <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
-                    {landingContent ? landingContent.headline : title}
-                  </h1>
-                  <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                    {landingContent ? landingContent.subheadline : description}
-                  </p>
+                  {isEditing ? (
+                    <>
+                      <Input
+                        value={landing.headline}
+                        onChange={(e) => handleFieldChange('headline', e.target.value)}
+                        placeholder="Заголовок лендинга"
+                        className="text-3xl font-bold h-auto py-3"
+                      />
+                      <Textarea
+                        value={landing.subheadline}
+                        onChange={(e) => handleFieldChange('subheadline', e.target.value)}
+                        placeholder="Подзаголовок"
+                        className="text-lg resize-none"
+                        rows={2}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+                        {displayHeadline || title}
+                      </h1>
+                      <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
+                        {displaySubheadline || description}
+                      </p>
+                    </>
+                  )}
                 </div>
 
                 {/* Quick Features List */}
@@ -332,8 +456,8 @@ const TemplateLanding = () => {
         </div>
       </section>
 
-      {/* Pain Points Section - "Знакомо?" */}
-      {landingContent && landingContent.painPoints.length > 0 && (
+      {/* Pain Points Section */}
+      {(displayPainPoints.length > 0 || isEditing) && (
         <AnimatedSection animation="fade-up">
           <section className="py-16 md:py-24 bg-muted/30">
             <div className="container">
@@ -350,26 +474,68 @@ const TemplateLanding = () => {
                   </h2>
                 </div>
                 
-                <div className="grid md:grid-cols-2 gap-6">
-                  {landingContent.painPoints.map((point, index) => (
-                    <Card key={index} className="border-destructive/20 bg-destructive/5">
-                      <CardContent className="p-6 flex items-start gap-4">
-                        <div className="shrink-0 w-8 h-8 rounded-full bg-destructive/10 flex items-center justify-center mt-0.5">
-                          <span className="text-destructive font-bold">×</span>
-                        </div>
-                        <p className="text-muted-foreground leading-relaxed">{point}</p>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
+                {isEditing ? (
+                  <div className="space-y-3">
+                    {landing.pain_points.map((point, index) => (
+                      <div key={index} className="flex items-start gap-2">
+                        <Textarea
+                          value={point}
+                          onChange={(e) => {
+                            updatePainPoint(index, e.target.value);
+                            setHasUnsavedChanges(true);
+                          }}
+                          placeholder="Опишите боль клиента..."
+                          className="flex-1"
+                          rows={2}
+                        />
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => {
+                            removePainPoint(index);
+                            setHasUnsavedChanges(true);
+                          }}
+                          className="shrink-0 text-destructive hover:text-destructive hover:bg-destructive/10"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    ))}
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        addPainPoint();
+                        setHasUnsavedChanges(true);
+                      }}
+                      className="gap-2 w-full"
+                    >
+                      <Plus className="h-4 w-4" />
+                      Добавить боль
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {displayPainPoints.filter(Boolean).map((point, index) => (
+                      <Card key={index} className="border-destructive/20 bg-destructive/5">
+                        <CardContent className="p-6 flex items-start gap-4">
+                          <div className="shrink-0 w-8 h-8 rounded-full bg-destructive/10 flex items-center justify-center mt-0.5">
+                            <span className="text-destructive font-bold">×</span>
+                          </div>
+                          <p className="text-muted-foreground leading-relaxed">{point}</p>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </section>
         </AnimatedSection>
       )}
 
-      {/* Solution Section - "Как это меняет" */}
-      {landingContent && landingContent.solution && (
+      {/* Solution Section */}
+      {(displaySolution || isEditing) && (
         <AnimatedSection animation="fade-up" delay={100}>
           <section className="py-16 md:py-24">
             <div className="container">
@@ -386,21 +552,41 @@ const TemplateLanding = () => {
                   </h2>
                 </div>
                 
-                <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
-                  <CardContent className="p-8 md:p-12">
-                    <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                      {landingContent.solution}
-                    </p>
-                  </CardContent>
-                </Card>
+                {isEditing ? (
+                  <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
+                    <CardContent className="p-8 md:p-12 space-y-4">
+                      <Input
+                        value={landing.solution_intro}
+                        onChange={(e) => handleFieldChange('solution_intro', e.target.value)}
+                        placeholder="Краткое вступление (опционально)"
+                        className="font-medium"
+                      />
+                      <Textarea
+                        value={landing.solution_description}
+                        onChange={(e) => handleFieldChange('solution_description', e.target.value)}
+                        placeholder="Описание решения..."
+                        className="min-h-[120px]"
+                        rows={4}
+                      />
+                    </CardContent>
+                  </Card>
+                ) : (
+                  <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
+                    <CardContent className="p-8 md:p-12">
+                      <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                        {displaySolution?.description || displaySolution?.intro || ""}
+                      </p>
+                    </CardContent>
+                  </Card>
+                )}
               </div>
             </div>
           </section>
         </AnimatedSection>
       )}
 
-      {/* Features Section - "Что ты получаешь" */}
-      {landingContent && landingContent.features.length > 0 && (
+      {/* Features Section */}
+      {(displayFeatures.length > 0 || isEditing) && (
         <AnimatedSection animation="fade-up" delay={200}>
           <section className="py-16 md:py-24 bg-muted/30">
             <div className="container">
@@ -417,29 +603,90 @@ const TemplateLanding = () => {
                   </h2>
                 </div>
                 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {landingContent.features.map((feature, index) => (
-                    <Card key={index} className="h-full border-border/50 hover:border-primary/30 transition-colors">
-                      <CardContent className="p-6 space-y-4">
-                        <div className="flex items-center gap-3">
-                          <span className="text-3xl">{feature.icon}</span>
-                          <h3 className="font-semibold text-lg">{feature.title}</h3>
+                {isEditing ? (
+                  <div className="space-y-4">
+                    {landing.features.map((feature, index) => (
+                      <div key={index} className="p-4 border border-border rounded-xl space-y-3 bg-background">
+                        <div className="flex items-center gap-2">
+                          <Input
+                            value={feature.icon}
+                            onChange={(e) => {
+                              updateFeature(index, "icon", e.target.value);
+                              setHasUnsavedChanges(true);
+                            }}
+                            placeholder="Emoji"
+                            className="w-20"
+                          />
+                          <Input
+                            value={feature.title}
+                            onChange={(e) => {
+                              updateFeature(index, "title", e.target.value);
+                              setHasUnsavedChanges(true);
+                            }}
+                            placeholder="Заголовок"
+                            className="flex-1"
+                          />
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => {
+                              removeFeature(index);
+                              setHasUnsavedChanges(true);
+                            }}
+                            className="shrink-0 text-destructive hover:text-destructive hover:bg-destructive/10"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
                         </div>
-                        <p className="text-muted-foreground leading-relaxed">
-                          {feature.description}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
+                        <Textarea
+                          value={feature.description}
+                          onChange={(e) => {
+                            updateFeature(index, "description", e.target.value);
+                            setHasUnsavedChanges(true);
+                          }}
+                          placeholder="Описание"
+                          rows={2}
+                        />
+                      </div>
+                    ))}
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        addFeature();
+                        setHasUnsavedChanges(true);
+                      }}
+                      className="gap-2 w-full"
+                    >
+                      <Plus className="h-4 w-4" />
+                      Добавить возможность
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {displayFeatures.filter(f => f.title).map((feature, index) => (
+                      <Card key={index} className="h-full border-border/50 hover:border-primary/30 transition-colors">
+                        <CardContent className="p-6 space-y-4">
+                          <div className="flex items-center gap-3">
+                            <span className="text-3xl">{feature.icon}</span>
+                            <h3 className="font-semibold text-lg">{feature.title}</h3>
+                          </div>
+                          <p className="text-muted-foreground leading-relaxed">
+                            {feature.description}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </section>
         </AnimatedSection>
       )}
 
-      {/* Views Section - "Готовые представления" */}
-      {landingContent && landingContent.views && landingContent.views.length > 0 && (
+      {/* Views Section */}
+      {(displayViews.length > 0 || isEditing) && (
         <AnimatedSection animation="fade-up" delay={250}>
           <section className="py-16 md:py-20">
             <div className="container">
@@ -455,24 +702,65 @@ const TemplateLanding = () => {
                   </p>
                 </div>
                 
-                <div className="space-y-3">
-                  {landingContent.views.map((view, index) => (
-                    <div key={index} className="flex items-start gap-3 p-4 rounded-xl bg-muted/50">
-                      <div className="shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-                        <Check className="h-3.5 w-3.5 text-primary" />
+                {isEditing ? (
+                  <div className="space-y-3">
+                    {landing.views.map((view, index) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <Input
+                          value={view}
+                          onChange={(e) => {
+                            updateView(index, e.target.value);
+                            setHasUnsavedChanges(true);
+                          }}
+                          placeholder="Название представления"
+                          className="flex-1"
+                        />
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => {
+                            removeView(index);
+                            setHasUnsavedChanges(true);
+                          }}
+                          className="shrink-0 text-destructive hover:text-destructive hover:bg-destructive/10"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
                       </div>
-                      <span className="text-muted-foreground">{view}</span>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        addView();
+                        setHasUnsavedChanges(true);
+                      }}
+                      className="gap-2 w-full"
+                    >
+                      <Plus className="h-4 w-4" />
+                      Добавить представление
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {displayViews.filter(Boolean).map((view, index) => (
+                      <div key={index} className="flex items-start gap-3 p-4 rounded-xl bg-muted/50">
+                        <div className="shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                          <Check className="h-3.5 w-3.5 text-primary" />
+                        </div>
+                        <span className="text-muted-foreground">{view}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </section>
         </AnimatedSection>
       )}
 
-      {/* Target Audience Section - "Для кого" */}
-      {landingContent && landingContent.targetAudience.length > 0 && (
+      {/* Target Audience Section */}
+      {(displayAudience.length > 0 || isEditing) && (
         <AnimatedSection animation="fade-up" delay={300}>
           <section className="py-16 md:py-24 bg-muted/30">
             <div className="container">
@@ -489,40 +777,82 @@ const TemplateLanding = () => {
                   </h2>
                 </div>
                 
-                <div className="grid md:grid-cols-3 gap-6">
-                  {landingContent.targetAudience.map((audience, index) => (
-                    <Card key={index} className="h-full border-border/50">
-                      <CardContent className="p-6 space-y-3">
-                        {audience.icon && (
-                          <span className="text-3xl">{audience.icon}</span>
-                        )}
-                        <h3 className="font-semibold text-lg">{audience.title}</h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                          {audience.description}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-        </AnimatedSection>
-      )}
-
-      {/* Highlight Section */}
-      {landingContent && landingContent.highlight && (
-        <AnimatedSection animation="scale" delay={350}>
-          <section className="py-12">
-            <div className="container">
-              <div className="max-w-3xl mx-auto">
-                <Card className="border-primary/30 bg-gradient-to-r from-primary/10 to-primary/5">
-                  <CardContent className="p-6 md:p-8 text-center">
-                    <p className="text-lg md:text-xl font-medium">
-                      💡 {landingContent.highlight}
-                    </p>
-                  </CardContent>
-                </Card>
+                {isEditing ? (
+                  <div className="space-y-4">
+                    {landing.target_audience.map((item, index) => (
+                      <div key={index} className="p-4 border border-border rounded-xl space-y-3 bg-background">
+                        <div className="flex items-center gap-2">
+                          <Input
+                            value={item.icon || ""}
+                            onChange={(e) => {
+                              updateAudience(index, "icon", e.target.value);
+                              setHasUnsavedChanges(true);
+                            }}
+                            placeholder="Emoji"
+                            className="w-20"
+                          />
+                          <Input
+                            value={item.title}
+                            onChange={(e) => {
+                              updateAudience(index, "title", e.target.value);
+                              setHasUnsavedChanges(true);
+                            }}
+                            placeholder="Название"
+                            className="flex-1"
+                          />
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => {
+                              removeAudience(index);
+                              setHasUnsavedChanges(true);
+                            }}
+                            className="shrink-0 text-destructive hover:text-destructive hover:bg-destructive/10"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                        <Textarea
+                          value={item.description}
+                          onChange={(e) => {
+                            updateAudience(index, "description", e.target.value);
+                            setHasUnsavedChanges(true);
+                          }}
+                          placeholder="Описание"
+                          rows={2}
+                        />
+                      </div>
+                    ))}
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        addAudience();
+                        setHasUnsavedChanges(true);
+                      }}
+                      className="gap-2 w-full"
+                    >
+                      <Plus className="h-4 w-4" />
+                      Добавить аудиторию
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="grid md:grid-cols-3 gap-6">
+                    {displayAudience.filter(a => a.title).map((audience, index) => (
+                      <Card key={index} className="h-full border-border/50">
+                        <CardContent className="p-6 space-y-3">
+                          {audience.icon && (
+                            <span className="text-3xl">{audience.icon}</span>
+                          )}
+                          <h3 className="font-semibold text-lg">{audience.title}</h3>
+                          <p className="text-muted-foreground leading-relaxed">
+                            {audience.description}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </section>
@@ -530,7 +860,7 @@ const TemplateLanding = () => {
       )}
 
       {/* Fallback: Detailed Feature Sections for Second Brain */}
-      {!landingContent && featureSections && (
+      {!hasDbContent && !staticLandingContent && featureSections && (
         <section className="py-16 md:py-24 bg-muted/30">
           <div className="container">
             <div className="max-w-5xl mx-auto space-y-20">
@@ -547,7 +877,6 @@ const TemplateLanding = () => {
 
               {featureSections.map((section, sectionIdx) => (
                 <div key={section.id} className={`flex flex-col ${sectionIdx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 items-center`}>
-                  {/* Content */}
                   <div className="flex-1 space-y-6">
                     <div className="flex items-center gap-3">
                       <span className="text-4xl">{section.emoji}</span>
@@ -579,7 +908,6 @@ const TemplateLanding = () => {
                     </div>
                   </div>
                   
-                  {/* Screenshot placeholder */}
                   <div className="w-full lg:w-[480px] shrink-0">
                     <Card className="overflow-hidden border-2 border-border/40">
                       <CardContent className="p-0">
@@ -601,8 +929,8 @@ const TemplateLanding = () => {
         </section>
       )}
 
-      {/* Fallback: Basic Features Section for templates without landing content */}
-      {!landingContent && !featureSections && (
+      {/* Fallback: Basic Features Section */}
+      {!hasDbContent && !staticLandingContent && !featureSections && (
         <section className="py-16 md:py-24 bg-muted/30">
           <div className="container">
             <div className="max-w-4xl mx-auto space-y-12">
@@ -701,7 +1029,7 @@ const TemplateLanding = () => {
       )}
 
       {/* Screenshot Gallery */}
-      {screenshots.length > 0 && (
+      {(displayScreenshots.length > 0 || isEditing) && (
         <AnimatedSection animation="fade-up" delay={400}>
           <section className="py-16 md:py-24">
             <div className="container">
@@ -712,28 +1040,94 @@ const TemplateLanding = () => {
                   </h2>
                 </div>
                 
-                <div className="grid md:grid-cols-2 gap-6">
-                  {screenshots.map((screenshot, index) => (
-                    <Card 
-                      key={index} 
-                      className="overflow-hidden border-2 border-border/40 cursor-pointer hover:border-primary/50 transition-colors"
-                      onClick={() => setSelectedScreenshot(index)}
-                    >
-                      <CardContent className="p-0">
-                        <img 
-                          src={screenshot.url} 
-                          alt={screenshot.caption || `${title} - ${i18n.language === 'ru' ? 'Скриншот' : 'Screenshot'} ${index + 1}`}
-                          className="w-full aspect-video object-cover"
-                        />
-                        {screenshot.caption && (
-                          <div className="p-4 bg-muted/30 border-t">
-                            <p className="text-sm text-muted-foreground text-center">{screenshot.caption}</p>
+                {isEditing ? (
+                  <div className="space-y-4">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {displayScreenshots.map((screenshot, index) => (
+                        <div
+                          key={index}
+                          draggable
+                          onDragStart={() => handleDragStart(index)}
+                          onDragOver={(e) => handleDragOver(e, index)}
+                          onDragEnd={handleDragEnd}
+                          className={`relative border-2 rounded-xl overflow-hidden transition-all ${
+                            draggedIndex === index ? 'opacity-50 border-primary' : 'border-border'
+                          }`}
+                        >
+                          <div className="absolute top-2 left-2 cursor-move p-1 bg-background/80 rounded">
+                            <GripVertical className="h-4 w-4 text-muted-foreground" />
                           </div>
-                        )}
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
+                          <Button
+                            variant="destructive"
+                            size="icon"
+                            className="absolute top-2 right-2 h-8 w-8"
+                            onClick={() => {
+                              removeScreenshot(index);
+                              setHasUnsavedChanges(true);
+                            }}
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                          <img 
+                            src={screenshot.url} 
+                            alt={`Screenshot ${index + 1}`}
+                            className="w-full aspect-video object-cover"
+                          />
+                          <div className="p-3 bg-muted/30">
+                            <Input
+                              value={screenshot.caption || ""}
+                              onChange={(e) => {
+                                updateScreenshotCaption(index, e.target.value);
+                                setHasUnsavedChanges(true);
+                              }}
+                              placeholder="Подпись к скриншоту..."
+                              className="bg-background"
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      onChange={handleFileUpload}
+                      accept="image/*"
+                      className="hidden"
+                    />
+                    <Button
+                      variant="outline"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="gap-2 w-full"
+                    >
+                      <Upload className="h-4 w-4" />
+                      Загрузить скриншот
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {displayScreenshots.map((screenshot, index) => (
+                      <Card 
+                        key={index} 
+                        className="overflow-hidden border-2 border-border/40 cursor-pointer hover:border-primary/50 transition-colors"
+                        onClick={() => setSelectedScreenshot(index)}
+                      >
+                        <CardContent className="p-0">
+                          <img 
+                            src={screenshot.url} 
+                            alt={screenshot.caption || `${title} - ${i18n.language === 'ru' ? 'Скриншот' : 'Screenshot'} ${index + 1}`}
+                            className="w-full aspect-video object-cover"
+                          />
+                          {screenshot.caption && (
+                            <div className="p-4 bg-muted/30 border-t">
+                              <p className="text-sm text-muted-foreground text-center">{screenshot.caption}</p>
+                            </div>
+                          )}
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </section>
@@ -741,7 +1135,7 @@ const TemplateLanding = () => {
       )}
 
       {/* Screenshot Modal */}
-      {selectedScreenshot !== null && (
+      {selectedScreenshot !== null && displayScreenshots.length > 0 && (
         <div 
           className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center p-4"
           onClick={() => setSelectedScreenshot(null)}
@@ -765,8 +1159,8 @@ const TemplateLanding = () => {
           </button>
           
           <img 
-            src={screenshots[selectedScreenshot].url} 
-            alt={screenshots[selectedScreenshot].caption || `${title} - ${i18n.language === 'ru' ? 'Скриншот' : 'Screenshot'} ${selectedScreenshot + 1}`}
+            src={displayScreenshots[selectedScreenshot].url} 
+            alt={displayScreenshots[selectedScreenshot].caption || `${title} - ${i18n.language === 'ru' ? 'Скриншот' : 'Screenshot'} ${selectedScreenshot + 1}`}
             className="max-w-full max-h-[85vh] object-contain rounded-lg"
             onClick={(e) => e.stopPropagation()}
           />
@@ -775,20 +1169,20 @@ const TemplateLanding = () => {
             className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-muted hover:bg-muted-foreground/20 transition-colors disabled:opacity-30"
             onClick={(e) => {
               e.stopPropagation();
-              setSelectedScreenshot(prev => prev !== null && prev < screenshots.length - 1 ? prev + 1 : prev);
+              setSelectedScreenshot(prev => prev !== null && prev < displayScreenshots.length - 1 ? prev + 1 : prev);
             }}
-            disabled={selectedScreenshot === screenshots.length - 1}
+            disabled={selectedScreenshot === displayScreenshots.length - 1}
           >
             <ChevronRightIcon className="h-6 w-6" />
           </button>
           
           <div className="absolute bottom-4 text-center space-y-1">
             <span className="text-muted-foreground text-sm">
-              {selectedScreenshot + 1} / {screenshots.length}
+              {selectedScreenshot + 1} / {displayScreenshots.length}
             </span>
-            {screenshots[selectedScreenshot].caption && (
+            {displayScreenshots[selectedScreenshot].caption && (
               <p className="text-sm max-w-2xl text-foreground bg-muted/80 px-4 py-2 rounded-lg">
-                {screenshots[selectedScreenshot].caption}
+                {displayScreenshots[selectedScreenshot].caption}
               </p>
             )}
           </div>
