@@ -110,12 +110,43 @@ const TemplateLanding = () => {
     setHasUnsavedChanges(true);
   };
 
+  // File upload validation constants
+  const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file || !templateId) return;
 
+    // Validate MIME type
+    if (!ALLOWED_MIME_TYPES.includes(file.type)) {
+      toast({
+        title: "Неподдерживаемый формат",
+        description: "Разрешены только JPEG, PNG, GIF и WebP",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate file size
+    if (file.size > MAX_FILE_SIZE) {
+      toast({
+        title: "Файл слишком большой",
+        description: "Максимальный размер файла 5MB",
+        variant: "destructive",
+      });
+      return;
+    }
+
     try {
-      const fileExt = file.name.split('.').pop();
+      // Use safe file extension based on MIME type
+      const mimeToExt: Record<string, string> = {
+        'image/jpeg': 'jpg',
+        'image/png': 'png',
+        'image/gif': 'gif',
+        'image/webp': 'webp'
+      };
+      const fileExt = mimeToExt[file.type] || 'jpg';
       const fileName = `${templateId}/${Date.now()}.${fileExt}`;
       
       const { data, error } = await supabase.storage
