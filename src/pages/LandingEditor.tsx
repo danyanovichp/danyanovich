@@ -51,6 +51,10 @@ const LandingEditor = () => {
     reorderScreenshots,
   } = useLandingEditor(templateId);
 
+  // File upload validation constants
+  const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
@@ -58,12 +62,26 @@ const LandingEditor = () => {
     setIsUploading(true);
     
     for (const file of Array.from(files)) {
-      if (!file.type.startsWith('image/')) {
-        toast.error(`${file.name} не является изображением`);
+      // Validate MIME type
+      if (!ALLOWED_MIME_TYPES.includes(file.type)) {
+        toast.error(`${file.name}: разрешены только JPEG, PNG, GIF и WebP`);
         continue;
       }
 
-      const fileExt = file.name.split('.').pop();
+      // Validate file size
+      if (file.size > MAX_FILE_SIZE) {
+        toast.error(`${file.name}: максимальный размер файла 5MB`);
+        continue;
+      }
+
+      // Use safe file extension based on MIME type
+      const mimeToExt: Record<string, string> = {
+        'image/jpeg': 'jpg',
+        'image/png': 'png',
+        'image/gif': 'gif',
+        'image/webp': 'webp'
+      };
+      const fileExt = mimeToExt[file.type] || 'jpg';
       const fileName = `${landing.template_id || 'new'}-${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
 
       try {
