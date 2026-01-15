@@ -35,6 +35,7 @@ const PixelCafeTycoon = lazy(() => import("./pages/PixelCafeTycoon"));
 const AITraining = lazy(() => import("./pages/AITraining"));
 const Auth = lazy(() => import("./pages/Auth"));
 const AdminLandings = lazy(() => import("./pages/AdminLandings"));
+const AdminProducts = lazy(() => import("./pages/AdminProducts"));
 const LandingEditor = lazy(() => import("./pages/LandingEditor"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -79,6 +80,7 @@ const App = () => (
                     <Route path="/admin/landings" element={<AdminLandings />} />
                     <Route path="/admin/landings/new" element={<LandingEditor />} />
                     <Route path="/admin/landings/:templateId" element={<LandingEditor />} />
+                    <Route path="/admin/products" element={<AdminProducts />} />
                     <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
                   </Routes>
                 </Suspense>
