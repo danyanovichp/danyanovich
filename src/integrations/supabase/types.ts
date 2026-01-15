@@ -14,6 +14,84 @@ export type Database = {
   }
   public: {
     Tables: {
+      products: {
+        Row: {
+          added_date: string | null
+          buildin_link: string | null
+          category: string
+          created_at: string | null
+          description_en: string
+          description_ru: string
+          display_on_home: boolean | null
+          features_en: Json | null
+          features_ru: Json | null
+          full_description_en: string | null
+          full_description_ru: string | null
+          icon: string
+          id: string
+          image: string | null
+          is_visible: boolean | null
+          link: string | null
+          popularity: number | null
+          price: string
+          price_value: number
+          status: string
+          title_en: string
+          title_ru: string
+          updated_at: string | null
+        }
+        Insert: {
+          added_date?: string | null
+          buildin_link?: string | null
+          category?: string
+          created_at?: string | null
+          description_en: string
+          description_ru: string
+          display_on_home?: boolean | null
+          features_en?: Json | null
+          features_ru?: Json | null
+          full_description_en?: string | null
+          full_description_ru?: string | null
+          icon?: string
+          id: string
+          image?: string | null
+          is_visible?: boolean | null
+          link?: string | null
+          popularity?: number | null
+          price: string
+          price_value?: number
+          status?: string
+          title_en: string
+          title_ru: string
+          updated_at?: string | null
+        }
+        Update: {
+          added_date?: string | null
+          buildin_link?: string | null
+          category?: string
+          created_at?: string | null
+          description_en?: string
+          description_ru?: string
+          display_on_home?: boolean | null
+          features_en?: Json | null
+          features_ru?: Json | null
+          full_description_en?: string | null
+          full_description_ru?: string | null
+          icon?: string
+          id?: string
+          image?: string | null
+          is_visible?: boolean | null
+          link?: string | null
+          popularity?: number | null
+          price?: string
+          price_value?: number
+          status?: string
+          title_en?: string
+          title_ru?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       template_landings: {
         Row: {
           created_at: string
