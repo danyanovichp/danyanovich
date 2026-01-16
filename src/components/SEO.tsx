@@ -14,15 +14,17 @@ interface SEOProps {
   structuredData?: object | object[];
 }
 
+const BASE_URL = 'https://danyanovich.lovable.app';
+
 // Базовые данные об авторе/организации
 const getPersonSchema = (url: string, description: string) => ({
   '@context': 'https://schema.org',
   '@type': 'Person',
-  '@id': 'https://danyanovich.com/#person',
+  '@id': `${BASE_URL}/#person`,
   name: 'Дэн Янович',
   alternateName: 'Dan Yanovich',
-  url: 'https://danyanovich.com',
-  image: 'https://danyanovich.com/images/dan-yanovich.jpg',
+  url: BASE_URL,
+  image: `${BASE_URL}/images/dan-yanovich.jpg`,
   sameAs: [
     'https://www.youtube.com/channel/UCzcTrBkzXgA9aaH05cWVi2g',
     'https://t.me/danyanovichp',
@@ -37,20 +39,20 @@ const getPersonSchema = (url: string, description: string) => ({
 const getWebSiteSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  '@id': 'https://danyanovich.com/#website',
+  '@id': `${BASE_URL}/#website`,
   name: 'Дэн Янович | Notion и AI Эксперт',
   alternateName: 'Dan Yanovich | Notion and AI Expert',
-  url: 'https://danyanovich.com',
+  url: BASE_URL,
   description: 'Создаю шаблоны Notion и консультирую по внедрению AI-инструментов',
   inLanguage: ['ru-RU', 'en-US'],
   publisher: {
-    '@id': 'https://danyanovich.com/#person',
+    '@id': `${BASE_URL}/#person`,
   },
   potentialAction: {
     '@type': 'SearchAction',
     target: {
       '@type': 'EntryPoint',
-      urlTemplate: 'https://danyanovich.com/templates?search={search_term_string}',
+      urlTemplate: `${BASE_URL}/templates?search={search_term_string}`,
     },
     'query-input': 'required name=search_term_string',
   },
@@ -60,13 +62,13 @@ const getWebSiteSchema = () => ({
 export const getServiceSchema = (isRu: boolean) => ({
   '@context': 'https://schema.org',
   '@type': 'Service',
-  '@id': 'https://danyanovich.com/consulting#service',
+  '@id': `${BASE_URL}/consulting#service`,
   name: isRu ? 'Консультации по Notion и AI' : 'Notion and AI Consulting',
   description: isRu 
     ? 'Персональные консультации по настройке Notion и внедрению AI-инструментов'
     : 'Personal consulting on Notion setup and AI tool implementation',
   provider: {
-    '@id': 'https://danyanovich.com/#person',
+    '@id': `${BASE_URL}/#person`,
   },
   serviceType: isRu ? 'Консалтинг' : 'Consulting',
   areaServed: {
@@ -99,7 +101,7 @@ export const getServiceSchema = (isRu: boolean) => ({
 export const getCourseSchema = (isRu: boolean) => ({
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  '@id': 'https://danyanovich.com/courses#courselist',
+  '@id': `${BASE_URL}/courses#courselist`,
   name: isRu ? 'Курсы по Notion и AI' : 'Notion and AI Courses',
   description: isRu 
     ? 'Обучающие курсы по работе с Notion и AI-инструментами'
@@ -111,7 +113,7 @@ export const getCourseSchema = (isRu: boolean) => ({
       name: isRu ? 'Notion для начинающих' : 'Notion for Beginners',
       description: isRu ? 'Основы работы с Notion' : 'Notion basics',
       provider: {
-        '@id': 'https://danyanovich.com/#person',
+        '@id': `${BASE_URL}/#person`,
       },
     },
   ],
@@ -121,7 +123,7 @@ export const getCourseSchema = (isRu: boolean) => ({
 export const getFAQSchema = (faqs: { question: string; answer: string }[]) => ({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  '@id': 'https://danyanovich.com/faq#faqpage',
+  '@id': `${BASE_URL}/faq#faqpage`,
   mainEntity: faqs.map((faq) => ({
     '@type': 'Question',
     name: faq.question,
@@ -136,14 +138,14 @@ export const getFAQSchema = (faqs: { question: string; answer: string }[]) => ({
 export const getBlogSchema = (isRu: boolean) => ({
   '@context': 'https://schema.org',
   '@type': 'Blog',
-  '@id': 'https://danyanovich.com/blog#blog',
+  '@id': `${BASE_URL}/blog#blog`,
   name: isRu ? 'Блог Дэна Яновича' : 'Dan Yanovich Blog',
   description: isRu 
     ? 'Статьи о Notion, AI и продуктивности'
     : 'Articles about Notion, AI and productivity',
-  url: 'https://danyanovich.com/blog',
+  url: `${BASE_URL}/blog`,
   author: {
-    '@id': 'https://danyanovich.com/#person',
+    '@id': `${BASE_URL}/#person`,
   },
   inLanguage: isRu ? 'ru-RU' : 'en-US',
 });
@@ -152,14 +154,14 @@ export const getBlogSchema = (isRu: boolean) => ({
 export const getTemplatesSchema = (isRu: boolean) => ({
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  '@id': 'https://danyanovich.com/templates#collection',
+  '@id': `${BASE_URL}/templates#collection`,
   name: isRu ? 'Шаблоны Notion' : 'Notion Templates',
   description: isRu 
     ? 'Коллекция профессиональных шаблонов Notion для бизнеса и личного использования'
     : 'Collection of professional Notion templates for business and personal use',
-  url: 'https://danyanovich.com/templates',
+  url: `${BASE_URL}/templates`,
   author: {
-    '@id': 'https://danyanovich.com/#person',
+    '@id': `${BASE_URL}/#person`,
   },
   about: {
     '@type': 'Thing',
@@ -187,7 +189,7 @@ export const getProductSchema = (product: {
     name: 'Dan Yanovich',
   },
   author: {
-    '@id': 'https://danyanovich.com/#person',
+    '@id': `${BASE_URL}/#person`,
   },
   offers: {
     '@type': 'Offer',
@@ -195,7 +197,7 @@ export const getProductSchema = (product: {
     priceCurrency: product.currency,
     availability: 'https://schema.org/InStock',
     seller: {
-      '@id': 'https://danyanovich.com/#person',
+      '@id': `${BASE_URL}/#person`,
     },
   },
 });
@@ -204,12 +206,12 @@ export const getProductSchema = (product: {
 export const getReviewsSchema = (isRu: boolean) => ({
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  '@id': 'https://danyanovich.com/reviews#reviews',
+  '@id': `${BASE_URL}/reviews#reviews`,
   name: isRu ? 'Отзывы клиентов' : 'Client Reviews',
   description: isRu 
     ? 'Отзывы о шаблонах Notion и консультациях Дэна Яновича'
     : 'Reviews of Dan Yanovich Notion templates and consulting',
-  url: 'https://danyanovich.com/reviews',
+  url: `${BASE_URL}/reviews`,
   mainEntity: {
     '@type': 'ItemList',
     name: isRu ? 'Отзывы' : 'Reviews',
@@ -236,7 +238,7 @@ const SEO = ({
   descriptionEn = 'I create Notion templates and consult on AI tool implementation. 50+ projects, 100+ hours of training.',
   keywords = 'Notion, AI, автоматизация, шаблоны, консультант, Дэн Янович, продуктивность',
   image = 'https://lovable.dev/opengraph-image-p98pqg.png',
-  url = 'https://danyanovich.com',
+  url = BASE_URL,
   type = 'website',
   author = 'Дэн Янович',
   structuredData,
