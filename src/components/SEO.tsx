@@ -14,7 +14,7 @@ interface SEOProps {
   structuredData?: object | object[];
 }
 
-const BASE_URL = 'https://danyanovich.lovable.app';
+const BASE_URL = 'https://danyanovich.site';
 
 // Базовые данные об авторе/организации
 const getPersonSchema = (url: string, description: string) => ({
