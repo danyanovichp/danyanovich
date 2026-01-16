@@ -14,7 +14,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { 
   Loader2, Save, ArrowLeft, Plus, Trash2, Eye, Edit3, 
-  AlertCircle, Zap, Users, Layout, ExternalLink, ImagePlus, X, GripVertical
+  AlertCircle, Zap, Users, Layout, ExternalLink, ImagePlus, X, GripVertical, RefreshCw
 } from "lucide-react";
 
 const LandingEditor = () => {
@@ -25,7 +25,9 @@ const LandingEditor = () => {
   const [isUploading, setIsUploading] = useState(false);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+  const [replacingScreenshotIndex, setReplacingScreenshotIndex] = useState<number | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const replaceFileInputRef = useRef<HTMLInputElement>(null);
   
   const {
     landing,
@@ -123,6 +125,76 @@ const LandingEditor = () => {
     }
     removeScreenshot(index);
     toast.success('Скриншот удалён');
+  };
+
+  const handleReplaceScreenshot = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || replacingScreenshotIndex === null) return;
+
+    // Validate MIME type
+    if (!ALLOWED_MIME_TYPES.includes(file.type)) {
+      toast.error('Разрешены только JPEG, PNG, GIF и WebP');
+      return;
+    }
+
+    // Validate file size
+    if (file.size > MAX_FILE_SIZE) {
+      toast.error('Максимальный размер файла 5MB');
+      return;
+    }
+
+    setIsUploading(true);
+
+    try {
+      // Delete old file from storage
+      const oldUrl = landing.screenshots[replacingScreenshotIndex]?.url;
+      if (oldUrl) {
+        const oldFileName = oldUrl.split('/').pop();
+        if (oldFileName) {
+          await supabase.storage.from('landing-screenshots').remove([oldFileName]);
+        }
+      }
+
+      // Upload new file
+      const mimeToExt: Record<string, string> = {
+        'image/jpeg': 'jpg',
+        'image/png': 'png',
+        'image/gif': 'gif',
+        'image/webp': 'webp'
+      };
+      const fileExt = mimeToExt[file.type] || 'jpg';
+      const fileName = `${landing.template_id || 'new'}-${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('landing-screenshots')
+        .upload(fileName, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data: urlData } = supabase.storage
+        .from('landing-screenshots')
+        .getPublicUrl(fileName);
+
+      // Update the screenshot URL while preserving caption
+      const newScreenshots = [...landing.screenshots];
+      newScreenshots[replacingScreenshotIndex] = {
+        ...newScreenshots[replacingScreenshotIndex],
+        url: urlData.publicUrl
+      };
+      
+      // Use setLanding from the hook
+      updateField('screenshots', newScreenshots as any);
+      toast.success('Скриншот заменён');
+    } catch (error: any) {
+      console.error('Replace error:', error);
+      toast.error(`Ошибка замены: ${error.message}`);
+    }
+
+    setIsUploading(false);
+    setReplacingScreenshotIndex(null);
+    if (replaceFileInputRef.current) {
+      replaceFileInputRef.current.value = '';
+    }
   };
 
   const handleDragStart = (index: number) => {
@@ -491,6 +563,13 @@ const LandingEditor = () => {
                   multiple
                   className="hidden"
                 />
+                <input
+                  type="file"
+                  ref={replaceFileInputRef}
+                  onChange={handleReplaceScreenshot}
+                  accept="image/*"
+                  className="hidden"
+                />
                 
                 {landing.screenshots.length > 0 && (
                   <div className="space-y-4">
@@ -531,6 +610,20 @@ const LandingEditor = () => {
                           </div>
                           <div className="flex flex-col gap-2 items-end">
                             <GripVertical className="h-5 w-5 text-muted-foreground" />
+                            <Button
+                              size="icon"
+                              variant="ghost"
+                              className="hover:bg-primary/10"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setReplacingScreenshotIndex(index);
+                                replaceFileInputRef.current?.click();
+                              }}
+                              disabled={isUploading}
+                              title="Заменить скриншот"
+                            >
+                              <RefreshCw className="h-4 w-4" />
+                            </Button>
                             <Button
                               size="icon"
                               variant="ghost"
