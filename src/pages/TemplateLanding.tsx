@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ArrowLeft, Check, ShoppingCart, Sparkles, ExternalLink, ImageIcon, Play, Star, Quote, Home, ChevronRight, HelpCircle, AlertCircle, Zap, Users, ChevronLeft, ChevronRightIcon, Plus, Trash2, Upload, GripVertical } from "lucide-react";
+import { ArrowLeft, Check, ShoppingCart, Sparkles, ExternalLink, ImageIcon, Play, Star, Quote, Home, ChevronRight, HelpCircle, AlertCircle, Zap, Users, ChevronLeft, ChevronRightIcon, Plus, Trash2, Upload, GripVertical, RefreshCw } from "lucide-react";
 import { premiumTemplates } from "@/data/premiumTemplates";
 import { secondBrainFeatureSections, secondBrainReviews } from "@/data/secondBrainData";
 import { templateLandingContent } from "@/data/templateLandingContent";
@@ -29,7 +29,9 @@ const TemplateLanding = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [replacingScreenshotIndex, setReplacingScreenshotIndex] = useState<number | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const replaceFileInputRef = useRef<HTMLInputElement>(null);
   
   const {
     landing,
@@ -175,6 +177,86 @@ const TemplateLanding = () => {
 
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
+    }
+  };
+
+  const handleReplaceScreenshot = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file || !templateId || replacingScreenshotIndex === null) return;
+
+    // Validate MIME type
+    if (!ALLOWED_MIME_TYPES.includes(file.type)) {
+      toast({
+        title: "Неподдерживаемый формат",
+        description: "Разрешены только JPEG, PNG, GIF и WebP",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate file size
+    if (file.size > MAX_FILE_SIZE) {
+      toast({
+        title: "Файл слишком большой",
+        description: "Максимальный размер файла 5MB",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      // Delete old file from storage
+      const oldUrl = landing.screenshots[replacingScreenshotIndex]?.url;
+      if (oldUrl) {
+        const oldFileName = oldUrl.split('/').pop();
+        if (oldFileName) {
+          await supabase.storage.from('landing-screenshots').remove([`${templateId}/${oldFileName}`]);
+        }
+      }
+
+      // Upload new file
+      const mimeToExt: Record<string, string> = {
+        'image/jpeg': 'jpg',
+        'image/png': 'png',
+        'image/gif': 'gif',
+        'image/webp': 'webp'
+      };
+      const fileExt = mimeToExt[file.type] || 'jpg';
+      const fileName = `${templateId}/${Date.now()}.${fileExt}`;
+      
+      const { data, error } = await supabase.storage
+        .from('landing-screenshots')
+        .upload(fileName, file);
+
+      if (error) throw error;
+
+      const { data: urlData } = supabase.storage
+        .from('landing-screenshots')
+        .getPublicUrl(data.path);
+
+      // Update the screenshot URL in the landing data
+      const newScreenshots = [...landing.screenshots];
+      newScreenshots[replacingScreenshotIndex] = {
+        ...newScreenshots[replacingScreenshotIndex],
+        url: urlData.publicUrl
+      };
+      updateField('screenshots', newScreenshots);
+      setHasUnsavedChanges(true);
+      toast({
+        title: "Скриншот заменён",
+        description: "Не забудьте сохранить изменения",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Ошибка загрузки",
+        description: error.message,
+        variant: "destructive",
+      });
+    }
+
+    setReplacingScreenshotIndex(null);
+    if (replaceFileInputRef.current) {
+      replaceFileInputRef.current.value = '';
     }
   };
 
@@ -1088,17 +1170,31 @@ const TemplateLanding = () => {
                           <div className="absolute top-2 left-2 cursor-move p-1 bg-background/80 rounded">
                             <GripVertical className="h-4 w-4 text-muted-foreground" />
                           </div>
-                          <Button
-                            variant="destructive"
-                            size="icon"
-                            className="absolute top-2 right-2 h-8 w-8"
-                            onClick={() => {
-                              removeScreenshot(index);
-                              setHasUnsavedChanges(true);
-                            }}
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
+                          <div className="absolute top-2 right-2 flex gap-1">
+                            <Button
+                              variant="secondary"
+                              size="icon"
+                              className="h-8 w-8 bg-background/80 hover:bg-background"
+                              onClick={() => {
+                                setReplacingScreenshotIndex(index);
+                                replaceFileInputRef.current?.click();
+                              }}
+                              title="Заменить скриншот"
+                            >
+                              <RefreshCw className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              variant="destructive"
+                              size="icon"
+                              className="h-8 w-8"
+                              onClick={() => {
+                                removeScreenshot(index);
+                                setHasUnsavedChanges(true);
+                              }}
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
                           <img 
                             src={screenshot.url} 
                             alt={`Screenshot ${index + 1}`}
@@ -1123,6 +1219,13 @@ const TemplateLanding = () => {
                       type="file"
                       ref={fileInputRef}
                       onChange={handleFileUpload}
+                      accept="image/*"
+                      className="hidden"
+                    />
+                    <input
+                      type="file"
+                      ref={replaceFileInputRef}
+                      onChange={handleReplaceScreenshot}
                       accept="image/*"
                       className="hidden"
                     />

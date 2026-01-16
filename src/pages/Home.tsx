@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState, useMemo } from "react";
-import { ArrowRight, Layout, GraduationCap, Bot, MessageSquare, ExternalLink, Gamepad2 } from "lucide-react";
+import { ArrowRight, Layout, GraduationCap, Bot, MessageSquare, Gamepad2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,6 +13,7 @@ type ProductType = 'all' | 'templates' | 'courses' | 'ai-prompts' | 'consulting'
 
 const Home = () => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
   const isRu = i18n.language === 'ru';
   const [activeFilter, setActiveFilter] = useState<ProductType>('all');
 
@@ -140,53 +141,83 @@ const Home = () => {
 
               {/* Products Grid */}
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {filteredProducts.slice(0, 12).map((product) => (
-                  <Card key={product.id} className="group hover:border-primary/40 transition-all">
-                    <CardHeader className="p-4 space-y-3">
-                      <div className="aspect-[4/3] bg-muted/50 rounded-xl flex items-center justify-center overflow-hidden">
-                        {product.image ? (
-                          <img 
-                            src={product.image} 
-                            alt={product.title}
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <product.icon className="h-10 w-10 text-primary" />
-                        )}
-                      </div>
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-2">
-                          <h3 className="text-base font-bold line-clamp-1">{product.title}</h3>
-                          {product.status === 'development' && (
-                            <Badge variant="secondary" className="text-xs shrink-0">
-                              {isRu ? 'Скоро' : 'Soon'}
-                            </Badge>
+                {filteredProducts.slice(0, 12).map((product) => {
+                  const isTemplate = product.type === 'templates';
+                  const handleCardClick = () => {
+                    if (isTemplate && product.status === 'available') {
+                      navigate(`/templates/${product.id}`);
+                    }
+                  };
+                  
+                  return (
+                    <Card 
+                      key={product.id} 
+                      className={`group hover:border-primary/40 transition-all ${isTemplate && product.status === 'available' ? 'cursor-pointer' : ''}`}
+                      onClick={handleCardClick}
+                    >
+                      <CardHeader className="p-4 space-y-3">
+                        <div className="aspect-[4/3] bg-muted/50 rounded-xl flex items-center justify-center overflow-hidden">
+                          {product.image ? (
+                            <img 
+                              src={product.image} 
+                              alt={product.title}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          ) : (
+                            <product.icon className="h-10 w-10 text-primary" />
                           )}
                         </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="p-4 pt-0 space-y-3">
-                      <p className="text-sm text-muted-foreground line-clamp-2">
-                        {product.description}
-                      </p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-base font-bold">{product.price}</span>
-                        {product.status === 'available' && product.link !== '#' ? (
-                          <Button asChild size="sm" variant="default">
-                            <a href={product.link} target={product.link.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
-                              {isRu ? "Купить" : "Buy"}
-                              <ExternalLink className="ml-1.5 h-3 w-3" />
-                            </a>
-                          </Button>
-                        ) : (
-                          <Button size="sm" variant="secondary" disabled>
-                            {isRu ? "Скоро" : "Soon"}
-                          </Button>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2">
+                            <h3 className="text-base font-bold line-clamp-1">{product.title}</h3>
+                            {product.status === 'development' && (
+                              <Badge variant="secondary" className="text-xs shrink-0">
+                                {isRu ? 'Скоро' : 'Soon'}
+                              </Badge>
+                            )}
+                          </div>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="p-4 pt-0 space-y-3">
+                        <p className="text-sm text-muted-foreground line-clamp-2">
+                          {product.description}
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-base font-bold">{product.price}</span>
+                          {product.status === 'available' && product.link !== '#' ? (
+                            isTemplate ? (
+                              <Button 
+                                size="sm" 
+                                variant="default"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  navigate(`/templates/${product.id}`);
+                                }}
+                              >
+                                {isRu ? "Подробнее" : "Details"}
+                              </Button>
+                            ) : (
+                              <Button asChild size="sm" variant="default">
+                                <a 
+                                  href={product.link} 
+                                  target={product.link.startsWith('http') ? '_blank' : undefined} 
+                                  rel="noopener noreferrer"
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  {isRu ? "Перейти" : "Go"}
+                                </a>
+                              </Button>
+                            )
+                          ) : (
+                            <Button size="sm" variant="secondary" disabled>
+                              {isRu ? "Скоро" : "Soon"}
+                            </Button>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
 
               {/* View All Button */}
