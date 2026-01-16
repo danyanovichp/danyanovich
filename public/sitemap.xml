@@ -3,140 +3,140 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://danyanovich.lovable.app/</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.lovable.app/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.lovable.app/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.lovable.app/"/>
+    <loc>https://danyanovich.site/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/"/>
     <lastmod>2026-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
-    <loc>https://danyanovich.lovable.app/templates</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.lovable.app/templates"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.lovable.app/templates"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.lovable.app/templates"/>
+    <loc>https://danyanovich.site/templates</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/templates"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/templates"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/templates"/>
     <lastmod>2026-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://danyanovich.lovable.app/courses</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.lovable.app/courses"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.lovable.app/courses"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.lovable.app/courses"/>
+    <loc>https://danyanovich.site/courses</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/courses"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/courses"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/courses"/>
     <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://danyanovich.lovable.app/ai-prompts</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.lovable.app/ai-prompts"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.lovable.app/ai-prompts"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.lovable.app/ai-prompts"/>
+    <loc>https://danyanovich.site/ai-prompts</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ai-prompts"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/ai-prompts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ai-prompts"/>
     <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://danyanovich.lovable.app/ai-training</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.lovable.app/ai-training"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.lovable.app/ai-training"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.lovable.app/ai-training"/>
+    <loc>https://danyanovich.site/ai-training</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ai-training"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/ai-training"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ai-training"/>
     <lastmod>2026-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://danyanovich.lovable.app/consulting</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.lovable.app/consulting"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.lovable.app/consulting"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.lovable.app/consulting"/>
+    <loc>https://danyanovich.site/consulting</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/consulting"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/consulting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/consulting"/>
     <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://danyanovich.lovable.app/packages</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.lovable.app/packages"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.lovable.app/packages"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.lovable.app/packages"/>
+    <loc>https://danyanovich.site/packages</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/packages"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/packages"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/packages"/>
     <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://danyanovich.lovable.app/portfolio</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.lovable.app/portfolio"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.lovable.app/portfolio"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.lovable.app/portfolio"/>
+    <loc>https://danyanovich.site/portfolio</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/portfolio"/>
     <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://danyanovich.lovable.app/cases</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.lovable.app/cases"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.lovable.app/cases"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.lovable.app/cases"/>
+    <loc>https://danyanovich.site/cases</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/cases"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/cases"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/cases"/>
     <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://danyanovich.lovable.app/reviews</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.lovable.app/reviews"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.lovable.app/reviews"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.lovable.app/reviews"/>
+    <loc>https://danyanovich.site/reviews</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/reviews"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/reviews"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/reviews"/>
     <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://danyanovich.lovable.app/blog</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.lovable.app/blog"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.lovable.app/blog"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.lovable.app/blog"/>
+    <loc>https://danyanovich.site/blog</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/blog"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/blog"/>
     <lastmod>2026-01-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://danyanovich.lovable.app/faq</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.lovable.app/faq"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.lovable.app/faq"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.lovable.app/faq"/>
+    <loc>https://danyanovich.site/faq</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/faq"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/faq"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/faq"/>
     <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://danyanovich.lovable.app/contact</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.lovable.app/contact"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.lovable.app/contact"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.lovable.app/contact"/>
+    <loc>https://danyanovich.site/contact</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/contact"/>
     <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://danyanovich.lovable.app/games/pixel-cafe-tycoon</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.lovable.app/games/pixel-cafe-tycoon"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.lovable.app/games/pixel-cafe-tycoon"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.lovable.app/games/pixel-cafe-tycoon"/>
+    <loc>https://danyanovich.site/games/pixel-cafe-tycoon</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/games/pixel-cafe-tycoon"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/games/pixel-cafe-tycoon"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/games/pixel-cafe-tycoon"/>
     <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
