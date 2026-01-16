@@ -26,8 +26,10 @@ const LandingEditor = () => {
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   const [replacingScreenshotIndex, setReplacingScreenshotIndex] = useState<number | null>(null);
+  const [isUploadingMainImage, setIsUploadingMainImage] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const replaceFileInputRef = useRef<HTMLInputElement>(null);
+  const mainImageInputRef = useRef<HTMLInputElement>(null);
   
   const {
     landing,
@@ -226,6 +228,77 @@ const LandingEditor = () => {
     setDragOverIndex(null);
   };
 
+  const handleMainImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!ALLOWED_MIME_TYPES.includes(file.type)) {
+      toast.error('Разрешены только JPEG, PNG, GIF и WebP');
+      return;
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
+      toast.error('Максимальный размер файла 5MB');
+      return;
+    }
+
+    setIsUploadingMainImage(true);
+    try {
+      // Delete old main image if exists
+      if (landing.main_image) {
+        const oldFileName = landing.main_image.split('/').pop();
+        if (oldFileName) {
+          await supabase.storage.from('landing-screenshots').remove([oldFileName]);
+        }
+      }
+
+      const mimeToExt: Record<string, string> = {
+        'image/jpeg': 'jpg',
+        'image/png': 'png',
+        'image/gif': 'gif',
+        'image/webp': 'webp'
+      };
+      const fileExt = mimeToExt[file.type] || 'jpg';
+      const fileName = `${landing.template_id || 'new'}-main-${Date.now()}.${fileExt}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('landing-screenshots')
+        .upload(fileName, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data: urlData } = supabase.storage
+        .from('landing-screenshots')
+        .getPublicUrl(fileName);
+
+      updateField('main_image', urlData.publicUrl);
+      toast.success('Главное изображение загружено');
+    } catch (error: any) {
+      console.error('Upload error:', error);
+      toast.error(`Ошибка загрузки: ${error.message}`);
+    }
+
+    setIsUploadingMainImage(false);
+    if (mainImageInputRef.current) {
+      mainImageInputRef.current.value = '';
+    }
+  };
+
+  const handleDeleteMainImage = async () => {
+    if (landing.main_image) {
+      const fileName = landing.main_image.split('/').pop();
+      if (fileName) {
+        try {
+          await supabase.storage.from('landing-screenshots').remove([fileName]);
+        } catch (error) {
+          console.error('Error deleting file:', error);
+        }
+      }
+    }
+    updateField('main_image', '');
+    toast.success('Главное изображение удалено');
+  };
+
   useEffect(() => {
     if (!authLoading && !user) {
       navigate("/auth");
@@ -352,6 +425,65 @@ const LandingEditor = () => {
                     onChange={(e) => updateField("subheadline", e.target.value)}
                     rows={3}
                   />
+                </div>
+                
+                {/* Main Image */}
+                <div className="space-y-2">
+                  <Label>Главное изображение</Label>
+                  <input
+                    type="file"
+                    ref={mainImageInputRef}
+                    onChange={handleMainImageUpload}
+                    accept="image/jpeg,image/png,image/gif,image/webp"
+                    className="hidden"
+                  />
+                  {landing.main_image ? (
+                    <div className="relative group">
+                      <img 
+                        src={landing.main_image} 
+                        alt="Главное изображение" 
+                        className="w-full aspect-video object-cover rounded-lg border"
+                      />
+                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-2">
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={() => mainImageInputRef.current?.click()}
+                          disabled={isUploadingMainImage}
+                        >
+                          <RefreshCw className="h-4 w-4 mr-1" />
+                          Заменить
+                        </Button>
+                        <Button
+                          variant="destructive"
+                          size="sm"
+                          onClick={handleDeleteMainImage}
+                        >
+                          <Trash2 className="h-4 w-4 mr-1" />
+                          Удалить
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <Button
+                      variant="outline"
+                      className="w-full h-32 border-dashed"
+                      onClick={() => mainImageInputRef.current?.click()}
+                      disabled={isUploadingMainImage}
+                    >
+                      {isUploadingMainImage ? (
+                        <Loader2 className="h-6 w-6 animate-spin" />
+                      ) : (
+                        <div className="flex flex-col items-center gap-2">
+                          <ImagePlus className="h-8 w-8 text-muted-foreground" />
+                          <span className="text-muted-foreground">Загрузить главное изображение</span>
+                        </div>
+                      )}
+                    </Button>
+                  )}
+                  <p className="text-xs text-muted-foreground">
+                    Рекомендуемое соотношение сторон 16:9. Максимум 5MB.
+                  </p>
                 </div>
               </CardContent>
             </Card>

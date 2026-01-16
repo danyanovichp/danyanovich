@@ -25,6 +25,7 @@ export interface LandingData {
   template_id: string;
   headline: string;
   subheadline: string;
+  main_image: string;
   pain_points: string[];
   solution_intro: string;
   solution_description: string;
@@ -38,6 +39,7 @@ const emptyLanding: LandingData = {
   template_id: "",
   headline: "",
   subheadline: "",
+  main_image: "",
   pain_points: [""],
   solution_intro: "",
   solution_description: "",
@@ -90,6 +92,7 @@ export function useLandingEditor(templateId?: string) {
           template_id: data.template_id,
           headline: data.headline || "",
           subheadline: data.subheadline || "",
+          main_image: data.main_image || "",
           pain_points: (data.pain_points as unknown as string[]) || [""],
           solution_intro: data.solution_intro || "",
           solution_description: data.solution_description || "",
@@ -129,6 +132,7 @@ export function useLandingEditor(templateId?: string) {
         template_id: landing.template_id,
         headline: landing.headline,
         subheadline: landing.subheadline,
+        main_image: landing.main_image || null,
         pain_points: landing.pain_points.filter(p => p.trim()) as unknown as Json,
         solution_intro: landing.solution_intro,
         solution_description: landing.solution_description,

@@ -99,6 +99,7 @@ export type Database = {
           features: Json | null
           headline: string
           id: string
+          main_image: string | null
           pain_points: Json | null
           screenshots: Json | null
           solution_description: string | null
@@ -115,6 +116,7 @@ export type Database = {
           features?: Json | null
           headline: string
           id?: string
+          main_image?: string | null
           pain_points?: Json | null
           screenshots?: Json | null
           solution_description?: string | null
@@ -131,6 +133,7 @@ export type Database = {
           features?: Json | null
           headline?: string
           id?: string
+          main_image?: string | null
           pain_points?: Json | null
           screenshots?: Json | null
           solution_description?: string | null
