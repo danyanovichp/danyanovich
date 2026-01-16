@@ -30,8 +30,10 @@ const TemplateLanding = () => {
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [replacingScreenshotIndex, setReplacingScreenshotIndex] = useState<number | null>(null);
+  const [isUploadingMainImage, setIsUploadingMainImage] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const replaceFileInputRef = useRef<HTMLInputElement>(null);
+  const mainImageInputRef = useRef<HTMLInputElement>(null);
   
   const {
     landing,
@@ -276,6 +278,81 @@ const TemplateLanding = () => {
   const handleDragEnd = () => {
     setDraggedIndex(null);
   };
+
+  const handleMainImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file || !templateId) return;
+
+    if (!ALLOWED_MIME_TYPES.includes(file.type)) {
+      toast({
+        title: "Неподдерживаемый формат",
+        description: "Разрешены только JPEG, PNG, GIF и WebP",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
+      toast({
+        title: "Файл слишком большой",
+        description: "Максимальный размер файла 5MB",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsUploadingMainImage(true);
+    try {
+      // Delete old main image if exists
+      if (landing.main_image) {
+        const oldFileName = landing.main_image.split('/').pop();
+        if (oldFileName) {
+          await supabase.storage.from('landing-screenshots').remove([`${templateId}/${oldFileName}`]);
+        }
+      }
+
+      const mimeToExt: Record<string, string> = {
+        'image/jpeg': 'jpg',
+        'image/png': 'png',
+        'image/gif': 'gif',
+        'image/webp': 'webp'
+      };
+      const fileExt = mimeToExt[file.type] || 'jpg';
+      const fileName = `${templateId}/main-${Date.now()}.${fileExt}`;
+      
+      const { data, error } = await supabase.storage
+        .from('landing-screenshots')
+        .upload(fileName, file);
+
+      if (error) throw error;
+
+      const { data: urlData } = supabase.storage
+        .from('landing-screenshots')
+        .getPublicUrl(data.path);
+
+      updateField('main_image', urlData.publicUrl);
+      setHasUnsavedChanges(true);
+      toast({
+        title: "Изображение загружено",
+        description: "Не забудьте сохранить изменения",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Ошибка загрузки",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setIsUploadingMainImage(false);
+    }
+
+    if (mainImageInputRef.current) {
+      mainImageInputRef.current.value = '';
+    }
+  };
+
+  // Determine main image to display
+  const displayMainImage = landing.main_image || template.image;
 
   const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
   const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
@@ -545,11 +622,11 @@ const TemplateLanding = () => {
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="max-w-5xl mx-auto">
-            <Card className="overflow-hidden border-2 border-border/40 shadow-2xl">
+            <Card className="overflow-hidden border-2 border-border/40 shadow-2xl relative group">
               <CardContent className="p-0">
-                {template.image ? (
+                {displayMainImage ? (
                   <img 
-                    src={template.image} 
+                    src={displayMainImage} 
                     alt={title}
                     className="w-full aspect-video object-cover"
                   />
@@ -562,6 +639,31 @@ const TemplateLanding = () => {
                       </p>
                     </div>
                   </div>
+                )}
+                {isEditing && (
+                  <>
+                    <input
+                      type="file"
+                      ref={mainImageInputRef}
+                      onChange={handleMainImageUpload}
+                      accept="image/jpeg,image/png,image/gif,image/webp"
+                      className="hidden"
+                    />
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity gap-2"
+                      onClick={() => mainImageInputRef.current?.click()}
+                      disabled={isUploadingMainImage}
+                    >
+                      {isUploadingMainImage ? (
+                        <span className="animate-spin">⏳</span>
+                      ) : (
+                        <RefreshCw className="h-4 w-4" />
+                      )}
+                      {i18n.language === 'ru' ? 'Заменить' : 'Replace'}
+                    </Button>
+                  </>
                 )}
               </CardContent>
             </Card>
