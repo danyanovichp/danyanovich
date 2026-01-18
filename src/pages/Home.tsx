@@ -2,15 +2,21 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState, useMemo } from "react";
 import { ArrowRight, Layout, GraduationCap, Bot, MessageSquare, Gamepad2 } from "lucide-react";
+import * as LucideIcons from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import PageTransition from "@/components/PageTransition";
 import SEO from "@/components/SEO";
-import { premiumTemplates } from "@/data/premiumTemplates";
+import { useProducts } from "@/hooks/useProducts";
 import { useLandingPreviews } from "@/hooks/useLandingPreviews";
-
 type ProductType = 'all' | 'templates' | 'courses' | 'ai-prompts' | 'consulting' | 'games';
+
+// Helper to get icon component from string name
+const getIconComponent = (iconName: string): React.ComponentType<{ className?: string }> => {
+  const icons = LucideIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>;
+  return icons[iconName] || Layout;
+};
 
 const Home = () => {
   const { t, i18n } = useTranslation();
@@ -18,6 +24,7 @@ const Home = () => {
   const isRu = i18n.language === 'ru';
   const [activeFilter, setActiveFilter] = useState<ProductType>('all');
   const { getMainImage } = useLandingPreviews();
+  const { products: dbProducts, isLoading } = useProducts();
 
   // Filter categories as small chips
   const filterCategories = [
@@ -29,20 +36,24 @@ const Home = () => {
     { id: 'games' as ProductType, label: isRu ? "Игры" : "Games", icon: Gamepad2 },
   ];
 
-  // All products combined (templates from data + mock products for other categories)
+  // All products combined (templates from DB + mock products for other categories)
   const allProducts = useMemo(() => {
-    const templateProducts = premiumTemplates.map(t => ({
-      id: t.id,
-      type: 'templates' as ProductType,
-      title: isRu ? t.titleRu : t.titleEn,
-      description: isRu ? t.descriptionRu : t.descriptionEn,
-      price: t.price,
-      link: t.link,
-      image: t.image,
-      icon: t.icon,
-      status: t.status,
-      popularity: t.popularity,
-    }));
+    // Filter DB products that are templates and visible
+    const templateProducts = dbProducts
+      .filter(p => p.category === 'productivity' || p.category === 'templates' || p.category === 'business' || p.category === 'education' || p.category === 'finance' || p.category === 'lifestyle' || p.category === 'personal')
+      .filter(p => p.is_visible && p.display_on_home)
+      .map(p => ({
+        id: p.id,
+        type: 'templates' as ProductType,
+        title: isRu ? p.title_ru : p.title_en,
+        description: isRu ? p.description_ru : p.description_en,
+        price: p.price,
+        link: p.link,
+        image: p.image,
+        icon: getIconComponent(p.icon),
+        status: p.status as 'available' | 'development',
+        popularity: p.popularity,
+      }));
 
     // Mock products for other categories
     const otherProducts = [
@@ -57,7 +68,7 @@ const Home = () => {
     ];
 
     return [...templateProducts, ...otherProducts];
-  }, [isRu]);
+  }, [isRu, dbProducts]);
 
   // Filtered products
   const filteredProducts = useMemo(() => {
