@@ -17,7 +17,9 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useLandingEditor, LandingFeature, LandingAudience, LandingScreenshot } from "@/hooks/useLandingEditor";
+import { useProductEditor } from "@/hooks/useProductEditor";
 import { InlineEditPanel } from "@/components/InlineEditPanel";
+import { ProductEditPanel } from "@/components/ProductEditPanel";
 import { useToast } from "@/hooks/use-toast";
 
 const TemplateLanding = () => {
@@ -58,6 +60,14 @@ const TemplateLanding = () => {
     updateScreenshotCaption,
     reorderScreenshots,
   } = useLandingEditor(templateId);
+
+  const {
+    product: productData,
+    isSaving: isProductSaving,
+    exists: productExists,
+    saveProduct,
+    updateField: updateProductField,
+  } = useProductEditor(templateId);
 
   const template = premiumTemplates.find(t => t.id === templateId);
   const isSecondBrain = templateId === "second-brain-os";
@@ -354,11 +364,17 @@ const TemplateLanding = () => {
   // Determine main image to display
   const displayMainImage = landing.main_image || template.image;
 
+  // Use DB data if available, otherwise fall back to static data
+  const displayPrice = productExists ? productData.price : template.price;
+  const displayLink = productExists ? productData.link : template.link;
+  const displayBuildinLink = productExists ? productData.buildin_link : template.buildinLink;
+  const displayStatus = productExists ? productData.status : template.status;
+  const isAvailable = displayStatus === 'available';
+
   const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
   const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
   const fullDescription = i18n.language === 'ru' ? template.fullDescriptionRu : template.fullDescriptionEn;
   const features = i18n.language === 'ru' ? template.featuresRu : template.featuresEn;
-  const isAvailable = template.status === 'available';
 
   const featureSections = isSecondBrain ? secondBrainFeatureSections : null;
   const reviews = isSecondBrain ? secondBrainReviews : null;
@@ -478,12 +494,26 @@ const TemplateLanding = () => {
       {isAdmin && templateId && (
         <InlineEditPanel
           isEditing={isEditing}
-          isSaving={isSaving}
+          isSaving={isSaving || isProductSaving}
           templateId={templateId}
           onToggleEdit={() => setIsEditing(!isEditing)}
           onSave={handleSave}
           hasUnsavedChanges={hasUnsavedChanges}
         />
+      )}
+      
+      {/* Product Edit Panel - shown in editing mode */}
+      {isAdmin && isEditing && templateId && (
+        <section className="container py-6">
+          <div className="max-w-4xl mx-auto">
+            <ProductEditPanel
+              product={productData}
+              isSaving={isProductSaving}
+              onUpdate={updateProductField}
+              onSave={saveProduct}
+            />
+          </div>
+        </section>
       )}
       
       {/* Hero Section */}
@@ -576,18 +606,20 @@ const TemplateLanding = () => {
                 </div>
                 
                 <div className="flex items-center gap-6 flex-wrap pt-4">
-                  <div className="text-4xl md:text-5xl font-bold text-primary">{template.price}</div>
+                  <div className="text-4xl md:text-5xl font-bold text-primary">{displayPrice}</div>
                   {isAvailable ? (
                     <div className="flex flex-wrap gap-3">
-                      <a href={template.link} target="_blank" rel="noopener noreferrer">
-                        <Button size="lg" className="gap-2 text-lg px-6 py-6">
-                          <ShoppingCart className="h-5 w-5" />
-                          Notion
-                          <ExternalLink className="h-4 w-4" />
-                        </Button>
-                      </a>
-                      {template.buildinLink && (
-                        <a href={template.buildinLink} target="_blank" rel="noopener noreferrer">
+                      {displayLink && displayLink !== '#' && (
+                        <a href={displayLink} target="_blank" rel="noopener noreferrer">
+                          <Button size="lg" className="gap-2 text-lg px-6 py-6">
+                            <ShoppingCart className="h-5 w-5" />
+                            Notion
+                            <ExternalLink className="h-4 w-4" />
+                          </Button>
+                        </a>
+                      )}
+                      {displayBuildinLink && (
+                        <a href={displayBuildinLink} target="_blank" rel="noopener noreferrer">
                           <Button size="lg" variant="secondary" className="gap-2 text-lg px-6 py-6">
                             <ShoppingCart className="h-5 w-5" />
                             Buildin.AI

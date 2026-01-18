@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import PageTransition from "@/components/PageTransition";
 import SEO from "@/components/SEO";
 import { premiumTemplates } from "@/data/premiumTemplates";
+import { useLandingPreviews } from "@/hooks/useLandingPreviews";
 
 type ProductType = 'all' | 'templates' | 'courses' | 'ai-prompts' | 'consulting' | 'games';
 
@@ -16,6 +17,7 @@ const Home = () => {
   const navigate = useNavigate();
   const isRu = i18n.language === 'ru';
   const [activeFilter, setActiveFilter] = useState<ProductType>('all');
+  const { getMainImage } = useLandingPreviews();
 
   // Filter categories as small chips
   const filterCategories = [
@@ -157,15 +159,19 @@ const Home = () => {
                     >
                       <CardHeader className="p-4 space-y-3">
                         <div className="aspect-[4/3] bg-muted/50 rounded-xl flex items-center justify-center overflow-hidden">
-                          {product.image ? (
-                            <img 
-                              src={product.image} 
-                              alt={product.title}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                          ) : (
-                            <product.icon className="h-10 w-10 text-primary" />
-                          )}
+                          {(() => {
+                            const landingImage = isTemplate ? getMainImage(product.id) : null;
+                            const displayImage = landingImage || product.image;
+                            return displayImage ? (
+                              <img 
+                                src={displayImage} 
+                                alt={product.title}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              />
+                            ) : (
+                              <product.icon className="h-10 w-10 text-primary" />
+                            );
+                          })()}
                         </div>
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
