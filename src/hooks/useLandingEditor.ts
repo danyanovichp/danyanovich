@@ -66,17 +66,18 @@ export function useLandingEditor(templateId?: string) {
   const fetchLanding = async (id: string) => {
     setIsLoading(true);
     try {
+      // Use RPC function for public access (excludes created_by for security)
       const { data, error } = await supabase
-        .from("template_landings")
-        .select("*")
-        .eq("template_id", id)
-        .maybeSingle();
+        .rpc("get_public_template_landing", { p_template_id: id });
 
       if (error) throw error;
 
-      if (data) {
+      // RPC returns an array, get first item
+      const landingData = Array.isArray(data) ? data[0] : null;
+
+      if (landingData) {
         // Handle migration from old string[] format to new object format
-        const rawScreenshots = data.screenshots as unknown;
+        const rawScreenshots = landingData.screenshots as unknown;
         let parsedScreenshots: LandingScreenshot[] = [];
         if (Array.isArray(rawScreenshots)) {
           parsedScreenshots = rawScreenshots.map((item: unknown) => {
@@ -88,17 +89,17 @@ export function useLandingEditor(templateId?: string) {
         }
         
         setLanding({
-          id: data.id,
-          template_id: data.template_id,
-          headline: data.headline || "",
-          subheadline: data.subheadline || "",
-          main_image: data.main_image || "",
-          pain_points: (data.pain_points as unknown as string[]) || [""],
-          solution_intro: data.solution_intro || "",
-          solution_description: data.solution_description || "",
-          features: (data.features as unknown as LandingFeature[]) || [{ icon: "✅", title: "", description: "" }],
-          views: (data.views as unknown as string[]) || [""],
-          target_audience: (data.target_audience as unknown as LandingAudience[]) || [{ title: "", description: "" }],
+          id: landingData.id,
+          template_id: landingData.template_id,
+          headline: landingData.headline || "",
+          subheadline: landingData.subheadline || "",
+          main_image: landingData.main_image || "",
+          pain_points: (landingData.pain_points as unknown as string[]) || [""],
+          solution_intro: landingData.solution_intro || "",
+          solution_description: landingData.solution_description || "",
+          features: (landingData.features as unknown as LandingFeature[]) || [{ icon: "✅", title: "", description: "" }],
+          views: (landingData.views as unknown as string[]) || [""],
+          target_audience: (landingData.target_audience as unknown as LandingAudience[]) || [{ title: "", description: "" }],
           screenshots: parsedScreenshots,
         });
       } else {
