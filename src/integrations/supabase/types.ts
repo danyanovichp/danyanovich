@@ -172,6 +172,44 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_all_public_template_landings: {
+        Args: never
+        Returns: {
+          created_at: string
+          features: Json
+          headline: string
+          id: string
+          main_image: string
+          pain_points: Json
+          screenshots: Json
+          solution_description: string
+          solution_intro: string
+          subheadline: string
+          target_audience: Json
+          template_id: string
+          updated_at: string
+          views: Json
+        }[]
+      }
+      get_public_template_landing: {
+        Args: { p_template_id: string }
+        Returns: {
+          created_at: string
+          features: Json
+          headline: string
+          id: string
+          main_image: string
+          pain_points: Json
+          screenshots: Json
+          solution_description: string
+          solution_intro: string
+          subheadline: string
+          target_audience: Json
+          template_id: string
+          updated_at: string
+          views: Json
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

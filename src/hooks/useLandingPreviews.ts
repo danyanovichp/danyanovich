@@ -16,14 +16,14 @@ export function useLandingPreviews() {
 
   const fetchPreviews = async () => {
     try {
+      // Use RPC function for public access (excludes created_by for security)
       const { data, error } = await supabase
-        .from("template_landings")
-        .select("template_id, main_image");
+        .rpc("get_all_public_template_landings");
 
       if (error) throw error;
 
       const previewMap: Record<string, LandingPreview> = {};
-      (data || []).forEach(item => {
+      (data || []).forEach((item: { template_id: string; main_image: string | null }) => {
         previewMap[item.template_id] = {
           template_id: item.template_id,
           main_image: item.main_image,
