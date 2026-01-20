@@ -6,19 +6,47 @@ import { useTranslation } from "react-i18next";
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { premiumTemplates } from "@/data/premiumTemplates";
+import { useProducts } from "@/hooks/useProducts";
 import TemplateFilters, { TemplateCategory, TemplateStatus, SortOption } from "@/components/TemplateFilters";
 import SEO, { getTemplatesSchema, getBreadcrumbSchema } from "@/components/SEO";
 
 const Templates = () => {
   const { t, i18n } = useTranslation();
+  const { products, isLoading: productsLoading } = useProducts();
   const [selectedTemplate, setSelectedTemplate] = useState<any>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<TemplateCategory>('all');
   const [selectedStatus, setSelectedStatus] = useState<TemplateStatus>('all');
   const [sortBy, setSortBy] = useState<SortOption>('popularity');
 
+  // Merge DB products with static templates (DB takes priority)
+  const mergedTemplates = useMemo(() => {
+    const productMap = new Map(products.map(p => [p.id, p]));
+    
+    return premiumTemplates.map(template => {
+      const dbProduct = productMap.get(template.id);
+      if (dbProduct) {
+        return {
+          ...template,
+          titleRu: dbProduct.title_ru,
+          titleEn: dbProduct.title_en,
+          descriptionRu: dbProduct.description_ru,
+          descriptionEn: dbProduct.description_en,
+          price: dbProduct.price,
+          priceValue: dbProduct.price_value,
+          status: dbProduct.status as 'available' | 'development',
+          category: dbProduct.category as TemplateCategory,
+          popularity: dbProduct.popularity,
+          image: dbProduct.image || template.image,
+          link: dbProduct.link || template.link,
+        };
+      }
+      return template;
+    });
+  }, [products]);
+
   const filteredTemplates = useMemo(() => {
-    let filtered = premiumTemplates.filter(template => {
+    let filtered = mergedTemplates.filter(template => {
       const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
       const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
       const matchesSearch = searchQuery === '' || 
@@ -51,7 +79,7 @@ const Templates = () => {
     }
 
     return filtered;
-  }, [searchQuery, selectedCategory, selectedStatus, sortBy, i18n.language]);
+  }, [searchQuery, selectedCategory, selectedStatus, sortBy, i18n.language, mergedTemplates]);
 
   const educationItems = [
     {

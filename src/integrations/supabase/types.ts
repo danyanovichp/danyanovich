@@ -22,6 +22,8 @@ export type Database = {
           created_at: string | null
           description_en: string
           description_ru: string
+          discount_end_date: string | null
+          discount_percent: number | null
           display_on_home: boolean | null
           features_en: Json | null
           features_ru: Json | null
@@ -35,10 +37,12 @@ export type Database = {
           popularity: number | null
           price: string
           price_value: number
+          promo_text: string | null
           status: string
           title_en: string
           title_ru: string
           updated_at: string | null
+          view_count: number | null
         }
         Insert: {
           added_date?: string | null
@@ -47,6 +51,8 @@ export type Database = {
           created_at?: string | null
           description_en: string
           description_ru: string
+          discount_end_date?: string | null
+          discount_percent?: number | null
           display_on_home?: boolean | null
           features_en?: Json | null
           features_ru?: Json | null
@@ -60,10 +66,12 @@ export type Database = {
           popularity?: number | null
           price: string
           price_value?: number
+          promo_text?: string | null
           status?: string
           title_en: string
           title_ru: string
           updated_at?: string | null
+          view_count?: number | null
         }
         Update: {
           added_date?: string | null
@@ -72,6 +80,8 @@ export type Database = {
           created_at?: string | null
           description_en?: string
           description_ru?: string
+          discount_end_date?: string | null
+          discount_percent?: number | null
           display_on_home?: boolean | null
           features_en?: Json | null
           features_ru?: Json | null
@@ -85,10 +95,48 @@ export type Database = {
           popularity?: number | null
           price?: string
           price_value?: number
+          promo_text?: string | null
           status?: string
           title_en?: string
           title_ru?: string
           updated_at?: string | null
+          view_count?: number | null
+        }
+        Relationships: []
+      }
+      template_faq: {
+        Row: {
+          answer_en: string | null
+          answer_ru: string
+          created_at: string
+          id: string
+          question_en: string | null
+          question_ru: string
+          sort_order: number | null
+          template_id: string
+          updated_at: string
+        }
+        Insert: {
+          answer_en?: string | null
+          answer_ru: string
+          created_at?: string
+          id?: string
+          question_en?: string | null
+          question_ru: string
+          sort_order?: number | null
+          template_id: string
+          updated_at?: string
+        }
+        Update: {
+          answer_en?: string | null
+          answer_ru?: string
+          created_at?: string
+          id?: string
+          question_en?: string | null
+          question_ru?: string
+          sort_order?: number | null
+          template_id?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -102,12 +150,18 @@ export type Database = {
           main_image: string | null
           pain_points: Json | null
           screenshots: Json | null
+          seo_description_en: string | null
+          seo_description_ru: string | null
+          seo_keywords: string | null
+          seo_title_en: string | null
+          seo_title_ru: string | null
           solution_description: string | null
           solution_intro: string | null
           subheadline: string | null
           target_audience: Json | null
           template_id: string
           updated_at: string
+          video_url: string | null
           views: Json | null
         }
         Insert: {
@@ -119,12 +173,18 @@ export type Database = {
           main_image?: string | null
           pain_points?: Json | null
           screenshots?: Json | null
+          seo_description_en?: string | null
+          seo_description_ru?: string | null
+          seo_keywords?: string | null
+          seo_title_en?: string | null
+          seo_title_ru?: string | null
           solution_description?: string | null
           solution_intro?: string | null
           subheadline?: string | null
           target_audience?: Json | null
           template_id: string
           updated_at?: string
+          video_url?: string | null
           views?: Json | null
         }
         Update: {
@@ -136,13 +196,111 @@ export type Database = {
           main_image?: string | null
           pain_points?: Json | null
           screenshots?: Json | null
+          seo_description_en?: string | null
+          seo_description_ru?: string | null
+          seo_keywords?: string | null
+          seo_title_en?: string | null
+          seo_title_ru?: string | null
           solution_description?: string | null
           solution_intro?: string | null
           subheadline?: string | null
           target_audience?: Json | null
           template_id?: string
           updated_at?: string
+          video_url?: string | null
           views?: Json | null
+        }
+        Relationships: []
+      }
+      template_reviews: {
+        Row: {
+          author_avatar: string | null
+          author_name: string
+          created_at: string
+          id: string
+          is_featured: boolean | null
+          is_visible: boolean | null
+          rating: number
+          review_text_en: string | null
+          review_text_ru: string
+          source_link: string | null
+          template_id: string
+          updated_at: string
+        }
+        Insert: {
+          author_avatar?: string | null
+          author_name: string
+          created_at?: string
+          id?: string
+          is_featured?: boolean | null
+          is_visible?: boolean | null
+          rating?: number
+          review_text_en?: string | null
+          review_text_ru: string
+          source_link?: string | null
+          template_id: string
+          updated_at?: string
+        }
+        Update: {
+          author_avatar?: string | null
+          author_name?: string
+          created_at?: string
+          id?: string
+          is_featured?: boolean | null
+          is_visible?: boolean | null
+          rating?: number
+          review_text_en?: string | null
+          review_text_ru?: string
+          source_link?: string | null
+          template_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      template_tag_relations: {
+        Row: {
+          tag_id: string
+          template_id: string
+        }
+        Insert: {
+          tag_id: string
+          template_id: string
+        }
+        Update: {
+          tag_id?: string
+          template_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "template_tag_relations_tag_id_fkey"
+            columns: ["tag_id"]
+            isOneToOne: false
+            referencedRelation: "template_tags"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      template_tags: {
+        Row: {
+          color: string | null
+          created_at: string
+          id: string
+          name_en: string | null
+          name_ru: string
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string
+          id?: string
+          name_en?: string | null
+          name_ru: string
+        }
+        Update: {
+          color?: string | null
+          created_at?: string
+          id?: string
+          name_en?: string | null
+          name_ru?: string
         }
         Relationships: []
       }
@@ -182,12 +340,18 @@ export type Database = {
           main_image: string
           pain_points: Json
           screenshots: Json
+          seo_description_en: string
+          seo_description_ru: string
+          seo_keywords: string
+          seo_title_en: string
+          seo_title_ru: string
           solution_description: string
           solution_intro: string
           subheadline: string
           target_audience: Json
           template_id: string
           updated_at: string
+          video_url: string
           views: Json
         }[]
       }
@@ -201,12 +365,18 @@ export type Database = {
           main_image: string
           pain_points: Json
           screenshots: Json
+          seo_description_en: string
+          seo_description_ru: string
+          seo_keywords: string
+          seo_title_en: string
+          seo_title_ru: string
           solution_description: string
           solution_intro: string
           subheadline: string
           target_audience: Json
           template_id: string
           updated_at: string
+          video_url: string
           views: Json
         }[]
       }
