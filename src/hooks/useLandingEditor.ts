@@ -33,6 +33,12 @@ export interface LandingData {
   views: string[];
   target_audience: LandingAudience[];
   screenshots: LandingScreenshot[];
+  video_url: string;
+  seo_title_ru: string;
+  seo_title_en: string;
+  seo_description_ru: string;
+  seo_description_en: string;
+  seo_keywords: string;
 }
 
 const emptyLanding: LandingData = {
@@ -47,6 +53,12 @@ const emptyLanding: LandingData = {
   views: [""],
   target_audience: [{ title: "", description: "" }],
   screenshots: [],
+  video_url: "",
+  seo_title_ru: "",
+  seo_title_en: "",
+  seo_description_ru: "",
+  seo_description_en: "",
+  seo_keywords: "",
 };
 
 export function useLandingEditor(templateId?: string) {
