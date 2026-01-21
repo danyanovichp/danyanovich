@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Percent, Calendar } from "lucide-react";
 import { format } from "date-fns";
 
-interface DiscountData {
+export interface DiscountData {
   discount_percent: number | null;
   discount_end_date: string | null;
   promo_text: string | null;
@@ -14,7 +14,7 @@ interface DiscountData {
 interface DiscountEditorProps {
   data: DiscountData;
   originalPrice: string;
-  onChange: <K extends keyof DiscountData>(field: K, value: DiscountData[K]) => void;
+  onChange: (field: keyof DiscountData, value: number | string | null) => void;
 }
 
 export function DiscountEditor({ data, originalPrice, onChange }: DiscountEditorProps) {

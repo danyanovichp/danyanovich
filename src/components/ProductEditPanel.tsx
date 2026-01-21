@@ -6,8 +6,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Loader2, Save, Package, Link as LinkIcon, DollarSign, Tag, Settings, Plus, Trash2, FileText, Globe, Sparkles, Calendar } from "lucide-react";
+import { Loader2, Save, Package, Link as LinkIcon, DollarSign, Tag, Settings, Plus, Trash2, FileText, Sparkles } from "lucide-react";
 import { ProductData } from "@/hooks/useProductEditor";
+import { DiscountEditor } from "@/components/editors/DiscountEditor";
 
 const ICON_OPTIONS = [
   "Layout", "Calendar", "Target", "Brain", "Briefcase", "Folder", "Database",
@@ -371,6 +372,17 @@ export function ProductEditPanel({ product, isSaving, onUpdate, onSave }: Produc
             </AccordionContent>
           </AccordionItem>
         </Accordion>
+
+        {/* Discount Editor */}
+        <DiscountEditor
+          data={{
+            discount_percent: product.discount_percent,
+            discount_end_date: product.discount_end_date,
+            promo_text: product.promo_text,
+          }}
+          originalPrice={product.price}
+          onChange={(field, value) => onUpdate(field, value)}
+        />
 
         {/* Save Button */}
         <Button onClick={onSave} disabled={isSaving} className="w-full gap-2 mt-4">
