@@ -19,7 +19,7 @@ const Templates = () => {
   const [selectedStatus, setSelectedStatus] = useState<TemplateStatus>('all');
   const [sortBy, setSortBy] = useState<SortOption>('popularity');
 
-  // Merge DB products with static templates (DB takes priority)
+  // Merge DB products with static templates (DB takes priority, with fallback to static)
   const mergedTemplates = useMemo(() => {
     const productMap = new Map(products.map(p => [p.id, p]));
     
@@ -28,15 +28,15 @@ const Templates = () => {
       if (dbProduct) {
         return {
           ...template,
-          titleRu: dbProduct.title_ru,
-          titleEn: dbProduct.title_en,
-          descriptionRu: dbProduct.description_ru,
-          descriptionEn: dbProduct.description_en,
-          price: dbProduct.price,
-          priceValue: dbProduct.price_value,
-          status: dbProduct.status as 'available' | 'development',
-          category: dbProduct.category as TemplateCategory,
-          popularity: dbProduct.popularity,
+          titleRu: dbProduct.title_ru || template.titleRu,
+          titleEn: dbProduct.title_en || template.titleEn,
+          descriptionRu: dbProduct.description_ru || template.descriptionRu,
+          descriptionEn: dbProduct.description_en || template.descriptionEn,
+          price: dbProduct.price || template.price,
+          priceValue: dbProduct.price_value ?? template.priceValue,
+          status: (dbProduct.status as 'available' | 'development') || template.status,
+          category: (dbProduct.category as TemplateCategory) || template.category,
+          popularity: dbProduct.popularity ?? template.popularity,
           image: dbProduct.image || template.image,
           link: dbProduct.link || template.link,
         };

@@ -14,8 +14,14 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { 
   Loader2, Save, ArrowLeft, Plus, Trash2, Eye, Edit3, 
-  AlertCircle, Zap, Users, Layout, ExternalLink, ImagePlus, X, GripVertical, RefreshCw
+  AlertCircle, Zap, Users, Layout, ExternalLink, ImagePlus, X, GripVertical, RefreshCw,
+  HelpCircle, Star, Video, Search, Tag
 } from "lucide-react";
+import { FaqEditor } from "@/components/editors/FaqEditor";
+import { ReviewsEditor } from "@/components/editors/ReviewsEditor";
+import { VideoEditor } from "@/components/editors/VideoEditor";
+import { SeoEditor } from "@/components/editors/SeoEditor";
+import { TagsEditor } from "@/components/editors/TagsEditor";
 
 const LandingEditor = () => {
   const { templateId } = useParams();
@@ -795,6 +801,37 @@ const LandingEditor = () => {
                 </p>
               </CardContent>
             </Card>
+
+            {/* Video Editor */}
+            {templateId && (
+              <VideoEditor 
+                videoUrl={landing.video_url} 
+                onChange={(url) => updateField("video_url", url)} 
+              />
+            )}
+
+            {/* SEO Editor */}
+            {templateId && (
+              <SeoEditor
+                data={{
+                  seo_title_ru: landing.seo_title_ru,
+                  seo_title_en: landing.seo_title_en,
+                  seo_description_ru: landing.seo_description_ru,
+                  seo_description_en: landing.seo_description_en,
+                  seo_keywords: landing.seo_keywords,
+                }}
+                onChange={(field, value) => updateField(field, value)}
+              />
+            )}
+
+            {/* Tags Editor */}
+            {templateId && <TagsEditor templateId={templateId} />}
+
+            {/* FAQ Editor */}
+            {templateId && <FaqEditor templateId={templateId} />}
+
+            {/* Reviews Editor */}
+            {templateId && <ReviewsEditor templateId={templateId} />}
           </div>
         ) : (
           /* Preview Mode */

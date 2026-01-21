@@ -113,6 +113,12 @@ export function useLandingEditor(templateId?: string) {
           views: (landingData.views as unknown as string[]) || [""],
           target_audience: (landingData.target_audience as unknown as LandingAudience[]) || [{ title: "", description: "" }],
           screenshots: parsedScreenshots,
+          video_url: landingData.video_url || "",
+          seo_title_ru: landingData.seo_title_ru || "",
+          seo_title_en: landingData.seo_title_en || "",
+          seo_description_ru: landingData.seo_description_ru || "",
+          seo_description_en: landingData.seo_description_en || "",
+          seo_keywords: landingData.seo_keywords || "",
         });
       } else {
         setLanding({ ...emptyLanding, template_id: id });
@@ -153,6 +159,12 @@ export function useLandingEditor(templateId?: string) {
         views: landing.views.filter(v => v.trim()) as unknown as Json,
         target_audience: landing.target_audience.filter(a => a.title.trim()) as unknown as Json,
         screenshots: landing.screenshots as unknown as Json,
+        video_url: landing.video_url || null,
+        seo_title_ru: landing.seo_title_ru || null,
+        seo_title_en: landing.seo_title_en || null,
+        seo_description_ru: landing.seo_description_ru || null,
+        seo_description_en: landing.seo_description_en || null,
+        seo_keywords: landing.seo_keywords || null,
       };
 
       if (landing.id) {
