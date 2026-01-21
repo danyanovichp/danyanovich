@@ -22,6 +22,9 @@ export interface ProductData {
   features_en: string[];
   is_visible: boolean;
   display_on_home: boolean;
+  discount_percent: number | null;
+  discount_end_date: string | null;
+  promo_text: string | null;
 }
 
 const defaultProduct: ProductData = {
@@ -44,6 +47,9 @@ const defaultProduct: ProductData = {
   features_en: [],
   is_visible: true,
   display_on_home: true,
+  discount_percent: null,
+  discount_end_date: null,
+  promo_text: null,
 };
 
 export function useProductEditor(productId?: string) {
@@ -94,6 +100,9 @@ export function useProductEditor(productId?: string) {
           features_en: Array.isArray(data.features_en) ? data.features_en as string[] : [],
           is_visible: data.is_visible ?? true,
           display_on_home: data.display_on_home ?? true,
+          discount_percent: data.discount_percent,
+          discount_end_date: data.discount_end_date,
+          promo_text: data.promo_text,
         });
         setExists(true);
       } else {
@@ -141,6 +150,9 @@ export function useProductEditor(productId?: string) {
         features_en: product.features_en,
         is_visible: product.is_visible,
         display_on_home: product.display_on_home,
+        discount_percent: product.discount_percent,
+        discount_end_date: product.discount_end_date,
+        promo_text: product.promo_text,
       };
 
       if (exists) {
