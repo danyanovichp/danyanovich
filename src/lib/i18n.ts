@@ -97,7 +97,7 @@ const resources = {
         bio1: 'С 2020 года создаю и консультирую рабочие пространства. Реализовал более 50 проектов по внедрению Notion, Buildin.AI и других инструментов для компаний различного масштаба.',
         bio2: 'Разработал комплексные решения, повысившие эффективность рабочих процессов клиентов в среднем на 30%. Создал библиотеку специализированных шаблонов для различных бизнес-задач.',
         bio3: 'Провел более 100 часов обучающих сессий, помогая командам максимально использовать возможности пространств.',
-        social: 'Мои каналы',
+        social: 'Соц. Сети',
       },
       faq: {
         title: 'Часто задаваемые вопросы',
@@ -216,7 +216,7 @@ const resources = {
         bio1: 'Since 2020, I have been creating and consulting workspaces. Implemented over 50 projects with Notion, Buildin.AI and other tools for companies of various sizes.',
         bio2: 'Developed comprehensive solutions that increased client workflow efficiency by an average of 30%. Created a library of specialized templates for various business tasks.',
         bio3: 'Conducted over 100 hours of training sessions, helping teams maximize workspace capabilities.',
-        social: 'My Channels',
+        social: 'Social Networks',
       },
       faq: {
         title: 'Frequently Asked Questions',
