@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState, useMemo } from "react";
-import { ArrowRight, Layout, GraduationCap, Bot, MessageSquare, Gamepad2 } from "lucide-react";
+import { ArrowRight, Layout, GraduationCap, Bot, MessageSquare } from "lucide-react";
 import * as LucideIcons from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -10,10 +10,12 @@ import PageTransition from "@/components/PageTransition";
 import SEO from "@/components/SEO";
 import { useProducts } from "@/hooks/useProducts";
 import { useLandingPreviews } from "@/hooks/useLandingPreviews";
-type ProductType = 'all' | 'templates' | 'courses' | 'ai-prompts' | 'consulting' | 'games';
+import { premiumTemplates } from "@/data/premiumTemplates";
+type ProductType = 'templates' | 'courses' | 'ai-prompts';
 
 // Helper to get icon component from string name
-const getIconComponent = (iconName: string): React.ComponentType<{ className?: string }> => {
+const getIconComponent = (iconName: string | undefined): React.ComponentType<{ className?: string }> => {
+  if (!iconName || typeof iconName !== 'string') return Layout;
   const icons = LucideIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>;
   return icons[iconName] || Layout;
 };
@@ -22,49 +24,56 @@ const Home = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const isRu = i18n.language === 'ru';
-  const [activeFilter, setActiveFilter] = useState<ProductType>('all');
+  const [activeFilter, setActiveFilter] = useState<ProductType>('templates');
   const { getMainImage } = useLandingPreviews();
   const { products: dbProducts, isLoading } = useProducts();
 
-  // Filter categories as small chips
+  // Filter categories as small chips (removed 'all', 'consulting', 'games')
   const filterCategories = [
-    { id: 'all' as ProductType, label: isRu ? "Все" : "All", icon: null },
     { id: 'templates' as ProductType, label: isRu ? "Шаблоны" : "Templates", icon: Layout },
     { id: 'courses' as ProductType, label: isRu ? "Курсы" : "Courses", icon: GraduationCap },
     { id: 'ai-prompts' as ProductType, label: isRu ? "AI Промпты" : "AI Prompts", icon: Bot },
-    { id: 'consulting' as ProductType, label: isRu ? "Консалтинг" : "Consulting", icon: MessageSquare },
-    { id: 'games' as ProductType, label: isRu ? "Игры" : "Games", icon: Gamepad2 },
   ];
 
   // All products combined (templates from DB + mock products for other categories)
   const allProducts = useMemo(() => {
-    // Filter DB products that are templates and visible
-    const templateProducts = dbProducts
-      .filter(p => p.category === 'productivity' || p.category === 'templates' || p.category === 'business' || p.category === 'education' || p.category === 'finance' || p.category === 'lifestyle' || p.category === 'personal')
-      .filter(p => p.is_visible && p.display_on_home)
-      .map(p => ({
-        id: p.id,
-        type: 'templates' as ProductType,
-        title: isRu ? p.title_ru : p.title_en,
-        description: isRu ? p.description_ru : p.description_en,
-        price: p.price,
-        link: p.link,
-        image: p.image,
-        icon: getIconComponent(p.icon),
-        status: p.status as 'available' | 'development',
-        popularity: p.popularity,
-      }));
+    // Merge DB products with static templates (DB takes priority for data)
+    const productMap = new Map(dbProducts.map(p => [p.id, p]));
+    
+    const templateProducts = premiumTemplates
+      .filter(template => {
+        const dbProduct = productMap.get(template.id);
+        const status = dbProduct?.status || template.status;
+        const isVisible = dbProduct?.is_visible ?? true;
+        const displayOnHome = dbProduct?.display_on_home ?? true;
+        return isVisible && displayOnHome;
+      })
+      .map(template => {
+        const dbProduct = productMap.get(template.id);
+        return {
+          id: template.id,
+          type: 'templates' as ProductType,
+          title: isRu 
+            ? (dbProduct?.title_ru || template.titleRu) 
+            : (dbProduct?.title_en || template.titleEn),
+          description: isRu 
+            ? (dbProduct?.description_ru || template.descriptionRu) 
+            : (dbProduct?.description_en || template.descriptionEn),
+          price: dbProduct?.price || template.price,
+          link: dbProduct?.link || template.link,
+          image: dbProduct?.image || template.image,
+          icon: getIconComponent(dbProduct?.icon ?? (typeof template.icon === 'string' ? template.icon : 'Layout')),
+          status: (dbProduct?.status as 'available' | 'development') || template.status,
+          popularity: dbProduct?.popularity ?? template.popularity,
+        };
+      });
 
-    // Mock products for other categories
+    // Mock products for other categories (Courses & AI Prompts - now in development)
     const otherProducts = [
-      { id: 'course-notion-basics', type: 'courses' as ProductType, title: isRu ? 'Notion с нуля' : 'Notion Basics', description: isRu ? 'Полный курс для начинающих' : 'Complete course for beginners', price: '2 990 ₽', link: '/courses', image: undefined as string | undefined, icon: GraduationCap, status: 'available' as const, popularity: 90 },
-      { id: 'course-notion-advanced', type: 'courses' as ProductType, title: isRu ? 'Notion PRO' : 'Notion PRO', description: isRu ? 'Продвинутые техники' : 'Advanced techniques', price: '4 990 ₽', link: '/courses', image: undefined as string | undefined, icon: GraduationCap, status: 'available' as const, popularity: 85 },
-      { id: 'ai-prompt-pack', type: 'ai-prompts' as ProductType, title: isRu ? 'ChatGPT Pack' : 'ChatGPT Pack', description: isRu ? '50 промптов для ChatGPT' : '50 prompts for ChatGPT', price: '990 ₽', link: '/ai-prompts', image: undefined as string | undefined, icon: Bot, status: 'available' as const, popularity: 88 },
-      { id: 'ai-prompt-midjourney', type: 'ai-prompts' as ProductType, title: isRu ? 'Midjourney Pack' : 'Midjourney Pack', description: isRu ? 'Промпты для генерации изображений' : 'Prompts for image generation', price: '1 490 ₽', link: '/ai-prompts', image: undefined as string | undefined, icon: Bot, status: 'available' as const, popularity: 82 },
-      { id: 'consulting-hour', type: 'consulting' as ProductType, title: isRu ? 'Консультация 1 час' : '1 Hour Consultation', description: isRu ? 'Персональная консультация' : 'Personal consultation', price: '5 000 ₽', link: '/consulting', image: undefined as string | undefined, icon: MessageSquare, status: 'available' as const, popularity: 75 },
-      { id: 'pixel-cafe-tycoon', type: 'games' as ProductType, title: 'Pixel Cafe Tycoon', description: isRu ? 'Интерактивная игра-симулятор кафе' : 'Interactive cafe simulator game', price: isRu ? 'Бесплатно' : 'Free', link: '/games/pixel-cafe-tycoon', image: undefined as string | undefined, icon: Gamepad2, status: 'available' as const, popularity: 95 },
-      { id: 'game-notion-quest', type: 'games' as ProductType, title: isRu ? 'Notion Quest' : 'Notion Quest', description: isRu ? 'Игра-квест в Notion' : 'Quest game in Notion', price: '490 ₽', link: '#', image: undefined as string | undefined, icon: Gamepad2, status: 'development' as const, popularity: 70 },
-      { id: 'game-productivity-rpg', type: 'games' as ProductType, title: isRu ? 'Productivity RPG' : 'Productivity RPG', description: isRu ? 'RPG-система продуктивности' : 'Productivity RPG system', price: '790 ₽', link: '#', image: undefined as string | undefined, icon: Gamepad2, status: 'development' as const, popularity: 65 },
+      { id: 'course-notion-basics', type: 'courses' as ProductType, title: isRu ? 'Notion с нуля' : 'Notion Basics', description: isRu ? 'Полный курс для начинающих' : 'Complete course for beginners', price: '2 990 ₽', link: '/courses', image: undefined as string | undefined, icon: GraduationCap, status: 'development' as const, popularity: 90 },
+      { id: 'course-notion-advanced', type: 'courses' as ProductType, title: isRu ? 'Notion PRO' : 'Notion PRO', description: isRu ? 'Продвинутые техники' : 'Advanced techniques', price: '4 990 ₽', link: '/courses', image: undefined as string | undefined, icon: GraduationCap, status: 'development' as const, popularity: 85 },
+      { id: 'ai-prompt-pack', type: 'ai-prompts' as ProductType, title: isRu ? 'ChatGPT Pack' : 'ChatGPT Pack', description: isRu ? '50 промптов для ChatGPT' : '50 prompts for ChatGPT', price: '990 ₽', link: '/ai-prompts', image: undefined as string | undefined, icon: Bot, status: 'development' as const, popularity: 88 },
+      { id: 'ai-prompt-midjourney', type: 'ai-prompts' as ProductType, title: isRu ? 'Midjourney Pack' : 'Midjourney Pack', description: isRu ? 'Промпты для генерации изображений' : 'Prompts for image generation', price: '1 490 ₽', link: '/ai-prompts', image: undefined as string | undefined, icon: Bot, status: 'development' as const, popularity: 82 },
     ];
 
     return [...templateProducts, ...otherProducts];
@@ -72,10 +81,7 @@ const Home = () => {
 
   // Filtered products
   const filteredProducts = useMemo(() => {
-    let products = activeFilter === 'all' 
-      ? allProducts 
-      : allProducts.filter(p => p.type === activeFilter);
-    
+    const products = allProducts.filter(p => p.type === activeFilter);
     return products.sort((a, b) => b.popularity - a.popularity);
   }, [allProducts, activeFilter]);
 
@@ -122,16 +128,13 @@ const Home = () => {
                 </p>
               </div>
 
-              {/* Filter Chips - Colorful */}
+              {/* Filter Chips - Colorful (without 'All') */}
               <div className="flex flex-wrap justify-center gap-2">
                 {filterCategories.map((category, index) => {
                   const colors = [
-                    'from-violet-500 to-purple-600',
                     'from-blue-500 to-cyan-500',
                     'from-emerald-500 to-teal-500',
                     'from-amber-500 to-orange-500',
-                    'from-pink-500 to-rose-500',
-                    'from-orange-500 to-red-500',
                   ];
                   const colorClass = colors[index % colors.length];
                   
@@ -246,6 +249,48 @@ const Home = () => {
                   </Link>
                 </Button>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Consulting Section - Separate */}
+        <section className="relative py-16 md:py-20 overflow-hidden">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center space-y-4 mb-8">
+                <h2 className="text-2xl md:text-3xl font-bold">
+                  {isRu ? "💬 Консалтинг" : "💬 Consulting"}
+                </h2>
+                <p className="text-base text-muted-foreground">
+                  {isRu ? "Персональные консультации по Notion и автоматизации" : "Personal consultations on Notion and automation"}
+                </p>
+              </div>
+
+              <Card className="group hover:border-primary/40 transition-all">
+                <CardContent className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6">
+                  <div className="p-4 bg-primary/10 rounded-2xl">
+                    <MessageSquare className="h-10 w-10 text-primary" />
+                  </div>
+                  <div className="flex-1 text-center md:text-left space-y-2">
+                    <h3 className="text-xl font-bold">
+                      {isRu ? "Консультация 1 час" : "1 Hour Consultation"}
+                    </h3>
+                    <p className="text-muted-foreground">
+                      {isRu 
+                        ? "Персональная консультация по Notion, автоматизации и AI-инструментам. Разберём ваши задачи и найдём решения."
+                        : "Personal consultation on Notion, automation and AI tools. Let's discuss your tasks and find solutions."}
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-center gap-3">
+                    <span className="text-2xl font-bold">5 000 ₽</span>
+                    <Button asChild>
+                      <Link to="/consulting">
+                        {isRu ? "Записаться" : "Book"}
+                      </Link>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>

@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Youtube, MessageCircle, FileText, Star, Quote, ExternalLink, User, Code2, Bot, Workflow, Zap, Globe, Gamepad2, AppWindow, ChevronRight, ChevronLeft, Award } from "lucide-react";
+import { Youtube, MessageCircle, FileText, Star, Quote, ExternalLink, User, Code2, Bot, Workflow, Zap, Globe, Gamepad2, AppWindow, ChevronRight, ChevronLeft, Award, Linkedin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -8,19 +9,34 @@ import StatsSection from "@/components/StatsSection";
 import AnimatedSection from "@/components/AnimatedSection";
 import SEO from "@/components/SEO";
 
+// X (Twitter) icon component
+const XIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+);
+
 const Contact = () => {
   const { t, i18n } = useTranslation();
   const isRu = i18n.language === 'ru';
 
-  // Navigation sections
+  // Calculate dynamic stats
+  const templatesCount = 25; // Premium templates
+  const reviewsCount = 6; // Kwork reviews
+  const websitesCount = 10;
+  const programsCount = 3;
+  const totalProjects = templatesCount + reviewsCount + websitesCount + programsCount;
+
+  // Navigation sections - reordered: Programs at bottom, combined with Games
   const sections = [
     { id: 'notion', label: 'Notion', icon: FileText },
     { id: 'ai', label: 'AI', icon: Bot },
     { id: 'n8n', label: 'n8n', icon: Workflow },
     { id: 'vibe-coding', label: isRu ? 'Вайб-кодинг' : 'Vibe Coding', icon: Code2 },
+    { id: 'tools', label: isRu ? 'Инструменты' : 'Tools', icon: AppWindow },
     { id: 'websites', label: isRu ? 'Сайты' : 'Websites', icon: Globe },
-    { id: 'programs', label: isRu ? 'Программы' : 'Programs', icon: AppWindow },
-    { id: 'games', label: isRu ? 'Игры' : 'Games', icon: Gamepad2 },
+    { id: 'social', label: isRu ? 'Соц. Сети' : 'Social', icon: MessageCircle },
+    { id: 'programs', label: isRu ? 'Программы' : 'Programs', icon: Gamepad2 },
   ];
 
   // Expertise blocks data
@@ -35,6 +51,7 @@ const Contact = () => {
       highlights: isRu 
         ? ['50+ проектов', 'Шаблоны', 'Автоматизация', 'Консалтинг']
         : ['50+ projects', 'Templates', 'Automation', 'Consulting'],
+      link: '/templates',
     },
     {
       id: 'ai',
@@ -46,6 +63,7 @@ const Contact = () => {
       highlights: isRu 
         ? ['ChatGPT', 'Claude', 'Промпт-инжиниринг', 'AI интеграции']
         : ['ChatGPT', 'Claude', 'Prompt Engineering', 'AI Integrations'],
+      link: '/ai-prompts',
     },
     {
       id: 'n8n',
@@ -57,6 +75,7 @@ const Contact = () => {
       highlights: isRu 
         ? ['Воркфлоу', 'Интеграции', 'API', 'Автоматизация']
         : ['Workflows', 'Integrations', 'API', 'Automation'],
+      link: '/consulting',
     },
     {
       id: 'vibe-coding',
@@ -68,6 +87,26 @@ const Contact = () => {
       highlights: isRu 
         ? ['Lovable', 'Cursor', 'React', 'TypeScript']
         : ['Lovable', 'Cursor', 'React', 'TypeScript'],
+      link: '/cases',
+    },
+  ];
+
+  // Tools I work with
+  const tools = [
+    {
+      name: 'Notion',
+      description: isRu ? 'Основной инструмент для создания шаблонов и систем' : 'Main tool for creating templates and systems',
+      icon: FileText,
+    },
+    {
+      name: 'Buildin.AI',
+      description: isRu ? 'Платформа для создания веб-приложений' : 'Platform for creating web applications',
+      icon: Code2,
+    },
+    {
+      name: 'n8n',
+      description: isRu ? 'Автоматизация бизнес-процессов' : 'Business process automation',
+      icon: Workflow,
     },
   ];
 
@@ -95,28 +134,28 @@ const Contact = () => {
     },
   ];
 
-  // Programs data
-  const programs = [
-    {
-      title: isRu ? 'CRM Система' : 'CRM System',
-      description: isRu ? 'Полноценная CRM для управления клиентами и продажами' : 'Full-featured CRM for client and sales management',
-    },
-    {
-      title: isRu ? 'Система учёта' : 'Accounting System',
-      description: isRu ? 'Программа для ведения учёта и финансов' : 'Program for accounting and finance management',
-    },
-    {
-      title: isRu ? 'Трекер задач' : 'Task Tracker',
-      description: isRu ? 'Инструмент для управления проектами и задачами' : 'Tool for project and task management',
-    },
-  ];
-
-  // Games data
-  const games = [
+  // Programs & Games data (combined)
+  const programsAndGames = [
     {
       title: isRu ? 'AI Game Studio' : 'AI Game Studio',
       url: 'https://ai.studio/apps/drive/1kuZusi_K5jgX7NZTmZ-8quB9JgxNOOpH',
       description: isRu ? 'Интерактивная игра созданная с помощью AI' : 'Interactive game created with AI',
+      type: 'game',
+    },
+    {
+      title: isRu ? 'CRM Система' : 'CRM System',
+      description: isRu ? 'Полноценная CRM для управления клиентами и продажами' : 'Full-featured CRM for client and sales management',
+      type: 'program',
+    },
+    {
+      title: isRu ? 'Система учёта' : 'Accounting System',
+      description: isRu ? 'Программа для ведения учёта и финансов' : 'Program for accounting and finance management',
+      type: 'program',
+    },
+    {
+      title: isRu ? 'Трекер задач' : 'Task Tracker',
+      description: isRu ? 'Инструмент для управления проектами и задачами' : 'Tool for project and task management',
+      type: 'program',
     },
   ];
 
@@ -147,6 +186,24 @@ const Contact = () => {
         : "My templates on the official Notion marketplace",
       handle: "@danyanovich",
       link: "https://www.notion.so/@danyanovich",
+    },
+    {
+      icon: Linkedin,
+      title: "LinkedIn",
+      description: isRu 
+        ? "Профессиональный профиль"
+        : "Professional profile",
+      handle: "Danila Putintsev",
+      link: "https://www.linkedin.com/in/danila-putintsev/",
+    },
+    {
+      icon: XIcon,
+      title: "X (Twitter)",
+      description: isRu 
+        ? "Мысли и обновления"
+        : "Thoughts and updates",
+      handle: "@danyanovich",
+      link: "https://x.com/danyanovich",
     },
   ];
 
@@ -252,7 +309,7 @@ const Contact = () => {
               </div>
             </AnimatedSection>
 
-            {/* Section Navigation */}
+            {/* Section Navigation - clickable buttons */}
             <AnimatedSection delay={150}>
               <div className="flex flex-wrap justify-center gap-2 md:gap-3 mt-8">
                 {sections.map((section) => (
@@ -273,50 +330,108 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Statistics Section */}
+      {/* Statistics Section with dynamic count */}
       <section className="py-16 md:py-20 bg-muted/10">
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <AnimatedSection delay={200}>
-              <StatsSection />
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div className="space-y-2">
+                  <p className="text-3xl md:text-4xl font-bold text-primary">{totalProjects}+</p>
+                  <p className="text-sm text-muted-foreground">{isRu ? 'Проектов' : 'Projects'}</p>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-3xl md:text-4xl font-bold text-primary">{templatesCount}+</p>
+                  <p className="text-sm text-muted-foreground">{isRu ? 'Шаблонов' : 'Templates'}</p>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-3xl md:text-4xl font-bold text-primary">{websitesCount}+</p>
+                  <p className="text-sm text-muted-foreground">{isRu ? 'Сайтов' : 'Websites'}</p>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-3xl md:text-4xl font-bold text-primary">100+</p>
+                  <p className="text-sm text-muted-foreground">{isRu ? 'Часов обучения' : 'Hours of training'}</p>
+                </div>
+              </div>
             </AnimatedSection>
           </div>
         </div>
       </section>
 
-      {/* Expertise Blocks - 2 Column Grid */}
+      {/* Expertise Blocks - 2 Column Grid with clickable cards */}
       <section className="py-16 md:py-20 bg-muted/10 scroll-mt-20">
         <div className="container">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-6">
               {expertiseBlocks.map((block, index) => (
                 <AnimatedSection key={block.id} delay={index * 100}>
-                  <Card 
-                    id={block.id}
-                    className="h-full overflow-hidden border-primary/20 hover:border-primary/40 transition-colors scroll-mt-20"
-                  >
-                    <CardHeader className="pb-4">
-                      <div className="flex items-center gap-4">
-                        <div className="p-3 bg-primary/10 rounded-xl">
-                          <block.icon className="h-8 w-8 text-primary" />
+                  <Link to={block.link}>
+                    <Card 
+                      id={block.id}
+                      className="h-full overflow-hidden border-primary/20 hover:border-primary/40 transition-all hover:scale-[1.02] cursor-pointer scroll-mt-20"
+                    >
+                      <CardHeader className="pb-4">
+                        <div className="flex items-center gap-4">
+                          <div className="p-3 bg-primary/10 rounded-xl">
+                            <block.icon className="h-8 w-8 text-primary" />
+                          </div>
+                          <h2 className="text-xl md:text-2xl font-bold">{block.title}</h2>
                         </div>
-                        <h2 className="text-xl md:text-2xl font-bold">{block.title}</h2>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+                          {block.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2 pt-2">
+                          {block.highlights.map((highlight, i) => (
+                            <span 
+                              key={i}
+                              className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full font-medium"
+                            >
+                              {highlight}
+                            </span>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tools Section */}
+      <section id="tools" className="py-16 md:py-20 bg-muted/20 scroll-mt-20">
+        <div className="container">
+          <div className="max-w-5xl mx-auto">
+            <AnimatedSection>
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-3 mb-4">
+                  <AppWindow className="h-8 w-8 text-primary" />
+                  <h2 className="text-2xl md:text-3xl font-bold">
+                    {isRu ? 'Инструменты' : 'Tools I Use'}
+                  </h2>
+                </div>
+                <p className="text-muted-foreground">
+                  {isRu 
+                    ? 'Программы, в которых я работаю'
+                    : 'Programs I work with'}
+                </p>
+              </div>
+            </AnimatedSection>
+            
+            <div className="grid md:grid-cols-3 gap-6">
+              {tools.map((tool, index) => (
+                <AnimatedSection key={index} delay={index * 100}>
+                  <Card className="h-full hover:border-primary/40 transition-all">
+                    <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
+                      <div className="p-4 bg-primary/10 rounded-xl">
+                        <tool.icon className="h-8 w-8 text-primary" />
                       </div>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
-                        {block.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2 pt-2">
-                        {block.highlights.map((highlight, i) => (
-                          <span 
-                            key={i}
-                            className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full font-medium"
-                          >
-                            {highlight}
-                          </span>
-                        ))}
-                      </div>
+                      <h3 className="text-lg font-bold">{tool.name}</h3>
+                      <p className="text-sm text-muted-foreground">{tool.description}</p>
                     </CardContent>
                   </Card>
                 </AnimatedSection>
@@ -340,8 +455,8 @@ const Contact = () => {
                 </div>
                 <p className="text-muted-foreground">
                   {isRu 
-                    ? 'Создал более 10 сайтов с помощью современных технологий'
-                    : 'Created 10+ websites using modern technologies'}
+                    ? 'Создал более 10 сайтов'
+                    : 'Created 10+ websites'}
                 </p>
               </div>
             </AnimatedSection>
@@ -376,107 +491,8 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Programs Section */}
-      <section id="programs" className="py-16 md:py-20 bg-muted/5 scroll-mt-20">
-        <div className="container">
-          <div className="max-w-5xl mx-auto">
-            <AnimatedSection>
-              <div className="text-center mb-12">
-                <div className="inline-flex items-center gap-3 mb-4">
-                  <AppWindow className="h-8 w-8 text-primary" />
-                  <h2 className="text-2xl md:text-3xl font-bold">
-                    {isRu ? 'Мои программы' : 'My Programs'}
-                  </h2>
-                </div>
-                <p className="text-muted-foreground">
-                  {isRu 
-                    ? 'В разработке — скоро здесь появятся программы для бизнеса'
-                    : 'In development — business programs coming soon'}
-                </p>
-              </div>
-            </AnimatedSection>
-            
-            <AnimatedSection delay={100}>
-              <Card className="border-dashed border-2 border-muted-foreground/30 bg-muted/20">
-                <CardContent className="p-12 text-center space-y-4">
-                  <div className="p-4 bg-primary/10 rounded-full w-fit mx-auto">
-                    <Zap className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-muted-foreground">
-                    {isRu ? 'В разработке' : 'In Development'}
-                  </h3>
-                  <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                    {isRu 
-                      ? 'Сейчас я работаю над созданием полезных программ для бизнеса. Следите за обновлениями!'
-                      : 'I am currently working on creating useful business programs. Stay tuned for updates!'}
-                  </p>
-                </CardContent>
-              </Card>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
-      {/* Games Section */}
-      <section id="games" className="py-16 md:py-20 bg-muted/20 scroll-mt-20">
-        <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <AnimatedSection>
-              <div className="text-center mb-12">
-                <div className="inline-flex items-center gap-3 mb-4">
-                  <Gamepad2 className="h-8 w-8 text-primary" />
-                  <h2 className="text-2xl md:text-3xl font-bold">
-                    {isRu ? 'Мои игры' : 'My Games'}
-                  </h2>
-                </div>
-                <p className="text-muted-foreground">
-                  {isRu 
-                    ? 'Интерактивные игры созданные с помощью AI'
-                    : 'Interactive games created with AI'}
-                </p>
-              </div>
-            </AnimatedSection>
-            
-            <div className="grid gap-6">
-              {games.map((game, index) => (
-                <AnimatedSection key={index} delay={index * 100}>
-                  <a
-                    href={game.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                  >
-                    <Card className="group hover:border-primary/40 transition-all hover:scale-[1.01]">
-                      <CardContent className="p-6 flex items-center justify-between">
-                        <div className="flex items-center gap-4">
-                          <div className="p-3 bg-primary/10 rounded-xl">
-                            <Gamepad2 className="h-6 w-6 text-primary" />
-                          </div>
-                          <div className="space-y-1">
-                            <h3 className="font-semibold group-hover:text-primary transition-colors">
-                              {game.title}
-                            </h3>
-                            <p className="text-sm text-muted-foreground">
-                              {game.description}
-                            </p>
-                          </div>
-                        </div>
-                        <Button variant="outline" size="sm" className="gap-2">
-                          <ExternalLink className="h-4 w-4" />
-                          {isRu ? 'Открыть' : 'Open'}
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </a>
-                </AnimatedSection>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="relative py-16 md:py-20 overflow-hidden">
+      {/* Social Links Section (renamed from "Мои каналы" to "Соц. Сети") */}
+      <section id="social" className="relative py-16 md:py-20 overflow-hidden scroll-mt-20">
         {/* Decorative orbs */}
         <div className="glass-orb top-20 left-1/4 w-64 h-64 bg-muted/30 animate-float" />
         <div className="glass-orb bottom-20 right-1/4 w-80 h-80 bg-muted/40 animate-float" style={{ animationDelay: '1.5s' }} />
@@ -485,37 +501,40 @@ const Contact = () => {
           <div className="max-w-4xl mx-auto">
             <AnimatedSection>
               <h2 className="text-2xl md:text-3xl text-center mb-12 font-bold">
-                {t('contact.social')}
+                {isRu ? 'Соц. Сети' : 'Social Networks'}
               </h2>
             </AnimatedSection>
-            <div className="grid md:grid-cols-3 gap-6">
-              {socialLinks.map((social, index) => (
-                <AnimatedSection key={index} delay={index * 100}>
-                  <a
-                    href={social.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block h-full"
-                  >
-                    <Card className="group cursor-pointer h-full transition-all hover:scale-[1.02]">
-                      <CardHeader className="space-y-4">
-                        <div className="inline-flex p-4 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-2xl w-fit">
-                          <social.icon className="h-6 w-6" />
-                        </div>
-                        <h3 className="text-lg font-bold">{social.title}</h3>
-                      </CardHeader>
-                      <CardContent className="space-y-4">
-                        <p className="text-sm text-muted-foreground">
-                          {social.description}
-                        </p>
-                        <span className="text-sm font-medium text-primary inline-flex items-center gap-2 group-hover:underline">
-                          {social.handle}
-                        </span>
-                      </CardContent>
-                    </Card>
-                  </a>
-                </AnimatedSection>
-              ))}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {socialLinks.map((social, index) => {
+                const IconComponent = social.icon;
+                return (
+                  <AnimatedSection key={index} delay={index * 100}>
+                    <a
+                      href={social.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block h-full"
+                    >
+                      <Card className="group cursor-pointer h-full transition-all hover:scale-[1.02]">
+                        <CardHeader className="space-y-4">
+                          <div className="inline-flex p-4 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-2xl w-fit">
+                            <IconComponent className="h-6 w-6" />
+                          </div>
+                          <h3 className="text-lg font-bold">{social.title}</h3>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <p className="text-sm text-muted-foreground">
+                            {social.description}
+                          </p>
+                          <span className="text-sm font-medium text-primary inline-flex items-center gap-2 group-hover:underline">
+                            {social.handle}
+                          </span>
+                        </CardContent>
+                      </Card>
+                    </a>
+                  </AnimatedSection>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -523,6 +542,85 @@ const Contact = () => {
 
       {/* Enhanced Reviews Section with Carousel */}
       <ReviewsCarousel reviews={reviews} isRu={isRu} />
+
+      {/* Programs & Games Section - At the very bottom, combined */}
+      <section id="programs" className="py-16 md:py-20 bg-muted/10 scroll-mt-20">
+        <div className="container">
+          <div className="max-w-5xl mx-auto">
+            <AnimatedSection>
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-3 mb-4">
+                  <Gamepad2 className="h-8 w-8 text-primary" />
+                  <h2 className="text-2xl md:text-3xl font-bold">
+                    {isRu ? 'Мои Программы' : 'My Programs'}
+                  </h2>
+                </div>
+                <p className="text-muted-foreground">
+                  {isRu 
+                    ? 'Игры и программы, созданные с помощью AI'
+                    : 'Games and programs created with AI'}
+                </p>
+              </div>
+            </AnimatedSection>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              {programsAndGames.map((item, index) => (
+                <AnimatedSection key={index} delay={index * 100}>
+                  {item.url ? (
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block h-full"
+                    >
+                      <Card className="group h-full hover:border-primary/40 transition-all hover:scale-[1.02]">
+                        <CardContent className="p-6 flex items-center justify-between">
+                          <div className="flex items-center gap-4">
+                            <div className="p-3 bg-primary/10 rounded-xl">
+                              {item.type === 'game' ? <Gamepad2 className="h-6 w-6 text-primary" /> : <AppWindow className="h-6 w-6 text-primary" />}
+                            </div>
+                            <div className="space-y-1">
+                              <h3 className="font-semibold group-hover:text-primary transition-colors">
+                                {item.title}
+                              </h3>
+                              <p className="text-sm text-muted-foreground">
+                                {item.description}
+                              </p>
+                            </div>
+                          </div>
+                          <Button variant="outline" size="sm" className="gap-2">
+                            <ExternalLink className="h-4 w-4" />
+                            {isRu ? 'Открыть' : 'Open'}
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    </a>
+                  ) : (
+                    <Card className="group h-full border-dashed border-2 border-muted-foreground/30 bg-muted/20">
+                      <CardContent className="p-6 flex items-center gap-4">
+                        <div className="p-3 bg-primary/10 rounded-xl">
+                          <AppWindow className="h-6 w-6 text-primary" />
+                        </div>
+                        <div className="space-y-1">
+                          <h3 className="font-semibold text-muted-foreground">
+                            {item.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground">
+                            {item.description}
+                          </p>
+                        </div>
+                        <Badge variant="secondary" className="ml-auto">
+                          {isRu ? 'В разработке' : 'In Development'}
+                        </Badge>
+                      </CardContent>
+                    </Card>
+                  )}
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
