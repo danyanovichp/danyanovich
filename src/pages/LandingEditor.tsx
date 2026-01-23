@@ -15,7 +15,7 @@ import { toast } from "sonner";
 import { 
   Loader2, Save, ArrowLeft, Plus, Trash2, Eye, Edit3, 
   AlertCircle, Zap, Users, Layout, ExternalLink, ImagePlus, X, GripVertical, RefreshCw,
-  HelpCircle, Star, Video, Search, Tag
+  HelpCircle, Star, Video, Search, Tag, Film, Image as ImageIcon
 } from "lucide-react";
 import { FaqEditor } from "@/components/editors/FaqEditor";
 import { ReviewsEditor } from "@/components/editors/ReviewsEditor";
@@ -34,6 +34,7 @@ const LandingEditor = () => {
   const [replacingScreenshotIndex, setReplacingScreenshotIndex] = useState<number | null>(null);
   const [isUploadingMainImage, setIsUploadingMainImage] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const videoInputRef = useRef<HTMLInputElement>(null);
   const replaceFileInputRef = useRef<HTMLInputElement>(null);
   const mainImageInputRef = useRef<HTMLInputElement>(null);
   
@@ -62,8 +63,10 @@ const LandingEditor = () => {
   } = useLandingEditor(templateId);
 
   // File upload validation constants
-  const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+  const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+  const ALLOWED_VIDEO_TYPES = ['video/mp4', 'video/webm', 'video/quicktime'];
+  const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
+  const MAX_VIDEO_SIZE = 100 * 1024 * 1024; // 100MB
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -73,13 +76,13 @@ const LandingEditor = () => {
     
     for (const file of Array.from(files)) {
       // Validate MIME type
-      if (!ALLOWED_MIME_TYPES.includes(file.type)) {
+      if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
         toast.error(`${file.name}: разрешены только JPEG, PNG, GIF и WebP`);
         continue;
       }
 
       // Validate file size
-      if (file.size > MAX_FILE_SIZE) {
+      if (file.size > MAX_IMAGE_SIZE) {
         toast.error(`${file.name}: максимальный размер файла 5MB`);
         continue;
       }
@@ -105,7 +108,7 @@ const LandingEditor = () => {
           .from('landing-screenshots')
           .getPublicUrl(fileName);
 
-        addScreenshot(urlData.publicUrl);
+        addScreenshot(urlData.publicUrl, '', 'image');
         toast.success(`${file.name} загружен`);
       } catch (error: any) {
         console.error('Upload error:', error);
@@ -116,6 +119,59 @@ const LandingEditor = () => {
     setIsUploading(false);
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
+    }
+  };
+
+  const handleVideoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    setIsUploading(true);
+    
+    for (const file of Array.from(files)) {
+      // Validate MIME type
+      if (!ALLOWED_VIDEO_TYPES.includes(file.type)) {
+        toast.error(`${file.name}: разрешены только MP4, WebM и MOV`);
+        continue;
+      }
+
+      // Validate file size
+      if (file.size > MAX_VIDEO_SIZE) {
+        toast.error(`${file.name}: максимальный размер видео 100MB`);
+        continue;
+      }
+
+      // Use safe file extension based on MIME type
+      const mimeToExt: Record<string, string> = {
+        'video/mp4': 'mp4',
+        'video/webm': 'webm',
+        'video/quicktime': 'mov'
+      };
+      const fileExt = mimeToExt[file.type] || 'mp4';
+      const fileName = `${landing.template_id || 'new'}-video-${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+
+      try {
+        const { error: uploadError } = await supabase.storage
+          .from('landing-screenshots')
+          .upload(fileName, file);
+
+        if (uploadError) throw uploadError;
+
+        const { data: urlData } = supabase.storage
+          .from('landing-screenshots')
+          .getPublicUrl(fileName);
+
+        addScreenshot(urlData.publicUrl, '', 'video');
+        toast.success(`Видео ${file.name} загружено`);
+      } catch (error: any) {
+        console.error('Upload error:', error);
+        toast.error(`Ошибка загрузки ${file.name}: ${error.message}`);
+      }
+    }
+
+    setIsUploading(false);
+    if (videoInputRef.current) {
+      videoInputRef.current.value = '';
     }
   };
 
@@ -140,13 +196,13 @@ const LandingEditor = () => {
     if (!file || replacingScreenshotIndex === null) return;
 
     // Validate MIME type
-    if (!ALLOWED_MIME_TYPES.includes(file.type)) {
+    if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
       toast.error('Разрешены только JPEG, PNG, GIF и WebP');
       return;
     }
 
     // Validate file size
-    if (file.size > MAX_FILE_SIZE) {
+    if (file.size > MAX_IMAGE_SIZE) {
       toast.error('Максимальный размер файла 5MB');
       return;
     }
@@ -238,12 +294,12 @@ const LandingEditor = () => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    if (!ALLOWED_MIME_TYPES.includes(file.type)) {
+    if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
       toast.error('Разрешены только JPEG, PNG, GIF и WebP');
       return;
     }
 
-    if (file.size > MAX_FILE_SIZE) {
+    if (file.size > MAX_IMAGE_SIZE) {
       toast.error('Максимальный размер файла 5MB');
       return;
     }
@@ -684,12 +740,12 @@ const LandingEditor = () => {
               </CardContent>
             </Card>
 
-            {/* Screenshots */}
+            {/* Media Gallery (Screenshots + Videos) */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <ImagePlus className="h-5 w-5" />
-                  Скриншоты шаблона
+                  Галерея медиа
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -698,6 +754,14 @@ const LandingEditor = () => {
                   ref={fileInputRef}
                   onChange={handleFileUpload}
                   accept="image/*"
+                  multiple
+                  className="hidden"
+                />
+                <input
+                  type="file"
+                  ref={videoInputRef}
+                  onChange={handleVideoUpload}
+                  accept="video/mp4,video/webm,video/quicktime"
                   multiple
                   className="hidden"
                 />
@@ -728,40 +792,60 @@ const LandingEditor = () => {
                       >
                         <div className="flex gap-4">
                           <div className="relative w-40 h-24 rounded-lg overflow-hidden shrink-0 border bg-muted">
-                            <img
-                              src={screenshot.url}
-                              alt={`Screenshot ${index + 1}`}
-                              className="w-full h-full object-cover pointer-events-none"
-                            />
-                            <Badge className="absolute top-1 left-1 bg-black/50 text-xs">
-                              {index + 1}
-                            </Badge>
+                            {screenshot.type === 'video' ? (
+                              <video
+                                src={screenshot.url}
+                                className="w-full h-full object-cover pointer-events-none"
+                                muted
+                              />
+                            ) : (
+                              <img
+                                src={screenshot.url}
+                                alt={`Screenshot ${index + 1}`}
+                                className="w-full h-full object-cover pointer-events-none"
+                              />
+                            )}
+                            <div className="absolute top-1 left-1 flex gap-1">
+                              <Badge className="bg-black/50 text-xs">
+                                {index + 1}
+                              </Badge>
+                              {screenshot.type === 'video' && (
+                                <Badge className="bg-primary/80 text-xs gap-1">
+                                  <Film className="h-3 w-3" />
+                                  Видео
+                                </Badge>
+                              )}
+                            </div>
                           </div>
                           <div className="flex-1 space-y-2">
-                            <Label htmlFor={`caption-${index}`}>Подпись к скриншоту</Label>
+                            <Label htmlFor={`caption-${index}`}>
+                              Подпись к {screenshot.type === 'video' ? 'видео' : 'скриншоту'}
+                            </Label>
                             <Input
                               id={`caption-${index}`}
-                              placeholder="Опишите что показано на скриншоте..."
+                              placeholder={screenshot.type === 'video' ? 'Опишите что показано в видео...' : 'Опишите что показано на скриншоте...'}
                               value={screenshot.caption || ''}
                               onChange={(e) => updateScreenshotCaption(index, e.target.value)}
                             />
                           </div>
                           <div className="flex flex-col gap-2 items-end">
                             <GripVertical className="h-5 w-5 text-muted-foreground" />
-                            <Button
-                              size="icon"
-                              variant="ghost"
-                              className="hover:bg-primary/10"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setReplacingScreenshotIndex(index);
-                                replaceFileInputRef.current?.click();
-                              }}
-                              disabled={isUploading}
-                              title="Заменить скриншот"
-                            >
-                              <RefreshCw className="h-4 w-4" />
-                            </Button>
+                            {screenshot.type !== 'video' && (
+                              <Button
+                                size="icon"
+                                variant="ghost"
+                                className="hover:bg-primary/10"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setReplacingScreenshotIndex(index);
+                                  replaceFileInputRef.current?.click();
+                                }}
+                                disabled={isUploading}
+                                title="Заменить скриншот"
+                              >
+                                <RefreshCw className="h-4 w-4" />
+                              </Button>
+                            )}
                             <Button
                               size="icon"
                               variant="ghost"
@@ -780,24 +864,39 @@ const LandingEditor = () => {
                   </div>
                 )}
                 <p className="text-xs text-muted-foreground">
-                  Перетащите скриншоты для изменения порядка.
+                  Перетащите элементы для изменения порядка.
                 </p>
 
-                <Button
-                  variant="outline"
-                  onClick={() => fileInputRef.current?.click()}
-                  disabled={isUploading}
-                  className="gap-2"
-                >
-                  {isUploading ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  ) : (
-                    <ImagePlus className="h-4 w-4" />
-                  )}
-                  Загрузить скриншоты
-                </Button>
+                <div className="flex flex-wrap gap-2">
+                  <Button
+                    variant="outline"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={isUploading}
+                    className="gap-2"
+                  >
+                    {isUploading ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <ImageIcon className="h-4 w-4" />
+                    )}
+                    Загрузить изображения
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => videoInputRef.current?.click()}
+                    disabled={isUploading}
+                    className="gap-2"
+                  >
+                    {isUploading ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Film className="h-4 w-4" />
+                    )}
+                    Загрузить видео
+                  </Button>
+                </div>
                 <p className="text-xs text-muted-foreground">
-                  Рекомендуемый размер: 1920×1080. Поддерживаются PNG, JPG, WebP.
+                  Изображения: PNG, JPG, WebP (до 5MB). Видео: MP4, WebM, MOV (до 100MB).
                 </p>
               </CardContent>
             </Card>

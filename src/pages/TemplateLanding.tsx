@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ArrowLeft, Check, ShoppingCart, Sparkles, ExternalLink, ImageIcon, Play, Star, Quote, Home, ChevronRight, HelpCircle, AlertCircle, Zap, Users, ChevronLeft, ChevronRightIcon, Plus, Trash2, Upload, GripVertical, RefreshCw } from "lucide-react";
+import { ArrowLeft, Check, ShoppingCart, Sparkles, ExternalLink, ImageIcon, Play, Star, Quote, Home, ChevronRight, HelpCircle, AlertCircle, Zap, Users, ChevronLeft, ChevronRightIcon, Plus, Trash2, Upload, GripVertical, RefreshCw, Film, Pause } from "lucide-react";
 import { premiumTemplates } from "@/data/premiumTemplates";
 import { secondBrainFeatureSections, secondBrainReviews } from "@/data/secondBrainData";
 import { templateLandingContent } from "@/data/templateLandingContent";
@@ -1275,7 +1275,7 @@ const TemplateLanding = () => {
         </section>
       )}
 
-      {/* Screenshot Gallery */}
+      {/* Media Gallery (Screenshots + Videos) */}
       {(displayScreenshots.length > 0 || isEditing) && (
         <AnimatedSection animation="fade-up" delay={400}>
           <section className="py-16 md:py-24">
@@ -1283,7 +1283,7 @@ const TemplateLanding = () => {
               <div className="max-w-5xl mx-auto space-y-12">
                 <div className="text-center space-y-4">
                   <h2 className="text-3xl md:text-4xl font-bold">
-                    {i18n.language === 'ru' ? 'Галерея скриншотов' : 'Screenshot Gallery'}
+                    {i18n.language === 'ru' ? 'Галерея' : 'Gallery'}
                   </h2>
                 </div>
                 
@@ -1305,18 +1305,20 @@ const TemplateLanding = () => {
                             <GripVertical className="h-4 w-4 text-muted-foreground" />
                           </div>
                           <div className="absolute top-2 right-2 flex gap-1">
-                            <Button
-                              variant="secondary"
-                              size="icon"
-                              className="h-8 w-8 bg-background/80 hover:bg-background"
-                              onClick={() => {
-                                setReplacingScreenshotIndex(index);
-                                replaceFileInputRef.current?.click();
-                              }}
-                              title="Заменить скриншот"
-                            >
-                              <RefreshCw className="h-4 w-4" />
-                            </Button>
+                            {screenshot.type !== 'video' && (
+                              <Button
+                                variant="secondary"
+                                size="icon"
+                                className="h-8 w-8 bg-background/80 hover:bg-background"
+                                onClick={() => {
+                                  setReplacingScreenshotIndex(index);
+                                  replaceFileInputRef.current?.click();
+                                }}
+                                title="Заменить скриншот"
+                              >
+                                <RefreshCw className="h-4 w-4" />
+                              </Button>
+                            )}
                             <Button
                               variant="destructive"
                               size="icon"
@@ -1329,11 +1331,30 @@ const TemplateLanding = () => {
                               <Trash2 className="h-4 w-4" />
                             </Button>
                           </div>
-                          <img 
-                            src={screenshot.url} 
-                            alt={`Screenshot ${index + 1}`}
-                            className="w-full aspect-video object-cover"
-                          />
+                          {screenshot.type === 'video' ? (
+                            <div className="relative aspect-video bg-muted">
+                              <video 
+                                src={screenshot.url}
+                                className="w-full h-full object-cover"
+                                muted
+                              />
+                              <div className="absolute inset-0 bg-black/30 flex items-center justify-center pointer-events-none">
+                                <div className="w-12 h-12 rounded-full bg-primary/80 flex items-center justify-center">
+                                  <Play className="h-5 w-5 text-primary-foreground ml-0.5" />
+                                </div>
+                              </div>
+                              <Badge className="absolute bottom-2 left-2 bg-primary/80 gap-1">
+                                <Film className="h-3 w-3" />
+                                Видео
+                              </Badge>
+                            </div>
+                          ) : (
+                            <img 
+                              src={screenshot.url} 
+                              alt={`Screenshot ${index + 1}`}
+                              className="w-full aspect-video object-cover"
+                            />
+                          )}
                           <div className="p-3 bg-muted/30">
                             <Input
                               value={screenshot.caption || ""}
@@ -1341,7 +1362,7 @@ const TemplateLanding = () => {
                                 updateScreenshotCaption(index, e.target.value);
                                 setHasUnsavedChanges(true);
                               }}
-                              placeholder="Подпись к скриншоту..."
+                              placeholder={screenshot.type === 'video' ? 'Подпись к видео...' : 'Подпись к скриншоту...'}
                               className="bg-background"
                             />
                           </div>
@@ -1381,11 +1402,31 @@ const TemplateLanding = () => {
                         onClick={() => setSelectedScreenshot(index)}
                       >
                         <CardContent className="p-0">
-                          <img 
-                            src={screenshot.url} 
-                            alt={screenshot.caption || `${title} - ${i18n.language === 'ru' ? 'Скриншот' : 'Screenshot'} ${index + 1}`}
-                            className="w-full aspect-video object-cover"
-                          />
+                          {screenshot.type === 'video' ? (
+                            <div className="relative aspect-video bg-muted">
+                              <video 
+                                src={screenshot.url} 
+                                className="w-full h-full object-cover"
+                                muted
+                                playsInline
+                              />
+                              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center shadow-lg">
+                                  <Play className="h-6 w-6 text-primary-foreground ml-1" />
+                                </div>
+                              </div>
+                              <Badge className="absolute top-3 left-3 bg-primary/80 gap-1">
+                                <Film className="h-3 w-3" />
+                                Видео
+                              </Badge>
+                            </div>
+                          ) : (
+                            <img 
+                              src={screenshot.url} 
+                              alt={screenshot.caption || `${title} - ${i18n.language === 'ru' ? 'Скриншот' : 'Screenshot'} ${index + 1}`}
+                              className="w-full aspect-video object-cover"
+                            />
+                          )}
                           {screenshot.caption && (
                             <div className="p-4 bg-muted/30 border-t">
                               <p className="text-sm text-muted-foreground text-center">{screenshot.caption}</p>
@@ -1426,12 +1467,22 @@ const TemplateLanding = () => {
             <ChevronLeft className="h-6 w-6" />
           </button>
           
-          <img 
-            src={displayScreenshots[selectedScreenshot].url} 
-            alt={displayScreenshots[selectedScreenshot].caption || `${title} - ${i18n.language === 'ru' ? 'Скриншот' : 'Screenshot'} ${selectedScreenshot + 1}`}
-            className="max-w-full max-h-[85vh] object-contain rounded-lg"
-            onClick={(e) => e.stopPropagation()}
-          />
+          {displayScreenshots[selectedScreenshot].type === 'video' ? (
+            <video 
+              src={displayScreenshots[selectedScreenshot].url}
+              controls
+              autoPlay
+              className="max-w-full max-h-[85vh] object-contain rounded-lg"
+              onClick={(e) => e.stopPropagation()}
+            />
+          ) : (
+            <img 
+              src={displayScreenshots[selectedScreenshot].url} 
+              alt={displayScreenshots[selectedScreenshot].caption || `${title} - ${i18n.language === 'ru' ? 'Скриншот' : 'Screenshot'} ${selectedScreenshot + 1}`}
+              className="max-w-full max-h-[85vh] object-contain rounded-lg"
+              onClick={(e) => e.stopPropagation()}
+            />
+          )}
           
           <button
             className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-muted hover:bg-muted-foreground/20 transition-colors disabled:opacity-30"

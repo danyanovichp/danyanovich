@@ -18,6 +18,8 @@ export interface LandingAudience {
 export interface LandingScreenshot {
   url: string;
   caption?: string;
+  type?: 'image' | 'video';
+  thumbnail?: string; // For video thumbnails
 }
 
 export interface LandingData {
@@ -94,9 +96,10 @@ export function useLandingEditor(templateId?: string) {
         if (Array.isArray(rawScreenshots)) {
           parsedScreenshots = rawScreenshots.map((item: unknown) => {
             if (typeof item === 'string') {
-              return { url: item, caption: '' };
+              return { url: item, caption: '', type: 'image' as const };
             }
-            return item as LandingScreenshot;
+            const screenshot = item as LandingScreenshot;
+            return { ...screenshot, type: screenshot.type || 'image' };
           });
         }
         
@@ -291,10 +294,10 @@ export function useLandingEditor(templateId?: string) {
     }));
   };
 
-  const addScreenshot = (url: string, caption?: string) => {
+  const addScreenshot = (url: string, caption?: string, type: 'image' | 'video' = 'image', thumbnail?: string) => {
     setLanding(prev => ({
       ...prev,
-      screenshots: [...prev.screenshots, { url, caption: caption || '' }],
+      screenshots: [...prev.screenshots, { url, caption: caption || '', type, thumbnail }],
     }));
   };
 
