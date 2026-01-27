@@ -130,9 +130,19 @@ const Footer = () => {
               {i18n.language === 'ru' ? 'Обо мне' : 'About Me'}
             </Link>
             <span className="text-muted-foreground/50">|</span>
-            <span className="text-muted-foreground cursor-not-allowed" title={i18n.language === 'ru' ? 'Скоро' : 'Coming Soon'}>
-              {i18n.language === 'ru' ? 'Политика конфиденциальности' : 'Privacy Policy'}
-            </span>
+            <Link 
+              to="/privacy" 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {i18n.language === 'ru' ? 'Конфиденциальность' : 'Privacy'}
+            </Link>
+            <span className="text-muted-foreground/50">|</span>
+            <Link 
+              to="/terms" 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {i18n.language === 'ru' ? 'Условия' : 'Terms'}
+            </Link>
           </div>
         </div>
       </div>

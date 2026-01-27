@@ -104,6 +104,42 @@ export type Database = {
         }
         Relationships: []
       }
+      public_reviews: {
+        Row: {
+          author_name: string
+          created_at: string | null
+          email: string | null
+          id: string
+          is_approved: boolean | null
+          is_visible: boolean | null
+          rating: number
+          review_text: string
+          updated_at: string | null
+        }
+        Insert: {
+          author_name: string
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          is_approved?: boolean | null
+          is_visible?: boolean | null
+          rating?: number
+          review_text: string
+          updated_at?: string | null
+        }
+        Update: {
+          author_name?: string
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          is_approved?: boolean | null
+          is_visible?: boolean | null
+          rating?: number
+          review_text?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       template_faq: {
         Row: {
           answer_en: string | null

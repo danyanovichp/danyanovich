@@ -14,6 +14,7 @@ import PageTransition from "./components/PageTransition";
 
 import ScrollToTop from "./components/ScrollToTop";
 import TelegramWidget from "./components/TelegramWidget";
+import CookieBanner from "./components/CookieBanner";
 import YandexMetrika from "./components/YandexMetrika";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 
@@ -37,6 +38,10 @@ const Auth = lazy(() => import("./pages/Auth"));
 const AdminLandings = lazy(() => import("./pages/AdminLandings"));
 const AdminProducts = lazy(() => import("./pages/AdminProducts"));
 const LandingEditor = lazy(() => import("./pages/LandingEditor"));
+const AdminReviews = lazy(() => import("./pages/AdminReviews"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const Cookies = lazy(() => import("./pages/Cookies"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -81,6 +86,11 @@ const App = () => (
                     <Route path="/admin/landings/new" element={<LandingEditor />} />
                     <Route path="/admin/landings/:templateId" element={<LandingEditor />} />
                     <Route path="/admin/products" element={<AdminProducts />} />
+                    <Route path="/admin/reviews" element={<AdminReviews />} />
+                    <Route path="/privacy" element={<PageTransition><Privacy /></PageTransition>} />
+                    <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />
+                    <Route path="/cookies" element={<PageTransition><Cookies /></PageTransition>} />
+                    <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
                     <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
                   </Routes>
                 </Suspense>
@@ -88,6 +98,9 @@ const App = () => (
               <Footer />
               <ScrollToTop />
               <TelegramWidget />
+              <CookieBanner />
+              <YandexMetrika />
+              <GoogleAnalytics />
               <YandexMetrika />
               <GoogleAnalytics />
             </div>
