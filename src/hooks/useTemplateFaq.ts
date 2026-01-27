@@ -57,6 +57,21 @@ export function useTemplateFaq(templateId?: string) {
     ]);
   };
 
+  const addFaqWithData = (data: Omit<FaqItem, 'template_id' | 'sort_order' | 'id'>) => {
+    if (!templateId) return;
+    setFaqs(prev => [
+      ...prev,
+      {
+        template_id: templateId,
+        question_ru: data.question_ru,
+        question_en: data.question_en,
+        answer_ru: data.answer_ru,
+        answer_en: data.answer_en,
+        sort_order: prev.length,
+      },
+    ]);
+  };
+
   const removeFaq = (index: number) => {
     setFaqs(prev => prev.filter((_, i) => i !== index));
   };
@@ -129,6 +144,7 @@ export function useTemplateFaq(templateId?: string) {
     isLoading,
     isSaving,
     addFaq,
+    addFaqWithData,
     removeFaq,
     updateFaq,
     reorderFaqs,

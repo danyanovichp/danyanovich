@@ -1,11 +1,15 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Plus, Trash2, GripVertical, Save, Loader2, HelpCircle } from "lucide-react";
-import { useTemplateFaq, FaqItem } from "@/hooks/useTemplateFaq";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Plus, Trash2, GripVertical, Save, Loader2, HelpCircle, FileText } from "lucide-react";
+import { useTemplateFaq } from "@/hooks/useTemplateFaq";
+import { faqTemplates, FaqTemplate } from "@/data/faqTemplates";
 
 interface FaqEditorProps {
   templateId: string;
@@ -17,11 +21,16 @@ export function FaqEditor({ templateId }: FaqEditorProps) {
     isLoading,
     isSaving,
     addFaq,
+    addFaqWithData,
     removeFaq,
     updateFaq,
     reorderFaqs,
     saveFaqs,
   } = useTemplateFaq(templateId);
+
+  const [isTemplateDialogOpen, setIsTemplateDialogOpen] = useState(false);
+  const [selectedTemplates, setSelectedTemplates] = useState<Set<string>>(new Set());
+  const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
 
   const handleDragStart = (e: React.DragEvent, index: number) => {
     e.dataTransfer.setData("text/plain", index.toString());
@@ -33,6 +42,91 @@ export function FaqEditor({ templateId }: FaqEditorProps) {
     if (dragIndex !== dropIndex) {
       reorderFaqs(dragIndex, dropIndex);
     }
+  };
+
+  const getTemplateKey = (categoryId: string, index: number) => `${categoryId}-${index}`;
+
+  const toggleTemplate = (key: string) => {
+    setSelectedTemplates(prev => {
+      const next = new Set(prev);
+      if (next.has(key)) {
+        next.delete(key);
+      } else {
+        next.add(key);
+      }
+      return next;
+    });
+  };
+
+  const toggleCategory = (categoryId: string) => {
+    const category = faqTemplates.find(c => c.id === categoryId);
+    if (!category) return;
+
+    const categoryKeys = category.items.map((_, i) => getTemplateKey(categoryId, i));
+    const allSelected = categoryKeys.every(key => selectedTemplates.has(key));
+
+    setSelectedTemplates(prev => {
+      const next = new Set(prev);
+      if (allSelected) {
+        categoryKeys.forEach(key => next.delete(key));
+      } else {
+        categoryKeys.forEach(key => next.add(key));
+      }
+      return next;
+    });
+  };
+
+  const handleAddFromTemplates = () => {
+    const templatesToAdd: FaqTemplate[] = [];
+    
+    faqTemplates.forEach(category => {
+      category.items.forEach((item, index) => {
+        if (selectedTemplates.has(getTemplateKey(category.id, index))) {
+          templatesToAdd.push(item);
+        }
+      });
+    });
+
+    templatesToAdd.forEach(template => {
+      addFaq();
+      const newIndex = faqs.length + templatesToAdd.indexOf(template);
+      // We need to update after addFaq creates the item
+      setTimeout(() => {
+        updateFaq(newIndex, "question_ru", template.question_ru);
+        updateFaq(newIndex, "question_en", template.question_en);
+        updateFaq(newIndex, "answer_ru", template.answer_ru);
+        updateFaq(newIndex, "answer_en", template.answer_en);
+      }, 0);
+    });
+
+    setIsTemplateDialogOpen(false);
+    setSelectedTemplates(new Set());
+  };
+
+  // Direct add from templates with immediate update
+  const addFaqsFromTemplates = () => {
+    const templatesToAdd: FaqTemplate[] = [];
+    
+    faqTemplates.forEach(category => {
+      category.items.forEach((item, index) => {
+        if (selectedTemplates.has(getTemplateKey(category.id, index))) {
+          templatesToAdd.push(item);
+        }
+      });
+    });
+
+    // Add FAQs with data
+    templatesToAdd.forEach(template => {
+      addFaqWithData({
+        question_ru: template.question_ru,
+        question_en: template.question_en,
+        answer_ru: template.answer_ru,
+        answer_en: template.answer_en
+      });
+    });
+
+    setIsTemplateDialogOpen(false);
+    setSelectedTemplates(new Set());
   };
 
   if (isLoading) {
@@ -53,6 +147,87 @@ export function FaqEditor({ templateId }: FaqEditorProps) {
           FAQ ({faqs.length})
         </CardTitle>
         <div className="flex gap-2">
+          <Dialog open={isTemplateDialogOpen} onOpenChange={setIsTemplateDialogOpen}>
+            <DialogTrigger asChild>
+              <Button variant="outline" size="sm">
+                <FileText className="h-4 w-4 mr-1" />
+                Из шаблона
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle>Выберите вопросы из шаблонов</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4 mt-4">
+                {faqTemplates.map(category => {
+                  const categoryKeys = category.items.map((_, i) => getTemplateKey(category.id, i));
+                  const allSelected = categoryKeys.every(key => selectedTemplates.has(key));
+                  const someSelected = categoryKeys.some(key => selectedTemplates.has(key));
+
+                  return (
+                    <div key={category.id} className="border rounded-lg">
+                      <div 
+                        className="flex items-center gap-3 p-3 cursor-pointer hover:bg-muted/50"
+                        onClick={() => setExpandedCategories(prev => 
+                          prev.includes(category.id) 
+                            ? prev.filter(id => id !== category.id)
+                            : [...prev, category.id]
+                        )}
+                      >
+                        <Checkbox
+                          checked={allSelected}
+                          onCheckedChange={() => toggleCategory(category.id)}
+                          onClick={(e) => e.stopPropagation()}
+                          className={someSelected && !allSelected ? "opacity-50" : ""}
+                        />
+                        <span className="font-medium flex-1">{category.name_ru}</span>
+                        <span className="text-xs text-muted-foreground">
+                          {category.items.length} вопросов
+                        </span>
+                      </div>
+                      
+                      {expandedCategories.includes(category.id) && (
+                        <div className="border-t px-3 py-2 space-y-2 bg-muted/30">
+                          {category.items.map((item, index) => {
+                            const key = getTemplateKey(category.id, index);
+                            return (
+                              <div 
+                                key={index}
+                                className="flex items-start gap-3 py-2"
+                              >
+                                <Checkbox
+                                  checked={selectedTemplates.has(key)}
+                                  onCheckedChange={() => toggleTemplate(key)}
+                                  className="mt-0.5"
+                                />
+                                <div className="flex-1 min-w-0">
+                                  <p className="text-sm font-medium">{item.question_ru}</p>
+                                  <p className="text-xs text-muted-foreground line-clamp-2 mt-1">
+                                    {item.answer_ru}
+                                  </p>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="flex justify-between items-center mt-4 pt-4 border-t">
+                <span className="text-sm text-muted-foreground">
+                  Выбрано: {selectedTemplates.size}
+                </span>
+                <Button 
+                  onClick={addFaqsFromTemplates}
+                  disabled={selectedTemplates.size === 0}
+                >
+                  Добавить выбранные
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
           <Button variant="outline" size="sm" onClick={addFaq}>
             <Plus className="h-4 w-4 mr-1" />
             Добавить
@@ -70,7 +245,7 @@ export function FaqEditor({ templateId }: FaqEditorProps) {
       <CardContent className="space-y-4">
         {faqs.length === 0 ? (
           <p className="text-sm text-muted-foreground text-center py-4">
-            Нет вопросов. Нажмите "Добавить" для создания нового FAQ.
+            Нет вопросов. Нажмите "Добавить" или "Из шаблона" для создания нового FAQ.
           </p>
         ) : (
           <Accordion type="multiple" className="space-y-2">
