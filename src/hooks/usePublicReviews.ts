@@ -28,8 +28,9 @@ export function usePublicReviews() {
 
   const fetchReviews = async () => {
     try {
+      // Use the view that excludes email for public access
       const { data, error } = await supabase
-        .from('public_reviews')
+        .from('public_reviews_visible')
         .select('*')
         .order('created_at', { ascending: false });
 

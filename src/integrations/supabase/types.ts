@@ -363,7 +363,36 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      public_reviews_visible: {
+        Row: {
+          author_name: string | null
+          created_at: string | null
+          id: string | null
+          is_approved: boolean | null
+          is_visible: boolean | null
+          rating: number | null
+          review_text: string | null
+        }
+        Insert: {
+          author_name?: string | null
+          created_at?: string | null
+          id?: string | null
+          is_approved?: boolean | null
+          is_visible?: boolean | null
+          rating?: number | null
+          review_text?: string | null
+        }
+        Update: {
+          author_name?: string | null
+          created_at?: string | null
+          id?: string | null
+          is_approved?: boolean | null
+          is_visible?: boolean | null
+          rating?: number | null
+          review_text?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       get_all_public_template_landings: {
