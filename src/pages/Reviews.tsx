@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Star, Send, Loader2 } from "lucide-react";
+import { Star, Send, Loader2, Clock } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import SEO, { getReviewsSchema, getBreadcrumbSchema } from "@/components/SEO";
-import { usePublicReviews, ReviewFormData } from "@/hooks/usePublicReviews";
+import { usePublicReviews, ReviewFormData, checkReviewRateLimit } from "@/hooks/usePublicReviews";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 
@@ -38,6 +38,19 @@ const Reviews = () => {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [rateLimitSeconds, setRateLimitSeconds] = useState(0);
+
+  // Check rate limit on mount and periodically
+  useEffect(() => {
+    const checkLimit = () => {
+      const status = checkReviewRateLimit();
+      setRateLimitSeconds(status.remainingSeconds);
+    };
+    
+    checkLimit();
+    const interval = setInterval(checkLimit, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const reviewsSchema = getReviewsSchema(isRu);
   const breadcrumbSchema = getBreadcrumbSchema([
@@ -49,9 +62,24 @@ const Reviews = () => {
     setFormData(prev => ({ ...prev, rating }));
   };
 
+  const isRateLimited = rateLimitSeconds > 0;
+  const rateLimitMinutes = Math.ceil(rateLimitSeconds / 60);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
+
+    // Check rate limit first
+    if (isRateLimited) {
+      toast({
+        title: isRu ? 'Подождите' : 'Please wait',
+        description: isRu 
+          ? `Вы сможете отправить следующий отзыв через ${rateLimitMinutes} мин.`
+          : `You can submit another review in ${rateLimitMinutes} min.`,
+        variant: 'destructive'
+      });
+      return;
+    }
 
     try {
       reviewSchema.parse(formData);
@@ -80,6 +108,15 @@ const Reviews = () => {
           }
         });
         setErrors(fieldErrors);
+      } else if (error instanceof Error && error.message.startsWith('RATE_LIMITED:')) {
+        const minutes = error.message.split(':')[1];
+        toast({
+          title: isRu ? 'Подождите' : 'Please wait',
+          description: isRu 
+            ? `Вы сможете отправить следующий отзыв через ${minutes} мин.`
+            : `You can submit another review in ${minutes} min.`,
+          variant: 'destructive'
+        });
       } else {
         toast({
           title: isRu ? 'Ошибка' : 'Error',
@@ -266,9 +303,23 @@ const Reviews = () => {
                     </p>
                   </div>
 
-                  <Button type="submit" className="w-full" disabled={isSubmitting}>
+                  {/* Rate limit warning */}
+                  {isRateLimited && (
+                    <div className="flex items-center gap-2 p-3 bg-muted rounded-lg text-sm text-muted-foreground">
+                      <Clock className="h-4 w-4" />
+                      <span>
+                        {isRu 
+                          ? `Следующий отзыв можно отправить через ${rateLimitMinutes} мин.`
+                          : `You can submit another review in ${rateLimitMinutes} min.`}
+                      </span>
+                    </div>
+                  )}
+
+                  <Button type="submit" className="w-full" disabled={isSubmitting || isRateLimited}>
                     {isSubmitting ? (
                       <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                    ) : isRateLimited ? (
+                      <Clock className="h-4 w-4 mr-2" />
                     ) : (
                       <Send className="h-4 w-4 mr-2" />
                     )}

@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
+// Rate limiting constants
+const REVIEW_COOLDOWN_MS = 10 * 60 * 1000; // 10 minutes
+const REVIEW_COOLDOWN_KEY = 'last_review_submit';
+
 export interface PublicReview {
   id: string;
   author_name: string;
@@ -18,6 +22,35 @@ export interface ReviewFormData {
   review_text: string;
   rating: number;
   email?: string;
+}
+
+export interface RateLimitStatus {
+  canSubmit: boolean;
+  remainingSeconds: number;
+}
+
+// Check if user can submit a review based on cooldown
+export function checkReviewRateLimit(): RateLimitStatus {
+  const lastSubmission = localStorage.getItem(REVIEW_COOLDOWN_KEY);
+  if (!lastSubmission) {
+    return { canSubmit: true, remainingSeconds: 0 };
+  }
+  
+  const elapsed = Date.now() - Number(lastSubmission);
+  if (elapsed >= REVIEW_COOLDOWN_MS) {
+    return { canSubmit: true, remainingSeconds: 0 };
+  }
+  
+  const remainingMs = REVIEW_COOLDOWN_MS - elapsed;
+  return { 
+    canSubmit: false, 
+    remainingSeconds: Math.ceil(remainingMs / 1000) 
+  };
+}
+
+// Record a successful submission
+function recordReviewSubmission(): void {
+  localStorage.setItem(REVIEW_COOLDOWN_KEY, Date.now().toString());
 }
 
 export function usePublicReviews() {
@@ -44,6 +77,13 @@ export function usePublicReviews() {
   };
 
   const submitReview = async (formData: ReviewFormData): Promise<boolean> => {
+    // Check rate limit before submission
+    const rateLimit = checkReviewRateLimit();
+    if (!rateLimit.canSubmit) {
+      const minutes = Math.ceil(rateLimit.remainingSeconds / 60);
+      throw new Error(`RATE_LIMITED:${minutes}`);
+    }
+
     setIsSubmitting(true);
     try {
       const { error } = await supabase
@@ -56,6 +96,9 @@ export function usePublicReviews() {
         });
 
       if (error) throw error;
+      
+      // Record successful submission for rate limiting
+      recordReviewSubmission();
       
       return true;
     } catch (error) {
