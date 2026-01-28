@@ -504,7 +504,7 @@ const LandingEditor = () => {
                       <img 
                         src={landing.main_image} 
                         alt="Главное изображение" 
-                        className="w-full aspect-video object-cover rounded-lg border"
+                        className="w-full aspect-video object-contain rounded-lg border bg-muted/50"
                       />
                       <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-2">
                         <Button
