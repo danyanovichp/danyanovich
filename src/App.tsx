@@ -39,6 +39,7 @@ const AdminLandings = lazy(() => import("./pages/AdminLandings"));
 const AdminProducts = lazy(() => import("./pages/AdminProducts"));
 const LandingEditor = lazy(() => import("./pages/LandingEditor"));
 const AdminReviews = lazy(() => import("./pages/AdminReviews"));
+const AdminSiteEditor = lazy(() => import("./pages/AdminSiteEditor"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Cookies = lazy(() => import("./pages/Cookies"));
@@ -87,6 +88,7 @@ const App = () => (
                     <Route path="/admin/landings/:templateId" element={<LandingEditor />} />
                     <Route path="/admin/products" element={<AdminProducts />} />
                     <Route path="/admin/reviews" element={<AdminReviews />} />
+                    <Route path="/admin/site-editor" element={<AdminSiteEditor />} />
                     <Route path="/privacy" element={<PageTransition><Privacy /></PageTransition>} />
                     <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />
                     <Route path="/cookies" element={<PageTransition><Cookies /></PageTransition>} />

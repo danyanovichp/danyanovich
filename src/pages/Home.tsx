@@ -11,6 +11,8 @@ import SEO from "@/components/SEO";
 import { useProducts } from "@/hooks/useProducts";
 import { useLandingPreviews } from "@/hooks/useLandingPreviews";
 import { premiumTemplates } from "@/data/premiumTemplates";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
+
 type ProductType = 'templates' | 'courses' | 'ai-prompts';
 
 // Helper to get icon component from string name
@@ -27,6 +29,7 @@ const Home = () => {
   const [activeFilter, setActiveFilter] = useState<ProductType>('templates');
   const { getMainImage } = useLandingPreviews();
   const { products: dbProducts, isLoading } = useProducts();
+  const { settings } = useSiteSettings();
 
   // Filter categories as small chips (removed 'all', 'consulting', 'games')
   const filterCategories = [
@@ -102,13 +105,13 @@ const Home = () => {
           
           <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8">
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              {t('home.hero.title')}
+              {isRu ? settings.hero.title_ru : settings.hero.title_en}
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground">
-              {t('home.hero.subtitle')}
+              {isRu ? settings.hero.subtitle_ru : settings.hero.subtitle_en}
             </p>
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-              {t('home.hero.description')}
+              {isRu ? settings.hero.description_ru : settings.hero.description_en}
             </p>
           </div>
         </section>
@@ -273,16 +276,14 @@ const Home = () => {
                   </div>
                   <div className="flex-1 text-center md:text-left space-y-2">
                     <h3 className="text-xl font-bold">
-                      {isRu ? "Консультация 1 час" : "1 Hour Consultation"}
+                      {isRu ? settings.consulting.title_ru : settings.consulting.title_en}
                     </h3>
                     <p className="text-muted-foreground">
-                      {isRu 
-                        ? "Персональная консультация по Notion, автоматизации и AI-инструментам. Разберём ваши задачи и найдём решения."
-                        : "Personal consultation on Notion, automation and AI tools. Let's discuss your tasks and find solutions."}
+                      {isRu ? settings.consulting.description_ru : settings.consulting.description_en}
                     </p>
                   </div>
                   <div className="flex flex-col items-center gap-3">
-                    <span className="text-2xl font-bold">5 000 ₽</span>
+                    <span className="text-2xl font-bold">{settings.consulting.price}</span>
                     <Button asChild>
                       <Link to="/consulting">
                         {isRu ? "Записаться" : "Book"}
