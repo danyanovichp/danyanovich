@@ -1,13 +1,17 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Youtube, MessageCircle, FileText, Star, Quote, ExternalLink, User, Code2, Bot, Workflow, Zap, Globe, Gamepad2, AppWindow, ChevronRight, ChevronLeft, Award, Linkedin } from "lucide-react";
+import { Youtube, MessageCircle, FileText, Star, Quote, ExternalLink, User, Code2, Bot, Workflow, Zap, Globe, Gamepad2, AppWindow, ChevronRight, ChevronLeft, Award, Linkedin, Wrench } from "lucide-react";
+import * as LucideIcons from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import StatsSection from "@/components/StatsSection";
 import AnimatedSection from "@/components/AnimatedSection";
 import SEO from "@/components/SEO";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useAuth } from "@/hooks/useAuth";
+import { InlineEditPanel } from "@/components/InlineEditPanel";
 
 // X (Twitter) icon component
 const XIcon = ({ className }: { className?: string }) => (
@@ -16,16 +20,19 @@ const XIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+// Helper to get icon component from string name
+const getIconComponent = (iconName: string | undefined): React.ComponentType<{ className?: string }> => {
+  if (!iconName || typeof iconName !== 'string') return FileText;
+  if (iconName === 'X') return XIcon;
+  const icons = LucideIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>;
+  return icons[iconName] || FileText;
+};
+
 const Contact = () => {
   const { t, i18n } = useTranslation();
   const isRu = i18n.language === 'ru';
-
-  // Calculate dynamic stats
-  const templatesCount = 25; // Premium templates
-  const reviewsCount = 6; // Kwork reviews
-  const websitesCount = 10;
-  const programsCount = 3;
-  const totalProjects = templatesCount + reviewsCount + websitesCount + programsCount;
+  const { settings, isLoading } = useSiteSettings();
+  const { isAdmin } = useAuth();
 
   // Navigation sections - reordered: Programs at bottom, combined with Games
   const sections = [
@@ -39,173 +46,46 @@ const Contact = () => {
     { id: 'programs', label: isRu ? 'Программы' : 'Programs', icon: Gamepad2 },
   ];
 
-  // Expertise blocks data
-  const expertiseBlocks = [
-    {
-      id: 'notion',
-      icon: FileText,
-      title: 'Notion',
-      description: isRu 
-        ? 'Эксперт по Notion с 2020 года. Создаю продвинутые рабочие пространства, базы данных и системы управления для бизнеса. Реализовал более 50 проектов различного масштаба.'
-        : 'Notion expert since 2020. Creating advanced workspaces, databases, and management systems for businesses. Completed over 50 projects of various scales.',
-      highlights: isRu 
-        ? ['50+ проектов', 'Шаблоны', 'Автоматизация', 'Консалтинг']
-        : ['50+ projects', 'Templates', 'Automation', 'Consulting'],
-      link: '/templates',
-    },
-    {
-      id: 'ai',
-      icon: Bot,
-      title: isRu ? 'AI Инструменты' : 'AI Tools',
-      description: isRu 
-        ? 'Разрабатываю эффективные AI-решения с использованием ChatGPT, Claude и других инструментов. Создаю промпты и интеграции для автоматизации бизнес-процессов.'
-        : 'Developing effective AI solutions using ChatGPT, Claude, and other tools. Creating prompts and integrations for business process automation.',
-      highlights: isRu 
-        ? ['ChatGPT', 'Claude', 'Промпт-инжиниринг', 'AI интеграции']
-        : ['ChatGPT', 'Claude', 'Prompt Engineering', 'AI Integrations'],
-      link: '/ai-prompts',
-    },
-    {
-      id: 'n8n',
-      icon: Workflow,
-      title: 'n8n',
-      description: isRu 
-        ? 'Создаю сложные автоматизации с n8n — мощной платформой для интеграции сервисов. Настраиваю воркфлоу для связи CRM, мессенджеров, баз данных и AI.'
-        : 'Building complex automations with n8n — a powerful platform for service integration. Setting up workflows connecting CRM, messengers, databases, and AI.',
-      highlights: isRu 
-        ? ['Воркфлоу', 'Интеграции', 'API', 'Автоматизация']
-        : ['Workflows', 'Integrations', 'API', 'Automation'],
-      link: '/consulting',
-    },
-    {
-      id: 'vibe-coding',
-      icon: Code2,
-      title: isRu ? 'Вайб-кодинг' : 'Vibe Coding',
-      description: isRu 
-        ? 'Создаю веб-приложения и сайты с помощью AI-assisted разработки. Использую современные технологии для быстрого создания качественных решений без традиционного программирования.'
-        : 'Creating web applications and websites using AI-assisted development. Using modern technologies for rapid creation of quality solutions without traditional programming.',
-      highlights: isRu 
-        ? ['Lovable', 'Cursor', 'React', 'TypeScript']
-        : ['Lovable', 'Cursor', 'React', 'TypeScript'],
-      link: '/cases',
-    },
-  ];
+  // Map expertise blocks from settings with dynamic icons
+  const expertiseBlocks = settings.expertise_blocks.map(block => ({
+    id: block.id,
+    icon: getIconComponent(block.icon),
+    title: isRu ? block.title_ru : block.title_en,
+    description: isRu ? block.description_ru : block.description_en,
+    highlights: isRu ? block.highlights_ru : block.highlights_en,
+    link: block.link,
+  }));
 
-  // Tools I work with
-  const tools = [
-    {
-      name: 'Notion',
-      description: isRu ? 'Основной инструмент для создания шаблонов и систем' : 'Main tool for creating templates and systems',
-      icon: FileText,
-    },
-    {
-      name: 'Buildin.AI',
-      description: isRu ? 'Платформа для создания веб-приложений' : 'Platform for creating web applications',
-      icon: Code2,
-    },
-    {
-      name: 'n8n',
-      description: isRu ? 'Автоматизация бизнес-процессов' : 'Business process automation',
-      icon: Workflow,
-    },
-  ];
+  // Map tools from settings with dynamic icons
+  const tools = settings.tools.map(tool => ({
+    name: tool.name,
+    description: isRu ? tool.description_ru : tool.description_en,
+    icon: getIconComponent(tool.icon),
+  }));
 
-  // Websites data
-  const websites = [
-    {
-      title: 'Viora Build Site 1',
-      url: 'https://dev-l152.viorabuild.org/',
-      description: isRu ? 'Современный лендинг' : 'Modern landing page',
-    },
-    {
-      title: 'Viora Build Site 2',
-      url: 'https://dev-l87.viorabuild.org/',
-      description: isRu ? 'Бизнес-сайт' : 'Business website',
-    },
-    {
-      title: 'Viora Build Site 3',
-      url: 'https://dev-l3-26.viorabuild.org/',
-      description: isRu ? 'Корпоративный портал' : 'Corporate portal',
-    },
-    {
-      title: 'Viora Consulting',
-      url: 'https://viora-consulting.lovable.app/',
-      description: isRu ? 'Консалтинговый сайт' : 'Consulting website',
-    },
-  ];
+  // Map websites from settings
+  const websites = settings.websites.map(website => ({
+    title: website.title,
+    url: website.url,
+    description: isRu ? website.description_ru : website.description_en,
+  }));
 
-  // Programs & Games data (combined)
-  const programsAndGames = [
-    {
-      title: isRu ? 'AI Game Studio' : 'AI Game Studio',
-      url: 'https://ai.studio/apps/drive/1kuZusi_K5jgX7NZTmZ-8quB9JgxNOOpH',
-      description: isRu ? 'Интерактивная игра созданная с помощью AI' : 'Interactive game created with AI',
-      type: 'game',
-    },
-    {
-      title: isRu ? 'CRM Система' : 'CRM System',
-      description: isRu ? 'Полноценная CRM для управления клиентами и продажами' : 'Full-featured CRM for client and sales management',
-      type: 'program',
-    },
-    {
-      title: isRu ? 'Система учёта' : 'Accounting System',
-      description: isRu ? 'Программа для ведения учёта и финансов' : 'Program for accounting and finance management',
-      type: 'program',
-    },
-    {
-      title: isRu ? 'Трекер задач' : 'Task Tracker',
-      description: isRu ? 'Инструмент для управления проектами и задачами' : 'Tool for project and task management',
-      type: 'program',
-    },
-  ];
+  // Map programs from settings
+  const programsAndGames = settings.programs.map(program => ({
+    title: isRu ? program.title_ru : program.title_en,
+    url: program.url,
+    description: isRu ? program.description_ru : program.description_en,
+    type: program.type,
+  }));
 
-  const socialLinks = [
-    {
-      icon: Youtube,
-      title: isRu ? "YouTube канал" : "YouTube Channel",
-      description: isRu 
-        ? "Обучающие видео по Notion и автоматизации"
-        : "Educational videos on Notion and automation",
-      handle: "@danyanovich",
-      link: "https://www.youtube.com/channel/UCzcTrBkzXgA9aaH05cWVi2g",
-    },
-    {
-      icon: MessageCircle,
-      title: isRu ? "Telegram канал" : "Telegram Channel",
-      description: isRu 
-        ? "Личный канал с инсайтами и шаблонами"
-        : "Personal channel with insights and templates",
-      handle: "@danyanovichp",
-      link: "https://t.me/danyanovichp",
-    },
-    {
-      icon: FileText,
-      title: "Notion Marketplace",
-      description: isRu 
-        ? "Мои шаблоны на официальной площадке Notion"
-        : "My templates on the official Notion marketplace",
-      handle: "@danyanovich",
-      link: "https://www.notion.so/@danyanovich",
-    },
-    {
-      icon: Linkedin,
-      title: "LinkedIn",
-      description: isRu 
-        ? "Профессиональный профиль"
-        : "Professional profile",
-      handle: "Danila Putintsev",
-      link: "https://www.linkedin.com/in/danila-putintsev/",
-    },
-    {
-      icon: XIcon,
-      title: "X (Twitter)",
-      description: isRu 
-        ? "Мысли и обновления"
-        : "Thoughts and updates",
-      handle: "@danyanovich",
-      link: "https://x.com/danyanovich",
-    },
-  ];
+  // Map social links from settings
+  const socialLinks = settings.social_links.map(link => ({
+    icon: getIconComponent(link.icon),
+    title: isRu ? link.title_ru : link.title_en,
+    description: isRu ? link.description_ru : link.description_en,
+    handle: link.handle,
+    link: link.link,
+  }));
 
   const reviews = [
     {
@@ -296,13 +176,13 @@ const Contact = () => {
                   {/* Bio Text */}
                   <div className="space-y-4">
                     <p className="text-base md:text-lg text-foreground/90 leading-relaxed">
-                      {t('contact.bio1')}
+                      {isRu ? settings.bio.paragraph1_ru : settings.bio.paragraph1_en}
                     </p>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                      {t('contact.bio2')}
+                      {isRu ? settings.bio.paragraph2_ru : settings.bio.paragraph2_en}
                     </p>
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                      {t('contact.bio3')}
+                      {isRu ? settings.bio.paragraph3_ru : settings.bio.paragraph3_en}
                     </p>
                   </div>
                 </div>
@@ -337,19 +217,19 @@ const Contact = () => {
             <AnimatedSection delay={200}>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                 <div className="space-y-2">
-                  <p className="text-3xl md:text-4xl font-bold text-primary">{totalProjects}+</p>
+                  <p className="text-3xl md:text-4xl font-bold text-primary">{settings.stats.projects}+</p>
                   <p className="text-sm text-muted-foreground">{isRu ? 'Проектов' : 'Projects'}</p>
                 </div>
                 <div className="space-y-2">
-                  <p className="text-3xl md:text-4xl font-bold text-primary">{templatesCount}+</p>
+                  <p className="text-3xl md:text-4xl font-bold text-primary">{settings.stats.templates}+</p>
                   <p className="text-sm text-muted-foreground">{isRu ? 'Шаблонов' : 'Templates'}</p>
                 </div>
                 <div className="space-y-2">
-                  <p className="text-3xl md:text-4xl font-bold text-primary">{websitesCount}+</p>
+                  <p className="text-3xl md:text-4xl font-bold text-primary">{settings.stats.websites}+</p>
                   <p className="text-sm text-muted-foreground">{isRu ? 'Сайтов' : 'Websites'}</p>
                 </div>
                 <div className="space-y-2">
-                  <p className="text-3xl md:text-4xl font-bold text-primary">100+</p>
+                  <p className="text-3xl md:text-4xl font-bold text-primary">{settings.stats.hours}+</p>
                   <p className="text-sm text-muted-foreground">{isRu ? 'Часов обучения' : 'Hours of training'}</p>
                 </div>
               </div>
@@ -762,6 +642,18 @@ const ReviewsCarousel = ({ reviews, isRu }: { reviews: any[]; isRu: boolean }) =
         </div>
       </div>
     </section>
+
+      {/* Admin Edit Panel */}
+      {isAdmin && (
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 p-2 bg-background/95 backdrop-blur-sm border border-border rounded-xl shadow-lg">
+          <a href="/admin/site-editor">
+            <Button size="sm" className="gap-2">
+              {isRu ? "Редактировать страницу" : "Edit Page"}
+            </Button>
+          </a>
+        </div>
+      )}
+    </div>
   );
 };
 
