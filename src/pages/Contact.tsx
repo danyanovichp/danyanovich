@@ -501,6 +501,17 @@ const Contact = () => {
           </div>
         </div>
       </section>
+
+      {/* Admin Edit Panel */}
+      {isAdmin && (
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 p-2 bg-background/95 backdrop-blur-sm border border-border rounded-xl shadow-lg">
+          <a href="/admin/site-editor">
+            <Button size="sm" className="gap-2">
+              {isRu ? "Редактировать страницу" : "Edit Page"}
+            </Button>
+          </a>
+        </div>
+      )}
     </div>
   );
 };
@@ -642,18 +653,6 @@ const ReviewsCarousel = ({ reviews, isRu }: { reviews: any[]; isRu: boolean }) =
         </div>
       </div>
     </section>
-
-      {/* Admin Edit Panel */}
-      {isAdmin && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 p-2 bg-background/95 backdrop-blur-sm border border-border rounded-xl shadow-lg">
-          <a href="/admin/site-editor">
-            <Button size="sm" className="gap-2">
-              {isRu ? "Редактировать страницу" : "Edit Page"}
-            </Button>
-          </a>
-        </div>
-      )}
-    </div>
   );
 };
 
