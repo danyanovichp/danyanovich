@@ -11,7 +11,6 @@ export interface PublicReview {
   author_name: string;
   review_text: string;
   rating: number;
-  email?: string;
   is_approved: boolean;
   is_visible: boolean;
   created_at: string;
@@ -21,7 +20,6 @@ export interface ReviewFormData {
   author_name: string;
   review_text: string;
   rating: number;
-  email?: string;
 }
 
 export interface RateLimitStatus {
@@ -91,8 +89,7 @@ export function usePublicReviews() {
         .insert({
           author_name: formData.author_name.trim(),
           review_text: formData.review_text.trim(),
-          rating: formData.rating,
-          email: formData.email?.trim() || null
+          rating: formData.rating
         });
 
       if (error) throw error;

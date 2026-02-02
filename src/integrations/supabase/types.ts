@@ -108,7 +108,6 @@ export type Database = {
         Row: {
           author_name: string
           created_at: string | null
-          email: string | null
           id: string
           is_approved: boolean | null
           is_visible: boolean | null
@@ -119,7 +118,6 @@ export type Database = {
         Insert: {
           author_name: string
           created_at?: string | null
-          email?: string | null
           id?: string
           is_approved?: boolean | null
           is_visible?: boolean | null
@@ -130,7 +128,6 @@ export type Database = {
         Update: {
           author_name?: string
           created_at?: string | null
-          email?: string | null
           id?: string
           is_approved?: boolean | null
           is_visible?: boolean | null
