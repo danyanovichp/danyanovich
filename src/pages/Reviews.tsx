@@ -33,8 +33,7 @@ const Reviews = () => {
   const [formData, setFormData] = useState<ReviewFormData>({
     author_name: '',
     review_text: '',
-    rating: 5,
-    email: ''
+    rating: 5
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
@@ -86,12 +85,11 @@ const Reviews = () => {
       await submitReview({
         author_name: formData.author_name,
         review_text: formData.review_text,
-        rating: formData.rating,
-        email: formData.email
+        rating: formData.rating
       });
       
       setSubmitted(true);
-      setFormData({ author_name: '', review_text: '', rating: 5, email: '' });
+      setFormData({ author_name: '', review_text: '', rating: 5 });
       
       toast({
         title: isRu ? 'Спасибо за отзыв!' : 'Thank you for your review!',
@@ -282,27 +280,6 @@ const Reviews = () => {
                   </div>
 
                   {/* Email (optional) */}
-                  <div className="space-y-2">
-                    <Label htmlFor="email">
-                      Email <span className="text-muted-foreground text-xs">({isRu ? 'необязательно' : 'optional'})</span>
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                      placeholder="email@example.com"
-                    />
-                    {errors.email && (
-                      <p className="text-xs text-destructive">{errors.email}</p>
-                    )}
-                    <p className="text-xs text-muted-foreground">
-                      {isRu 
-                        ? 'Для обратной связи. Не будет опубликован.' 
-                        : 'For feedback. Will not be published.'}
-                    </p>
-                  </div>
-
                   {/* Rate limit warning */}
                   {isRateLimited && (
                     <div className="flex items-center gap-2 p-3 bg-muted rounded-lg text-sm text-muted-foreground">

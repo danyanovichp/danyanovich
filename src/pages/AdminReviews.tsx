@@ -71,14 +71,6 @@ const AdminReviews = () => {
                               ))}
                             </div>
                             <span className="font-medium text-sm">{review.author_name}</span>
-                            {review.email && (
-                              <a 
-                                href={`mailto:${review.email}`}
-                                className="text-muted-foreground hover:text-foreground"
-                              >
-                                <Mail className="h-3 w-3" />
-                              </a>
-                            )}
                           </div>
                           <p className="text-sm text-muted-foreground">{review.review_text}</p>
                           <p className="text-xs text-muted-foreground">
