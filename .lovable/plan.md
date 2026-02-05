@@ -1,204 +1,245 @@
 
-# Plan: CMS Editors for Home and "About Me" Pages
+# План: Улучшение лендинга для привлечения клиентов
 
-## Current State Analysis
+## Обзор проблемы
 
-Your site already has a robust CMS infrastructure:
-- **Admin Products** (`/admin/products`) - for managing templates, courses, AI prompts
-- **Admin Landings** (`/admin/landings`) - for editing template landing pages  
-- **Inline Edit Panel** - floating edit controls on template pages
-- **Database tables**: `products`, `template_landings`, `template_faq`, `public_reviews`
+Ваш сайт — это SPA (Single Page Application), что создает проблемы для SEO, так как поисковые роботы видят пустую страницу до загрузки JavaScript. Кроме того, текущий контент недостаточно "продает" вашу экспертизу как системного архитектора.
 
-However, the **Home page** and **Contact (About Me)** page content is currently **hardcoded** in:
-- `src/lib/i18n.ts` - translations (bio, section titles)
-- `src/pages/Contact.tsx` - social links, expertise blocks, tools, websites, reviews, programs
-- `src/pages/Home.tsx` - hero text, consulting section, product filters
+## Что будет реализовано
 
----
+### 1. Секция "Tech Stack" (Арсенал инструментов)
 
-## What We Will Build
+**Расположение:** Сразу после Hero-секции на главной странице
 
-### 1. New Database Table: `site_settings`
+**Дизайн:**
+- Автоматически прокручивающаяся карусель логотипов
+- Монохромные иконки, цветные при наведении
+- Заголовок: "Инструменты, на которых я строю системы"
 
-A single table to store all editable site content as JSON blocks:
+**Инструменты:**
+- Notion
+- n8n  
+- Make
+- OpenAI
+- Claude (Anthropic)
+- Buildin.AI
+- Python (опционально)
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `key` | text (PK) | Section identifier (e.g., `hero`, `bio`, `social_links`) |
-| `value` | jsonb | Section data |
-| `updated_at` | timestamp | Last update time |
+### 2. Секция "Было/Стало" (Мини-кейсы с бизнес-ценностью)
 
-### 2. New Admin Page: `/admin/site-editor`
+**Расположение:** Перед секцией "Продукты"
 
-A centralized dashboard with tabs/sections for editing:
+**Формат:** 3 карточки в ряд
 
-**Tab: Home Page**
-- Hero section (title, subtitle, description in RU/EN)
-- Consulting section (title, price, description)
-
-**Tab: About Me**  
-- Bio text (3 paragraphs, RU/EN)
-- Statistics (numbers for projects, templates, websites, hours)
-- Expertise blocks (add/remove, edit titles, descriptions, links)
-- Tools section (add/remove tools with icons)
-- Websites section (add/remove portfolio links)
-- Programs & Games (add/remove items)
-- Social links (YouTube, Telegram, LinkedIn, X, Notion)
-
-### 3. Hook: `useSiteSettings`
-
-A React hook that:
-- Fetches settings from database
-- Falls back to default static values if not in DB
-- Provides update functions for admin
-
-### 4. Inline Editing for About Me Page
-
-Similar to template landings:
-- Floating edit panel visible only for admins
-- Click-to-edit fields directly on the page
-- Save/discard changes
-
----
-
-## Implementation Steps
-
-### Step 1: Database Setup
-Create `site_settings` table with:
-- Public read access (everyone sees the site)
-- Admin-only write access via RLS
-
-### Step 2: Create Hook
-`src/hooks/useSiteSettings.ts`:
-- Fetch from `site_settings` table
-- Merge with default values from i18n
-- CRUD operations for admins
-
-### Step 3: Admin Site Editor Page
-`src/pages/AdminSiteEditor.tsx`:
-- Tabs for different sections
-- Form fields for each editable area
-- Live preview capability
-- Save/import buttons
-
-### Step 4: Update Home Page
-- Replace hardcoded i18n strings with dynamic data
-- Keep i18n as fallback for SEO/initial load
-
-### Step 5: Update Contact Page  
-- Replace hardcoded arrays (socialLinks, expertiseBlocks, tools, websites, etc.)
-- Add inline edit panel for admin users
-- Make sections editable in place
-
-### Step 6: Navigation Update
-- Add "Site Settings" link in admin header
-- Add route `/admin/site-editor`
-
----
-
-## Technical Details
-
-**Database Migration SQL:**
-```sql
-CREATE TABLE site_settings (
-  key TEXT PRIMARY KEY,
-  value JSONB NOT NULL,
-  updated_at TIMESTAMPTZ DEFAULT now()
-);
-
-ALTER TABLE site_settings ENABLE ROW LEVEL SECURITY;
-
--- Public read
-CREATE POLICY "Anyone can read site settings" 
-  ON site_settings FOR SELECT USING (true);
-
--- Admin write
-CREATE POLICY "Admins can update site settings" 
-  ON site_settings FOR ALL 
-  USING (public.has_role(auth.uid(), 'admin'));
+**Содержание каждой карточки:**
+```
+❌ Было: [Проблема]
+✅ Стало: [Решение]
 ```
 
-**Default Settings Structure:**
+**Примеры:**
+- Хаос в задачах → Единый дашборд с авто-уведомлениями
+- Потеря заявок → Автоматизация через n8n и ИИ
+- Ручные отчеты 3 часа → Отчет за 1 минуту автоматически
+
+### 3. Секция FAQ для работы с возражениями
+
+**Расположение:** Перед футером на главной странице
+
+**Формат:** Аккордеон (раскрывающиеся вопросы)
+
+**Ключевые вопросы:**
+1. "Безопасно ли использовать Notion в РФ?" — ответ про бэкапы CSV/Markdown и n8n на своем сервере
+2. "Как происходит оплата?" — переводы на карты РФ и крипта
+3. "Можно ли заказать индивидуальную систему?" — да, обсуждение в Telegram
+
+### 4. Кнопка "Экспресс-аудит" в Header
+
+**Расположение:** Рядом с кнопками темы/языка в шапке
+
+**Текст:** "Экспресс-аудит" / "Express Audit"
+
+**Ссылка:** `https://t.me/danyanovich?text=Хочу%20записаться%20на%20аудит`
+
+### 5. Pre-rendering для SEO (критически важно!)
+
+**Проблема:** Поисковики видят пустой `<div id="root"></div>`
+
+**Решение:** Добавить `react-snap` для статической генерации HTML
+
+Это создаст готовый HTML для каждой страницы, который поисковики увидят сразу без ожидания JavaScript.
+
+---
+
+## Структура главной страницы после изменений
+
+```text
+┌─────────────────────────────────────┐
+│           HEADER                    │
+│  [Logo]  [Nav]  [Экспресс-аудит] [🌙][🌐]  │
+├─────────────────────────────────────┤
+│                                     │
+│           HERO SECTION              │
+│      "Дэн Янович — Архитектор..."   │
+│                                     │
+├─────────────────────────────────────┤
+│                                     │
+│    🔧 TECH STACK (НОВАЯ СЕКЦИЯ)     │
+│  [Notion] [n8n] [OpenAI] [Claude]   │
+│     (автопрокрутка логотипов)       │
+│                                     │
+├─────────────────────────────────────┤
+│                                     │
+│   БЫЛО/СТАЛО (НОВАЯ СЕКЦИЯ)         │
+│ ┌─────────┐ ┌─────────┐ ┌─────────┐ │
+│ │❌ Хаос  │ │❌ Потеря│ │❌ Отчеты│ │
+│ │✅ Поря..│ │✅ Авто..│ │✅ 1 мин │ │
+│ └─────────┘ └─────────┘ └─────────┘ │
+│                                     │
+├─────────────────────────────────────┤
+│                                     │
+│         📦 ПРОДУКТЫ                 │
+│    [Шаблоны] [Курсы] [AI Промпты]   │
+│                                     │
+├─────────────────────────────────────┤
+│                                     │
+│         💬 КОНСАЛТИНГ               │
+│                                     │
+├─────────────────────────────────────┤
+│                                     │
+│     ❓ FAQ (НОВАЯ СЕКЦИЯ)           │
+│  [Безопасность Notion?]             │
+│  [Как оплатить?]                    │
+│  [Индивидуальные системы?]          │
+│                                     │
+├─────────────────────────────────────┤
+│           FOOTER                    │
+└─────────────────────────────────────┘
+```
+
+---
+
+## Техническая реализация
+
+### Файлы для создания/изменения
+
+| Файл | Действие | Описание |
+|------|----------|----------|
+| `src/components/TechStackCarousel.tsx` | Создать | Компонент карусели логотипов |
+| `src/components/BeforeAfterSection.tsx` | Создать | Секция "Было/Стало" |
+| `src/components/HomeFAQ.tsx` | Создать | FAQ секция для главной |
+| `src/pages/Home.tsx` | Изменить | Добавить новые секции |
+| `src/components/Header.tsx` | Изменить | Добавить кнопку "Экспресс-аудит" |
+| `src/lib/i18n.ts` | Изменить | Добавить переводы для нового контента |
+| `package.json` | Изменить | Добавить react-snap |
+| `src/index.tsx` | Изменить | Настроить hydration для pre-rendering |
+
+### Компонент TechStackCarousel
+
 ```typescript
-interface SiteSettings {
-  hero: {
-    title_ru: string;
-    title_en: string;
-    subtitle_ru: string;
-    subtitle_en: string;
-    description_ru: string;
-    description_en: string;
-  };
-  bio: {
-    paragraph1_ru: string;
-    paragraph1_en: string;
-    paragraph2_ru: string;
-    paragraph2_en: string;
-    paragraph3_ru: string;
-    paragraph3_en: string;
-  };
-  stats: {
-    projects: number;
-    templates: number;
-    websites: number;
-    hours: number;
-  };
-  social_links: Array<{
-    icon: string;
-    title_ru: string;
-    title_en: string;
-    description_ru: string;
-    description_en: string;
-    handle: string;
-    link: string;
-  }>;
-  expertise_blocks: Array<{...}>;
-  tools: Array<{...}>;
-  websites: Array<{...}>;
-  programs: Array<{...}>;
-  consulting: {
-    title_ru: string;
-    title_en: string;
-    description_ru: string;
-    description_en: string;
-    price: string;
-  };
+// Логотипы инструментов с автопрокруткой
+const tools = [
+  { name: 'Notion', icon: NotionLogo },
+  { name: 'n8n', icon: N8nLogo },
+  { name: 'OpenAI', icon: OpenAILogo },
+  { name: 'Claude', icon: ClaudeLogo },
+  { name: 'Make', icon: MakeLogo },
+  { name: 'Buildin.AI', icon: BuildinLogo },
+];
+
+// Использование embla-carousel для плавной прокрутки
+// Grayscale по умолчанию, цветной при hover
+```
+
+### Компонент BeforeAfterSection
+
+```typescript
+const transformations = [
+  {
+    before: { icon: XCircle, text: "Хаос в задачах, забытые дедлайны" },
+    after: { icon: CheckCircle, text: "Единый дашборд с напоминаниями" }
+  },
+  // ... еще 2 примера
+];
+```
+
+### Pre-rendering с react-snap
+
+```json
+// package.json
+{
+  "scripts": {
+    "postbuild": "react-snap"
+  },
+  "reactSnap": {
+    "puppeteerArgs": ["--no-sandbox"],
+    "source": "dist",
+    "inlineCss": true
+  }
 }
 ```
 
----
+### Изменения в Header
 
-## Files to Create/Modify
-
-| File | Action |
-|------|--------|
-| `src/hooks/useSiteSettings.ts` | Create - new hook |
-| `src/pages/AdminSiteEditor.tsx` | Create - new admin page |
-| `src/pages/Home.tsx` | Modify - use dynamic data |
-| `src/pages/Contact.tsx` | Modify - use dynamic data + inline edit |
-| `src/App.tsx` | Modify - add route |
-| Database | Create - `site_settings` table |
-
----
-
-## Benefits
-
-1. **No more AI requests** for simple text/link changes
-2. **Instant updates** - changes reflect immediately on the site
-3. **Bilingual support** - edit RU and EN versions in one place
-4. **Consistent with existing CMS** - same patterns as products/landings
-5. **Fallback safety** - if DB is empty, static defaults work
+```typescript
+// Добавить кнопку между навигацией и контролами
+<a 
+  href="https://t.me/danyanovich?text=Хочу%20записаться%20на%20аудит"
+  target="_blank"
+  className="hidden lg:flex px-4 py-2 bg-primary text-primary-foreground rounded-xl font-medium"
+>
+  {isRu ? 'Экспресс-аудит' : 'Express Audit'}
+</a>
+```
 
 ---
 
-## Alternative Considerations
+## Дизайн-система
 
-**Option A: Single Admin Page (Recommended)**
-- One centralized `/admin/site-editor` with all sections
-- Pros: All settings in one place, easier navigation
-- Cons: Longer page with multiple sections
+**Стиль:** Чистый, премиальный, технологичный
 
-**Option B: Inline Editing Only**
-- Edit directly on Home/Contact pages when logged in as admin
-- Pros: See changes in context
-- Cons: More complex implementation, harder to edit both languages
+**Соответствие текущему дизайну:**
+- Glassmorphism эффекты (backdrop-blur, полупрозрачные фоны)
+- Черно-белая цветовая палитра
+- Шрифт Inter
+- Плавные анимации и много whitespace
+- Rounded corners (2xl)
+
+---
+
+## SEO-оптимизация
+
+### Pre-rendering решает проблему SPA
+
+После внедрения react-snap:
+- Каждая страница будет иметь готовый HTML
+- Поисковики увидят контент без JavaScript
+- Meta-теги будут правильно индексироваться
+- Улучшится Core Web Vitals (FCP, LCP)
+
+### Обновление мета-тегов
+
+Рекомендую обновить позиционирование в мета-тегах:
+- Текущее: "Notion и AI Эксперт"
+- Новое: "Архитектор Рабочих Систем | Notion + AI + Автоматизация"
+
+Это более безопасно для РФ-рынка и лучше отражает вашу экспертизу.
+
+---
+
+## Результат
+
+После внедрения:
+
+1. **Tech Stack** — визуально оправдывает высокий чек ("он инженер, а не просто дизайнер")
+2. **Было/Стало** — бизнес покупает решение боли, а не красоту
+3. **FAQ** — снимает главные страхи клиентов РФ прямо на входе
+4. **Экспресс-аудит** — даёт повод для первого разговора и продажи услуги
+5. **Pre-rendering** — поисковики наконец увидят ваш контент
+
+---
+
+## Зависимости
+
+- `react-snap` — для pre-rendering (можно заменить на `vite-plugin-prerender` для Vite)
+- Уже установленные: `embla-carousel-react`, `lucide-react`
