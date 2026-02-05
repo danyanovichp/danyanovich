@@ -12,6 +12,9 @@ import { useProducts } from "@/hooks/useProducts";
 import { useLandingPreviews } from "@/hooks/useLandingPreviews";
 import { premiumTemplates } from "@/data/premiumTemplates";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import TechStackCarousel from "@/components/TechStackCarousel";
+import BeforeAfterSection from "@/components/BeforeAfterSection";
+import HomeFAQ from "@/components/HomeFAQ";
 
 type ProductType = 'templates' | 'courses' | 'ai-prompts';
 
@@ -115,6 +118,12 @@ const Home = () => {
             </p>
           </div>
         </section>
+
+        {/* Tech Stack Carousel */}
+        <TechStackCarousel />
+
+        {/* Before/After Section */}
+        <BeforeAfterSection />
 
         {/* Products Section */}
         <section className="relative bg-muted/30 backdrop-blur-sm py-16 md:py-24 overflow-hidden">
@@ -295,6 +304,9 @@ const Home = () => {
             </div>
           </div>
         </section>
+
+        {/* FAQ Section */}
+        <HomeFAQ />
       </div>
     </PageTransition>
   );
