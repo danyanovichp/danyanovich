@@ -72,6 +72,16 @@ const Header = () => {
             ))}
           </nav>
 
+          {/* Express Audit CTA */}
+          <a
+            href="https://t.me/danyanovich?text=Хочу%20записаться%20на%20аудит"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-xl text-sm font-medium hover:bg-primary/90 hover:shadow-glass transition-all"
+          >
+            {i18n.language === 'ru' ? '🎯 Экспресс-аудит' : '🎯 Express Audit'}
+          </a>
+
           {/* Controls */}
           <div className="flex items-center gap-2">
             <Button
