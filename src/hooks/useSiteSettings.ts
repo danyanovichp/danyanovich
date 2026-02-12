@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "./useAuth";
 import { useToast } from "./use-toast";
 
 // Type definitions for site settings
@@ -351,7 +350,7 @@ export function useSiteSettings() {
   const [settings, setSettings] = useState<SiteSettingsState>(defaultSettings);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
-  const { isAdmin } = useAuth();
+  const isAdmin = false; // Admin functionality removed
   const { toast } = useToast();
 
   // Fetch all settings from database
