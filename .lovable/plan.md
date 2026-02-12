@@ -1,245 +1,98 @@
 
-# План: Улучшение лендинга для привлечения клиентов
+# Plan: Update Products, Remove Admin Tools, Clean Up UI
 
-## Обзор проблемы
+## Overview
 
-Ваш сайт — это SPA (Single Page Application), что создает проблемы для SEO, так как поисковые роботы видят пустую страницу до загрузки JavaScript. Кроме того, текущий контент недостаточно "продает" вашу экспертизу как системного архитектора.
+This plan addresses several changes: updating all template products to "available" status with price 5000 RUB and Telegram purchase link, removing Python from Tech Stack, removing newsletter, removing the review submission form (keeping display only), and removing admin management pages while preserving existing data.
 
-## Что будет реализовано
+## Changes
 
-### 1. Секция "Tech Stack" (Арсенал инструментов)
+### 1. Update all products in database to "available" status
 
-**Расположение:** Сразу после Hero-секции на главной странице
+**Database update** (via insert tool):
+- Set all products with `status = 'development'` or any status to `status = 'available'`  
+- Set `price = '5 000 ₽'`, `price_value = 5000` for products that were in development
+- Set `link = 'https://t.me/danyanovich'` for all products
 
-**Дизайн:**
-- Автоматически прокручивающаяся карусель логотипов
-- Монохромные иконки, цветные при наведении
-- Заголовок: "Инструменты, на которых я строю системы"
+Also update the **static data** in `src/data/premiumTemplates.ts`:
+- Change ALL templates: `status: 'available'`, `price: '5 000 ₽'`, `priceValue: 5000`, `link: 'https://t.me/danyanovich'`
 
-**Инструменты:**
-- Notion
-- n8n  
-- Make
-- OpenAI
-- Claude (Anthropic)
-- Buildin.AI
-- Python (опционально)
+### 2. Remove Python from Tech Stack
 
-### 2. Секция "Было/Стало" (Мини-кейсы с бизнес-ценностью)
+**File:** `src/components/TechStackCarousel.tsx`
+- Remove the Python entry from the `techStack` array (lines 69-76)
 
-**Расположение:** Перед секцией "Продукты"
+### 3. Remove Newsletter
 
-**Формат:** 3 карточки в ряд
+**File:** `src/components/Footer.tsx`
+- Remove the `NewsletterSignup` import and the newsletter column from the footer grid
+- Change grid from `lg:grid-cols-4` to `lg:grid-cols-3`
 
-**Содержание каждой карточки:**
-```
-❌ Было: [Проблема]
-✅ Стало: [Решение]
-```
+### 4. Reviews page -- remove submission form, keep display only
 
-**Примеры:**
-- Хаос в задачах → Единый дашборд с авто-уведомлениями
-- Потеря заявок → Автоматизация через n8n и ИИ
-- Ручные отчеты 3 часа → Отчет за 1 минуту автоматически
+**File:** `src/pages/Reviews.tsx`
+- Remove the entire "Submit Review Form" section (lines 195-316)
+- Remove unused imports: `Send`, `Clock`, `Input`, `Textarea`, `Label`, `z`, `checkReviewRateLimit`, `ReviewFormData`
+- Remove form-related state (`formData`, `errors`, `submitted`, `rateLimitSeconds`) and handlers
+- Keep the reviews list display section as-is
 
-### 3. Секция FAQ для работы с возражениями
+### 5. Remove Admin pages and routes
 
-**Расположение:** Перед футером на главной странице
+**File:** `src/App.tsx`
+- Remove lazy imports for: `AdminLandings`, `AdminProducts`, `LandingEditor`, `AdminReviews`, `AdminSiteEditor`, `Auth`
+- Remove routes: `/auth`, `/admin/landings`, `/admin/landings/new`, `/admin/landings/:templateId`, `/admin/products`, `/admin/reviews`, `/admin/site-editor`
+- Also fix duplicated `<Route path="*">` and duplicated `<YandexMetrika />` / `<GoogleAnalytics />`
 
-**Формат:** Аккордеон (раскрывающиеся вопросы)
+**File:** `src/pages/TemplateLanding.tsx`
+- Remove admin-related imports (`useAuth`, `useLandingEditor` editing parts, `useProductEditor`, `InlineEditPanel`, `ProductEditPanel`)
+- Remove admin edit panel and product edit panel sections
+- Remove inline editing logic (keep only display mode)
 
-**Ключевые вопросы:**
-1. "Безопасно ли использовать Notion в РФ?" — ответ про бэкапы CSV/Markdown и n8n на своем сервере
-2. "Как происходит оплата?" — переводы на карты РФ и крипта
-3. "Можно ли заказать индивидуальную систему?" — да, обсуждение в Telegram
+**File:** `src/components/Header.tsx`  
+- No changes needed (header doesn't link to admin pages)
 
-### 4. Кнопка "Экспресс-аудит" в Header
+### 6. Files that remain but become unused (can be kept for reference)
 
-**Расположение:** Рядом с кнопками темы/языка в шапке
+These files will no longer be imported but the data they created in the database remains intact:
+- `src/pages/AdminProducts.tsx`
+- `src/pages/AdminLandings.tsx`  
+- `src/pages/AdminReviews.tsx`
+- `src/pages/AdminSiteEditor.tsx`
+- `src/pages/LandingEditor.tsx`
+- `src/pages/Auth.tsx`
+- `src/components/InlineEditPanel.tsx`
+- `src/components/ProductEditPanel.tsx`
+- `src/components/editors/*.tsx`
+- `src/hooks/useProductEditor.ts`
+- `src/hooks/useLandingEditor.ts`
 
-**Текст:** "Экспресс-аудит" / "Express Audit"
-
-**Ссылка:** `https://t.me/danyanovich?text=Хочу%20записаться%20на%20аудит`
-
-### 5. Pre-rendering для SEO (критически важно!)
-
-**Проблема:** Поисковики видят пустой `<div id="root"></div>`
-
-**Решение:** Добавить `react-snap` для статической генерации HTML
-
-Это создаст готовый HTML для каждой страницы, который поисковики увидят сразу без ожидания JavaScript.
-
----
-
-## Структура главной страницы после изменений
-
-```text
-┌─────────────────────────────────────┐
-│           HEADER                    │
-│  [Logo]  [Nav]  [Экспресс-аудит] [🌙][🌐]  │
-├─────────────────────────────────────┤
-│                                     │
-│           HERO SECTION              │
-│      "Дэн Янович — Архитектор..."   │
-│                                     │
-├─────────────────────────────────────┤
-│                                     │
-│    🔧 TECH STACK (НОВАЯ СЕКЦИЯ)     │
-│  [Notion] [n8n] [OpenAI] [Claude]   │
-│     (автопрокрутка логотипов)       │
-│                                     │
-├─────────────────────────────────────┤
-│                                     │
-│   БЫЛО/СТАЛО (НОВАЯ СЕКЦИЯ)         │
-│ ┌─────────┐ ┌─────────┐ ┌─────────┐ │
-│ │❌ Хаос  │ │❌ Потеря│ │❌ Отчеты│ │
-│ │✅ Поря..│ │✅ Авто..│ │✅ 1 мин │ │
-│ └─────────┘ └─────────┘ └─────────┘ │
-│                                     │
-├─────────────────────────────────────┤
-│                                     │
-│         📦 ПРОДУКТЫ                 │
-│    [Шаблоны] [Курсы] [AI Промпты]   │
-│                                     │
-├─────────────────────────────────────┤
-│                                     │
-│         💬 КОНСАЛТИНГ               │
-│                                     │
-├─────────────────────────────────────┤
-│                                     │
-│     ❓ FAQ (НОВАЯ СЕКЦИЯ)           │
-│  [Безопасность Notion?]             │
-│  [Как оплатить?]                    │
-│  [Индивидуальные системы?]          │
-│                                     │
-├─────────────────────────────────────┤
-│           FOOTER                    │
-└─────────────────────────────────────┘
-```
+These files can be deleted to keep the project clean, but all data created via these tools stays in the database.
 
 ---
 
-## Техническая реализация
+## Technical Details
 
-### Файлы для создания/изменения
+### Database Update (SQL via insert tool)
 
-| Файл | Действие | Описание |
-|------|----------|----------|
-| `src/components/TechStackCarousel.tsx` | Создать | Компонент карусели логотипов |
-| `src/components/BeforeAfterSection.tsx` | Создать | Секция "Было/Стало" |
-| `src/components/HomeFAQ.tsx` | Создать | FAQ секция для главной |
-| `src/pages/Home.tsx` | Изменить | Добавить новые секции |
-| `src/components/Header.tsx` | Изменить | Добавить кнопку "Экспресс-аудит" |
-| `src/lib/i18n.ts` | Изменить | Добавить переводы для нового контента |
-| `package.json` | Изменить | Добавить react-snap |
-| `src/index.tsx` | Изменить | Настроить hydration для pre-rendering |
-
-### Компонент TechStackCarousel
-
-```typescript
-// Логотипы инструментов с автопрокруткой
-const tools = [
-  { name: 'Notion', icon: NotionLogo },
-  { name: 'n8n', icon: N8nLogo },
-  { name: 'OpenAI', icon: OpenAILogo },
-  { name: 'Claude', icon: ClaudeLogo },
-  { name: 'Make', icon: MakeLogo },
-  { name: 'Buildin.AI', icon: BuildinLogo },
-];
-
-// Использование embla-carousel для плавной прокрутки
-// Grayscale по умолчанию, цветной при hover
+```sql
+UPDATE products 
+SET status = 'available', 
+    price = '5 000 ₽', 
+    price_value = 5000, 
+    link = 'https://t.me/danyanovich'
+WHERE status = 'development' OR link IS NULL OR link = '#';
 ```
 
-### Компонент BeforeAfterSection
+Also update existing products (gtd-os, journal-os, life-os) to use Telegram link.
 
-```typescript
-const transformations = [
-  {
-    before: { icon: XCircle, text: "Хаос в задачах, забытые дедлайны" },
-    after: { icon: CheckCircle, text: "Единый дашборд с напоминаниями" }
-  },
-  // ... еще 2 примера
-];
-```
+### Static Data Changes (`premiumTemplates.ts`)
 
-### Pre-rendering с react-snap
+All ~25 templates will have their `status`, `price`, `priceValue`, and `link` fields updated.
 
-```json
-// package.json
-{
-  "scripts": {
-    "postbuild": "react-snap"
-  },
-  "reactSnap": {
-    "puppeteerArgs": ["--no-sandbox"],
-    "source": "dist",
-    "inlineCss": true
-  }
-}
-```
+### Route Cleanup (`App.tsx`)
 
-### Изменения в Header
+Remove 7 admin routes and their lazy imports. Fix duplicate `<Route path="*">` and duplicate analytics components.
 
-```typescript
-// Добавить кнопку между навигацией и контролами
-<a 
-  href="https://t.me/danyanovich?text=Хочу%20записаться%20на%20аудит"
-  target="_blank"
-  className="hidden lg:flex px-4 py-2 bg-primary text-primary-foreground rounded-xl font-medium"
->
-  {isRu ? 'Экспресс-аудит' : 'Express Audit'}
-</a>
-```
+### TemplateLanding.tsx Simplification
 
----
-
-## Дизайн-система
-
-**Стиль:** Чистый, премиальный, технологичный
-
-**Соответствие текущему дизайну:**
-- Glassmorphism эффекты (backdrop-blur, полупрозрачные фоны)
-- Черно-белая цветовая палитра
-- Шрифт Inter
-- Плавные анимации и много whitespace
-- Rounded corners (2xl)
-
----
-
-## SEO-оптимизация
-
-### Pre-rendering решает проблему SPA
-
-После внедрения react-snap:
-- Каждая страница будет иметь готовый HTML
-- Поисковики увидят контент без JavaScript
-- Meta-теги будут правильно индексироваться
-- Улучшится Core Web Vitals (FCP, LCP)
-
-### Обновление мета-тегов
-
-Рекомендую обновить позиционирование в мета-тегах:
-- Текущее: "Notion и AI Эксперт"
-- Новое: "Архитектор Рабочих Систем | Notion + AI + Автоматизация"
-
-Это более безопасно для РФ-рынка и лучше отражает вашу экспертизу.
-
----
-
-## Результат
-
-После внедрения:
-
-1. **Tech Stack** — визуально оправдывает высокий чек ("он инженер, а не просто дизайнер")
-2. **Было/Стало** — бизнес покупает решение боли, а не красоту
-3. **FAQ** — снимает главные страхи клиентов РФ прямо на входе
-4. **Экспресс-аудит** — даёт повод для первого разговора и продажи услуги
-5. **Pre-rendering** — поисковики наконец увидят ваш контент
-
----
-
-## Зависимости
-
-- `react-snap` — для pre-rendering (можно заменить на `vite-plugin-prerender` для Vite)
-- Уже установленные: `embla-carousel-react`, `lucide-react`
+Remove admin editing capabilities while keeping all display logic intact. The page will still load data from DB and static files, show all sections (hero, pain points, features, FAQ, reviews, etc.) -- just without the ability to edit inline.
