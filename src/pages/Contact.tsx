@@ -10,8 +10,6 @@ import StatsSection from "@/components/StatsSection";
 import AnimatedSection from "@/components/AnimatedSection";
 import SEO from "@/components/SEO";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { useAuth } from "@/hooks/useAuth";
-import { InlineEditPanel } from "@/components/InlineEditPanel";
 
 // X (Twitter) icon component
 const XIcon = ({ className }: { className?: string }) => (
@@ -32,7 +30,7 @@ const Contact = () => {
   const { t, i18n } = useTranslation();
   const isRu = i18n.language === 'ru';
   const { settings, isLoading } = useSiteSettings();
-  const { isAdmin } = useAuth();
+  
 
   // Navigation sections - reordered: Programs at bottom, combined with Games
   const sections = [
@@ -503,15 +501,6 @@ const Contact = () => {
       </section>
 
       {/* Admin Edit Panel */}
-      {isAdmin && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 p-2 bg-background/95 backdrop-blur-sm border border-border rounded-xl shadow-lg">
-          <a href="/admin/site-editor">
-            <Button size="sm" className="gap-2">
-              {isRu ? "Редактировать страницу" : "Edit Page"}
-            </Button>
-          </a>
-        </div>
-      )}
     </div>
   );
 };
