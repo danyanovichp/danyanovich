@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "./use-toast";
 
 // Type definitions for site settings
 export interface HeroSettings {
@@ -349,11 +348,7 @@ const defaultSettings: SiteSettingsState = {
 export function useSiteSettings() {
   const [settings, setSettings] = useState<SiteSettingsState>(defaultSettings);
   const [isLoading, setIsLoading] = useState(true);
-  const [isSaving, setIsSaving] = useState(false);
-  const isAdmin = false; // Admin functionality removed
-  const { toast } = useToast();
 
-  // Fetch all settings from database
   const fetchSettings = useCallback(async () => {
     try {
       const { data, error } = await supabase
@@ -383,144 +378,9 @@ export function useSiteSettings() {
     fetchSettings();
   }, [fetchSettings]);
 
-  // Update a specific setting
-  const updateSetting = useCallback(async <K extends SettingKey>(
-    key: K,
-    value: SiteSettingsState[K]
-  ) => {
-    if (!isAdmin) {
-      toast({
-        title: "Ошибка",
-        description: "Только администраторы могут редактировать настройки",
-        variant: "destructive",
-      });
-      return false;
-    }
-
-    setIsSaving(true);
-    try {
-      const { error } = await supabase
-        .from('site_settings')
-        .upsert({ 
-          key, 
-          value: JSON.parse(JSON.stringify(value)),
-          updated_at: new Date().toISOString()
-        }, { 
-          onConflict: 'key' 
-        });
-
-      if (error) throw error;
-
-      setSettings(prev => ({ ...prev, [key]: value }));
-      toast({
-        title: "Сохранено",
-        description: "Настройки успешно обновлены",
-      });
-      return true;
-    } catch (error) {
-      console.error('Error updating site setting:', error);
-      toast({
-        title: "Ошибка",
-        description: "Не удалось сохранить настройки",
-        variant: "destructive",
-      });
-      return false;
-    } finally {
-      setIsSaving(false);
-    }
-  }, [isAdmin, toast]);
-
-  // Batch update multiple settings
-  const updateMultipleSettings = useCallback(async (
-    updates: Partial<SiteSettingsState>
-  ) => {
-    if (!isAdmin) {
-      toast({
-        title: "Ошибка",
-        description: "Только администраторы могут редактировать настройки",
-        variant: "destructive",
-      });
-      return false;
-    }
-
-    setIsSaving(true);
-    try {
-      const upserts = Object.entries(updates).map(([key, value]) => ({
-        key,
-        value: JSON.parse(JSON.stringify(value)),
-        updated_at: new Date().toISOString(),
-      }));
-
-      for (const upsert of upserts) {
-        const { error } = await supabase
-          .from('site_settings')
-          .upsert(upsert, { onConflict: 'key' });
-
-        if (error) throw error;
-      }
-
-      setSettings(prev => ({ ...prev, ...updates }));
-      toast({
-        title: "Сохранено",
-        description: "Все настройки успешно обновлены",
-      });
-      return true;
-    } catch (error) {
-      console.error('Error updating site settings:', error);
-      toast({
-        title: "Ошибка",
-        description: "Не удалось сохранить настройки",
-        variant: "destructive",
-      });
-      return false;
-    } finally {
-      setIsSaving(false);
-    }
-  }, [isAdmin, toast]);
-
-  // Reset to defaults
-  const resetToDefaults = useCallback(async () => {
-    if (!isAdmin) return false;
-    
-    setIsSaving(true);
-    try {
-      // Delete all settings
-      const { error } = await supabase
-        .from('site_settings')
-        .delete()
-        .neq('key', '');
-
-      if (error) throw error;
-
-      setSettings(defaultSettings);
-      toast({
-        title: "Сброшено",
-        description: "Настройки сброшены к значениям по умолчанию",
-      });
-      return true;
-    } catch (error) {
-      console.error('Error resetting settings:', error);
-      toast({
-        title: "Ошибка",
-        description: "Не удалось сбросить настройки",
-        variant: "destructive",
-      });
-      return false;
-    } finally {
-      setIsSaving(false);
-    }
-  }, [isAdmin, toast]);
-
   return {
     settings,
     isLoading,
-    isSaving,
-    updateSetting,
-    updateMultipleSettings,
-    resetToDefaults,
     refetch: fetchSettings,
   };
 }
-
-// Export defaults for use in admin panel
-export { defaultSettings };
