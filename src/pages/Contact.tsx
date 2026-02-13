@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Youtube, MessageCircle, FileText, Star, Quote, ExternalLink, User, Code2, Bot, Workflow, Zap, Globe, Gamepad2, AppWindow, ChevronRight, ChevronLeft, Award, Linkedin, Wrench } from "lucide-react";
+import { Youtube, MessageCircle, FileText, Star, Quote, ExternalLink, User, Code2, Bot, Workflow, Zap, Globe, Gamepad2, AppWindow, ChevronRight, ChevronLeft, Award, Linkedin, Wrench, Trophy } from "lucide-react";
 import * as LucideIcons from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -41,6 +41,7 @@ const Contact = () => {
     { id: 'tools', label: isRu ? 'Инструменты' : 'Tools', icon: AppWindow },
     { id: 'websites', label: isRu ? 'Сайты' : 'Websites', icon: Globe },
     { id: 'social', label: isRu ? 'Соц. Сети' : 'Social', icon: MessageCircle },
+    { id: 'achievements', label: isRu ? 'Достижения' : 'Achievements', icon: Trophy },
     { id: 'programs', label: isRu ? 'Программы' : 'Programs', icon: Gamepad2 },
   ];
 
@@ -420,6 +421,64 @@ const Contact = () => {
 
       {/* Enhanced Reviews Section with Carousel */}
       <ReviewsCarousel reviews={reviews} isRu={isRu} />
+
+      {/* Personal Achievements Timeline */}
+      <section id="achievements" className="py-16 md:py-20 bg-muted/20 scroll-mt-20">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <AnimatedSection>
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-3 mb-4">
+                  <Trophy className="h-8 w-8 text-primary" />
+                  <h2 className="text-2xl md:text-3xl font-bold">
+                    {isRu ? 'Личные достижения' : 'Personal Achievements'}
+                  </h2>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            <div className="relative">
+              {/* Timeline line */}
+              <div className="absolute left-[28px] md:left-[32px] top-0 bottom-0 w-0.5 bg-primary/30" />
+
+              {[
+                {
+                  year: '2024',
+                  date: '11.03',
+                  title_ru: 'Пробежал полумарафон',
+                  title_en: 'Ran a Half Marathon',
+                },
+              ].map((item, index) => (
+                <AnimatedSection key={index} delay={index * 100}>
+                  <div className="relative flex items-start gap-4 md:gap-6 mb-8 last:mb-0">
+                    {/* Timeline dot */}
+                    <div className="relative z-10 flex-shrink-0 w-14 md:w-16 flex flex-col items-center">
+                      <div className="w-4 h-4 rounded-full bg-primary border-4 border-background shadow-md" />
+                    </div>
+
+                    {/* Content card */}
+                    <Card className="flex-1 hover:border-primary/40 transition-all">
+                      <CardContent className="p-4 md:p-6 flex items-center justify-between">
+                        <div className="space-y-1">
+                          <h3 className="font-semibold text-base md:text-lg">
+                            {isRu ? item.title_ru : item.title_en}
+                          </h3>
+                          <p className="text-sm text-muted-foreground">
+                            {item.date}.{item.year}
+                          </p>
+                        </div>
+                        <Badge variant="secondary" className="ml-4 text-xs">
+                          {item.year}
+                        </Badge>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Programs & Games Section - At the very bottom, combined */}
       <section id="programs" className="py-16 md:py-20 bg-muted/10 scroll-mt-20">
