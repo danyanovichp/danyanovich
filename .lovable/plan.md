@@ -1,98 +1,68 @@
 
-# Plan: Update Products, Remove Admin Tools, Clean Up UI
 
-## Overview
+# Plan: Final Admin Cleanup and Auth Removal
 
-This plan addresses several changes: updating all template products to "available" status with price 5000 RUB and Telegram purchase link, removing Python from Tech Stack, removing newsletter, removing the review submission form (keeping display only), and removing admin management pages while preserving existing data.
+## Current Status
 
-## Changes
+The admin panel pages and components have been **successfully deleted**. No admin routes, no inline editors, no product editors remain in the app. However, there are a few leftover artifacts that should be cleaned up.
 
-### 1. Update all products in database to "available" status
+## What Will Be Changed
 
-**Database update** (via insert tool):
-- Set all products with `status = 'development'` or any status to `status = 'available'`  
-- Set `price = '5 000 ₽'`, `price_value = 5000` for products that were in development
-- Set `link = 'https://t.me/danyanovich'` for all products
+### 1. Clean up `useSiteSettings.ts`
 
-Also update the **static data** in `src/data/premiumTemplates.ts`:
-- Change ALL templates: `status: 'available'`, `price: '5 000 ₽'`, `priceValue: 5000`, `link: 'https://t.me/danyanovich'`
+Remove the dead admin write methods (`updateSetting`, `updateMultipleSettings`, `resetToDefaults`) and the `isAdmin`/`isSaving` state since they can never execute. Keep only the read logic (fetching settings from the database for display).
 
-### 2. Remove Python from Tech Stack
+### 2. Delete unused `useTemplateReviews.ts`
 
-**File:** `src/components/TechStackCarousel.tsx`
-- Remove the Python entry from the `techStack` array (lines 69-76)
+This hook has save/delete review functions and is not imported anywhere in the app. It should be deleted.
 
-### 3. Remove Newsletter
+### 3. Remove `user_roles` table and `has_role` function from database
 
-**File:** `src/components/Footer.tsx`
-- Remove the `NewsletterSignup` import and the newsletter column from the footer grid
-- Change grid from `lg:grid-cols-4` to `lg:grid-cols-3`
+Since authentication and admin roles are no longer needed:
+- Drop the `user_roles` table
+- Drop the `has_role` database function  
+- Drop the `app_role` enum type
 
-### 4. Reviews page -- remove submission form, keep display only
+This removes the last database-level admin infrastructure. All product data, reviews, template landings, and site settings remain untouched.
 
-**File:** `src/pages/Reviews.tsx`
-- Remove the entire "Submit Review Form" section (lines 195-316)
-- Remove unused imports: `Send`, `Clock`, `Input`, `Textarea`, `Label`, `z`, `checkReviewRateLimit`, `ReviewFormData`
-- Remove form-related state (`formData`, `errors`, `submitted`, `rateLimitSeconds`) and handlers
-- Keep the reviews list display section as-is
+### 4. Regarding Lovable Cloud authentication
 
-### 5. Remove Admin pages and routes
+Lovable Cloud authentication cannot be "disabled" as a toggle from code. However, since:
+- The `Auth.tsx` page has been deleted
+- No `supabase.auth` calls exist anywhere in the frontend code
+- No login/signup UI exists
 
-**File:** `src/App.tsx`
-- Remove lazy imports for: `AdminLandings`, `AdminProducts`, `LandingEditor`, `AdminReviews`, `AdminSiteEditor`, `Auth`
-- Remove routes: `/auth`, `/admin/landings`, `/admin/landings/new`, `/admin/landings/:templateId`, `/admin/products`, `/admin/reviews`, `/admin/site-editor`
-- Also fix duplicated `<Route path="*">` and duplicated `<YandexMetrika />` / `<GoogleAnalytics />`
-
-**File:** `src/pages/TemplateLanding.tsx`
-- Remove admin-related imports (`useAuth`, `useLandingEditor` editing parts, `useProductEditor`, `InlineEditPanel`, `ProductEditPanel`)
-- Remove admin edit panel and product edit panel sections
-- Remove inline editing logic (keep only display mode)
-
-**File:** `src/components/Header.tsx`  
-- No changes needed (header doesn't link to admin pages)
-
-### 6. Files that remain but become unused (can be kept for reference)
-
-These files will no longer be imported but the data they created in the database remains intact:
-- `src/pages/AdminProducts.tsx`
-- `src/pages/AdminLandings.tsx`  
-- `src/pages/AdminReviews.tsx`
-- `src/pages/AdminSiteEditor.tsx`
-- `src/pages/LandingEditor.tsx`
-- `src/pages/Auth.tsx`
-- `src/components/InlineEditPanel.tsx`
-- `src/components/ProductEditPanel.tsx`
-- `src/components/editors/*.tsx`
-- `src/hooks/useProductEditor.ts`
-- `src/hooks/useLandingEditor.ts`
-
-These files can be deleted to keep the project clean, but all data created via these tools stays in the database.
+Users have **no way to authenticate**. The auth system is effectively unused. The `user_roles` table cleanup (step 3) removes the last auth-related database object your app uses.
 
 ---
 
 ## Technical Details
 
-### Database Update (SQL via insert tool)
+### Files to modify
+
+| File | Action | Description |
+|------|--------|-------------|
+| `src/hooks/useSiteSettings.ts` | Simplify | Remove all write methods, keep read-only |
+| `src/hooks/useTemplateReviews.ts` | Delete | Not imported anywhere |
+
+### Database migration
 
 ```sql
-UPDATE products 
-SET status = 'available', 
-    price = '5 000 ₽', 
-    price_value = 5000, 
-    link = 'https://t.me/danyanovich'
-WHERE status = 'development' OR link IS NULL OR link = '#';
+-- Drop admin role infrastructure
+DROP TABLE IF EXISTS public.user_roles CASCADE;
+DROP FUNCTION IF EXISTS public.has_role(_user_id uuid, _role app_role);
+DROP TYPE IF EXISTS public.app_role CASCADE;
 ```
 
-Also update existing products (gtd-os, journal-os, life-os) to use Telegram link.
+### Simplified `useSiteSettings.ts` return
 
-### Static Data Changes (`premiumTemplates.ts`)
+```typescript
+return {
+  settings,
+  isLoading,
+  refetch: fetchSettings,
+};
+```
 
-All ~25 templates will have their `status`, `price`, `priceValue`, and `link` fields updated.
+All write-related exports (`updateSetting`, `updateMultipleSettings`, `resetToDefaults`, `isSaving`) will be removed.
 
-### Route Cleanup (`App.tsx`)
-
-Remove 7 admin routes and their lazy imports. Fix duplicate `<Route path="*">` and duplicate analytics components.
-
-### TemplateLanding.tsx Simplification
-
-Remove admin editing capabilities while keeping all display logic intact. The page will still load data from DB and static files, show all sections (hero, pain points, features, FAQ, reviews, etc.) -- just without the ability to edit inline.
