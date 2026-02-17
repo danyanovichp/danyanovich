@@ -1,175 +1,72 @@
 
 
-# Plan: Fix All Workflow Diagrams + Add Project 5
+# Plan: Fix Connection Lines to Connect Block Edges
 
-## Overview
+## Problem
 
-Update all 4 existing project workflow diagrams, descriptions, features, results, and tags to match the detailed documentation. Add the 5th project (Voice Call Task Manager) with full content and diagram.
+Currently, all connection lines go from the **center** of one node to the **center** of another. This causes lines to overlap and pass through intermediate nodes, making the diagram hard to read (as seen in the screenshot).
 
-## File: `src/data/portfolioProjects.ts`
+## Solution
 
-### Project 1 -- Email AI Assistant
+Update `src/components/WorkflowDiagram.tsx` to calculate connection endpoints at the **edges** of nodes instead of centers:
 
-**Current diagram:** Gmail -> Zapier -> OpenAI -> Formatter -> (Notion, Slack, Drive)
+- If the target node is to the **right** of the source: line starts from the **right edge** of the source and ends at the **left edge** of the target
+- If the target node is to the **left**: line starts from the **left edge** and ends at the **right edge**
+- If nodes are vertically aligned: connect from the **top/bottom edge** accordingly
 
-**Corrected diagram nodes:**
-- Gmail (trigger)
-- Zapier (orchestration)
-- GPT-4o (analysis: category, priority, draft reply)
-- Gmail Labels (auto-categorization)
-- Google Drive (attachments saved by category hierarchy)
-- Notion (card: text, Drive links, AI draft)
-- Quick Reply (button back to Gmail with draft)
+The Bezier control points will also be adjusted so curves flow naturally between blocks without crossing through them.
 
-**Corrected connections:**
-Gmail -> Zapier -> GPT-4o -> Gmail Labels, GPT-4o -> Google Drive, GPT-4o -> Notion, Notion -> Quick Reply
+## Technical Details
 
-**Remove:** "Formatter", "Slack" nodes
-**Update tags:** `['Zapier', 'Gmail API', 'OpenAI GPT-4o', 'Notion API', 'Google Drive API']`
-**Update summary** to match: focus on categorization, Drive hierarchy, Notion card with AI draft, quick reply button
-**Update features** to reflect the 6-step process
-**Update results** to match (30 min saved, structured Drive, single Notion hub, one-click reply, ~$20-30/mo)
+### File: `src/components/WorkflowDiagram.tsx`
 
-### Project 2 -- ClickUp Reports Agent
-
-**Current diagram:** ClickUp -> Agent -> LM Studio -> Scorer -> ClickUp Write (too linear)
-
-**Corrected diagram nodes:**
-- ClickUp (source: tasks per employee)
-- Python Agent (loader)
-- SQLite (personal history per employee)
-- LM Studio - Active (forecast + recommendations)
-- LM Studio - Closed (speed/quality scoring)
-- ClickUp Write (results to custom fields)
-- SQLite Update (archive update)
-
-**Corrected connections:**
-ClickUp -> Python Agent, Python Agent -> SQLite, Python Agent -> LM Active, Python Agent -> LM Closed, SQLite -> LM Active, SQLite -> LM Closed, LM Active -> ClickUp Write, LM Closed -> ClickUp Write, ClickUp Write -> SQLite Update
-
-**Update tags:** `['Python 3.10+', 'ClickUp REST API', 'LM Studio', 'SQLite', 'asyncio']`
-**Update summary/features/results** to reflect personalized per-employee scoring, history-based forecasts, and the feedback loop
-
-### Project 3 -- Construction AI Agent
-
-**Current diagram:** Roughly correct. Add estimate verification branch.
-
-**Corrected diagram nodes:**
-- User
-- Flask Backend (Web/CLI/API entry)
-- OpenAI (primary price search)
-- Local LLM (fallback)
-- SQLite Cache
-- Estimate Check (verification: duplicates, codes, format)
-- Google Sheets (export/import)
-- Prometheus (monitoring)
-
-**Corrected connections:**
-User -> Flask, Flask -> OpenAI, Flask -> Local LLM, Flask -> Estimate Check, OpenAI -> SQLite Cache, Local LLM -> SQLite Cache, SQLite Cache -> Google Sheets, Estimate Check -> Google Sheets, Flask -> Prometheus
-
-**Update summary/features/results** to match the 4-step process with dual paths (price search vs estimate verification)
-
-### Project 4 -- Telegram to ClickUp
-
-**Current diagram:** Telegram -> Bot -> Whisper -> GPT-4 -> (ClickUp, Summary) -- missing duplicate check
-
-**Corrected diagram nodes:**
-- Telegram (message input)
-- Whisper (audio transcription, only for voice)
-- GPT-4 (parameter extraction: title, dates, priority, assignee)
-- Duplicate Check (search ClickUp for similar task)
-- Create Task (new task with all params)
-- Update Task (add new info to existing)
-- TG Report (confirmation back to Telegram)
-
-**Corrected connections:**
-Telegram -> Whisper (voice path), Telegram -> GPT-4 (text path), Whisper -> GPT-4, GPT-4 -> Duplicate Check, Duplicate Check -> Create Task (not found), Duplicate Check -> Update Task (found), Create Task -> TG Report, Update Task -> TG Report
-
-**Update tags:** `['Python', 'Telegram Bot API', 'OpenAI Whisper', 'OpenAI GPT-4', 'ClickUp REST API', 'SQLite']`
-**Update summary/features/results** to include duplicate detection and smart update logic
-
-### Project 5 -- Voice Call Task Manager (NEW)
-
-**New project to add at the end of the array:**
+Replace `getNodeCenter` with a new `getConnectionPoints(fromNode, toNode)` function:
 
 ```typescript
-{
-  id: 'voice-calls',
-  title_ru: 'Voice Call Task Manager',
-  title_en: 'Voice Call Task Manager',
-  category_ru: 'AI Агент',
-  category_en: 'AI Agent',
-  summary_ru: '...',
-  summary_en: '...',
-  tags: ['GitHub Actions', 'Twilio API', 'ClickUp API', 'OpenAI', 'Telegram Bot API'],
-  // ... full features, results
-}
+const getConnectionPoints = (from: WorkflowNode, to: WorkflowNode) => {
+  const fromCx = (from.x / 100) * SVG_W + NODE_W / 2;
+  const fromCy = (from.y / 100) * SVG_H + NODE_H / 2;
+  const toCx = (to.x / 100) * SVG_W + NODE_W / 2;
+  const toCy = (to.y / 100) * SVG_H + NODE_H / 2;
+
+  const dx = toCx - fromCx;
+  const dy = toCy - fromCy;
+
+  let fromX, fromY, toX, toY;
+
+  if (Math.abs(dx) > Math.abs(dy)) {
+    // Horizontal: connect right edge -> left edge (or vice versa)
+    if (dx > 0) {
+      fromX = (from.x / 100) * SVG_W + NODE_W; // right edge
+      toX = (to.x / 100) * SVG_W;               // left edge
+    } else {
+      fromX = (from.x / 100) * SVG_W;            // left edge
+      toX = (to.x / 100) * SVG_W + NODE_W;       // right edge
+    }
+    fromY = fromCy;
+    toY = toCy;
+  } else {
+    // Vertical: connect bottom edge -> top edge (or vice versa)
+    fromX = fromCx;
+    toX = toCx;
+    if (dy > 0) {
+      fromY = (from.y / 100) * SVG_H + NODE_H; // bottom edge
+      toY = (to.y / 100) * SVG_H;               // top edge
+    } else {
+      fromY = (from.y / 100) * SVG_H;            // top edge
+      toY = (to.y / 100) * SVG_H + NODE_H;       // bottom edge
+    }
+  }
+
+  return { fromX, fromY, toX, toY };
+};
 ```
 
-**Diagram nodes:**
-- GitHub Actions (scheduled trigger)
-- ClickUp (load active tasks for 6 employees)
-- Twilio (voice call)
-- AI Voice (OpenAI + Twilio AI: read tasks, analyze response)
-- Telegram Bot (fallback channel with buttons)
-- ClickUp Update (status/date/priority changes)
-- Report (summary to manager)
+Update the connections rendering to use these edge points, with Bezier control points that create smooth curves between the block edges.
 
-**Connections:**
-GitHub Actions -> ClickUp -> Twilio -> AI Voice -> ClickUp Update, Twilio (no answer) -> Telegram Bot -> ClickUp Update, ClickUp Update -> Report
+### Changes summary
 
-## File: `src/pages/Cases.tsx`
-
-- Add `pastelBgClasses` entry for the 5th project (already has 5 colors so it cycles, no change needed)
-
-## File: `src/components/WorkflowDiagram.tsx`
-
-- No structural changes needed. The diagram component renders whatever nodes/connections are passed. May need minor position adjustments if node count increases significantly.
-
-## Technical Notes
-
-### Node positioning strategy
-Each diagram needs careful x/y positioning to avoid overlapping. Projects with branching (2, 3, 4, 5) will use multiple y-levels (y: 10, 40, 70) to show parallel paths. SVG viewBox is 1000x340.
-
-### Estimated node layouts
-
-**Project 1 (7 nodes):**
-```text
-Gmail(5,40) -> Zapier(18,40) -> GPT-4o(34,40)
-  -> Labels(52,10)
-  -> Drive(52,40)
-  -> Notion(52,70) -> Reply(72,70)
-```
-
-**Project 2 (7 nodes, with loop):**
-```text
-ClickUp(5,40) -> Python(20,40) -> SQLite(38,10)
-  -> LM Active(55,20) -> ClickUp Write(75,40)
-  -> LM Closed(55,60) -> ClickUp Write
-  ClickUp Write -> SQLite Upd(75,10)
-```
-
-**Project 3 (8 nodes, dual path):**
-```text
-User(5,40) -> Flask(20,40)
-  -> OpenAI(38,15) -> Cache(55,40) -> Sheets(75,15)
-  -> LLM(38,65) -> Cache
-  -> Estimate(55,65) -> Sheets
-  Flask -> Prometheus(75,65)
-```
-
-**Project 4 (7 nodes, branching):**
-```text
-Telegram(5,40) -> Whisper(20,20)
-                -> GPT-4(35,40) -> DupCheck(52,40)
-  Whisper -> GPT-4
-  DupCheck -> Create(68,20) -> Report(85,40)
-  DupCheck -> Update(68,60) -> Report
-```
-
-**Project 5 (7 nodes):**
-```text
-GH Actions(5,40) -> ClickUp(20,40) -> Twilio(38,30)
-  -> AI Voice(55,15) -> CU Update(75,40) -> Report(75,10)
-  Twilio(no answer) -> TG Bot(55,65) -> CU Update
-```
+| File | Change |
+|------|--------|
+| `src/components/WorkflowDiagram.tsx` | Replace center-to-center connections with edge-to-edge connections |
 
