@@ -21,6 +21,8 @@ const Header = () => {
     { href: "/products", label: i18n.language === 'ru' ? 'ПРОДУКТЫ' : 'PRODUCTS' },
   ];
 
+  const isRu = i18n.language === 'ru';
+
   return (
     <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-2xl border-b border-border/5">
       <div className="container mx-auto px-4 py-4">
@@ -52,16 +54,6 @@ const Header = () => {
 
           {/* Controls */}
           <div className="flex items-center gap-1">
-            {/* Express Audit CTA */}
-            <a
-              href="https://t.me/danyanovich?text=Здравствуйте!%20Хочу%20связаться%20с%20вами"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden lg:flex items-center gap-2 px-5 py-2 bg-pastel-yellow text-foreground rounded-full text-sm font-semibold hover:opacity-80 transition-opacity"
-            >
-              {i18n.language === 'ru' ? 'Связаться' : 'Contact'}
-            </a>
-
             <Button
               variant="ghost"
               size="icon"

@@ -102,8 +102,9 @@ export default {
           to: { height: "0" },
         },
         "page-enter": {
-          "0%": { opacity: "0", transform: "translateY(8px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" }
+          "0%": { opacity: "0", transform: "translateY(12px) scale(0.99)" },
+          "60%": { opacity: "1", transform: "translateY(-2px) scale(1)" },
+          "100%": { opacity: "1", transform: "translateY(0) scale(1)" }
         },
         "fade-in": {
           "0%": { opacity: "0" },
@@ -126,7 +127,7 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "page-enter": "page-enter 0.4s ease-out",
+        "page-enter": "page-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
         "fade-in": "fade-in 0.3s ease-out",
         "float": "float 6s ease-in-out infinite",
         "blob-drift": "blob-drift 8s ease-in-out infinite",
