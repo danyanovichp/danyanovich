@@ -1,68 +1,139 @@
 
 
-# Plan: Final Admin Cleanup and Auth Removal
+# Plan: Replace Blog with Portfolio Page
 
-## Current Status
+## Overview
 
-The admin panel pages and components have been **successfully deleted**. No admin routes, no inline editors, no product editors remain in the app. However, there are a few leftover artifacts that should be cleaned up.
+Remove the Blog page and replace it with a rich Portfolio page showcasing 4 automation/AI projects. Each project will be displayed as an expandable card with nested detail cards and visual workflow diagrams styled in an Opal/n8n aesthetic (rounded nodes connected by lines with gradient accents).
 
-## What Will Be Changed
+## Changes
 
-### 1. Clean up `useSiteSettings.ts`
+### 1. Delete Blog page, update routing
 
-Remove the dead admin write methods (`updateSetting`, `updateMultipleSettings`, `resetToDefaults`) and the `isAdmin`/`isSaving` state since they can never execute. Keep only the read logic (fetching settings from the database for display).
+**Files affected:** `src/App.tsx`, `src/pages/Blog.tsx`
 
-### 2. Delete unused `useTemplateReviews.ts`
+- Delete `src/pages/Blog.tsx`
+- Remove Blog lazy import and `/blog` route from `App.tsx`
+- Keep existing `/portfolio` route (it already exists)
 
-This hook has save/delete review functions and is not imported anywhere in the app. It should be deleted.
+### 2. Update Header navigation
 
-### 3. Remove `user_roles` table and `has_role` function from database
+**File:** `src/components/Header.tsx`
 
-Since authentication and admin roles are no longer needed:
-- Drop the `user_roles` table
-- Drop the `has_role` database function  
-- Drop the `app_role` enum type
+- Change `secondaryLinks` entry from `{ href: "/blog", label: "БЛОГ" / "BLOG" }` to `{ href: "/portfolio", label: "ПОРТФОЛИО" / "PORTFOLIO" }`
 
-This removes the last database-level admin infrastructure. All product data, reviews, template landings, and site settings remain untouched.
+### 3. Rewrite Portfolio page
 
-### 4. Regarding Lovable Cloud authentication
+**File:** `src/pages/Portfolio.tsx`
 
-Lovable Cloud authentication cannot be "disabled" as a toggle from code. However, since:
-- The `Auth.tsx` page has been deleted
-- No `supabase.auth` calls exist anywhere in the frontend code
-- No login/signup UI exists
+Complete rewrite with 4 projects. Each project is a large card containing:
 
-Users have **no way to authenticate**. The auth system is effectively unused. The `user_roles` table cleanup (step 3) removes the last auth-related database object your app uses.
+- **Header**: project name, category badge, tech stack tags
+- **Summary card**: brief overview paragraph
+- **Architecture/workflow diagram**: custom SVG component styled like Opal/n8n -- rounded pill-shaped nodes with icons, connected by curved gradient lines, glowing effects, dark glass background
+- **Detail cards** (nested inside the project card via Collapsible/Accordion):
+  - Core features
+  - Tech stack and integrations
+  - Results and benefits
+  - Monitoring/metrics (where applicable)
+
+### 4. Create workflow diagram component
+
+**New file:** `src/components/WorkflowDiagram.tsx`
+
+A reusable React/SVG component that renders node-based flow diagrams:
+
+- Pill-shaped nodes with icons and labels
+- Curved SVG path connections with gradient strokes
+- Glow/shadow effects matching the glass-card theme
+- Each project gets its own flow configuration passed as props
+- Responsive -- scales on mobile
+
+**Visual style:**
+- Dark glass background (`bg-card/50 backdrop-blur`)
+- Nodes: rounded rectangles with subtle gradient fill, icon + label
+- Connections: curved `<path>` elements with gradient stroke and subtle glow
+- Color-coded by service (Gmail = red, OpenAI = green, Notion = dark, Telegram = blue, ClickUp = purple, Python = yellow)
+
+### 5. Create project data file
+
+**New file:** `src/data/portfolioProjects.ts`
+
+All 4 projects with full Russian/English content structured as typed data:
+
+- Email AI Assistant (Zapier + Gmail + OpenAI + Notion)
+- ClickUp Reports Agent (Python + ClickUp API + LM Studio)
+- Construction AI Agent (Python + OpenAI + Google Sheets + Flask)
+- Telegram to ClickUp (Python + Telegram Bot API + OpenAI Whisper + ClickUp)
+
+Each project includes: title, summary, category, tech stack tags, features list, architecture description, workflow nodes/connections config, and results.
 
 ---
 
 ## Technical Details
 
-### Files to modify
+### Portfolio page structure (JSX)
 
-| File | Action | Description |
-|------|--------|-------------|
-| `src/hooks/useSiteSettings.ts` | Simplify | Remove all write methods, keep read-only |
-| `src/hooks/useTemplateReviews.ts` | Delete | Not imported anywhere |
-
-### Database migration
-
-```sql
--- Drop admin role infrastructure
-DROP TABLE IF EXISTS public.user_roles CASCADE;
-DROP FUNCTION IF EXISTS public.has_role(_user_id uuid, _role app_role);
-DROP TYPE IF EXISTS public.app_role CASCADE;
+```text
+Portfolio Page
++-- Hero section (title + subtitle)
++-- Project Cards (vertical stack, full-width)
+    +-- [Project Card] (glass-card, large)
+        +-- Card Header: icon, title, category badge, tags
+        +-- Summary paragraph
+        +-- Workflow Diagram (SVG component)
+        +-- Accordion with detail sections:
+            +-- "Core Features" -> nested cards with bullet points
+            +-- "Tech Stack" -> tag badges + descriptions
+            +-- "Results" -> checkmark list
 ```
 
-### Simplified `useSiteSettings.ts` return
+### WorkflowDiagram component props
 
 ```typescript
-return {
-  settings,
-  isLoading,
-  refetch: fetchSettings,
-};
+interface WorkflowNode {
+  id: string;
+  label: string;
+  icon: string; // lucide icon name or emoji
+  color: string; // tailwind color
+  x: number; // position percentage
+  y: number; // position percentage
+}
+
+interface WorkflowConnection {
+  from: string;
+  to: string;
+}
+
+interface WorkflowDiagramProps {
+  nodes: WorkflowNode[];
+  connections: WorkflowConnection[];
+  title?: string;
+}
 ```
 
-All write-related exports (`updateSetting`, `updateMultipleSettings`, `resetToDefaults`, `isSaving`) will be removed.
+### Workflow diagrams per project
+
+**Email AI Assistant:**
+Gmail -> Zapier Trigger -> OpenAI Analysis -> Formatter -> Notion DB (+ branches to Slack/Telegram notifications and Google Drive)
+
+**ClickUp Reports Agent:**
+ClickUp API -> Python Agent -> LM Studio AI -> Score Calculator -> ClickUp Write Back
+
+**Construction AI Agent:**
+User Query -> Flask API -> OpenAI/LM Studio (with fallback) -> SQLite Cache -> Google Sheets + Prometheus Metrics
+
+**Telegram to ClickUp:**
+Telegram Group -> Bot Listener -> Whisper Transcription -> GPT-4 Analysis -> ClickUp Task Creation (+ Telegram Summary)
+
+### Files summary
+
+| File | Action |
+|------|--------|
+| `src/pages/Blog.tsx` | Delete |
+| `src/App.tsx` | Remove Blog import and route |
+| `src/components/Header.tsx` | Change "Blog" link to "Portfolio" |
+| `src/data/portfolioProjects.ts` | Create -- all project data |
+| `src/components/WorkflowDiagram.tsx` | Create -- SVG flow diagram component |
+| `src/pages/Portfolio.tsx` | Rewrite -- full project showcase |
 
