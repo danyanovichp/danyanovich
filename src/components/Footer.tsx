@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   const productLinks = [
@@ -22,27 +22,26 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-muted/30 backdrop-blur-xl border-t border-border/20 mt-auto">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <footer className="border-t border-border/10 mt-auto">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="text-sm font-bold px-4 py-2 rounded-xl bg-primary/90 backdrop-blur-sm text-primary-foreground inline-block">
+            <div className="text-sm font-bold px-4 py-1.5 rounded-full bg-primary text-primary-foreground inline-block">
               {i18n.language === 'ru' ? 'ДЯ' : 'DY'}
             </div>
-            <p className="text-xs text-muted-foreground leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
               {i18n.language === 'ru' 
-                ? 'Эксперт по Notion и AI-решениям. Помогаю оптимизировать рабочие процессы и повышать продуктивность.'
-                : 'Notion and AI solutions expert. I help optimize workflows and increase productivity.'}
+                ? 'Эксперт по Notion и AI-решениям. Помогаю оптимизировать рабочие процессы.'
+                : 'Notion and AI solutions expert. Optimizing workflows and productivity.'}
             </p>
-            {/* Social Icons */}
             <div className="flex gap-2 pt-2">
-              <Button variant="outline" size="icon" asChild className="rounded-xl h-9 w-9">
+              <Button variant="outline" size="icon" asChild className="rounded-full h-9 w-9">
                 <a href="https://www.youtube.com/channel/UCzcTrBkzXgA9aaH05cWVi2g" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                   <Youtube className="h-4 w-4" />
                 </a>
               </Button>
-              <Button variant="outline" size="icon" asChild className="rounded-xl h-9 w-9">
+              <Button variant="outline" size="icon" asChild className="rounded-full h-9 w-9">
                 <a href="https://t.me/danyanovichp" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
                   <MessageCircle className="h-4 w-4" />
                 </a>
@@ -52,10 +51,10 @@ const Footer = () => {
 
           {/* Products */}
           <div>
-            <h4 className="font-bold text-xs mb-4 uppercase">
+            <h4 className="font-semibold text-xs mb-4 uppercase tracking-wider text-muted-foreground">
               {i18n.language === 'ru' ? 'Продукты' : 'Products'}
             </h4>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-3 text-sm">
               {productLinks.map((link) => (
                 <li key={link.to}>
                   <Link to={link.to} className="text-muted-foreground hover:text-foreground transition-colors">
@@ -68,10 +67,10 @@ const Footer = () => {
 
           {/* Resources */}
           <div>
-            <h4 className="font-bold text-xs mb-4 uppercase">
+            <h4 className="font-semibold text-xs mb-4 uppercase tracking-wider text-muted-foreground">
               {i18n.language === 'ru' ? 'Ресурсы' : 'Resources'}
             </h4>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-3 text-sm">
               {resourceLinks.map((link) => (
                 <li key={link.to}>
                   <Link to={link.to} className="text-muted-foreground hover:text-foreground transition-colors">
@@ -83,19 +82,14 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border/20 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-16 pt-8 border-t border-border/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-muted-foreground">
-            © {currentYear} {i18n.language === 'ru' ? 'Дэн Янович. Все права защищены.' : 'Dan Yanovich. All rights reserved.'}
+            © {currentYear} {i18n.language === 'ru' ? 'Дэн Янович' : 'Dan Yanovich'}
           </p>
-          <div className="flex gap-4 text-xs">
-            <Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
-              {i18n.language === 'ru' ? 'Обо мне' : 'About Me'}
-            </Link>
-            <span className="text-muted-foreground/50">|</span>
+          <div className="flex gap-6 text-xs">
             <Link to="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
               {i18n.language === 'ru' ? 'Конфиденциальность' : 'Privacy'}
             </Link>
-            <span className="text-muted-foreground/50">|</span>
             <Link to="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
               {i18n.language === 'ru' ? 'Условия' : 'Terms'}
             </Link>

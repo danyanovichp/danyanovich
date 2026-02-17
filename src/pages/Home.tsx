@@ -133,7 +133,7 @@ const Home = () => {
             <div className="max-w-6xl mx-auto space-y-8">
               <div className="text-center space-y-4">
                 <h2 className="text-3xl md:text-5xl font-bold">
-                  {isRu ? "📦 Продукты" : "📦 Products"}
+                  {isRu ? "Продукты" : "Products"}
                 </h2>
                 <p className="text-base md:text-lg text-muted-foreground">
                   {isRu ? "Всё что можно получить или купить" : "Everything available to get or purchase"}
@@ -271,7 +271,7 @@ const Home = () => {
             <div className="max-w-4xl mx-auto">
               <div className="text-center space-y-4 mb-8">
                 <h2 className="text-2xl md:text-3xl font-bold">
-                  {isRu ? "💬 Консалтинг" : "💬 Consulting"}
+                  {isRu ? "Консалтинг" : "Consulting"}
                 </h2>
                 <p className="text-base text-muted-foreground">
                   {isRu ? "Персональные консультации по Notion и автоматизации" : "Personal consultations on Notion and automation"}
