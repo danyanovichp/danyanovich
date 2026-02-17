@@ -16,14 +16,9 @@ const Header = () => {
 
   const mainLinks = [
     { href: "/", label: t('nav.home') },
-    { href: "/templates", label: t('nav.templates') },
-    { href: "/contact", label: t('nav.contact') },
-  ];
-
-  const secondaryLinks = [
-    { href: "/ai-training", label: i18n.language === 'ru' ? 'ИИ ОБУЧЕНИЕ' : 'AI TRAINING' },
+    { href: "/products", label: i18n.language === 'ru' ? 'ПРОДУКТЫ' : 'PRODUCTS' },
     { href: "/cases", label: i18n.language === 'ru' ? 'КЕЙСЫ' : 'CASES' },
-    { href: "/portfolio", label: i18n.language === 'ru' ? 'ПОРТФОЛИО' : 'PORTFOLIO' },
+    { href: "/contact", label: t('nav.contact') },
   ];
 
   return (
@@ -45,24 +40,7 @@ const Header = () => {
                 key={link.href}
                 to={link.href}
                 className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all ${
-                  location.pathname === link.href
-                    ? "bg-primary text-primary-foreground" 
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Secondary Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 p-1 rounded-full bg-muted/40 border border-border/10">
-            {secondaryLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className={`px-3 py-1.5 text-xs font-semibold tracking-wider rounded-full transition-all ${
-                  location.pathname === link.href
+                  location.pathname === link.href || (link.href === '/products' && location.pathname.startsWith('/templates'))
                     ? "bg-primary text-primary-foreground" 
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                 }`}
@@ -117,7 +95,7 @@ const Header = () => {
               </SheetTrigger>
               <SheetContent side="right" className="bg-background/95 backdrop-blur-2xl border-l border-border/10">
                 <nav className="flex flex-col gap-2 mt-8">
-                  {[...mainLinks, ...secondaryLinks].map((link, index) => (
+                  {mainLinks.map((link, index) => (
                     <Link
                       key={link.href}
                       to={link.href}

@@ -14,11 +14,9 @@ import { premiumTemplates } from "@/data/premiumTemplates";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import TechStackCarousel from "@/components/TechStackCarousel";
 import BeforeAfterSection from "@/components/BeforeAfterSection";
-import HomeFAQ from "@/components/HomeFAQ";
 
 type ProductType = 'templates' | 'courses' | 'ai-prompts';
 
-// Helper to get icon component from string name
 const getIconComponent = (iconName: string | undefined): React.ComponentType<{ className?: string }> => {
   if (!iconName || typeof iconName !== 'string') return Layout;
   const icons = LucideIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>;
@@ -34,22 +32,18 @@ const Home = () => {
   const { products: dbProducts, isLoading } = useProducts();
   const { settings } = useSiteSettings();
 
-  // Filter categories as small chips (removed 'all', 'consulting', 'games')
   const filterCategories = [
     { id: 'templates' as ProductType, label: isRu ? "Шаблоны" : "Templates", icon: Layout },
     { id: 'courses' as ProductType, label: isRu ? "Курсы" : "Courses", icon: GraduationCap },
     { id: 'ai-prompts' as ProductType, label: isRu ? "AI Промпты" : "AI Prompts", icon: Bot },
   ];
 
-  // All products combined (templates from DB + mock products for other categories)
   const allProducts = useMemo(() => {
-    // Merge DB products with static templates (DB takes priority for data)
     const productMap = new Map(dbProducts.map(p => [p.id, p]));
     
     const templateProducts = premiumTemplates
       .filter(template => {
         const dbProduct = productMap.get(template.id);
-        const status = dbProduct?.status || template.status;
         const isVisible = dbProduct?.is_visible ?? true;
         const displayOnHome = dbProduct?.display_on_home ?? true;
         return isVisible && displayOnHome;
@@ -74,7 +68,6 @@ const Home = () => {
         };
       });
 
-    // Mock products for other categories (Courses & AI Prompts - now in development)
     const otherProducts = [
       { id: 'course-notion-basics', type: 'courses' as ProductType, title: isRu ? 'Notion с нуля' : 'Notion Basics', description: isRu ? 'Полный курс для начинающих' : 'Complete course for beginners', price: '2 990 ₽', link: '/courses', image: undefined as string | undefined, icon: GraduationCap, status: 'development' as const, popularity: 90 },
       { id: 'course-notion-advanced', type: 'courses' as ProductType, title: isRu ? 'Notion PRO' : 'Notion PRO', description: isRu ? 'Продвинутые техники' : 'Advanced techniques', price: '4 990 ₽', link: '/courses', image: undefined as string | undefined, icon: GraduationCap, status: 'development' as const, popularity: 85 },
@@ -85,7 +78,6 @@ const Home = () => {
     return [...templateProducts, ...otherProducts];
   }, [isRu, dbProducts]);
 
-  // Filtered products
   const filteredProducts = useMemo(() => {
     const products = allProducts.filter(p => p.type === activeFilter);
     return products.sort((a, b) => b.popularity - a.popularity);
@@ -101,13 +93,12 @@ const Home = () => {
       />
       <div className="min-h-screen">
         {/* Hero Section */}
-        <section className="relative container mx-auto px-4 py-16 md:py-24 overflow-hidden">
-          {/* Decorative glass orbs */}
+        <section className="relative container mx-auto px-4 py-20 md:py-32 overflow-hidden">
           <div className="glass-orb top-20 left-10 w-72 h-72 bg-muted/50" />
           <div className="glass-orb bottom-10 right-10 w-96 h-96 bg-muted/40 animate-float" />
           
           <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8">
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
               {isRu ? settings.hero.title_ru : settings.hero.title_en}
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground">
@@ -116,6 +107,21 @@ const Home = () => {
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
               {isRu ? settings.hero.description_ru : settings.hero.description_en}
             </p>
+            {/* Quick link to Cases */}
+            <div className="flex justify-center gap-4 pt-4">
+              <Button asChild size="lg">
+                <Link to="/products">
+                  {isRu ? "Продукты" : "Products"}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <Link to="/cases">
+                  {isRu ? "Кейсы" : "Cases"}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </section>
 
@@ -125,14 +131,12 @@ const Home = () => {
         {/* Before/After Section */}
         <BeforeAfterSection />
 
-        {/* Products Section */}
-        <section className="relative bg-muted/30 backdrop-blur-sm py-16 md:py-24 overflow-hidden">
-          <div className="glass-orb top-1/2 right-0 w-64 h-64 bg-muted/30 animate-float" style={{ animationDelay: '2s' }} />
-          
+        {/* Products Section — max 5 */}
+        <section className="relative py-20 md:py-28 overflow-hidden">
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-6xl mx-auto space-y-8">
               <div className="text-center space-y-4">
-                <h2 className="text-3xl md:text-5xl font-bold">
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
                   {isRu ? "Продукты" : "Products"}
                 </h2>
                 <p className="text-base md:text-lg text-muted-foreground">
@@ -140,36 +144,27 @@ const Home = () => {
                 </p>
               </div>
 
-              {/* Filter Chips - Colorful (without 'All') */}
+              {/* Filter Chips */}
               <div className="flex flex-wrap justify-center gap-2">
-                {filterCategories.map((category, index) => {
-                  const colors = [
-                    'from-blue-500 to-cyan-500',
-                    'from-emerald-500 to-teal-500',
-                    'from-amber-500 to-orange-500',
-                  ];
-                  const colorClass = colors[index % colors.length];
-                  
-                  return (
-                    <button
-                      key={category.id}
-                      onClick={() => setActiveFilter(category.id)}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
-                        activeFilter === category.id
-                          ? `bg-gradient-to-r ${colorClass} text-white shadow-lg scale-105`
-                          : 'bg-background/80 backdrop-blur-sm border border-border/50 text-foreground hover:border-border hover:shadow-md'
-                      }`}
-                    >
-                      {category.icon && <category.icon className="h-3.5 w-3.5" />}
-                      {category.label}
-                    </button>
-                  );
-                })}
+                {filterCategories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveFilter(category.id)}
+                    className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                      activeFilter === category.id
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-muted/40 border border-border/10 text-muted-foreground hover:text-foreground hover:bg-muted/60'
+                    }`}
+                  >
+                    {category.icon && <category.icon className="h-3.5 w-3.5" />}
+                    {category.label}
+                  </button>
+                ))}
               </div>
 
-              {/* Products Grid */}
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {filteredProducts.slice(0, 12).map((product) => {
+              {/* Products Grid — only 5 */}
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                {filteredProducts.slice(0, 5).map((product) => {
                   const isTemplate = product.type === 'templates';
                   const handleCardClick = () => {
                     if (isTemplate && product.status === 'available') {
@@ -180,11 +175,11 @@ const Home = () => {
                   return (
                     <Card 
                       key={product.id} 
-                      className={`group hover:border-primary/40 transition-all ${isTemplate && product.status === 'available' ? 'cursor-pointer' : ''}`}
+                      className={`group ${isTemplate && product.status === 'available' ? 'cursor-pointer' : ''}`}
                       onClick={handleCardClick}
                     >
                       <CardHeader className="p-4 space-y-3">
-                        <div className="aspect-[4/3] bg-muted/50 rounded-xl flex items-center justify-center overflow-hidden">
+                        <div className="aspect-[4/3] bg-muted/30 rounded-2xl flex items-center justify-center overflow-hidden">
                           {(() => {
                             const landingImage = isTemplate ? getMainImage(product.id) : null;
                             const displayImage = landingImage || product.image;
@@ -195,15 +190,15 @@ const Home = () => {
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                               />
                             ) : (
-                              <product.icon className="h-10 w-10 text-primary" />
+                              <product.icon className="h-8 w-8 text-muted-foreground/50" />
                             );
                           })()}
                         </div>
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
-                            <h3 className="text-base font-bold line-clamp-1">{product.title}</h3>
+                            <h3 className="text-sm font-bold line-clamp-1">{product.title}</h3>
                             {product.status === 'development' && (
-                              <Badge variant="secondary" className="text-xs shrink-0">
+                              <Badge variant="outline" className="text-[10px] shrink-0">
                                 {isRu ? 'Скоро' : 'Soon'}
                               </Badge>
                             )}
@@ -211,40 +206,11 @@ const Home = () => {
                         </div>
                       </CardHeader>
                       <CardContent className="p-4 pt-0 space-y-3">
-                        <p className="text-sm text-muted-foreground line-clamp-2">
+                        <p className="text-xs text-muted-foreground line-clamp-2">
                           {product.description}
                         </p>
                         <div className="flex items-center justify-between">
-                          <span className="text-base font-bold">{product.price}</span>
-                          {product.status === 'available' && product.link !== '#' ? (
-                            isTemplate ? (
-                              <Button 
-                                size="sm" 
-                                variant="default"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  navigate(`/templates/${product.id}`);
-                                }}
-                              >
-                                {isRu ? "Подробнее" : "Details"}
-                              </Button>
-                            ) : (
-                              <Button asChild size="sm" variant="default">
-                                <a 
-                                  href={product.link} 
-                                  target={product.link.startsWith('http') ? '_blank' : undefined} 
-                                  rel="noopener noreferrer"
-                                  onClick={(e) => e.stopPropagation()}
-                                >
-                                  {isRu ? "Перейти" : "Go"}
-                                </a>
-                              </Button>
-                            )
-                          ) : (
-                            <Button size="sm" variant="secondary" disabled>
-                              {isRu ? "Скоро" : "Soon"}
-                            </Button>
-                          )}
+                          <span className="text-sm font-bold">{product.price}</span>
                         </div>
                       </CardContent>
                     </Card>
@@ -255,8 +221,8 @@ const Home = () => {
               {/* View All Button */}
               <div className="flex justify-center pt-4">
                 <Button asChild size="lg" variant="outline">
-                  <Link to="/templates">
-                    {t('common.viewAll')}
+                  <Link to="/products">
+                    {isRu ? "Все продукты" : "All Products"}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -265,12 +231,12 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Consulting Section - Separate */}
+        {/* Consulting Section */}
         <section className="relative py-16 md:py-20 overflow-hidden">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="text-center space-y-4 mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold">
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
                   {isRu ? "Консалтинг" : "Consulting"}
                 </h2>
                 <p className="text-base text-muted-foreground">
@@ -278,16 +244,16 @@ const Home = () => {
                 </p>
               </div>
 
-              <Card className="group hover:border-primary/40 transition-all">
+              <Card>
                 <CardContent className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6">
-                  <div className="p-4 bg-primary/10 rounded-2xl">
-                    <MessageSquare className="h-10 w-10 text-primary" />
+                  <div className="p-4 bg-muted/30 rounded-2xl">
+                    <MessageSquare className="h-8 w-8 text-foreground" />
                   </div>
                   <div className="flex-1 text-center md:text-left space-y-2">
-                    <h3 className="text-xl font-bold">
+                    <h3 className="text-lg font-bold">
                       {isRu ? settings.consulting.title_ru : settings.consulting.title_en}
                     </h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-sm text-muted-foreground">
                       {isRu ? settings.consulting.description_ru : settings.consulting.description_en}
                     </p>
                   </div>
@@ -304,9 +270,6 @@ const Home = () => {
             </div>
           </div>
         </section>
-
-        {/* FAQ Section */}
-        <HomeFAQ />
       </div>
     </PageTransition>
   );

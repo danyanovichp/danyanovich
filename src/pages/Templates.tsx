@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { User, Briefcase, Sparkles, Eye, GraduationCap, BookOpen, Video, FileText, Layout, Database, Notebook, ExternalLink, Calendar, ShoppingCart, Star, Quote, Workflow } from "lucide-react";
+import { User, Briefcase, Sparkles, Eye, GraduationCap, BookOpen, Video, FileText, Layout, Database, ExternalLink, Calendar, ShoppingCart, Star, Quote, Workflow, Bot } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
@@ -9,6 +9,12 @@ import { premiumTemplates } from "@/data/premiumTemplates";
 import { useProducts } from "@/hooks/useProducts";
 import TemplateFilters, { TemplateCategory, TemplateStatus, SortOption } from "@/components/TemplateFilters";
 import SEO, { getTemplatesSchema, getBreadcrumbSchema } from "@/components/SEO";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Templates = () => {
   const { t, i18n } = useTranslation();
@@ -19,7 +25,6 @@ const Templates = () => {
   const [selectedStatus, setSelectedStatus] = useState<TemplateStatus>('all');
   const [sortBy, setSortBy] = useState<SortOption>('popularity');
 
-  // Merge DB products with static templates (DB takes priority, with fallback to static)
   const mergedTemplates = useMemo(() => {
     const productMap = new Map(products.map(p => [p.id, p]));
     
@@ -59,7 +64,6 @@ const Templates = () => {
       return matchesSearch && matchesCategory && matchesStatus;
     });
 
-    // Apply sorting
     switch (sortBy) {
       case 'popularity':
         filtered = [...filtered].sort((a, b) => b.popularity - a.popularity);
@@ -167,164 +171,64 @@ const Templates = () => {
     },
   ];
 
-  const buildinTemplates = [
+  const faqItems = [
     {
-      icon: Layout,
-      title: i18n.language === 'ru' ? "Лендинги" : "Landing Pages",
-      description: i18n.language === 'ru' 
-        ? "Готовые шаблоны лендингов для бизнеса"
-        : "Ready-made landing page templates for business",
-      count: i18n.language === 'ru' ? "Скоро" : "Coming Soon",
-      details: i18n.language === 'ru' 
-        ? "Профессиональные шаблоны лендингов для различных ниш. Готовые к использованию, адаптивные и оптимизированные для конверсий."
-        : "Professional landing page templates for various niches. Ready to use, responsive and optimized for conversions.",
-      features: i18n.language === 'ru' 
-        ? ["Адаптивный дизайн", "Оптимизация конверсий", "SEO настройки", "Быстрая загрузка", "Интеграции"]
-        : ["Responsive Design", "Conversion Optimization", "SEO Settings", "Fast Loading", "Integrations"],
-      preview: "/placeholder.svg",
+      id: "notion-safety",
+      questionRu: "Безопасно ли использовать Notion в РФ?",
+      questionEn: "Is Notion safe to use in Russia?",
+      answerRu: "Я строю системы с возможностью резервного копирования — все данные можно экспортировать в CSV, Markdown или JSON в любой момент. Для критичных процессов использую n8n, который можно развернуть на вашем собственном сервере.",
+      answerEn: "I build systems with backup capabilities — all data can be exported to CSV, Markdown, or JSON at any time. For critical processes, I use n8n which can be deployed on your own server.",
     },
     {
-      icon: Database,
-      title: i18n.language === 'ru' ? "Веб-приложения" : "Web Apps",
-      description: i18n.language === 'ru' 
-        ? "Шаблоны для создания веб-приложений"
-        : "Templates for creating web applications",
-      count: i18n.language === 'ru' ? "Скоро" : "Coming Soon",
-      details: i18n.language === 'ru' 
-        ? "Готовые основы для веб-приложений с базой данных, авторизацией и административной панелью."
-        : "Ready-made foundations for web applications with database, authorization and admin panel.",
-      features: i18n.language === 'ru' 
-        ? ["База данных", "Авторизация", "Админ-панель", "API интеграции", "Аналитика"]
-        : ["Database", "Authorization", "Admin Panel", "API Integrations", "Analytics"],
-      preview: "/placeholder.svg",
+      id: "payment",
+      questionRu: "Как происходит оплата?",
+      questionEn: "How do I pay?",
+      answerRu: "Принимаю переводы на карты российских банков (Сбербанк, Тинькофф), криптовалюту (USDT, BTC), а также международные переводы. Возможна оплата частями для крупных проектов.",
+      answerEn: "I accept transfers to Russian bank cards (Sberbank, Tinkoff), cryptocurrency (USDT, BTC), and international transfers. Payment in installments is possible for large projects.",
+    },
+    {
+      id: "custom-system",
+      questionRu: "Можно ли заказать индивидуальную систему?",
+      questionEn: "Can I order a custom system?",
+      answerRu: "Да! Большинство моих проектов — это кастомные решения под конкретные задачи бизнеса. Начинаем с бесплатного экспресс-аудита на 15 минут.",
+      answerEn: "Yes! Most of my projects are custom solutions for specific business needs. We start with a free 15-minute express audit.",
+    },
+    {
+      id: "timeline",
+      questionRu: "Сколько времени занимает внедрение?",
+      questionEn: "How long does implementation take?",
+      answerRu: "Зависит от сложности: простой шаблон настраивается за 1-2 дня, комплексная система автоматизации — 2-4 недели. После внедрения провожу обучение и даю 2 недели поддержки бесплатно.",
+      answerEn: "It depends on complexity: a simple template takes 1-2 days, a comprehensive automation system takes 2-4 weeks. After implementation, I train your team and provide 2 weeks of free support.",
     },
   ];
-
-  const yonoteTemplates = [
-    {
-      icon: Notebook,
-      title: i18n.language === 'ru' ? "База знаний" : "Knowledge Base",
-      description: i18n.language === 'ru' 
-        ? "Шаблоны для организации знаний в YoNote"
-        : "Templates for organizing knowledge in YoNote",
-      count: i18n.language === 'ru' ? "Скоро" : "Coming Soon",
-      details: i18n.language === 'ru' 
-        ? "Структурированные шаблоны для ведения базы знаний, документации и заметок в YoNote."
-        : "Structured templates for maintaining knowledge base, documentation and notes in YoNote.",
-      features: i18n.language === 'ru' 
-        ? ["Структура знаний", "Теги и категории", "Быстрый поиск", "Связанные заметки", "Экспорт"]
-        : ["Knowledge Structure", "Tags and Categories", "Quick Search", "Linked Notes", "Export"],
-      preview: "/placeholder.svg",
-    },
-    {
-      icon: Briefcase,
-      title: i18n.language === 'ru' ? "Бизнес" : "Business",
-      description: i18n.language === 'ru' 
-        ? "Бизнес-шаблоны для команд в YoNote"
-        : "Business templates for teams in YoNote",
-      count: i18n.language === 'ru' ? "Скоро" : "Coming Soon",
-      details: i18n.language === 'ru' 
-        ? "Комплексные решения для бизнес-процессов и командной работы в YoNote."
-        : "Comprehensive solutions for business processes and teamwork in YoNote.",
-      features: i18n.language === 'ru' 
-        ? ["CRM система", "Управление проектами", "Документация", "Командная работа", "Отчёты"]
-        : ["CRM System", "Project Management", "Documentation", "Teamwork", "Reports"],
-      preview: "/placeholder.svg",
-    },
-  ];
-
-  const renderTemplateCard = (template: any, index: number, isPremium = false) => (
-    <Dialog key={index}>
-      <DialogTrigger asChild>
-        <Card
-          className="cursor-pointer group"
-          onClick={() => setSelectedTemplate(template)}
-        >
-          <div className="relative overflow-hidden rounded-t-2xl">
-            <div className="aspect-video bg-muted/50 backdrop-blur-xl flex items-center justify-center group-hover:bg-muted/70 transition-colors">
-              <template.icon className="h-16 w-16 text-primary" />
-            </div>
-          </div>
-          <CardHeader className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="inline-flex p-3 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-xl">
-                <template.icon className="h-6 w-6" />
-              </div>
-              <Eye className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-            </div>
-            <h3 className="text-xl font-bold">{template.title}</h3>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <p className="text-sm text-muted-foreground">
-              {template.description}
-            </p>
-            <p className="text-sm font-medium">{template.count}</p>
-          </CardContent>
-        </Card>
-      </DialogTrigger>
-      <DialogContent className="max-w-2xl bg-background/95 backdrop-blur-2xl border-border/20">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-3 text-2xl">
-            <div className="inline-flex p-3 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-xl">
-              <template.icon className="h-6 w-6" />
-            </div>
-            {template.title}
-            {isPremium && (
-              <Badge className="bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-full">
-                <Sparkles className="mr-1 h-3 w-3 inline" />
-                {i18n.language === 'ru' ? 'ПРЕМИУМ' : 'PREMIUM'}
-              </Badge>
-            )}
-          </DialogTitle>
-        </DialogHeader>
-        <div className="space-y-6">
-          <div className="aspect-video bg-muted/50 backdrop-blur-xl rounded-2xl flex items-center justify-center">
-            <template.icon className="h-20 w-20 text-primary" />
-          </div>
-          <div className="space-y-4">
-            <p className="text-base text-muted-foreground">{template.details}</p>
-            <div className="space-y-3">
-              <h4 className="text-base font-bold">{i18n.language === 'ru' ? 'Возможности:' : 'Features:'}</h4>
-              <ul className="space-y-2">
-                {template.features?.map((feature: string, i: number) => (
-                  <li key={i} className="text-sm flex items-center gap-3">
-                    <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
 
   const isRu = i18n.language === 'ru';
   const templatesSchema = getTemplatesSchema(isRu);
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: isRu ? 'Главная' : 'Home', url: 'https://danyanovich.com' },
-    { name: isRu ? 'Шаблоны' : 'Templates', url: 'https://danyanovich.com/templates' },
+    { name: isRu ? 'Продукты' : 'Products', url: 'https://danyanovich.com/products' },
   ]);
 
   return (
     <div className="flex flex-col min-h-screen">
       
       {/* Hero Section */}
-      <section className="bg-muted/30 backdrop-blur-sm py-16 md:py-20 border-b border-border/20">
+      <section className="py-20 md:py-28">
         <SEO 
-          titleRu="Шаблоны Notion | Дэн Янович"
-          titleEn="Notion Templates | Dan Yanovich"
-          descriptionRu="Премиум шаблоны Notion для продуктивности и бизнеса. Second Brain, CRM, управление проектами."
-          descriptionEn="Premium Notion templates for productivity and business. Second Brain, CRM, project management."
-          url="https://danyanovich.com/templates"
+          titleRu="Продукты | Дэн Янович"
+          titleEn="Products | Dan Yanovich"
+          descriptionRu="Шаблоны Notion, AI промпты, курсы. Всё для продуктивности и бизнеса."
+          descriptionEn="Notion templates, AI prompts, courses. Everything for productivity and business."
+          url="https://danyanovich.com/products"
           structuredData={[templatesSchema, breadcrumbSchema]}
         />
         <div className="container">
-          <div className="max-w-3xl mx-auto text-center space-y-4 mb-8">
-            <h1 className="text-3xl md:text-5xl font-bold">{t('templates.title')}</h1>
-            <p className="text-base md:text-lg text-muted-foreground">
-              {t('templates.subtitle')}
+          <div className="max-w-3xl mx-auto text-center space-y-6 mb-10">
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
+              {isRu ? 'Продукты' : 'Products'}
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              {isRu ? 'Шаблоны Notion, курсы и AI инструменты' : 'Notion templates, courses and AI tools'}
             </p>
           </div>
           <div className="max-w-2xl mx-auto">
@@ -342,32 +246,60 @@ const Templates = () => {
         </div>
       </section>
 
-      {/* Available Templates Section */}
+      {/* AI Training Card */}
+      <section className="pb-12">
+        <div className="container">
+          <div className="max-w-5xl mx-auto">
+            <div className="flex items-center gap-4 mb-8">
+              <Badge variant="coral" className="px-4 py-1.5 text-sm">
+                <GraduationCap className="mr-1.5 h-3.5 w-3.5 inline" />
+                {isRu ? 'ИИ Обучение' : 'AI Training'}
+              </Badge>
+              <Badge variant="outline" className="text-xs">
+                {isRu ? 'В разработке' : 'In Development'}
+              </Badge>
+              <div className="flex-1 h-px bg-border/10" />
+            </div>
+            <Card className="border-dashed border-2 border-border/20 opacity-70">
+              <CardContent className="py-12 text-center">
+                <GraduationCap className="h-12 w-12 mx-auto text-accent-coral/50 mb-4" />
+                <h3 className="text-lg font-bold mb-2">
+                  {isRu ? 'ИИ Обучение — скоро' : 'AI Training — coming soon'}
+                </h3>
+                <p className="text-sm text-muted-foreground max-w-md mx-auto">
+                  {isRu 
+                    ? 'Курсы и обучающие материалы по работе с искусственным интеллектом'
+                    : 'Courses and training materials on working with artificial intelligence'}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Notion Templates — Available */}
       {filteredTemplates.filter(t => t.status === 'available').length > 0 && (
-        <section className="relative py-16 md:py-20 overflow-hidden">
-          <div className="glass-orb bottom-20 left-20 w-56 h-56 bg-muted/40 animate-float" style={{ animationDelay: '0.3s' }} />
-          
+        <section className="relative py-12 md:py-16 overflow-hidden">
           <div className="container relative z-10">
-            <div className="max-w-5xl mx-auto space-y-12">
+            <div className="max-w-5xl mx-auto space-y-8">
               <div className="flex items-center gap-4">
-                <Badge className="px-6 py-3 bg-foreground/90 backdrop-blur-sm text-background text-base font-medium rounded-full">
-                  📝 Notion
+                <Badge variant="lime" className="px-4 py-1.5 text-sm">
+                  Notion
                 </Badge>
-                <Badge className="px-4 py-2 bg-green-500/90 backdrop-blur-sm text-white text-sm font-medium rounded-full">
-                  <Sparkles className="mr-1 h-3 w-3 inline" />
-                  {i18n.language === 'ru' ? 'В продаже' : 'Available'}
+                <Badge variant="outline" className="text-xs">
+                  {isRu ? 'В продаже' : 'Available'}
                 </Badge>
-                <div className="flex-1 h-px bg-border/20" />
+                <div className="flex-1 h-px bg-border/10" />
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredTemplates.filter(t => t.status === 'available').map((template, index) => {
-                const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
-                const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
+                const title = isRu ? template.titleRu : template.titleEn;
+                const description = isRu ? template.descriptionRu : template.descriptionEn;
                 return (
                   <Link to={`/templates/${template.id}`} key={index}>
-                    <Card className="cursor-pointer group h-full transition-colors border-green-500/30 hover:border-green-500/50">
-                      <div className="relative overflow-hidden rounded-t-2xl">
+                    <Card className="cursor-pointer group h-full">
+                      <div className="relative overflow-hidden rounded-t-3xl">
                         {template.image ? (
                           <img 
                             src={template.image} 
@@ -375,30 +307,21 @@ const Templates = () => {
                             className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300"
                           />
                         ) : (
-                          <div className="aspect-video bg-muted/50 backdrop-blur-xl flex items-center justify-center group-hover:bg-muted/70 transition-colors">
-                            <template.icon className="h-16 w-16 text-primary" />
+                          <div className="aspect-video bg-muted/30 flex items-center justify-center group-hover:bg-muted/50 transition-colors">
+                            <template.icon className="h-12 w-12 text-muted-foreground/50" />
                           </div>
                         )}
                         <div className="absolute top-3 right-3">
-                          <Badge className="bg-green-500/90 backdrop-blur-sm text-white text-sm font-bold rounded-full px-3 py-1">
+                          <Badge className="bg-primary text-primary-foreground text-sm rounded-full px-3 py-1">
                             {template.price}
                           </Badge>
                         </div>
                       </div>
-                      <CardHeader className="space-y-4">
-                        <div className="flex items-center justify-between">
-                          <div className="inline-flex p-3 bg-green-500/90 backdrop-blur-sm text-white rounded-xl">
-                            <template.icon className="h-6 w-6" />
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <ShoppingCart className="h-5 w-5 text-green-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                            <ExternalLink className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                          </div>
-                        </div>
-                        <h3 className="text-lg font-bold group-hover:text-green-500 transition-colors">{title}</h3>
+                      <CardHeader className="space-y-2 pb-2">
+                        <h3 className="text-base font-bold">{title}</h3>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-sm text-muted-foreground">{description}</p>
+                        <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>
                       </CardContent>
                     </Card>
                   </Link>
@@ -410,50 +333,43 @@ const Templates = () => {
         </section>
       )}
 
-      {/* In Development Templates Section */}
+      {/* In Development Templates */}
       {filteredTemplates.filter(t => t.status === 'development').length > 0 && (
-        <section className="relative py-16 md:py-20 overflow-hidden">
-          <div className="glass-orb top-10 right-10 w-48 h-48 bg-muted/30 animate-float" style={{ animationDelay: '0.5s' }} />
-          
+        <section className="relative py-12 md:py-16 overflow-hidden">
           <div className="container relative z-10">
-            <div className="max-w-5xl mx-auto space-y-12">
+            <div className="max-w-5xl mx-auto space-y-8">
               <div className="flex items-center gap-4">
-                <Badge className="px-6 py-3 bg-foreground/90 backdrop-blur-sm text-background text-base font-medium rounded-full">
-                  📝 Notion
+                <Badge variant="lime" className="px-4 py-1.5 text-sm">
+                  Notion
                 </Badge>
-                <Badge className="px-4 py-2 bg-amber-500/90 backdrop-blur-sm text-white text-sm font-medium rounded-full">
-                  🚧 {i18n.language === 'ru' ? 'В разработке' : 'In Development'}
+                <Badge variant="outline" className="text-xs">
+                  {isRu ? 'В разработке' : 'In Development'}
                 </Badge>
-                <div className="flex-1 h-px bg-border/20" />
+                <div className="flex-1 h-px bg-border/10" />
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredTemplates.filter(t => t.status === 'development').map((template, index) => {
-                const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
-                const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
+                const title = isRu ? template.titleRu : template.titleEn;
+                const description = isRu ? template.descriptionRu : template.descriptionEn;
                 return (
                   <Link to={`/templates/${template.id}`} key={index}>
-                    <Card className="cursor-pointer group h-full transition-colors border-amber-500/30 hover:border-amber-500/50 opacity-80">
-                      <div className="relative overflow-hidden rounded-t-2xl">
-                        <div className="aspect-video bg-muted/50 backdrop-blur-xl flex items-center justify-center group-hover:bg-muted/70 transition-colors">
-                          <template.icon className="h-16 w-16 text-amber-500/70" />
+                    <Card className="cursor-pointer group h-full opacity-60">
+                      <div className="relative overflow-hidden rounded-t-3xl">
+                        <div className="aspect-video bg-muted/30 flex items-center justify-center group-hover:bg-muted/50 transition-colors">
+                          <template.icon className="h-12 w-12 text-muted-foreground/40" />
                         </div>
-                        <div className="absolute top-3 right-3 flex flex-col gap-2">
-                          <Badge className="bg-amber-500/90 backdrop-blur-sm text-white text-sm font-bold rounded-full px-3 py-1">
+                        <div className="absolute top-3 right-3">
+                          <Badge variant="outline" className="text-xs">
                             {template.price}
                           </Badge>
                         </div>
                       </div>
-                      <CardHeader className="space-y-4">
-                        <div className="flex items-center justify-between">
-                          <div className="inline-flex p-3 bg-amber-500/90 backdrop-blur-sm text-white rounded-xl">
-                            <template.icon className="h-6 w-6" />
-                          </div>
-                        </div>
-                        <h3 className="text-lg font-bold group-hover:text-amber-500 transition-colors">{title}</h3>
+                      <CardHeader className="space-y-2 pb-2">
+                        <h3 className="text-base font-bold">{title}</h3>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-sm text-muted-foreground">{description}</p>
+                        <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>
                       </CardContent>
                     </Card>
                   </Link>
@@ -467,11 +383,11 @@ const Templates = () => {
 
       {/* No Results */}
       {filteredTemplates.length === 0 && (
-        <section className="py-16 md:py-20">
+        <section className="py-16">
           <div className="container">
             <div className="text-center py-12">
               <p className="text-lg text-muted-foreground">
-                {i18n.language === 'ru' ? 'Шаблоны не найдены. Попробуйте изменить фильтры.' : 'No templates found. Try changing filters.'}
+                {isRu ? 'Продукты не найдены. Попробуйте изменить фильтры.' : 'No products found. Try changing filters.'}
               </p>
             </div>
           </div>
@@ -479,28 +395,26 @@ const Templates = () => {
       )}
 
       {/* Education Section */}
-      <section className="relative py-16 md:py-20 overflow-hidden">
-        <div className="glass-orb top-10 left-10 w-48 h-48 bg-muted/30 animate-float" />
-        
+      <section className="relative py-12 md:py-16 overflow-hidden">
         <div className="container relative z-10">
-          <div className="max-w-5xl mx-auto space-y-12">
+          <div className="max-w-5xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
-              <Badge className="px-6 py-3 bg-primary/90 backdrop-blur-sm text-primary-foreground text-base font-medium rounded-full">
-                <GraduationCap className="mr-2 h-4 w-4 inline" />
-                {i18n.language === 'ru' ? 'Обучение' : 'Education'}
+              <Badge variant="outline" className="px-4 py-1.5 text-sm">
+                <GraduationCap className="mr-1.5 h-3.5 w-3.5 inline" />
+                {isRu ? 'Обучение' : 'Education'}
               </Badge>
-              <div className="flex-1 h-px bg-border/20" />
+              <div className="flex-1 h-px bg-border/10" />
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
               {educationItems.map((item, index) => (
                 <Link to={item.link} key={index}>
                   <Card className="cursor-pointer group h-full">
-                    <CardHeader className="space-y-4">
-                      <div className="inline-flex p-3 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-xl w-fit">
-                        <item.icon className="h-6 w-6" />
+                    <CardHeader className="space-y-3">
+                      <div className="inline-flex p-3 bg-muted/50 rounded-2xl w-fit">
+                        <item.icon className="h-5 w-5 text-foreground" />
                       </div>
-                      <h3 className="text-xl font-bold group-hover:text-primary transition-colors">{item.title}</h3>
+                      <h3 className="text-base font-bold">{item.title}</h3>
                     </CardHeader>
                     <CardContent>
                       <p className="text-sm text-muted-foreground">{item.description}</p>
@@ -513,20 +427,18 @@ const Templates = () => {
         </div>
       </section>
 
-      {/* Notion Free Templates Section */}
-      <section className="relative py-16 md:py-20 bg-muted/30 backdrop-blur-sm overflow-hidden">
-        <div className="glass-orb top-10 right-10 w-64 h-64 bg-muted/30 animate-float" />
-        
+      {/* Notion Free Templates */}
+      <section className="relative py-12 md:py-16 overflow-hidden">
         <div className="container relative z-10">
-          <div className="max-w-5xl mx-auto space-y-12">
+          <div className="max-w-5xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
-              <Badge className="px-6 py-3 bg-foreground/90 backdrop-blur-sm text-background text-base font-medium rounded-full">
-                📝 Notion
+              <Badge variant="lime" className="px-4 py-1.5 text-sm">
+                Notion
               </Badge>
-              <Badge className="px-4 py-2 bg-primary/90 backdrop-blur-sm text-primary-foreground text-sm font-medium rounded-full">
-                🎁 {i18n.language === 'ru' ? 'Бесплатно' : 'Free'}
+              <Badge variant="outline" className="text-xs">
+                {isRu ? 'Бесплатно' : 'Free'}
               </Badge>
-              <div className="flex-1 h-px bg-border/20" />
+              <div className="flex-1 h-px bg-border/10" />
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -539,14 +451,14 @@ const Templates = () => {
                   className="block"
                 >
                   <Card className="cursor-pointer group h-full">
-                    <CardHeader className="space-y-4">
+                    <CardHeader className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <div className="inline-flex p-3 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-xl">
-                          <template.icon className="h-6 w-6" />
+                        <div className="inline-flex p-3 bg-muted/50 rounded-2xl">
+                          <template.icon className="h-5 w-5 text-foreground" />
                         </div>
-                        <ExternalLink className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <ExternalLink className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
-                      <h3 className="text-lg font-bold group-hover:text-primary transition-colors">{template.title}</h3>
+                      <h3 className="text-base font-bold">{template.title}</h3>
                     </CardHeader>
                     <CardContent>
                       <p className="text-sm text-muted-foreground">{template.description}</p>
@@ -559,73 +471,29 @@ const Templates = () => {
         </div>
       </section>
 
-
-      {/* Buildin.AI Templates Section */}
-      <section className="relative py-16 md:py-20 overflow-hidden">
-        <div className="glass-orb bottom-10 left-10 w-80 h-80 bg-muted/40 animate-float" style={{ animationDelay: '1s' }} />
-        
-        <div className="container relative z-10">
-          <div className="max-w-5xl mx-auto space-y-12">
-            <div className="flex items-center gap-4">
-              <Badge className="px-6 py-3 bg-primary/90 backdrop-blur-sm text-primary-foreground text-base font-medium rounded-full">
-                <Sparkles className="mr-2 h-4 w-4 inline" />
-                Buildin.AI
-              </Badge>
-              <div className="flex-1 h-px bg-border/20" />
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {buildinTemplates.map((template, index) => renderTemplateCard(template, index, true))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* YoNote Templates Section */}
-      <section className="relative py-16 md:py-20 bg-muted/30 backdrop-blur-sm overflow-hidden">
-        <div className="glass-orb top-20 right-20 w-56 h-56 bg-muted/30 animate-float" style={{ animationDelay: '0.5s' }} />
-        
-        <div className="container relative z-10">
-          <div className="max-w-5xl mx-auto space-y-12">
-            <div className="flex items-center gap-4">
-              <Badge className="px-6 py-3 bg-accent/90 backdrop-blur-sm text-accent-foreground text-base font-medium rounded-full">
-                📓 YoNote
-              </Badge>
-              <div className="flex-1 h-px bg-border/20" />
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {yonoteTemplates.map((template, index) => renderTemplateCard(template, index))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* n8n Section */}
-      <section className="relative py-16 md:py-20 overflow-hidden">
-        <div className="glass-orb bottom-10 left-20 w-64 h-64 bg-muted/30 animate-float" style={{ animationDelay: '0.8s' }} />
-        
+      <section className="relative py-12 md:py-16 overflow-hidden">
         <div className="container relative z-10">
-          <div className="max-w-5xl mx-auto space-y-12">
+          <div className="max-w-5xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
-              <Badge className="px-6 py-3 bg-orange-500/90 backdrop-blur-sm text-white text-base font-medium rounded-full">
-                <Workflow className="mr-2 h-4 w-4 inline" />
+              <Badge variant="coral" className="px-4 py-1.5 text-sm">
+                <Workflow className="mr-1.5 h-3.5 w-3.5 inline" />
                 n8n
               </Badge>
-              <Badge className="px-4 py-2 bg-muted/90 backdrop-blur-sm text-muted-foreground text-sm font-medium rounded-full">
-                🚧 {i18n.language === 'ru' ? 'В разработке' : 'In Development'}
+              <Badge variant="outline" className="text-xs">
+                {isRu ? 'В разработке' : 'In Development'}
               </Badge>
-              <div className="flex-1 h-px bg-border/20" />
+              <div className="flex-1 h-px bg-border/10" />
             </div>
 
-            <Card className="border-dashed border-2 border-border/40">
-              <CardContent className="py-16 text-center">
-                <Workflow className="h-16 w-16 mx-auto text-orange-500/50 mb-6" />
-                <h3 className="text-xl font-bold mb-2">
-                  {i18n.language === 'ru' ? 'В разработке' : 'In Development'}
+            <Card className="border-dashed border-2 border-border/20">
+              <CardContent className="py-12 text-center">
+                <Workflow className="h-12 w-12 mx-auto text-accent-coral/50 mb-4" />
+                <h3 className="text-lg font-bold mb-2">
+                  {isRu ? 'В разработке' : 'In Development'}
                 </h3>
-                <p className="text-muted-foreground">
-                  {i18n.language === 'ru' 
+                <p className="text-sm text-muted-foreground">
+                  {isRu 
                     ? 'Шаблоны автоматизаций n8n скоро будут доступны'
                     : 'n8n automation templates coming soon'}
                 </p>
@@ -635,53 +503,81 @@ const Templates = () => {
         </div>
       </section>
 
-      {/* Template Reviews Section */}
-      <section className="relative py-16 md:py-20 bg-muted/30 backdrop-blur-sm overflow-hidden">
-        <div className="glass-orb top-10 right-10 w-72 h-72 bg-muted/40 animate-float" style={{ animationDelay: '1.2s' }} />
-        
+      {/* FAQ Section (Notion) */}
+      <section className="relative py-12 md:py-16 overflow-hidden">
         <div className="container relative z-10">
-          <div className="max-w-5xl mx-auto space-y-12">
+          <div className="max-w-3xl mx-auto space-y-8">
             <div className="text-center space-y-4">
-              <h2 className="text-2xl md:text-4xl font-bold">
-                {i18n.language === 'ru' ? 'Отзывы о шаблонах' : 'Template Reviews'}
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+                {isRu ? "Частые вопросы" : "FAQ"}
               </h2>
-              <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-                {i18n.language === 'ru' 
-                  ? 'Что говорят пользователи о наших шаблонах'
-                  : 'What users say about our templates'}
+              <p className="text-muted-foreground">
+                {isRu 
+                  ? "Ответы на главные вопросы о Notion и шаблонах" 
+                  : "Answers to main questions about Notion and templates"}
               </p>
+            </div>
+
+            <Accordion type="single" collapsible className="space-y-3">
+              {faqItems.map((item) => (
+                <AccordionItem 
+                  key={item.id} 
+                  value={item.id}
+                  className="bg-muted/20 border border-border/10 rounded-2xl px-6 data-[state=open]:shadow-sm transition-all"
+                >
+                  <AccordionTrigger className="text-left font-medium hover:no-underline py-4 text-sm">
+                    {isRu ? item.questionRu : item.questionEn}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pb-4 text-sm leading-relaxed">
+                    {isRu ? item.answerRu : item.answerEn}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* Template Reviews */}
+      <section className="relative py-12 md:py-16 overflow-hidden">
+        <div className="container relative z-10">
+          <div className="max-w-5xl mx-auto space-y-8">
+            <div className="text-center space-y-4">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+                {isRu ? 'Отзывы' : 'Reviews'}
+              </h2>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
                   name: "Dmitri_Str",
-                  text: i18n.language === 'ru' 
-                    ? "Очень редко сейчас встретишь профессионалов такого уровня. Быстро разобрался в задаче, предложил хорошие идеи. Быстро и качественно!"
-                    : "Very rare to find professionals of this level. Quickly understood the task, suggested good ideas. Fast and quality!",
+                  text: isRu 
+                    ? "Очень редко сейчас встретишь профессионалов такого уровня. Быстро разобрался в задаче, предложил хорошие идеи."
+                    : "Very rare to find professionals of this level. Quickly understood the task, suggested good ideas.",
                   rating: 5,
                 },
                 {
                   name: "edgadirov",
-                  text: i18n.language === 'ru' 
-                    ? "Отличная работа! Данил очень ответственный. Помог разобраться в notion и найти лучшее решение. Все сделано идеально!"
-                    : "Excellent work! Danil is very responsible. Helped understand Notion and find the best solution. Perfect!",
+                  text: isRu 
+                    ? "Отличная работа! Данил очень ответственный. Помог разобраться в notion и найти лучшее решение."
+                    : "Excellent work! Danil is very responsible. Helped understand Notion and find the best solution.",
                   rating: 5,
                 },
                 {
                   name: "nesmeyanna",
-                  text: i18n.language === 'ru' 
-                    ? "Данила восхитителен! Дополнил задачу так, как я и не могла предположить. Рекомендую как профессионала!"
-                    : "Danila is amazing! Enhanced the task in ways I couldn't imagine. Recommend as a professional!",
+                  text: isRu 
+                    ? "Данила восхитителен! Дополнил задачу так, как я и не могла предположить. Рекомендую!"
+                    : "Danila is amazing! Enhanced the task in ways I couldn't imagine. Recommend!",
                   rating: 5,
                 },
               ].map((review, index) => (
                 <Card key={index} className="h-full">
                   <CardHeader className="pb-2">
-                    <Quote className="h-8 w-8 text-primary/40 mb-2" />
+                    <Quote className="h-6 w-6 text-muted-foreground/30 mb-2" />
                     <div className="flex gap-0.5 mb-2">
                       {Array.from({ length: review.rating }).map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                        <Star key={i} className="h-3.5 w-3.5 fill-accent-lime text-accent-lime" />
                       ))}
                     </div>
                   </CardHeader>
@@ -689,8 +585,8 @@ const Templates = () => {
                     <p className="text-sm text-muted-foreground italic">
                       "{review.text}"
                     </p>
-                    <div className="pt-2 border-t border-border/50">
-                      <p className="font-semibold text-sm">{review.name}</p>
+                    <div className="pt-2 border-t border-border/10">
+                      <p className="font-medium text-sm">{review.name}</p>
                     </div>
                   </CardContent>
                 </Card>

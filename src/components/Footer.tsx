@@ -8,17 +8,15 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const productLinks = [
-    { to: '/templates', labelRu: 'Шаблоны', labelEn: 'Templates' },
-    { to: '/courses', labelRu: 'Курсы', labelEn: 'Courses' },
-    { to: '/ai-prompts', labelRu: 'AI Промпты', labelEn: 'AI Prompts' },
+    { to: '/products', labelRu: 'Все продукты', labelEn: 'All Products' },
     { to: '/packages', labelRu: 'Пакеты', labelEn: 'Packages' },
+    { to: '/consulting', labelRu: 'Консалтинг', labelEn: 'Consulting' },
   ];
 
   const resourceLinks = [
-    { to: '/faq', labelRu: 'FAQ', labelEn: 'FAQ' },
-    { to: '/consulting', labelRu: 'Консалтинг', labelEn: 'Consulting' },
-    { to: '/portfolio', labelRu: 'Портфолио', labelEn: 'Portfolio' },
+    { to: '/cases', labelRu: 'Кейсы', labelEn: 'Cases' },
     { to: '/reviews', labelRu: 'Отзывы', labelEn: 'Reviews' },
+    { to: '/contact', labelRu: 'Обо мне', labelEn: 'About Me' },
   ];
 
   return (
