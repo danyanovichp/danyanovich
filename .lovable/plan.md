@@ -1,96 +1,89 @@
 
-# Plan: UI Improvements -- Remove Sections, Restructure Content, Cases Horizontal Scroll, About Me Redesign
+# Plan: Navigation Reorder, Transparent Diagram Background, Bigger Architecture, Mobile Fixes
 
-## Summary of Changes
+## 1. Move "Products" to 4th (last) position in navigation
 
-1. **Remove "Как это работает" (BeforeAfterSection)** from the Home page
-2. **Move "Инструменты" (TechStackCarousel)** from Home page to Products page
-3. **Rename "Экспресс-аудит" button** to "Связаться" / "Contact" in Header
-4. **Cases page: horizontal full-screen scroll** -- each project takes the full viewport width, user swipes/clicks left-right to navigate between projects
-5. **About Me (Contact) page redesign** -- make it visually richer with decorative blobs, pastel cards, larger typography, and better section styling
+**File:** `src/components/Header.tsx`
 
-## Files to Change
+Reorder `mainLinks` array so Products is last:
+- Current: Home, Products, Cases, Contact
+- New: Home, Cases, Contact, Products
 
-### 1. `src/pages/Home.tsx`
-- Remove `<BeforeAfterSection />` import and usage
-- Remove `<TechStackCarousel />` import and usage
+## 2. WorkflowDiagram: transparent theme-aware background
 
-### 2. `src/pages/Templates.tsx` (Products page)
-- Add `<TechStackCarousel />` at the top or bottom of the Products page
+**File:** `src/components/WorkflowDiagram.tsx`
 
-### 3. `src/components/Header.tsx`
-- Change "Экспресс-аудит" / "Express Audit" text to "Связаться" / "Contact"
-- Update the pre-filled Telegram message to a more generic contact message
+- Replace hardcoded `backgroundColor: '#141414'` with theme-aware CSS class `bg-muted/30` (transparent, adapts to light/dark theme)
+- Change node text fill from hardcoded `hsl(0 0% 80%)` to `currentColor` with opacity so it adapts to theme
+- Increase connection stroke opacity for better visibility on light backgrounds
 
-### 4. `src/pages/Cases.tsx` -- Full horizontal scroll redesign
-- Each project card becomes a full-viewport-width slide
-- Horizontal navigation with arrow buttons and dot indicators
-- Use CSS `snap-x` scroll snapping or state-based slide switching
-- Projects scroll left-right instead of vertically
-- Keep all existing content (workflow diagram, features grid, results) inside each slide
-- Add keyboard arrow navigation support
+## 3. WorkflowDiagram: make bigger and more visually appealing
 
-### 5. `src/pages/Contact.tsx` -- About Me visual upgrade
-- Add `DecorativeBlobs` to hero section for visual richness
-- Use pastel card backgrounds for expertise blocks (rotating `pastelBgClasses`)
-- Make hero heading larger with `font-display` (Space Grotesk)
-- Add pastel backgrounds to Tools, Social, Programs sections
-- Improve statistics section with pastel accent backgrounds
-- Add decorative elements between sections
-- Make reviews carousel cards more colorful
-- Bigger section headings with Space Grotesk
+**File:** `src/components/WorkflowDiagram.tsx`
 
-### 6. `src/components/BeforeAfterSection.tsx`
-- No changes needed (just removed from Home, file stays for potential future use)
+- Increase `SVG_H` from 240 to 340 for taller diagram
+- Increase `NODE_W` from 120 to 150 and `NODE_H` from 50 to 60 for bigger nodes
+- Increase font sizes (icon: 16 to 20, label: 12 to 14)
+- Remove `maxHeight: 260` cap so diagram shows at full size
+- Increase connection stroke width from 2.5 to 3
+- Add subtle glow/shadow on nodes for depth
+
+**File:** `src/pages/Cases.tsx`
+
+- Remove "Архитектура" label or make it bigger as section header
+- Give the diagram more vertical space
+
+## 4. Mobile responsiveness fixes
+
+**File:** `src/components/WorkflowDiagram.tsx`
+- Reduce `min-w-[600px]` to `min-w-[500px]` for better mobile fit
+- Ensure horizontal scroll works smoothly on mobile
+
+**File:** `src/pages/Cases.tsx`
+- Navigation arrows: reduce size on mobile (`h-10 w-10` on mobile, `h-12 w-12` on desktop)
+- Move arrows slightly inward from edges for thumb reach
+- Ensure dots are above safe area on mobile
+- Title text size adjustments for small screens
+
+**File:** `src/pages/Home.tsx`
+- Product grid: on mobile use `grid-cols-2` instead of single column for better use of space
+- Filter chips: ensure they don't overflow on small screens
 
 ## Technical Details
 
-### Cases horizontal scroll layout
-```text
-Full-screen horizontal scroll:
-+-- Container (h-[calc(100vh-header)] overflow-hidden)
-    +-- Navigation arrows (left/right, fixed position)
-    +-- Dot indicators (bottom center)
-    +-- Slides wrapper (flex, transition transform)
-        +-- Slide 1 (w-full, flex-shrink-0, overflow-y-auto)
-            +-- Project card content (padded, scrollable vertically)
-        +-- Slide 2 ...
-        +-- Slide 3 ...
+### Navigation reorder (Header.tsx)
+```typescript
+const mainLinks = [
+  { href: "/", label: t('nav.home') },
+  { href: "/cases", label: isRu ? 'КЕЙСЫ' : 'CASES' },
+  { href: "/contact", label: t('nav.contact') },
+  { href: "/products", label: isRu ? 'ПРОДУКТЫ' : 'PRODUCTS' },
+];
 ```
 
-Implementation approach:
-- State-based: `currentSlide` index controls which slide is visible
-- `transform: translateX(-${currentSlide * 100}%)` for smooth transitions
-- Arrow buttons on sides for navigation
-- Dot indicators at bottom
-- Each slide is vertically scrollable for long content
-- Keyboard arrow support (left/right)
-- Touch swipe support via CSS `snap-x`
-
-### About Me (Contact) visual improvements
-- Hero: add `DecorativeBlobs variant="hero"`, increase heading to `text-4xl md:text-6xl lg:text-7xl font-display`
-- Stats: wrap each stat in a pastel-colored card
-- Expertise blocks: assign rotating pastel backgrounds like Cases page
-- Tools section: pastel card backgrounds
-- Social section: replace glass-orb decoratives with `DecorativeBlobs`
-- Reviews: add pastel tints to active card
-- Achievements: colorful timeline dots
-
-### Header CTA rename
+### WorkflowDiagram theme-aware background
 ```typescript
 // Before
-{i18n.language === 'ru' ? 'Экспресс-аудит' : 'Express Audit'}
+style={{ backgroundColor: '#141414' }}
 
 // After
-{i18n.language === 'ru' ? 'Связаться' : 'Contact'}
+className="w-full overflow-x-auto rounded-2xl p-6 bg-muted/20 border border-border/10"
+// No inline backgroundColor -- adapts to light/dark theme automatically
+```
+
+### WorkflowDiagram sizing
+```typescript
+const NODE_W = 150;
+const NODE_H = 60;
+const SVG_W = 1000;
+const SVG_H = 340;
 ```
 
 ### Files summary
 
-| File | Action |
-|------|--------|
-| `src/pages/Home.tsx` | Remove BeforeAfterSection and TechStackCarousel |
-| `src/pages/Templates.tsx` | Add TechStackCarousel |
-| `src/components/Header.tsx` | Rename CTA button text |
-| `src/pages/Cases.tsx` | Full rewrite: horizontal full-screen scroll layout |
-| `src/pages/Contact.tsx` | Visual upgrade: blobs, pastel cards, bigger typography |
+| File | Changes |
+|------|---------|
+| `src/components/Header.tsx` | Reorder nav links: Products last |
+| `src/components/WorkflowDiagram.tsx` | Transparent bg, bigger nodes, theme-aware colors |
+| `src/pages/Cases.tsx` | Mobile-friendly arrows and spacing |
+| `src/pages/Home.tsx` | Mobile grid improvements |
