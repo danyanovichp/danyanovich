@@ -15,6 +15,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import TechStackCarousel from "@/components/TechStackCarousel";
 
 const Templates = () => {
   const { t, i18n } = useTranslation();
@@ -245,6 +246,9 @@ const Templates = () => {
           </div>
         </div>
       </section>
+
+      {/* Tech Stack Carousel */}
+      <TechStackCarousel />
 
       {/* AI Training Card */}
       <section className="pb-12">
