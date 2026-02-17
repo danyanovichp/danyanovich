@@ -1,89 +1,104 @@
 
-# Plan: Navigation Reorder, Transparent Diagram Background, Bigger Architecture, Mobile Fixes
+# Plan: Touch Swipe, Responsive Cases Layout, Remove CTA Button, Smooth Transitions, Detailed About Me
 
-## 1. Move "Products" to 4th (last) position in navigation
+## Summary
 
-**File:** `src/components/Header.tsx`
+1. **Cases page: mobile vertical, desktop horizontal** -- on phones (`< 768px`) projects stack vertically with scroll; on tablet/desktop keep the horizontal slider with touch swipe support
+2. **Touch swipe gestures** for horizontal slider on tablet/desktop
+3. **Remove "Связаться" yellow CTA button** from the header
+4. **Smooth page transitions** -- improve the transition between pages
+5. **Detailed About Me (Contact) page** -- add comprehensive professional profile with work experience, technical stack, education, and achievements from the provided resume
 
-Reorder `mainLinks` array so Products is last:
-- Current: Home, Products, Cases, Contact
-- New: Home, Cases, Contact, Products
+## Files to Change
 
-## 2. WorkflowDiagram: transparent theme-aware background
+### 1. `src/pages/Cases.tsx` -- Responsive layout + touch swipe
 
-**File:** `src/components/WorkflowDiagram.tsx`
+**Mobile (< 768px):** Remove horizontal slider, render projects as vertical cards stacked one after another. Each project is a full card with all content, user scrolls down naturally.
 
-- Replace hardcoded `backgroundColor: '#141414'` with theme-aware CSS class `bg-muted/30` (transparent, adapts to light/dark theme)
-- Change node text fill from hardcoded `hsl(0 0% 80%)` to `currentColor` with opacity so it adapts to theme
-- Increase connection stroke opacity for better visibility on light backgrounds
+**Tablet/Desktop (>= 768px):** Keep horizontal full-screen slider. Add touch swipe support using `touchstart`/`touchmove`/`touchend` events with a swipe threshold (50px). Smooth `transition-transform duration-500 ease-out` stays.
 
-## 3. WorkflowDiagram: make bigger and more visually appealing
+### 2. `src/components/Header.tsx` -- Remove CTA button
 
-**File:** `src/components/WorkflowDiagram.tsx`
+Remove the yellow "Связаться" / "Contact" `<a>` tag entirely (lines 56-63). Keep only theme toggle, language toggle, and mobile menu.
 
-- Increase `SVG_H` from 240 to 340 for taller diagram
-- Increase `NODE_W` from 120 to 150 and `NODE_H` from 50 to 60 for bigger nodes
-- Increase font sizes (icon: 16 to 20, label: 12 to 14)
-- Remove `maxHeight: 260` cap so diagram shows at full size
-- Increase connection stroke width from 2.5 to 3
-- Add subtle glow/shadow on nodes for depth
+### 3. `src/pages/Contact.tsx` -- Comprehensive About Me page
 
-**File:** `src/pages/Cases.tsx`
+Replace the current simple bio with a rich, detailed professional profile based on the provided resume. Structure:
 
-- Remove "Архитектура" label or make it bigger as section header
-- Give the diagram more vertical space
+**New sections to add:**
+- **Hero** -- "Данила Путинцев" name, title "Архитектор рабочих пространств и цифровых систем", contact links (Telegram, YouTube, LinkedIn, X, email)
+- **Professional Profile** -- key competency statement, core focus areas, professional philosophy
+- **Statistics** -- keep existing stats section but update values (50+ projects, 500+ templates, 100+ hours, 17 commercial proposals)
+- **Work Experience** -- 3 main roles as expandable/visible blocks:
+  - IT-Specialist & Manager at Viora Build (July 2024 - Jan 2026) with 4 technical projects (Email AI, ClickUp Reports Agent, Construction AI Agent, Telegram to ClickUp)
+  - CEO at Viora Consulting (Sep 2025 - Jan 2026) with construction course
+  - Digital Products Producer at Viora Development (Sep 2025 - Jan 2026) with 17 commercial proposals
+  - Freelance -- Dan Yanovich (July 2020 - Jan 2026) with 50+ projects
+- **Technical Stack** -- organized grid: No-Code, Programming, AI/ML, Databases, DevOps, Design
+- **Education** -- Alpi AI Creator Course, Self-taught
+- **Key Achievements** -- visual list with checkmarks
+- **Contact Info** -- all links and availability info
 
-## 4. Mobile responsiveness fixes
+Each section uses pastel card backgrounds, Space Grotesk headings, and DecorativeBlobs for visual richness. Work experience projects use collapsible accordion or visible cards with workflow descriptions.
 
-**File:** `src/components/WorkflowDiagram.tsx`
-- Reduce `min-w-[600px]` to `min-w-[500px]` for better mobile fit
-- Ensure horizontal scroll works smoothly on mobile
+### 4. `src/components/PageTransition.tsx` -- Smoother transitions
 
-**File:** `src/pages/Cases.tsx`
-- Navigation arrows: reduce size on mobile (`h-10 w-10` on mobile, `h-12 w-12` on desktop)
-- Move arrows slightly inward from edges for thumb reach
-- Ensure dots are above safe area on mobile
-- Title text size adjustments for small screens
-
-**File:** `src/pages/Home.tsx`
-- Product grid: on mobile use `grid-cols-2` instead of single column for better use of space
-- Filter chips: ensure they don't overflow on small screens
+Check and improve the page transition animation for softer feel.
 
 ## Technical Details
 
-### Navigation reorder (Header.tsx)
+### Touch swipe for Cases (desktop/tablet)
 ```typescript
-const mainLinks = [
-  { href: "/", label: t('nav.home') },
-  { href: "/cases", label: isRu ? 'КЕЙСЫ' : 'CASES' },
-  { href: "/contact", label: t('nav.contact') },
-  { href: "/products", label: isRu ? 'ПРОДУКТЫ' : 'PRODUCTS' },
-];
+// Track touch start/end positions
+const touchStartX = useRef(0);
+const touchEndX = useRef(0);
+
+const handleTouchStart = (e: React.TouchEvent) => {
+  touchStartX.current = e.touches[0].clientX;
+};
+const handleTouchMove = (e: React.TouchEvent) => {
+  touchEndX.current = e.touches[0].clientX;
+};
+const handleTouchEnd = () => {
+  const diff = touchStartX.current - touchEndX.current;
+  if (Math.abs(diff) > 50) {
+    diff > 0 ? next() : prev();
+  }
+};
 ```
 
-### WorkflowDiagram theme-aware background
+### Cases mobile layout
 ```typescript
-// Before
-style={{ backgroundColor: '#141414' }}
+// Use useIsMobile() hook
+const isMobile = useIsMobile();
 
-// After
-className="w-full overflow-x-auto rounded-2xl p-6 bg-muted/20 border border-border/10"
-// No inline backgroundColor -- adapts to light/dark theme automatically
+// Mobile: vertical scroll, all projects visible
+// Desktop: horizontal slider with swipe
+{isMobile ? (
+  <div className="space-y-8 py-8 px-4">
+    {portfolioProjects.map((project, index) => (
+      // Full project card, no slider
+    ))}
+  </div>
+) : (
+  // Existing horizontal slider with touch events
+)}
 ```
 
-### WorkflowDiagram sizing
-```typescript
-const NODE_W = 150;
-const NODE_H = 60;
-const SVG_W = 1000;
-const SVG_H = 340;
-```
+### About Me content structure (bilingual)
+All content will be bilingual (RU/EN) using the `isRu` flag. The resume data will be stored as constants in the Contact component. Each work experience entry will be a pastel-colored card with:
+- Company name and role
+- Duration and format
+- Description paragraphs
+- Technical projects as nested cards
+- Results with checkmark lists
+- Tech stack badges
 
 ### Files summary
 
 | File | Changes |
 |------|---------|
-| `src/components/Header.tsx` | Reorder nav links: Products last |
-| `src/components/WorkflowDiagram.tsx` | Transparent bg, bigger nodes, theme-aware colors |
-| `src/pages/Cases.tsx` | Mobile-friendly arrows and spacing |
-| `src/pages/Home.tsx` | Mobile grid improvements |
+| `src/pages/Cases.tsx` | Mobile vertical layout, desktop horizontal with touch swipe |
+| `src/components/Header.tsx` | Remove yellow CTA button |
+| `src/pages/Contact.tsx` | Full rewrite with detailed professional profile |
+| `src/components/PageTransition.tsx` | Check/improve transition smoothness |
