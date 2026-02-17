@@ -1,104 +1,175 @@
 
-# Plan: Touch Swipe, Responsive Cases Layout, Remove CTA Button, Smooth Transitions, Detailed About Me
 
-## Summary
+# Plan: Fix All Workflow Diagrams + Add Project 5
 
-1. **Cases page: mobile vertical, desktop horizontal** -- on phones (`< 768px`) projects stack vertically with scroll; on tablet/desktop keep the horizontal slider with touch swipe support
-2. **Touch swipe gestures** for horizontal slider on tablet/desktop
-3. **Remove "Связаться" yellow CTA button** from the header
-4. **Smooth page transitions** -- improve the transition between pages
-5. **Detailed About Me (Contact) page** -- add comprehensive professional profile with work experience, technical stack, education, and achievements from the provided resume
+## Overview
 
-## Files to Change
+Update all 4 existing project workflow diagrams, descriptions, features, results, and tags to match the detailed documentation. Add the 5th project (Voice Call Task Manager) with full content and diagram.
 
-### 1. `src/pages/Cases.tsx` -- Responsive layout + touch swipe
+## File: `src/data/portfolioProjects.ts`
 
-**Mobile (< 768px):** Remove horizontal slider, render projects as vertical cards stacked one after another. Each project is a full card with all content, user scrolls down naturally.
+### Project 1 -- Email AI Assistant
 
-**Tablet/Desktop (>= 768px):** Keep horizontal full-screen slider. Add touch swipe support using `touchstart`/`touchmove`/`touchend` events with a swipe threshold (50px). Smooth `transition-transform duration-500 ease-out` stays.
+**Current diagram:** Gmail -> Zapier -> OpenAI -> Formatter -> (Notion, Slack, Drive)
 
-### 2. `src/components/Header.tsx` -- Remove CTA button
+**Corrected diagram nodes:**
+- Gmail (trigger)
+- Zapier (orchestration)
+- GPT-4o (analysis: category, priority, draft reply)
+- Gmail Labels (auto-categorization)
+- Google Drive (attachments saved by category hierarchy)
+- Notion (card: text, Drive links, AI draft)
+- Quick Reply (button back to Gmail with draft)
 
-Remove the yellow "Связаться" / "Contact" `<a>` tag entirely (lines 56-63). Keep only theme toggle, language toggle, and mobile menu.
+**Corrected connections:**
+Gmail -> Zapier -> GPT-4o -> Gmail Labels, GPT-4o -> Google Drive, GPT-4o -> Notion, Notion -> Quick Reply
 
-### 3. `src/pages/Contact.tsx` -- Comprehensive About Me page
+**Remove:** "Formatter", "Slack" nodes
+**Update tags:** `['Zapier', 'Gmail API', 'OpenAI GPT-4o', 'Notion API', 'Google Drive API']`
+**Update summary** to match: focus on categorization, Drive hierarchy, Notion card with AI draft, quick reply button
+**Update features** to reflect the 6-step process
+**Update results** to match (30 min saved, structured Drive, single Notion hub, one-click reply, ~$20-30/mo)
 
-Replace the current simple bio with a rich, detailed professional profile based on the provided resume. Structure:
+### Project 2 -- ClickUp Reports Agent
 
-**New sections to add:**
-- **Hero** -- "Данила Путинцев" name, title "Архитектор рабочих пространств и цифровых систем", contact links (Telegram, YouTube, LinkedIn, X, email)
-- **Professional Profile** -- key competency statement, core focus areas, professional philosophy
-- **Statistics** -- keep existing stats section but update values (50+ projects, 500+ templates, 100+ hours, 17 commercial proposals)
-- **Work Experience** -- 3 main roles as expandable/visible blocks:
-  - IT-Specialist & Manager at Viora Build (July 2024 - Jan 2026) with 4 technical projects (Email AI, ClickUp Reports Agent, Construction AI Agent, Telegram to ClickUp)
-  - CEO at Viora Consulting (Sep 2025 - Jan 2026) with construction course
-  - Digital Products Producer at Viora Development (Sep 2025 - Jan 2026) with 17 commercial proposals
-  - Freelance -- Dan Yanovich (July 2020 - Jan 2026) with 50+ projects
-- **Technical Stack** -- organized grid: No-Code, Programming, AI/ML, Databases, DevOps, Design
-- **Education** -- Alpi AI Creator Course, Self-taught
-- **Key Achievements** -- visual list with checkmarks
-- **Contact Info** -- all links and availability info
+**Current diagram:** ClickUp -> Agent -> LM Studio -> Scorer -> ClickUp Write (too linear)
 
-Each section uses pastel card backgrounds, Space Grotesk headings, and DecorativeBlobs for visual richness. Work experience projects use collapsible accordion or visible cards with workflow descriptions.
+**Corrected diagram nodes:**
+- ClickUp (source: tasks per employee)
+- Python Agent (loader)
+- SQLite (personal history per employee)
+- LM Studio - Active (forecast + recommendations)
+- LM Studio - Closed (speed/quality scoring)
+- ClickUp Write (results to custom fields)
+- SQLite Update (archive update)
 
-### 4. `src/components/PageTransition.tsx` -- Smoother transitions
+**Corrected connections:**
+ClickUp -> Python Agent, Python Agent -> SQLite, Python Agent -> LM Active, Python Agent -> LM Closed, SQLite -> LM Active, SQLite -> LM Closed, LM Active -> ClickUp Write, LM Closed -> ClickUp Write, ClickUp Write -> SQLite Update
 
-Check and improve the page transition animation for softer feel.
+**Update tags:** `['Python 3.10+', 'ClickUp REST API', 'LM Studio', 'SQLite', 'asyncio']`
+**Update summary/features/results** to reflect personalized per-employee scoring, history-based forecasts, and the feedback loop
 
-## Technical Details
+### Project 3 -- Construction AI Agent
 
-### Touch swipe for Cases (desktop/tablet)
+**Current diagram:** Roughly correct. Add estimate verification branch.
+
+**Corrected diagram nodes:**
+- User
+- Flask Backend (Web/CLI/API entry)
+- OpenAI (primary price search)
+- Local LLM (fallback)
+- SQLite Cache
+- Estimate Check (verification: duplicates, codes, format)
+- Google Sheets (export/import)
+- Prometheus (monitoring)
+
+**Corrected connections:**
+User -> Flask, Flask -> OpenAI, Flask -> Local LLM, Flask -> Estimate Check, OpenAI -> SQLite Cache, Local LLM -> SQLite Cache, SQLite Cache -> Google Sheets, Estimate Check -> Google Sheets, Flask -> Prometheus
+
+**Update summary/features/results** to match the 4-step process with dual paths (price search vs estimate verification)
+
+### Project 4 -- Telegram to ClickUp
+
+**Current diagram:** Telegram -> Bot -> Whisper -> GPT-4 -> (ClickUp, Summary) -- missing duplicate check
+
+**Corrected diagram nodes:**
+- Telegram (message input)
+- Whisper (audio transcription, only for voice)
+- GPT-4 (parameter extraction: title, dates, priority, assignee)
+- Duplicate Check (search ClickUp for similar task)
+- Create Task (new task with all params)
+- Update Task (add new info to existing)
+- TG Report (confirmation back to Telegram)
+
+**Corrected connections:**
+Telegram -> Whisper (voice path), Telegram -> GPT-4 (text path), Whisper -> GPT-4, GPT-4 -> Duplicate Check, Duplicate Check -> Create Task (not found), Duplicate Check -> Update Task (found), Create Task -> TG Report, Update Task -> TG Report
+
+**Update tags:** `['Python', 'Telegram Bot API', 'OpenAI Whisper', 'OpenAI GPT-4', 'ClickUp REST API', 'SQLite']`
+**Update summary/features/results** to include duplicate detection and smart update logic
+
+### Project 5 -- Voice Call Task Manager (NEW)
+
+**New project to add at the end of the array:**
+
 ```typescript
-// Track touch start/end positions
-const touchStartX = useRef(0);
-const touchEndX = useRef(0);
-
-const handleTouchStart = (e: React.TouchEvent) => {
-  touchStartX.current = e.touches[0].clientX;
-};
-const handleTouchMove = (e: React.TouchEvent) => {
-  touchEndX.current = e.touches[0].clientX;
-};
-const handleTouchEnd = () => {
-  const diff = touchStartX.current - touchEndX.current;
-  if (Math.abs(diff) > 50) {
-    diff > 0 ? next() : prev();
-  }
-};
+{
+  id: 'voice-calls',
+  title_ru: 'Voice Call Task Manager',
+  title_en: 'Voice Call Task Manager',
+  category_ru: 'AI Агент',
+  category_en: 'AI Agent',
+  summary_ru: '...',
+  summary_en: '...',
+  tags: ['GitHub Actions', 'Twilio API', 'ClickUp API', 'OpenAI', 'Telegram Bot API'],
+  // ... full features, results
+}
 ```
 
-### Cases mobile layout
-```typescript
-// Use useIsMobile() hook
-const isMobile = useIsMobile();
+**Diagram nodes:**
+- GitHub Actions (scheduled trigger)
+- ClickUp (load active tasks for 6 employees)
+- Twilio (voice call)
+- AI Voice (OpenAI + Twilio AI: read tasks, analyze response)
+- Telegram Bot (fallback channel with buttons)
+- ClickUp Update (status/date/priority changes)
+- Report (summary to manager)
 
-// Mobile: vertical scroll, all projects visible
-// Desktop: horizontal slider with swipe
-{isMobile ? (
-  <div className="space-y-8 py-8 px-4">
-    {portfolioProjects.map((project, index) => (
-      // Full project card, no slider
-    ))}
-  </div>
-) : (
-  // Existing horizontal slider with touch events
-)}
+**Connections:**
+GitHub Actions -> ClickUp -> Twilio -> AI Voice -> ClickUp Update, Twilio (no answer) -> Telegram Bot -> ClickUp Update, ClickUp Update -> Report
+
+## File: `src/pages/Cases.tsx`
+
+- Add `pastelBgClasses` entry for the 5th project (already has 5 colors so it cycles, no change needed)
+
+## File: `src/components/WorkflowDiagram.tsx`
+
+- No structural changes needed. The diagram component renders whatever nodes/connections are passed. May need minor position adjustments if node count increases significantly.
+
+## Technical Notes
+
+### Node positioning strategy
+Each diagram needs careful x/y positioning to avoid overlapping. Projects with branching (2, 3, 4, 5) will use multiple y-levels (y: 10, 40, 70) to show parallel paths. SVG viewBox is 1000x340.
+
+### Estimated node layouts
+
+**Project 1 (7 nodes):**
+```text
+Gmail(5,40) -> Zapier(18,40) -> GPT-4o(34,40)
+  -> Labels(52,10)
+  -> Drive(52,40)
+  -> Notion(52,70) -> Reply(72,70)
 ```
 
-### About Me content structure (bilingual)
-All content will be bilingual (RU/EN) using the `isRu` flag. The resume data will be stored as constants in the Contact component. Each work experience entry will be a pastel-colored card with:
-- Company name and role
-- Duration and format
-- Description paragraphs
-- Technical projects as nested cards
-- Results with checkmark lists
-- Tech stack badges
+**Project 2 (7 nodes, with loop):**
+```text
+ClickUp(5,40) -> Python(20,40) -> SQLite(38,10)
+  -> LM Active(55,20) -> ClickUp Write(75,40)
+  -> LM Closed(55,60) -> ClickUp Write
+  ClickUp Write -> SQLite Upd(75,10)
+```
 
-### Files summary
+**Project 3 (8 nodes, dual path):**
+```text
+User(5,40) -> Flask(20,40)
+  -> OpenAI(38,15) -> Cache(55,40) -> Sheets(75,15)
+  -> LLM(38,65) -> Cache
+  -> Estimate(55,65) -> Sheets
+  Flask -> Prometheus(75,65)
+```
 
-| File | Changes |
-|------|---------|
-| `src/pages/Cases.tsx` | Mobile vertical layout, desktop horizontal with touch swipe |
-| `src/components/Header.tsx` | Remove yellow CTA button |
-| `src/pages/Contact.tsx` | Full rewrite with detailed professional profile |
-| `src/components/PageTransition.tsx` | Check/improve transition smoothness |
+**Project 4 (7 nodes, branching):**
+```text
+Telegram(5,40) -> Whisper(20,20)
+                -> GPT-4(35,40) -> DupCheck(52,40)
+  Whisper -> GPT-4
+  DupCheck -> Create(68,20) -> Report(85,40)
+  DupCheck -> Update(68,60) -> Report
+```
+
+**Project 5 (7 nodes):**
+```text
+GH Actions(5,40) -> ClickUp(20,40) -> Twilio(38,30)
+  -> AI Voice(55,15) -> CU Update(75,40) -> Report(75,10)
+  Twilio(no answer) -> TG Bot(55,65) -> CU Update
+```
+
