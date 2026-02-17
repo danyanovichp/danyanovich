@@ -11,12 +11,43 @@ const SVG_W = 1000;
 const SVG_H = 340;
 
 const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
-  const getNodeCenter = (node: WorkflowNode) => ({
-    x: (node.x / 100) * SVG_W + NODE_W / 2,
-    y: (node.y / 100) * SVG_H + NODE_H / 2,
-  });
-
   const getNodeById = (id: string) => nodes.find((n) => n.id === id)!;
+
+  const getConnectionPoints = (from: WorkflowNode, to: WorkflowNode) => {
+    const fromCx = (from.x / 100) * SVG_W + NODE_W / 2;
+    const fromCy = (from.y / 100) * SVG_H + NODE_H / 2;
+    const toCx = (to.x / 100) * SVG_W + NODE_W / 2;
+    const toCy = (to.y / 100) * SVG_H + NODE_H / 2;
+
+    const dx = toCx - fromCx;
+    const dy = toCy - fromCy;
+
+    let fromX: number, fromY: number, toX: number, toY: number;
+
+    if (Math.abs(dx) > Math.abs(dy)) {
+      if (dx > 0) {
+        fromX = (from.x / 100) * SVG_W + NODE_W;
+        toX = (to.x / 100) * SVG_W;
+      } else {
+        fromX = (from.x / 100) * SVG_W;
+        toX = (to.x / 100) * SVG_W + NODE_W;
+      }
+      fromY = fromCy;
+      toY = toCy;
+    } else {
+      fromX = fromCx;
+      toX = toCx;
+      if (dy > 0) {
+        fromY = (from.y / 100) * SVG_H + NODE_H;
+        toY = (to.y / 100) * SVG_H;
+      } else {
+        fromY = (from.y / 100) * SVG_H;
+        toY = (to.y / 100) * SVG_H + NODE_H;
+      }
+    }
+
+    return { fromX, fromY, toX, toY };
+  };
 
   return (
     <div className="w-full overflow-x-auto rounded-2xl p-6 bg-muted/20 border border-border/10">
@@ -43,17 +74,19 @@ const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
 
         {/* Connections */}
         {connections.map((conn, i) => {
-          const from = getNodeCenter(getNodeById(conn.from));
-          const to = getNodeCenter(getNodeById(conn.to));
-          const dx = to.x - from.x;
-          const cx1 = from.x + dx * 0.4;
-          const cy1 = from.y;
-          const cx2 = to.x - dx * 0.4;
-          const cy2 = to.y;
+          const fromNode = getNodeById(conn.from);
+          const toNode = getNodeById(conn.to);
+          const { fromX, fromY, toX, toY } = getConnectionPoints(fromNode, toNode);
+          const dx = toX - fromX;
+          const dy = toY - fromY;
+          const cx1 = fromX + dx * 0.4;
+          const cy1 = fromY + dy * 0.1;
+          const cx2 = toX - dx * 0.4;
+          const cy2 = toY - dy * 0.1;
           return (
             <path
               key={`conn-${i}`}
-              d={`M ${from.x} ${from.y} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${to.x} ${to.y}`}
+              d={`M ${fromX} ${fromY} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${toX} ${toY}`}
               fill="none"
               stroke={`url(#conn-grad-${conn.from}-${conn.to})`}
               strokeWidth="3"
