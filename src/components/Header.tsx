@@ -22,27 +22,27 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-2xl border-b border-border/10">
-      <div className="container mx-auto px-4 py-3">
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-2xl border-b border-border/5">
+      <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link 
             to="/" 
-            className="px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-bold hover:opacity-90 transition-opacity"
+            className="font-display text-xl font-bold tracking-tight hover:opacity-70 transition-opacity"
           >
-            {i18n.language === 'ru' ? 'ДЯ' : 'DY'}
+            {i18n.language === 'ru' ? 'Дэн Янович' : 'Dan Yanovich'}
           </Link>
           
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 p-1 rounded-full bg-muted/40 border border-border/10">
+          <nav className="hidden lg:flex items-center gap-8">
             {mainLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
-                className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all ${
+                className={`text-sm font-medium transition-all relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground after:transition-transform after:duration-300 ${
                   location.pathname === link.href || (link.href === '/products' && location.pathname.startsWith('/templates'))
-                    ? "bg-primary text-primary-foreground" 
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    ? "text-foreground after:scale-x-100" 
+                    : "text-muted-foreground hover:text-foreground after:scale-x-0 hover:after:scale-x-100"
                 }`}
               >
                 {link.label}
@@ -50,18 +50,18 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Express Audit CTA */}
-          <a
-            href="https://t.me/danyanovich?text=Хочу%20записаться%20на%20аудит"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden lg:flex items-center gap-2 px-4 py-1.5 bg-accent-lime/15 text-accent-lime rounded-full text-sm font-medium hover:bg-accent-lime/25 transition-colors"
-          >
-            {i18n.language === 'ru' ? 'Экспресс-аудит' : 'Express Audit'}
-          </a>
-
           {/* Controls */}
           <div className="flex items-center gap-1">
+            {/* Express Audit CTA */}
+            <a
+              href="https://t.me/danyanovich?text=Хочу%20записаться%20на%20аудит"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:flex items-center gap-2 px-5 py-2 bg-pastel-yellow text-foreground rounded-full text-sm font-semibold hover:opacity-80 transition-opacity"
+            >
+              {i18n.language === 'ru' ? 'Экспресс-аудит' : 'Express Audit'}
+            </a>
+
             <Button
               variant="ghost"
               size="icon"
@@ -101,7 +101,7 @@ const Header = () => {
                       to={link.href}
                       className={`mobile-menu-item px-4 py-3 text-sm font-medium rounded-2xl transition-all ${
                         location.pathname === link.href
-                          ? "bg-primary text-primary-foreground" 
+                          ? "bg-pastel-lavender/30 text-foreground" 
                           : "text-foreground hover:bg-muted/50"
                       }`}
                       style={{ animationDelay: `${index * 0.05}s` }}

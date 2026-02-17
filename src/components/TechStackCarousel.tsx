@@ -98,8 +98,8 @@ const TechStackCarousel = () => {
     <section className="relative py-12 md:py-16 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold">
-            {isRu ? "🔧 Инструменты, на которых я строю системы" : "🔧 Tools I Use to Build Systems"}
+          <h2 className="text-2xl md:text-3xl font-bold font-display">
+            {isRu ? "Инструменты, на которых я строю системы" : "Tools I Use to Build Systems"}
           </h2>
           <p className="text-muted-foreground text-sm md:text-base">
             {isRu ? "Современный стек для автоматизации и продуктивности" : "Modern stack for automation and productivity"}

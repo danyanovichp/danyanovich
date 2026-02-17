@@ -5,7 +5,16 @@ import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "@/components/AnimatedSection";
 import SEO from "@/components/SEO";
 import WorkflowDiagram from "@/components/WorkflowDiagram";
+import DecorativeBlobs from "@/components/DecorativeBlobs";
 import { portfolioProjects } from "@/data/portfolioProjects";
+
+const pastelBgClasses = [
+  'bg-pastel-yellow/20',
+  'bg-pastel-pink/20',
+  'bg-pastel-lavender/20',
+  'bg-pastel-mint/20',
+  'bg-pastel-coral/20',
+];
 
 const Cases = () => {
   const { i18n } = useTranslation();
@@ -22,10 +31,11 @@ const Cases = () => {
       />
 
       {/* Hero */}
-      <section className="py-24 md:py-32">
-        <div className="container">
+      <section className="relative py-24 md:py-32 overflow-hidden">
+        <DecorativeBlobs variant="hero" />
+        <div className="container relative z-10">
           <AnimatedSection className="max-w-3xl mx-auto text-center space-y-6">
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight font-display">
               {isRu ? "Кейсы" : "Cases"}
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto">
@@ -40,9 +50,9 @@ const Cases = () => {
       {/* Projects */}
       <section className="pb-24">
         <div className="container max-w-5xl space-y-16">
-          {portfolioProjects.map((project) => (
+          {portfolioProjects.map((project, index) => (
             <AnimatedSection key={project.id}>
-              <Card className="overflow-hidden p-0">
+              <Card className={`overflow-hidden p-0 border-0 ${pastelBgClasses[index % pastelBgClasses.length]}`}>
                 <CardContent className="p-8 md:p-10 space-y-8">
                   {/* Header */}
                   <div className="space-y-4">
@@ -50,7 +60,7 @@ const Cases = () => {
                       <Badge variant="lime">
                         {isRu ? project.category_ru : project.category_en}
                       </Badge>
-                      <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+                      <h2 className="text-2xl md:text-3xl font-bold tracking-tight font-display">
                         {isRu ? project.title_ru : project.title_en}
                       </h2>
                     </div>
@@ -70,7 +80,7 @@ const Cases = () => {
 
                   {/* Workflow Diagram */}
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3 font-display">
                       {isRu ? "Архитектура" : "Architecture"}
                     </p>
                     <WorkflowDiagram
@@ -84,9 +94,9 @@ const Cases = () => {
                     {project.features.map((feature, fi) => (
                       <div
                         key={fi}
-                        className="rounded-2xl border border-border/10 bg-muted/30 p-5 space-y-3"
+                        className="rounded-2xl bg-background/60 backdrop-blur-sm p-5 space-y-3"
                       >
-                        <h4 className="text-sm font-semibold">
+                        <h4 className="text-sm font-semibold font-display">
                           {isRu ? feature.title_ru : feature.title_en}
                         </h4>
                         <ul className="space-y-2">
@@ -108,7 +118,7 @@ const Cases = () => {
 
                   {/* Results */}
                   <div className="space-y-3">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground font-display">
                       {isRu ? "Результаты" : "Results"}
                     </p>
                     <ul className="grid md:grid-cols-2 gap-2">

@@ -2,6 +2,12 @@ import { useTranslation } from "react-i18next";
 import { XCircle, CheckCircle, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
+const pastelBgClasses = [
+  'bg-pastel-coral/20',
+  'bg-pastel-lavender/20',
+  'bg-pastel-mint/20',
+];
+
 const transformations = [
   {
     id: "chaos",
@@ -64,8 +70,8 @@ const BeforeAfterSection = () => {
     <section className="relative py-16 md:py-20 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-12">
-          <h2 className="text-2xl md:text-4xl font-bold">
-            {isRu ? "📈 Как это работает" : "📈 How It Works"}
+          <h2 className="text-2xl md:text-4xl font-bold font-display">
+            {isRu ? "Как это работает" : "How It Works"}
           </h2>
           <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
             {isRu 
@@ -75,19 +81,19 @@ const BeforeAfterSection = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {transformations.map((item) => (
-            <Card key={item.id} className="group overflow-hidden">
+          {transformations.map((item, index) => (
+            <Card key={item.id} className={`group overflow-hidden border-0 ${pastelBgClasses[index % pastelBgClasses.length]}`}>
               <CardContent className="p-6 space-y-6">
                 {/* Before */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
                     <item.before.icon className="h-5 w-5 text-destructive" />
-                    <span className="text-sm font-bold text-destructive uppercase tracking-wide">
+                    <span className="text-sm font-bold text-destructive uppercase tracking-wide font-display">
                       {isRu ? "Было" : "Before"}
                     </span>
                   </div>
                   <div className="space-y-1">
-                    <h3 className="font-bold text-foreground">
+                    <h3 className="font-bold text-foreground font-display">
                       {isRu ? item.before.titleRu : item.before.titleEn}
                     </h3>
                     <p className="text-sm text-muted-foreground">
@@ -98,21 +104,21 @@ const BeforeAfterSection = () => {
 
                 {/* Arrow */}
                 <div className="flex justify-center">
-                  <div className="p-2 rounded-full bg-muted/50 group-hover:bg-primary/10 transition-colors">
-                    <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary rotate-90 md:rotate-0 transition-colors" />
+                  <div className="p-2 rounded-full bg-background/50 group-hover:bg-foreground/10 transition-colors">
+                    <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground rotate-90 md:rotate-0 transition-colors" />
                   </div>
                 </div>
 
                 {/* After */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <item.after.icon className="h-5 w-5 text-emerald-500" />
-                    <span className="text-sm font-bold text-emerald-500 uppercase tracking-wide">
+                    <item.after.icon className="h-5 w-5 text-accent-lime" />
+                    <span className="text-sm font-bold text-accent-lime uppercase tracking-wide font-display">
                       {isRu ? "Стало" : "After"}
                     </span>
                   </div>
                   <div className="space-y-1">
-                    <h3 className="font-bold text-foreground">
+                    <h3 className="font-bold text-foreground font-display">
                       {isRu ? item.after.titleRu : item.after.titleEn}
                     </h3>
                     <p className="text-sm text-muted-foreground">
