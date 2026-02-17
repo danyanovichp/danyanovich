@@ -5,10 +5,10 @@ interface WorkflowDiagramProps {
   connections: WorkflowConnection[];
 }
 
-const NODE_W = 100;
-const NODE_H = 44;
-const SVG_W = 900;
-const SVG_H = 200;
+const NODE_W = 120;
+const NODE_H = 50;
+const SVG_W = 1000;
+const SVG_H = 240;
 
 const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
   const getNodeCenter = (node: WorkflowNode) => ({
@@ -19,11 +19,11 @@ const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
   const getNodeById = (id: string) => nodes.find((n) => n.id === id)!;
 
   return (
-    <div className="w-full overflow-x-auto rounded-2xl bg-card/50 backdrop-blur-xl border border-border/20 p-4">
+    <div className="w-full overflow-x-auto rounded-2xl p-6" style={{ backgroundColor: '#141414' }}>
       <svg
         viewBox={`0 0 ${SVG_W} ${SVG_H}`}
         className="w-full min-w-[600px]"
-        style={{ height: 'auto', maxHeight: 220 }}
+        style={{ height: 'auto', maxHeight: 260 }}
       >
         <defs>
           {connections.map((conn, i) => {
@@ -34,18 +34,11 @@ const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
                 id={`conn-grad-${conn.from}-${conn.to}`}
                 x1="0%" y1="0%" x2="100%" y2="0%"
               >
-                <stop offset="0%" stopColor={`hsl(${fromNode.color})`} stopOpacity="0.8" />
-                <stop offset="100%" stopColor={`hsl(${getNodeById(conn.to).color})`} stopOpacity="0.8" />
+                <stop offset="0%" stopColor={`hsl(${fromNode.color})`} stopOpacity="0.6" />
+                <stop offset="100%" stopColor={`hsl(${getNodeById(conn.to).color})`} stopOpacity="0.6" />
               </linearGradient>
             );
           })}
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="3" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
         </defs>
 
         {/* Connections */}
@@ -53,7 +46,6 @@ const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
           const from = getNodeCenter(getNodeById(conn.from));
           const to = getNodeCenter(getNodeById(conn.to));
           const dx = to.x - from.x;
-          const dy = to.y - from.y;
           const cx1 = from.x + dx * 0.4;
           const cy1 = from.y;
           const cx2 = to.x - dx * 0.4;
@@ -64,10 +56,9 @@ const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
               d={`M ${from.x} ${from.y} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${to.x} ${to.y}`}
               fill="none"
               stroke={`url(#conn-grad-${conn.from}-${conn.to})`}
-              strokeWidth="2"
+              strokeWidth="2.5"
               strokeLinecap="round"
-              filter="url(#glow)"
-              opacity="0.7"
+              opacity="0.5"
             />
           );
         })}
@@ -78,21 +69,19 @@ const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
           const ny = (node.y / 100) * SVG_H;
           return (
             <g key={node.id}>
-              {/* Node background */}
               <rect
                 x={nx}
                 y={ny}
                 width={NODE_W}
                 height={NODE_H}
-                rx={14}
-                ry={14}
-                fill={`hsl(${node.color} / 0.12)`}
-                stroke={`hsl(${node.color} / 0.4)`}
-                strokeWidth="1.5"
+                rx={25}
+                ry={25}
+                fill={`hsl(${node.color} / 0.1)`}
+                stroke={`hsl(${node.color} / 0.25)`}
+                strokeWidth="1"
               />
-              {/* Icon */}
               <text
-                x={nx + 16}
+                x={nx + 18}
                 y={ny + NODE_H / 2 + 1}
                 fontSize="16"
                 textAnchor="middle"
@@ -100,14 +89,12 @@ const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
               >
                 {node.icon}
               </text>
-              {/* Label */}
               <text
-                x={nx + 32}
+                x={nx + 36}
                 y={ny + NODE_H / 2 + 1}
-                fontSize="11"
-                fontWeight="600"
-                fill="currentColor"
-                className="fill-foreground"
+                fontSize="12"
+                fontWeight="500"
+                fill="hsl(0 0% 80%)"
                 dominantBaseline="central"
               >
                 {node.label}
