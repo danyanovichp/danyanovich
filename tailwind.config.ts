@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ["'Space Grotesk'", "sans-serif"],
+        body: ["'Inter'", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -59,6 +63,14 @@ export default {
         },
         "accent-lime": "hsl(var(--accent-lime))",
         "accent-coral": "hsl(var(--accent-coral))",
+        pastel: {
+          yellow: "hsl(var(--pastel-yellow))",
+          pink: "hsl(var(--pastel-pink))",
+          lavender: "hsl(var(--pastel-lavender))",
+          mint: "hsl(var(--pastel-mint))",
+          coral: "hsl(var(--pastel-coral))",
+          blue: "hsl(var(--pastel-blue))",
+        },
       },
       boxShadow: {
         'glass': 'var(--shadow-glass)',
@@ -82,20 +94,12 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
         "page-enter": {
           "0%": { opacity: "0", transform: "translateY(8px)" },
@@ -109,6 +113,11 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-12px)" }
         },
+        "blob-drift": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "33%": { transform: "translate(15px, -20px) scale(1.05)" },
+          "66%": { transform: "translate(-10px, 10px) scale(0.95)" },
+        },
         "glow": {
           "0%": { boxShadow: "0 0 20px rgba(100, 100, 100, 0.1)" },
           "100%": { boxShadow: "0 0 40px rgba(100, 100, 100, 0.2)" }
@@ -120,6 +129,7 @@ export default {
         "page-enter": "page-enter 0.4s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
         "float": "float 6s ease-in-out infinite",
+        "blob-drift": "blob-drift 8s ease-in-out infinite",
         "glow": "glow 2s ease-in-out infinite alternate"
       },
     },

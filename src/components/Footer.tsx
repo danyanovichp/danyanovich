@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Youtube, MessageCircle } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
+import DecorativeBlobs from "./DecorativeBlobs";
 
 const Footer = () => {
   const { i18n } = useTranslation();
@@ -20,14 +21,15 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="border-t border-border/10 mt-auto">
-      <div className="container mx-auto px-4 py-16">
+    <footer className="relative border-t border-border/5 mt-auto overflow-hidden">
+      <DecorativeBlobs variant="footer" />
+      <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="text-sm font-bold px-4 py-1.5 rounded-full bg-primary text-primary-foreground inline-block">
-              {i18n.language === 'ru' ? 'ДЯ' : 'DY'}
-            </div>
+            <span className="font-display text-xl font-bold">
+              {i18n.language === 'ru' ? 'Дэн Янович' : 'Dan Yanovich'}
+            </span>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
               {i18n.language === 'ru' 
                 ? 'Эксперт по Notion и AI-решениям. Помогаю оптимизировать рабочие процессы.'
@@ -49,7 +51,7 @@ const Footer = () => {
 
           {/* Products */}
           <div>
-            <h4 className="font-semibold text-xs mb-4 uppercase tracking-wider text-muted-foreground">
+            <h4 className="font-display font-semibold text-xs mb-4 uppercase tracking-wider text-muted-foreground">
               {i18n.language === 'ru' ? 'Продукты' : 'Products'}
             </h4>
             <ul className="space-y-3 text-sm">
@@ -65,7 +67,7 @@ const Footer = () => {
 
           {/* Resources */}
           <div>
-            <h4 className="font-semibold text-xs mb-4 uppercase tracking-wider text-muted-foreground">
+            <h4 className="font-display font-semibold text-xs mb-4 uppercase tracking-wider text-muted-foreground">
               {i18n.language === 'ru' ? 'Ресурсы' : 'Resources'}
             </h4>
             <ul className="space-y-3 text-sm">
@@ -80,7 +82,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-border/10 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-16 pt-8 border-t border-border/5 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-muted-foreground">
             © {currentYear} {i18n.language === 'ru' ? 'Дэн Янович' : 'Dan Yanovich'}
           </p>

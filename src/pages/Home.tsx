@@ -14,8 +14,17 @@ import { premiumTemplates } from "@/data/premiumTemplates";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import TechStackCarousel from "@/components/TechStackCarousel";
 import BeforeAfterSection from "@/components/BeforeAfterSection";
+import DecorativeBlobs from "@/components/DecorativeBlobs";
 
 type ProductType = 'templates' | 'courses' | 'ai-prompts';
+
+const pastelBgClasses = [
+  'bg-pastel-yellow/30',
+  'bg-pastel-pink/30',
+  'bg-pastel-lavender/30',
+  'bg-pastel-mint/30',
+  'bg-pastel-coral/30',
+];
 
 const getIconComponent = (iconName: string | undefined): React.ComponentType<{ className?: string }> => {
   if (!iconName || typeof iconName !== 'string') return Layout;
@@ -93,29 +102,27 @@ const Home = () => {
       />
       <div className="min-h-screen">
         {/* Hero Section */}
-        <section className="relative container mx-auto px-4 py-20 md:py-32 overflow-hidden">
-          <div className="glass-orb top-20 left-10 w-72 h-72 bg-muted/50" />
-          <div className="glass-orb bottom-10 right-10 w-96 h-96 bg-muted/40 animate-float" />
+        <section className="relative container mx-auto px-4 py-24 md:py-40 overflow-hidden">
+          <DecorativeBlobs variant="hero" />
           
           <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8">
-            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight font-display">
               {isRu ? settings.hero.title_ru : settings.hero.title_en}
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground">
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
               {isRu ? settings.hero.subtitle_ru : settings.hero.subtitle_en}
             </p>
-            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto">
               {isRu ? settings.hero.description_ru : settings.hero.description_en}
             </p>
-            {/* Quick link to Cases */}
-            <div className="flex justify-center gap-4 pt-4">
-              <Button asChild size="lg">
+            <div className="flex flex-wrap justify-center gap-4 pt-4">
+              <Button asChild size="lg" className="px-8 py-3 text-base">
                 <Link to="/products">
                   {isRu ? "Продукты" : "Products"}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline">
+              <Button asChild size="lg" variant="outline" className="px-8 py-3 text-base">
                 <Link to="/cases">
                   {isRu ? "Кейсы" : "Cases"}
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -133,10 +140,11 @@ const Home = () => {
 
         {/* Products Section — max 5 */}
         <section className="relative py-20 md:py-28 overflow-hidden">
+          <DecorativeBlobs variant="section" />
           <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-6xl mx-auto space-y-8">
+            <div className="max-w-6xl mx-auto space-y-10">
               <div className="text-center space-y-4">
-                <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight font-display">
                   {isRu ? "Продукты" : "Products"}
                 </h2>
                 <p className="text-base md:text-lg text-muted-foreground">
@@ -150,9 +158,9 @@ const Home = () => {
                   <button
                     key={category.id}
                     onClick={() => setActiveFilter(category.id)}
-                    className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    className={`inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
                       activeFilter === category.id
-                        ? 'bg-primary text-primary-foreground'
+                        ? 'bg-foreground text-background'
                         : 'bg-muted/40 border border-border/10 text-muted-foreground hover:text-foreground hover:bg-muted/60'
                     }`}
                   >
@@ -164,7 +172,7 @@ const Home = () => {
 
               {/* Products Grid — only 5 */}
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-                {filteredProducts.slice(0, 5).map((product) => {
+                {filteredProducts.slice(0, 5).map((product, index) => {
                   const isTemplate = product.type === 'templates';
                   const handleCardClick = () => {
                     if (isTemplate && product.status === 'available') {
@@ -175,11 +183,11 @@ const Home = () => {
                   return (
                     <Card 
                       key={product.id} 
-                      className={`group ${isTemplate && product.status === 'available' ? 'cursor-pointer' : ''}`}
+                      className={`group ${pastelBgClasses[index % pastelBgClasses.length]} border-0 ${isTemplate && product.status === 'available' ? 'cursor-pointer' : ''}`}
                       onClick={handleCardClick}
                     >
                       <CardHeader className="p-4 space-y-3">
-                        <div className="aspect-[4/3] bg-muted/30 rounded-2xl flex items-center justify-center overflow-hidden">
+                        <div className="aspect-[4/3] bg-background/50 rounded-2xl flex items-center justify-center overflow-hidden">
                           {(() => {
                             const landingImage = isTemplate ? getMainImage(product.id) : null;
                             const displayImage = landingImage || product.image;
@@ -196,7 +204,7 @@ const Home = () => {
                         </div>
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
-                            <h3 className="text-sm font-bold line-clamp-1">{product.title}</h3>
+                            <h3 className="text-sm font-bold line-clamp-1 font-display">{product.title}</h3>
                             {product.status === 'development' && (
                               <Badge variant="outline" className="text-[10px] shrink-0">
                                 {isRu ? 'Скоро' : 'Soon'}
@@ -220,7 +228,7 @@ const Home = () => {
 
               {/* View All Button */}
               <div className="flex justify-center pt-4">
-                <Button asChild size="lg" variant="outline">
+                <Button asChild size="lg" className="px-10 py-3 text-base">
                   <Link to="/products">
                     {isRu ? "Все продукты" : "All Products"}
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -236,7 +244,7 @@ const Home = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="text-center space-y-4 mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight font-display">
                   {isRu ? "Консалтинг" : "Consulting"}
                 </h2>
                 <p className="text-base text-muted-foreground">
@@ -244,13 +252,13 @@ const Home = () => {
                 </p>
               </div>
 
-              <Card>
+              <Card className="bg-pastel-blue/20 border-0">
                 <CardContent className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6">
-                  <div className="p-4 bg-muted/30 rounded-2xl">
+                  <div className="p-4 bg-background/50 rounded-2xl">
                     <MessageSquare className="h-8 w-8 text-foreground" />
                   </div>
                   <div className="flex-1 text-center md:text-left space-y-2">
-                    <h3 className="text-lg font-bold">
+                    <h3 className="text-lg font-bold font-display">
                       {isRu ? settings.consulting.title_ru : settings.consulting.title_en}
                     </h3>
                     <p className="text-sm text-muted-foreground">
@@ -258,7 +266,7 @@ const Home = () => {
                     </p>
                   </div>
                   <div className="flex flex-col items-center gap-3">
-                    <span className="text-2xl font-bold">{settings.consulting.price}</span>
+                    <span className="text-2xl font-bold font-display">{settings.consulting.price}</span>
                     <Button asChild>
                       <Link to="/consulting">
                         {isRu ? "Записаться" : "Book"}
