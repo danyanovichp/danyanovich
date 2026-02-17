@@ -54,12 +54,12 @@ const Header = () => {
           <div className="flex items-center gap-1">
             {/* Express Audit CTA */}
             <a
-              href="https://t.me/danyanovich?text=Хочу%20записаться%20на%20аудит"
+              href="https://t.me/danyanovich?text=Здравствуйте!%20Хочу%20связаться%20с%20вами"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden lg:flex items-center gap-2 px-5 py-2 bg-pastel-yellow text-foreground rounded-full text-sm font-semibold hover:opacity-80 transition-opacity"
             >
-              {i18n.language === 'ru' ? 'Экспресс-аудит' : 'Express Audit'}
+              {i18n.language === 'ru' ? 'Связаться' : 'Contact'}
             </a>
 
             <Button
