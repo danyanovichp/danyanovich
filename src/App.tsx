@@ -60,6 +60,7 @@ const App = () => (
                 <Suspense fallback={<PageLoader />}>
                   <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/products" element={<PageTransition><Templates /></PageTransition>} />
                     <Route path="/templates" element={<PageTransition><Templates /></PageTransition>} />
                     <Route path="/templates/:templateId" element={<PageTransition><TemplateLanding /></PageTransition>} />
                     <Route path="/courses" element={<PageTransition><Courses /></PageTransition>} />
