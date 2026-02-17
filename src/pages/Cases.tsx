@@ -90,10 +90,10 @@ const Cases = () => {
                 </div>
 
                 {/* Workflow Diagram */}
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3 font-display">
+                <div className="space-y-3">
+                  <h3 className="text-sm md:text-base font-semibold uppercase tracking-widest text-muted-foreground font-display">
                     {isRu ? "Архитектура" : "Architecture"}
-                  </p>
+                  </h3>
                   <WorkflowDiagram
                     nodes={project.workflow.nodes}
                     connections={project.workflow.connections}
@@ -156,17 +156,17 @@ const Cases = () => {
           variant="outline"
           size="icon"
           onClick={prev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 rounded-full shadow-lg bg-background/80 backdrop-blur-sm h-12 w-12"
+          className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 rounded-full shadow-lg bg-background/80 backdrop-blur-sm h-10 w-10 md:h-12 md:w-12"
         >
-          <ChevronLeft className="h-6 w-6" />
+          <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
         </Button>
         <Button
           variant="outline"
           size="icon"
           onClick={next}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 rounded-full shadow-lg bg-background/80 backdrop-blur-sm h-12 w-12"
+          className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 rounded-full shadow-lg bg-background/80 backdrop-blur-sm h-10 w-10 md:h-12 md:w-12"
         >
-          <ChevronRight className="h-6 w-6" />
+          <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
         </Button>
 
         {/* Dot indicators */}

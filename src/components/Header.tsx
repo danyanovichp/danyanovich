@@ -16,9 +16,9 @@ const Header = () => {
 
   const mainLinks = [
     { href: "/", label: t('nav.home') },
-    { href: "/products", label: i18n.language === 'ru' ? 'ПРОДУКТЫ' : 'PRODUCTS' },
     { href: "/cases", label: i18n.language === 'ru' ? 'КЕЙСЫ' : 'CASES' },
     { href: "/contact", label: t('nav.contact') },
+    { href: "/products", label: i18n.language === 'ru' ? 'ПРОДУКТЫ' : 'PRODUCTS' },
   ];
 
   return (

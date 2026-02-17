@@ -5,10 +5,10 @@ interface WorkflowDiagramProps {
   connections: WorkflowConnection[];
 }
 
-const NODE_W = 120;
-const NODE_H = 50;
+const NODE_W = 150;
+const NODE_H = 60;
 const SVG_W = 1000;
-const SVG_H = 240;
+const SVG_H = 340;
 
 const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
   const getNodeCenter = (node: WorkflowNode) => ({
@@ -19,11 +19,11 @@ const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
   const getNodeById = (id: string) => nodes.find((n) => n.id === id)!;
 
   return (
-    <div className="w-full overflow-x-auto rounded-2xl p-6" style={{ backgroundColor: '#141414' }}>
+    <div className="w-full overflow-x-auto rounded-2xl p-6 bg-muted/20 border border-border/10">
       <svg
         viewBox={`0 0 ${SVG_W} ${SVG_H}`}
-        className="w-full min-w-[600px]"
-        style={{ height: 'auto', maxHeight: 260 }}
+        className="w-full min-w-[500px]"
+        style={{ height: 'auto' }}
       >
         <defs>
           {connections.map((conn, i) => {
@@ -34,8 +34,8 @@ const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
                 id={`conn-grad-${conn.from}-${conn.to}`}
                 x1="0%" y1="0%" x2="100%" y2="0%"
               >
-                <stop offset="0%" stopColor={`hsl(${fromNode.color})`} stopOpacity="0.6" />
-                <stop offset="100%" stopColor={`hsl(${getNodeById(conn.to).color})`} stopOpacity="0.6" />
+                <stop offset="0%" stopColor={`hsl(${fromNode.color})`} stopOpacity="0.7" />
+                <stop offset="100%" stopColor={`hsl(${getNodeById(conn.to).color})`} stopOpacity="0.7" />
               </linearGradient>
             );
           })}
@@ -56,9 +56,9 @@ const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
               d={`M ${from.x} ${from.y} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${to.x} ${to.y}`}
               fill="none"
               stroke={`url(#conn-grad-${conn.from}-${conn.to})`}
-              strokeWidth="2.5"
+              strokeWidth="3"
               strokeLinecap="round"
-              opacity="0.5"
+              opacity="0.6"
             />
           );
         })}
@@ -74,27 +74,27 @@ const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
                 y={ny}
                 width={NODE_W}
                 height={NODE_H}
-                rx={25}
-                ry={25}
-                fill={`hsl(${node.color} / 0.1)`}
-                stroke={`hsl(${node.color} / 0.25)`}
-                strokeWidth="1"
+                rx={30}
+                ry={30}
+                fill={`hsl(${node.color} / 0.12)`}
+                stroke={`hsl(${node.color} / 0.3)`}
+                strokeWidth="1.5"
               />
               <text
-                x={nx + 18}
+                x={nx + 22}
                 y={ny + NODE_H / 2 + 1}
-                fontSize="16"
+                fontSize="20"
                 textAnchor="middle"
                 dominantBaseline="central"
               >
                 {node.icon}
               </text>
               <text
-                x={nx + 36}
+                x={nx + 42}
                 y={ny + NODE_H / 2 + 1}
-                fontSize="12"
+                fontSize="14"
                 fontWeight="500"
-                fill="hsl(0 0% 80%)"
+                className="fill-foreground/70"
                 dominantBaseline="central"
               >
                 {node.label}
