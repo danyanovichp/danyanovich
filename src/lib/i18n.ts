@@ -16,6 +16,7 @@ const resources = {
         faq: 'FAQ',
         contact: 'ОБО МНЕ',
         portfolio: 'ПОРТФОЛИО',
+        support: 'ПОДДЕРЖАТЬ',
       },
       home: {
         hero: {
@@ -135,6 +136,7 @@ const resources = {
         faq: 'FAQ',
         contact: 'ABOUT ME',
         portfolio: 'PORTFOLIO',
+        support: 'SUPPORT',
       },
       home: {
         hero: {

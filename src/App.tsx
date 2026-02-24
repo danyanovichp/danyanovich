@@ -30,6 +30,7 @@ const FAQ = lazy(() => import("./pages/FAQ"));
 const Reviews = lazy(() => import("./pages/Reviews"));
 const Consulting = lazy(() => import("./pages/Consulting"));
 const Cases = lazy(() => import("./pages/Cases"));
+const Support = lazy(() => import("./pages/Support"));
 
 const PixelCafeTycoon = lazy(() => import("./pages/PixelCafeTycoon"));
 const AITraining = lazy(() => import("./pages/AITraining"));
@@ -72,6 +73,7 @@ const App = () => (
                     <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
                     <Route path="/portfolio" element={<PageTransition><Portfolio /></PageTransition>} />
                     <Route path="/cases" element={<PageTransition><Cases /></PageTransition>} />
+                    <Route path="/support" element={<PageTransition><Support /></PageTransition>} />
                     
                     <Route path="/ai-training" element={<PageTransition><AITraining /></PageTransition>} />
                     <Route path="/games/pixel-cafe-tycoon" element={<PageTransition><PixelCafeTycoon /></PageTransition>} />
