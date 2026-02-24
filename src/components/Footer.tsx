@@ -53,7 +53,7 @@ const Footer = () => {
           {/* Products */}
           <div>
             <h4 className="font-display font-semibold text-xs mb-4 uppercase tracking-wider text-muted-foreground">
-              {i18n.language === 'ru' ? 'Продукты' : 'Products'}
+              {i18n.language === 'ru' ? 'Услуги' : 'Services'}
             </h4>
             <ul className="space-y-3 text-sm">
               {productLinks.map((link) => (
