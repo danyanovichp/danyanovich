@@ -3,7 +3,7 @@ import { Heart, Copy, Check } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
-import DecorativeBlobs from "@/components/DecorativeBlobs";
+
 import AnimatedSection from "@/components/AnimatedSection";
 
 const cryptoWallets = [
@@ -57,7 +57,7 @@ const Support = () => {
         descriptionEn="Support my work with cryptocurrency"
       />
       <div className="relative min-h-screen">
-        <DecorativeBlobs variant="hero" />
+        
 
         {/* Hero */}
         <section className="container mx-auto px-4 pt-24 pb-12 relative z-10">
