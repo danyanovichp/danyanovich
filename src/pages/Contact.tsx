@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "@/components/AnimatedSection";
 import SEO from "@/components/SEO";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import DecorativeBlobs from "@/components/DecorativeBlobs";
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 // X (Twitter) icon component
@@ -251,8 +251,7 @@ const Contact = () => {
       />
 
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
-        <DecorativeBlobs variant="hero" />
+      <section className="relative py-20 md:py-32">
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <AnimatedSection>
@@ -551,8 +550,7 @@ const Contact = () => {
       </section>
 
       {/* Social Links / Contact Info */}
-      <section id="social" className="relative py-16 md:py-20 overflow-hidden scroll-mt-20">
-        <DecorativeBlobs variant="section" />
+      <section id="social" className="relative py-16 md:py-20 scroll-mt-20">
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto">
             <AnimatedSection>
