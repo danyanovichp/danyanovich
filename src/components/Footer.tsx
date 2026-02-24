@@ -18,6 +18,7 @@ const Footer = () => {
     { to: '/cases', labelRu: 'Кейсы', labelEn: 'Cases' },
     { to: '/reviews', labelRu: 'Отзывы', labelEn: 'Reviews' },
     { to: '/contact', labelRu: 'Обо мне', labelEn: 'About Me' },
+    { to: '/support', labelRu: 'Поддержать', labelEn: 'Support' },
   ];
 
   return (

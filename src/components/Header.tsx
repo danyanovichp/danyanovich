@@ -19,6 +19,7 @@ const Header = () => {
     { href: "/cases", label: i18n.language === 'ru' ? 'КЕЙСЫ' : 'CASES' },
     { href: "/contact", label: t('nav.contact') },
     { href: "/products", label: i18n.language === 'ru' ? 'ПРОДУКТЫ' : 'PRODUCTS' },
+    { href: "/support", label: t('nav.support') },
   ];
 
   const isRu = i18n.language === 'ru';
