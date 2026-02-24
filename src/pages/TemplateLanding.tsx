@@ -256,15 +256,6 @@ const TemplateLanding = () => {
                         <ExternalLink className="h-4 w-4" />
                       </Button>
                     </a>
-                    {template.buildinLink && (
-                      <a href={template.buildinLink} target="_blank" rel="noopener noreferrer">
-                        <Button size="lg" variant="secondary" className="gap-2 text-lg px-6 py-6">
-                          <ShoppingCart className="h-5 w-5" />
-                          Buildin.AI
-                          <ExternalLink className="h-4 w-4" />
-                        </Button>
-                      </a>
-                    )}
                   </div>
                 </div>
               </div>
@@ -282,27 +273,6 @@ const TemplateLanding = () => {
         </div>
       </section>
 
-      {/* Main Screenshot Section */}
-      <section className="py-16 md:py-24">
-        <div className="container">
-          <div className="max-w-5xl mx-auto">
-            <Card className="overflow-hidden border-2 border-border/40 shadow-2xl">
-              <CardContent className="p-0">
-                {displayMainImage ? (
-                  <img src={displayMainImage} alt={title} className="w-full aspect-video object-cover" />
-                ) : (
-                  <div className="aspect-video bg-gradient-to-br from-muted/80 to-muted/40 flex items-center justify-center">
-                    <div className="text-center space-y-4">
-                      <ImageIcon className="h-20 w-20 text-muted-foreground/30 mx-auto" />
-                      <p className="text-muted-foreground text-lg">{isRu ? 'Главный скриншот шаблона' : 'Main template screenshot'}</p>
-                    </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
 
       {/* Pain Points Section */}
       {displayPainPoints.length > 0 && (
@@ -708,15 +678,6 @@ const TemplateLanding = () => {
                     <ExternalLink className="h-4 w-4" />
                   </Button>
                 </a>
-                {template.buildinLink && (
-                  <a href={template.buildinLink} target="_blank" rel="noopener noreferrer">
-                    <Button size="lg" variant="secondary" className="gap-2 text-lg px-8 py-6">
-                      <ShoppingCart className="h-5 w-5" />
-                      Buildin.AI
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                  </a>
-                )}
               </div>
             </div>
           </div>

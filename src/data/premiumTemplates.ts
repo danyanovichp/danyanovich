@@ -13,7 +13,6 @@ export interface PremiumTemplate {
   price: string;
   priceValue: number;
   link: string;
-  buildinLink?: string;
   image?: string;
   status: 'available' | 'development';
   category: TemplateCategory;
@@ -55,7 +54,6 @@ export const premiumTemplates: PremiumTemplate[] = [
     price: "5 000 ₽",
     priceValue: 5000,
     link: "https://t.me/danyanovich",
-    buildinLink: "https://buildin.ai/danyanovich/share/plrkmj38",
     image: "/images/events-os-lite.jpg",
     status: 'available',
     category: 'personal',

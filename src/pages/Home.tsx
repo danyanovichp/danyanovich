@@ -9,7 +9,6 @@ import { Badge } from "@/components/ui/badge";
 import PageTransition from "@/components/PageTransition";
 import SEO from "@/components/SEO";
 import { useProducts } from "@/hooks/useProducts";
-import { useLandingPreviews } from "@/hooks/useLandingPreviews";
 import { premiumTemplates } from "@/data/premiumTemplates";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import DecorativeBlobs from "@/components/DecorativeBlobs";
@@ -35,7 +34,6 @@ const Home = () => {
   const navigate = useNavigate();
   const isRu = i18n.language === 'ru';
   const [activeFilter, setActiveFilter] = useState<ProductType>('templates');
-  const { getMainImage } = useLandingPreviews();
   const { products: dbProducts, isLoading } = useProducts();
   const { settings } = useSiteSettings();
 
@@ -181,19 +179,7 @@ const Home = () => {
                     >
                       <CardHeader className="p-4 space-y-3">
                         <div className="aspect-[4/3] bg-background/50 rounded-2xl flex items-center justify-center overflow-hidden">
-                          {(() => {
-                            const landingImage = isTemplate ? getMainImage(product.id) : null;
-                            const displayImage = landingImage || product.image;
-                            return displayImage ? (
-                              <img 
-                                src={displayImage} 
-                                alt={product.title}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                              />
-                            ) : (
-                              <product.icon className="h-8 w-8 text-muted-foreground/50" />
-                            );
-                          })()}
+                          <product.icon className="h-8 w-8 text-muted-foreground/50" />
                         </div>
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">

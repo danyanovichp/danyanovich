@@ -178,7 +178,7 @@ export const useProducts = () => {
           price: template.price,
           price_value: template.priceValue,
           link: template.link,
-          buildin_link: template.buildinLink,
+          buildin_link: null,
           image: template.image,
           status: template.status,
           category: template.category,
