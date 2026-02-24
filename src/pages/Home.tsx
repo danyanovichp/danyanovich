@@ -53,23 +53,23 @@ const Home = () => {
         {/* Hero Section */}
         <section className="container mx-auto px-4 py-24 md:py-36">
           <div className="max-w-3xl mx-auto text-center space-y-6">
-            <h1 className="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight font-display">
+            <h1 className="text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight font-display">
               {isRu ? settings.hero.title_ru : settings.hero.title_en}
             </h1>
-            <p className="text-lg text-muted-foreground max-w-xl mx-auto font-light">
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-xl mx-auto font-light">
               {isRu ? settings.hero.subtitle_ru : settings.hero.subtitle_en}
             </p>
-            <div className="flex justify-center gap-6 pt-2">
+            <div className="flex justify-center gap-8 pt-4">
               <Link 
                 to="/templates" 
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1.5 group"
+                className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 group"
               >
                 {isRu ? "Шаблоны Notion" : "Notion Templates"}
                 <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
               </Link>
               <Link 
                 to="/cases" 
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1.5 group"
+                className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 group"
               >
                 {isRu ? "Кейсы" : "Cases"}
                 <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -81,7 +81,7 @@ const Home = () => {
         {/* What I Do */}
         <section className="container mx-auto px-4 pb-20">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-8 text-center">
+            <h2 className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-8 text-center">
               {isRu ? "Чем я занимаюсь" : "What I Do"}
             </h2>
             <div className="grid md:grid-cols-3 gap-2">
@@ -89,16 +89,16 @@ const Home = () => {
                 <Link
                   key={card.link + card.titleEn}
                   to={card.link}
-                  className="flex flex-col gap-3 p-5 rounded-2xl hover:bg-muted/50 transition-colors group"
+                  className="flex flex-col gap-3 p-6 rounded-2xl hover:bg-muted/50 transition-colors group"
                 >
-                  <card.icon className="h-4 w-4 text-muted-foreground" />
-                  <h3 className="text-sm font-semibold">
+                  <card.icon className="h-5 w-5 text-muted-foreground" />
+                  <h3 className="text-base font-semibold">
                     {isRu ? card.titleRu : card.titleEn}
                   </h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     {isRu ? card.descRu : card.descEn}
                   </p>
-                  <ArrowRight className="h-3.5 w-3.5 text-muted-foreground/0 group-hover:text-muted-foreground transition-colors" />
+                  <ArrowRight className="h-4 w-4 text-muted-foreground/0 group-hover:text-muted-foreground transition-colors" />
                 </Link>
               ))}
             </div>
@@ -109,12 +109,12 @@ const Home = () => {
         <section className="container mx-auto px-4 pb-20">
           <div className="max-w-3xl mx-auto">
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+              <h2 className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
                 {isRu ? "Проекты" : "Projects"}
               </h2>
               <Link 
                 to="/cases" 
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 group"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1.5 group"
               >
                 {isRu ? "Все кейсы" : "All cases"}
                 <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
@@ -125,18 +125,18 @@ const Home = () => {
                 <Link
                   key={project.id}
                   to="/cases"
-                  className="flex items-center gap-4 p-4 rounded-2xl hover:bg-muted/50 transition-colors group"
+                  className="flex items-center gap-4 p-5 rounded-2xl hover:bg-muted/50 transition-colors group"
                 >
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="text-sm font-semibold truncate">
+                    <div className="flex items-center gap-3 mb-1.5">
+                      <h3 className="text-base font-semibold truncate">
                         {isRu ? project.title_ru : project.title_en}
                       </h3>
-                      <Badge variant="outline" className="text-[10px] shrink-0">
+                      <Badge variant="outline" className="text-xs shrink-0">
                         {isRu ? project.category_ru : project.category_en}
                       </Badge>
                     </div>
-                    <p className="text-xs text-muted-foreground line-clamp-1">
+                    <p className="text-sm text-muted-foreground line-clamp-1">
                       {isRu ? project.summary_ru : project.summary_en}
                     </p>
                   </div>
@@ -150,19 +150,19 @@ const Home = () => {
         {/* Consulting CTA */}
         <section className="container mx-auto px-4 pb-24">
           <div className="max-w-3xl mx-auto">
-            <div className="flex items-center gap-4 p-6 rounded-2xl bg-muted/30">
-              <MessageSquare className="h-4 w-4 text-muted-foreground shrink-0" />
+            <div className="flex items-center gap-5 p-6 rounded-2xl bg-muted/30">
+              <MessageSquare className="h-5 w-5 text-muted-foreground shrink-0" />
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium">
+                <p className="text-base font-medium">
                   {isRu ? settings.consulting.title_ru : settings.consulting.title_en}
                 </p>
-                <p className="text-xs text-muted-foreground mt-0.5">
+                <p className="text-sm text-muted-foreground mt-1">
                   {isRu ? settings.consulting.description_ru : settings.consulting.description_en}
                 </p>
               </div>
               <Link 
                 to="/consulting" 
-                className="text-sm font-medium shrink-0 inline-flex items-center gap-1.5 hover:opacity-70 transition-opacity"
+                className="text-base font-medium shrink-0 inline-flex items-center gap-2 hover:opacity-70 transition-opacity"
               >
                 {settings.consulting.price}
                 <ArrowRight className="h-3.5 w-3.5" />
