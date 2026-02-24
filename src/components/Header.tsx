@@ -18,7 +18,7 @@ const Header = () => {
     { href: "/", label: t('nav.home') },
     { href: "/cases", label: i18n.language === 'ru' ? 'КЕЙСЫ' : 'CASES' },
     { href: "/contact", label: t('nav.contact') },
-    { href: "/products", label: i18n.language === 'ru' ? 'ПРОДУКТЫ' : 'PRODUCTS' },
+    { href: "/templates", label: i18n.language === 'ru' ? 'ШАБЛОНЫ' : 'TEMPLATES' },
     { href: "/support", label: t('nav.support') },
   ];
 
@@ -43,7 +43,7 @@ const Header = () => {
                 key={link.href}
                 to={link.href}
                 className={`text-sm font-medium transition-all relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground after:transition-transform after:duration-300 ${
-                  location.pathname === link.href || (link.href === '/products' && location.pathname.startsWith('/templates'))
+                  location.pathname === link.href || (link.href === '/templates' && location.pathname.startsWith('/templates'))
                     ? "text-foreground after:scale-x-100" 
                     : "text-muted-foreground hover:text-foreground after:scale-x-0 hover:after:scale-x-100"
                 }`}

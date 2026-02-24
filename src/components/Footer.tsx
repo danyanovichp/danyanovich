@@ -9,7 +9,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const productLinks = [
-    { to: '/products', labelRu: 'Все продукты', labelEn: 'All Products' },
+    { to: '/templates', labelRu: 'Шаблоны Notion', labelEn: 'Notion Templates' },
     { to: '/packages', labelRu: 'Пакеты', labelEn: 'Packages' },
     { to: '/consulting', labelRu: 'Консалтинг', labelEn: 'Consulting' },
   ];

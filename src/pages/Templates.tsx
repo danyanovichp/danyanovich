@@ -226,10 +226,12 @@ const Templates = () => {
         <div className="container">
           <div className="max-w-3xl mx-auto text-center space-y-6 mb-10">
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
-              {isRu ? 'Продукты' : 'Products'}
+              {isRu ? 'Шаблоны Notion' : 'Notion Templates'}
             </h1>
-            <p className="text-lg text-muted-foreground">
-              {isRu ? 'Шаблоны Notion, курсы и AI инструменты' : 'Notion templates, courses and AI tools'}
+            <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+              {isRu 
+                ? 'Готовые системы в Notion для бизнеса и жизни. Каждый шаблон — это продуманная структура с базами данных, автоматизациями и визуализациями.' 
+                : 'Ready-made Notion systems for business and life. Each template is a thoughtful structure with databases, automations, and visualizations.'}
             </p>
           </div>
           <div className="max-w-2xl mx-auto">
@@ -304,8 +306,8 @@ const Templates = () => {
                   <Link to={`/templates/${template.id}`} key={index}>
                     <Card className="cursor-pointer group h-full">
                       <div className="relative">
-                        <div className="aspect-video bg-muted/30 flex items-center justify-center group-hover:bg-muted/50 transition-colors rounded-t-3xl">
-                          <template.icon className="h-12 w-12 text-muted-foreground/50" />
+                        <div className="py-6 bg-muted/30 flex items-center justify-center group-hover:bg-muted/50 transition-colors rounded-t-3xl">
+                          <template.icon className="h-5 w-5 text-muted-foreground/50" />
                         </div>
                         <div className="absolute top-3 right-3">
                           <Badge className="bg-primary text-primary-foreground text-sm rounded-full px-3 py-1">
@@ -352,8 +354,8 @@ const Templates = () => {
                   <Link to={`/templates/${template.id}`} key={index}>
                     <Card className="cursor-pointer group h-full opacity-60">
                       <div className="relative overflow-hidden rounded-t-3xl">
-                        <div className="aspect-video bg-muted/30 flex items-center justify-center group-hover:bg-muted/50 transition-colors">
-                          <template.icon className="h-12 w-12 text-muted-foreground/40" />
+                        <div className="py-6 bg-muted/30 flex items-center justify-center group-hover:bg-muted/50 transition-colors">
+                          <template.icon className="h-5 w-5 text-muted-foreground/40" />
                         </div>
                         <div className="absolute top-3 right-3">
                           <Badge variant="outline" className="text-xs">
