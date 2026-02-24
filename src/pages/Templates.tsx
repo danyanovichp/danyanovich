@@ -303,18 +303,10 @@ const Templates = () => {
                 return (
                   <Link to={`/templates/${template.id}`} key={index}>
                     <Card className="cursor-pointer group h-full">
-                      <div className="relative overflow-hidden rounded-t-3xl">
-                        {template.image ? (
-                          <img 
-                            src={template.image} 
-                            alt={title}
-                            className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                        ) : (
-                          <div className="aspect-video bg-muted/30 flex items-center justify-center group-hover:bg-muted/50 transition-colors">
-                            <template.icon className="h-12 w-12 text-muted-foreground/50" />
-                          </div>
-                        )}
+                      <div className="relative">
+                        <div className="aspect-video bg-muted/30 flex items-center justify-center group-hover:bg-muted/50 transition-colors rounded-t-3xl">
+                          <template.icon className="h-12 w-12 text-muted-foreground/50" />
+                        </div>
                         <div className="absolute top-3 right-3">
                           <Badge className="bg-primary text-primary-foreground text-sm rounded-full px-3 py-1">
                             {template.price}
