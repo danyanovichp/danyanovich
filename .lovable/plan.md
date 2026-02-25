@@ -1,30 +1,43 @@
 
 
-# Plan: Remove Decorative Blob Backgrounds
+# Plan: Add NOWPayments Donation Widget to Support Page
 
-## Problem
+## What Changes
 
-The `DecorativeBlobs` component renders large pastel-colored blurred shapes that create ugly gradient transitions between sections -- visible as the washed-out beige/yellow band in the screenshot.
+Add a prominent NOWPayments donation button/section to the Support page, linking to `https://nowpayments.io/donation/danyanovich`. This will be placed **above** the manual crypto wallets section as the primary donation method.
 
-## Changes
+## Implementation
 
-### 1. `src/pages/Contact.tsx` -- Remove DecorativeBlobs
+### `src/pages/Support.tsx`
 
-- Remove `DecorativeBlobs` import
-- Remove `<DecorativeBlobs variant="hero" />` from the hero section (line 255)
-- Remove `<DecorativeBlobs variant="section" />` from the social/contact section (line 555)
-- Remove `overflow-hidden` from those sections since it was only needed to contain the blobs
+Add a new section between the Hero and the Crypto Wallets sections:
 
-### 2. `src/components/Footer.tsx` -- Remove DecorativeBlobs
+- A card with a `CreditCard` (or `ExternalLink`) icon from lucide-react
+- Bilingual title: "Быстрый донат" / "Quick Donation"
+- Bilingual description explaining this is the easiest way to donate via any crypto
+- A styled button/link that opens `https://nowpayments.io/donation/danyanovich` in a new tab
+- Styled consistently with the rest of the page (rounded-2xl, pastel background, hover effect)
 
-- Remove `DecorativeBlobs` import
-- Remove `<DecorativeBlobs variant="footer" />` (line 26)
-- Remove `overflow-hidden` from the footer element
+```text
++------------------------------------------+
+|  Hero (existing)                         |
++------------------------------------------+
+|  NEW: NOWPayments Donation Card          |
+|  [CreditCard icon]                       |
+|  "Quick Donation" title                  |
+|  "Support via any cryptocurrency" desc   |
+|  [Donate Now ->] button (opens link)     |
++------------------------------------------+
+|  Crypto Wallets (existing)               |
++------------------------------------------+
+|  Motivational (existing)                 |
++------------------------------------------+
+```
 
-### 3. `src/pages/Support.tsx` -- Remove DecorativeBlobs
+### Details
 
-- Remove `DecorativeBlobs` import
-- Remove `<DecorativeBlobs variant="hero" />` (line 60)
-
-This keeps the `DecorativeBlobs` component file intact in case it's needed later, but removes it from all pages so the site has a clean, flat background throughout.
+- Uses `<a href="..." target="_blank" rel="noopener noreferrer">` wrapped in a styled button
+- Icon: `ExternalLink` from lucide-react for the button, `CreditCard` for the card header
+- Background: `bg-pastel-peach/20` to differentiate from wallet cards
+- No new dependencies needed
 
