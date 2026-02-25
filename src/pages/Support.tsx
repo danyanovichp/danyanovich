@@ -1,48 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { Heart, Copy, Check, CreditCard, ExternalLink } from "lucide-react";
-import { useState } from "react";
-import { toast } from "sonner";
+import { Heart, CreditCard, ExternalLink } from "lucide-react";
 import SEO from "@/components/SEO";
-
 import AnimatedSection from "@/components/AnimatedSection";
-
-const cryptoWallets = [
-  { name: 'Bitcoin (BTC)', symbol: '₿', address: 'YOUR_BTC_ADDRESS', bgClass: 'bg-pastel-yellow/30' },
-  { name: 'Ethereum (ETH)', symbol: 'Ξ', address: 'YOUR_ETH_ADDRESS', bgClass: 'bg-pastel-lavender/30' },
-  { name: 'USDT (TRC-20)', symbol: '₮', address: 'YOUR_USDT_ADDRESS', bgClass: 'bg-pastel-mint/30' },
-];
-
-const CryptoCard = ({ wallet, isRu }: { wallet: typeof cryptoWallets[0]; isRu: boolean }) => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(wallet.address);
-    setCopied(true);
-    toast.success(isRu ? 'Адрес скопирован!' : 'Address copied!');
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <div className={`rounded-2xl p-6 ${wallet.bgClass} border border-border/10 transition-all hover:scale-[1.02]`}>
-      <div className="flex items-center gap-3 mb-4">
-        <span className="text-2xl font-bold">{wallet.symbol}</span>
-        <h3 className="font-display font-semibold text-lg">{wallet.name}</h3>
-      </div>
-      <div className="flex items-center gap-2">
-        <code className="flex-1 text-xs font-mono bg-background/50 rounded-lg px-3 py-2 truncate border border-border/10">
-          {wallet.address}
-        </code>
-        <button
-          onClick={handleCopy}
-          className="shrink-0 p-2 rounded-lg bg-background/50 border border-border/10 hover:bg-background/80 transition-colors"
-          title={isRu ? 'Копировать' : 'Copy'}
-        >
-          {copied ? <Check className="h-4 w-4 text-primary" /> : <Copy className="h-4 w-4 text-muted-foreground" />}
-        </button>
-      </div>
-    </div>
-  );
-};
 
 const Support = () => {
   const { i18n } = useTranslation();
@@ -109,18 +68,6 @@ const Support = () => {
         </section>
 
         {/* Crypto Wallets */}
-        <section className="container mx-auto px-4 pb-12 relative z-10">
-          <AnimatedSection>
-            <div className="max-w-2xl mx-auto space-y-4">
-              <h2 className="font-display text-xl font-semibold mb-6 text-center">
-                {isRu ? 'Криптовалюта' : 'Cryptocurrency'}
-              </h2>
-              {cryptoWallets.map((wallet) => (
-                <CryptoCard key={wallet.name} wallet={wallet} isRu={isRu} />
-              ))}
-            </div>
-          </AnimatedSection>
-        </section>
 
         {/* Motivational */}
         <section className="container mx-auto px-4 pb-24 relative z-10">
