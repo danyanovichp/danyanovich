@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Heart, Copy, Check } from "lucide-react";
+import { Heart, Copy, Check, CreditCard, ExternalLink } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
@@ -74,6 +74,36 @@ const Support = () => {
                   ? 'Если мои шаблоны, контент или консультации были вам полезны — вы можете поддержать мою работу. Это помогает создавать больше качественных материалов.'
                   : 'If my templates, content, or consulting have been helpful to you — you can support my work. It helps me create more quality materials.'}
               </p>
+            </div>
+          </AnimatedSection>
+        </section>
+
+        {/* NOWPayments Quick Donation */}
+        <section className="container mx-auto px-4 pb-12 relative z-10">
+          <AnimatedSection>
+            <div className="max-w-2xl mx-auto">
+              <div className="rounded-2xl p-8 bg-pastel-peach/20 border border-border/10 text-center transition-all hover:scale-[1.01]">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-pastel-peach/40 mb-4">
+                  <CreditCard className="h-6 w-6 text-foreground" />
+                </div>
+                <h2 className="font-display text-xl font-semibold mb-2">
+                  {isRu ? 'Быстрый донат' : 'Quick Donation'}
+                </h2>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  {isRu
+                    ? 'Самый простой способ поддержать — через любую криптовалюту в один клик.'
+                    : 'The easiest way to support — via any cryptocurrency in one click.'}
+                </p>
+                <a
+                  href="https://nowpayments.io/donation/danyanovich"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 rounded-xl font-medium hover:opacity-90 transition-opacity"
+                >
+                  {isRu ? 'Поддержать' : 'Donate Now'}
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              </div>
             </div>
           </AnimatedSection>
         </section>
