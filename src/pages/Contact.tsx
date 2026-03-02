@@ -15,7 +15,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 // X (Twitter) icon component
 const XIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
 );
 
@@ -132,6 +132,16 @@ const Contact = () => {
           results_ru: ['Задачи создаются голосом — без входа в ClickUp', 'Дубли не создаются — умное обновление', 'Прозрачность через Telegram-отчёты'],
           results_en: ['Tasks created by voice — no ClickUp login needed', 'No duplicates — smart update system', 'Transparency via Telegram reports'],
         },
+        {
+          title_ru: 'База знаний компании',
+          title_en: 'Company Knowledge Base',
+          desc_ru: 'Разработал структурированное хранилище процессов и знаний компании — инструмент для быстрого адаптирования новых сотрудников и стандартизации работы.',
+          desc_en: 'Developed a structured repository of company processes and knowledge — a tool for fast onboarding of new employees and work standardization.',
+          stack: ['Notion'],
+          results_ru: ['Единый источник истины', 'Ускорение онбординга'],
+          results_en: ['Single source of truth', 'Faster onboarding'],
+          images: ['/images/about/CleanShot_2026-02-15_at_15.22.302x.png']
+        }
       ],
     },
     {
@@ -154,6 +164,10 @@ const Contact = () => {
           stack: ['AI Agents', 'Gemini', 'Perplexity', 'Interactive Maps'],
           results_ru: ['Интегрированная система сбора данных через AI', 'База актуальных цен и подрядчиков', 'Калькулятор стоимости строительства'],
           results_en: ['Integrated AI data collection system', 'Up-to-date prices and contractors database', 'Construction cost calculator'],
+          images: [
+            '/images/about/CleanShot_2026-02-15_at_15.14.012x_Large.jpeg',
+            '/images/about/CleanShot_2026-02-15_at_15.14.352x_Large.jpeg'
+          ]
         },
       ],
     },
@@ -177,8 +191,27 @@ const Contact = () => {
           stack: ['Lovable.app', 'AI Visualization', 'Figma', 'HTML/CSS/JS'],
           results_ru: ['17 готовых коммерческих предложений', 'Высокий уровень визуализации', 'Конверсионные сайты для инвесторов'],
           results_en: ['17 ready commercial proposals', 'High-level visualizations', 'Conversion websites for investors'],
+          images: [
+            '/images/about/CleanShot_2026-02-15_at_15.15.202x_Large.jpeg',
+            '/images/about/CleanShot_2026-02-15_at_15.15.042x_Large.jpeg',
+            '/images/about/CleanShot_2026-02-15_at_15.15.262x_Large.jpeg',
+            '/images/about/CleanShot_2026-02-15_at_15.15.522x_Large.jpeg'
+          ]
         },
       ],
+    },
+    {
+      role_ru: 'Представитель банка',
+      role_en: 'Bank Representative',
+      company: 'Т-Банк',
+      company_desc_ru: 'T-Bank',
+      company_desc_en: 'T-Bank',
+      period_ru: 'Июнь 2024 – Июнь 2025 · 1 год 1 мес.',
+      period_en: 'Jun 2024 – Jun 2025 · 1 year 1 mo.',
+      bg: pastelBgClasses[3],
+      description_ru: 'Проведение встреч с клиентами и продажа банковских продуктов. Работа с возражениями и ведение переговоров. Работа в CRM и управление воронкой. Выполнение планов продаж. Развитые навыки коммуникации, убеждения и самостоятельного управления графиком.',
+      description_en: 'Conducting client meetings and selling banking products. Handling objections and negotiations. Working in CRM and pipeline management. Achieving sales targets. Developed communication, persuasion, and self-management skills.',
+      projects: [],
     },
     {
       role_ru: 'Фриланс — Дэн Янович',
@@ -188,7 +221,7 @@ const Contact = () => {
       company_desc_en: 'individual practice',
       period_ru: 'Июль 2020 – Настоящее время · 5+ лет',
       period_en: 'Jul 2020 – Present · 5+ years',
-      bg: pastelBgClasses[3],
+      bg: pastelBgClasses[4 % pastelBgClasses.length],
       description_ru: 'Комплексная фриланс-деятельность: консультирование, разработка шаблонов и автоматизаций для компаний разных ниш. 50+ проектов, 500+ Notion шаблонов.',
       description_en: 'Comprehensive freelance activity: consulting, template development and automations for companies across various niches. 50+ projects, 500+ Notion templates.',
       projects: [],
@@ -243,7 +276,7 @@ const Contact = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
+      <SEO
         titleRu="Обо мне | Данила Путинцев — Дэн Янович"
         titleEn="About Me | Danila Putintsev — Dan Yanovich"
         descriptionRu="Архитектор рабочих пространств и цифровых систем. Специалист по автоматизации бизнеса и AI. 50+ проектов, 500+ шаблонов."
@@ -259,12 +292,19 @@ const Contact = () => {
                 {isRu ? 'Данила Путинцев' : 'Danila Putintsev'}
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground mt-4 max-w-2xl mx-auto">
-                {isRu 
+                {isRu
                   ? 'Архитектор рабочих пространств и цифровых систем · Специалист по автоматизации бизнеса и AI'
                   : 'Workspace Architect & Digital Systems · Business Automation & AI Specialist'}
               </p>
+              <div className="mt-8 flex justify-center">
+                <img
+                  src="/images/about/Данила_short.jpeg"
+                  alt={isRu ? 'Данила Путинцев' : 'Danila Putintsev'}
+                  className="w-48 h-48 object-cover rounded-[2rem] shadow-xl border-4 border-background/50 backdrop-blur-sm -rotate-2 hover:rotate-0 transition-all duration-300"
+                />
+              </div>
             </AnimatedSection>
-            
+
             {/* Contact links */}
             <AnimatedSection delay={100}>
               <div className="flex flex-wrap justify-center gap-3">
@@ -318,20 +358,21 @@ const Contact = () => {
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
                   {isRu
-                    ? 'Специалист в проектировании, внедрении и масштабировании цифровых систем управления с фокусом на AI интеграцию. За 5+ лет работы с No-Code инструментами и AI реализовал 50+ проектов автоматизации, создал 500+ Notion шаблонов и провёл 100+ часов обучающих сессий.'
-                    : 'Specialist in designing, implementing and scaling digital management systems with AI integration focus. Over 5+ years with No-Code tools and AI, completed 50+ automation projects, created 500+ Notion templates and conducted 100+ hours of training sessions.'}
+                    ? 'Я помогаю компаниям и экспертам переходить от операционного хаоса к четким, автоматизированным системам. Мой подход универсален и строится на глубоком знании No-code инструментов и внедрении ИИ-решений в любые бизнес-процессы.'
+                    : 'I help companies and experts transition from operational chaos to clear, automated systems. My approach is universal and based on deep knowledge of No-code tools and implementing AI solutions into any business processes.'}
                 </p>
 
                 {/* Focus areas */}
-                <div className="grid sm:grid-cols-2 gap-3">
+                <div className="grid sm:grid-cols-1 gap-3">
                   {[
-                    { ru: 'Проектирование цифровой инфраструктуры', en: 'Digital infrastructure design' },
-                    { ru: 'Кастомные автоматизации с AI', en: 'Custom automations with AI' },
-                    { ru: 'Визуализации проектов и КП', en: 'Project visualizations & proposals' },
-                    { ru: 'Обучение команд', en: 'Team training' },
+                    { ru: 'Проектирую цифровые штабы: С 2020 года реализовал более 50 проектов по внедрению рабочих пространств. Создаю инфраструктуру, в которой информация не теряется, а процессы становятся прозрачными и управляемыми.', en: 'Design digital headquarters: Since 2020, completed over 50 workspace implementation projects. I create infrastructure where information isn\'t lost, and processes become transparent and manageable.' },
+                    { ru: 'Автоматизирую сложные процессы: Настраиваю порядок в системно сложных нишах. Внедряю ERP-системы, настраиваю финансовый учет и создаю клиентские порталы там, где важна идеальная точность.', en: 'Automate complex processes: Bring order to systematically complex niches. Implement ERP systems, set up financial accounting, and create client portals where perfect accuracy is crucial.' },
+                    { ru: 'Сшиваю структуру компании: Настраиваю связки между административными отделами и производством, чтобы задачи выполнялись вовремя, а логика работы была понятна каждому сотруднику.', en: 'Stitch company structure together: Setup connections between administrative departments and production, so tasks are completed on time and work logic is clear to everyone.' },
+                    { ru: 'Внедряю культуру работы: Провел более 100 часов обучающих сессий. Моя цель — не просто сделать, а интегрировать систему в жизнь команды.', en: 'Implement work culture: Conducted 100+ hours of training sessions. My goal is not just to build, but to integrate the system into the team\'s life.' },
+                    { ru: 'Развиваю сообщество: Делюсь опытом и готовыми решениями в YouTube-канале и создаю специализированные шаблоны.', en: 'Develop community: Share experience and ready-made solutions on YouTube and create specialized templates.' },
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm">
-                      <Check className="h-4 w-4 text-accent-lime shrink-0" />
+                    <div key={i} className="flex items-start gap-3 text-sm">
+                      <Check className="h-4 w-4 text-accent-lime shrink-0 mt-0.5" />
                       <span>{isRu ? item.ru : item.en}</span>
                     </div>
                   ))}
@@ -343,10 +384,10 @@ const Contact = () => {
             <AnimatedSection delay={100}>
               <div className="grid sm:grid-cols-2 gap-4">
                 {[
-                  { title_ru: 'Аудит перед инструментами', title_en: 'Audit before tools', desc_ru: 'Сначала понимаю проблему, потом выбираю решение', desc_en: 'First understand the problem, then choose the solution', bg: pastelBgClasses[0] },
-                  { title_ru: 'Измеримые результаты', title_en: 'Measurable results', desc_ru: 'Все внедрения сопровождаются метриками и KPI', desc_en: 'All implementations are accompanied by metrics and KPIs', bg: pastelBgClasses[1] },
-                  { title_ru: 'Обучение как часть проекта', title_en: 'Training as part of the project', desc_ru: 'Команда должна владеть системой самостоятельно', desc_en: 'The team should own the system independently', bg: pastelBgClasses[2] },
-                  { title_ru: 'Масштабируемость с нуля', title_en: 'Scalability from scratch', desc_ru: 'Архитектура строится с расчётом на рост', desc_en: 'Architecture built for growth', bg: pastelBgClasses[3] },
+                  { title_ru: 'Сначала аудит — потом инструменты', title_en: 'Audit first — then tools', desc_ru: 'Я не продаю шаблоны, а решаю конкретную бизнес-задачу. Автоматизировать хаос нельзя.', desc_en: 'I don\'t sell templates, I solve specific business tasks. Chaos cannot be automated.', bg: pastelBgClasses[0] },
+                  { title_ru: 'Прозрачность процессов', title_en: 'Process Transparency', desc_ru: 'Вы видите статус работ в реальном времени на общем дашборде.', desc_en: 'You see work status in real-time on a shared dashboard.', bg: pastelBgClasses[1] },
+                  { title_ru: 'Обучение включено', title_en: 'Training Included', desc_ru: 'Я не оставляю команду один на один с новой системой. В стоимость входит обучение и инструкции.', desc_en: 'I don\'t leave the team alone with a new system. Training and instructions are included.', bg: pastelBgClasses[2] },
+                  { title_ru: 'Просто о сложном', title_en: 'Simply about complex things', desc_ru: 'Объясняю логику работы без сложной терминологии, чтобы разобраться мог любой сотрудник.', desc_en: 'Explain logic without complex terminology so any employee can figure it out.', bg: pastelBgClasses[3] },
                 ].map((item, i) => (
                   <div key={i} className={`${item.bg} rounded-2xl p-5 space-y-2`}>
                     <h4 className="text-sm font-semibold font-display">{isRu ? item.title_ru : item.title_en}</h4>
@@ -434,6 +475,25 @@ const Contact = () => {
                                   </li>
                                 ))}
                               </ul>
+                              {project.images && project.images.length > 0 && (
+                                <div className="grid grid-cols-2 gap-2 mt-3">
+                                  {project.images.map((img: string, imgIdx: number) => (
+                                    <div key={imgIdx} className="relative aspect-video rounded-lg overflow-hidden border border-border/50 shadow-sm focus-within:ring-2 focus-within:ring-primary group/img">
+                                      <img
+                                        src={img}
+                                        alt={isRu ? project.title_ru : project.title_en}
+                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover/img:scale-105"
+                                        loading="lazy"
+                                      />
+                                      <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors" />
+                                      {/* Accessible link to open full image */}
+                                      <a href={img} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" aria-label={`View full image for ${isRu ? project.title_ru : project.title_en}`}>
+                                        <span className="sr-only">View full image</span>
+                                      </a>
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
                             </div>
                           ))}
                         </div>
@@ -521,7 +581,7 @@ const Contact = () => {
               {expertiseBlocks.map((block, index) => (
                 <AnimatedSection key={block.id} delay={index * 100}>
                   <Link to={block.link}>
-                    <Card 
+                    <Card
                       className={`h-full overflow-hidden border-0 ${pastelBgClasses[index % pastelBgClasses.length]} hover:scale-[1.02] cursor-pointer transition-all`}
                     >
                       <CardHeader className="pb-4">
@@ -705,7 +765,7 @@ const ReviewsCarousel = ({ reviews, isRu }: { reviews: any[]; isRu: boolean }) =
             </div>
           </AnimatedSection>
 
-          <div 
+          <div
             className="relative"
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
@@ -719,13 +779,12 @@ const ReviewsCarousel = ({ reviews, isRu }: { reviews: any[]; isRu: boolean }) =
 
             <div className="grid md:grid-cols-3 gap-6 px-4 md:px-8">
               {visibleReviews.map((review, index) => (
-                <Card 
+                <Card
                   key={`${review.name}-${currentIndex}-${index}`}
-                  className={`h-full transition-all duration-500 border-0 ${
-                    index === 1 
-                      ? 'md:scale-105 bg-pastel-yellow/20' 
+                  className={`h-full transition-all duration-500 border-0 ${index === 1
+                      ? 'md:scale-105 bg-pastel-yellow/20'
                       : 'opacity-70 md:opacity-100 bg-muted/20'
-                  }`}
+                    }`}
                 >
                   <CardHeader className="pb-2">
                     <Quote className="h-8 w-8 text-muted-foreground/30 mb-2" />
@@ -751,14 +810,13 @@ const ReviewsCarousel = ({ reviews, isRu }: { reviews: any[]; isRu: boolean }) =
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`h-2.5 rounded-full transition-all ${
-                    index === currentIndex ? 'bg-foreground w-8' : 'bg-foreground/30 w-2.5 hover:bg-foreground/50'
-                  }`}
+                  className={`h-2.5 rounded-full transition-all ${index === currentIndex ? 'bg-foreground w-8' : 'bg-foreground/30 w-2.5 hover:bg-foreground/50'
+                    }`}
                 />
               ))}
             </div>
           </div>
-          
+
           <AnimatedSection delay={300}>
             <div className="mt-12 text-center">
               <a href="https://kwork.ru/user/danyanovich" target="_blank" rel="noopener noreferrer" className="inline-flex flex-col items-center gap-3">

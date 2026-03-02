@@ -579,7 +579,7 @@ const TemplateLanding = () => {
                             </div>
                             <Badge className="absolute top-3 left-3 bg-primary/80 gap-1">
                               <Film className="h-3 w-3" />
-                              Видео
+                              {isRu ? 'Видео' : 'Video'}
                             </Badge>
                           </div>
                         ) : (

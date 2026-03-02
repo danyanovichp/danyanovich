@@ -1,0 +1,713 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Путинцев Данила</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="3041cf04-d998-8037-a715-d9a09c93365c" class="page sans"><header><div class="page-header-icon undefined"><img class="icon notion-static-icon" src="https://www.notion.so/icons/user-circle_gray.svg"/></div><h1 class="page-title" dir="auto">Путинцев Данила</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><h3 id="3041cf04-d998-80a1-b893-fbb7e5600479" class=""><strong>Кто я</strong></h3></div><div style="display:contents" dir="auto"><p id="3041cf04-d998-8064-8f3c-e51a9a831c61" class="">Я помогаю компаниям и экспертам переходить от операционного хаоса к четким, автоматизированным системам. Мой подход универсален и строится на глубоком знании No-code инструментов и внедрении ИИ-решений в любые бизнес-процессы.</p></div><div style="display:contents" dir="auto"><h3 id="3041cf04-d998-80ae-8dfa-ff15e65529e4" class=""><strong>Что я делаю</strong></h3></div><div style="display:contents" dir="auto"><ul id="3041cf04-d998-8027-9750-e45393eec1b3" class="bulleted-list"><li style="list-style-type:disc"><strong>Проектирую цифровые штабы:</strong> С 2020 года реализовал более 50 проектов по внедрению рабочих пространств (Notion, Buildin.AI). Я создаю инфраструктуру, в которой информация не теряется, а процессы становятся прозрачными и управляемыми.</li></ul></div><div style="display:contents" dir="auto"><ul id="3041cf04-d998-8043-889c-ece32966525c" class="bulleted-list"><li style="list-style-type:disc"><strong>Автоматизирую сложные процессы:</strong> Мой опыт работы IT-специалистом в строительной компании — это пример того, как я умею настраивать порядок в системно сложных нишах. Я внедряю ERP-системы, настраиваю финансовый учет и создаю клиентские порталы там, где важна идеальная точность.</li></ul></div><div style="display:contents" dir="auto"><ul id="3041cf04-d998-80e8-9901-da3194a7f17e" class="bulleted-list"><li style="list-style-type:disc"><strong>Сшиваю структуру компании:</strong> Настраиваю связки между административными отделами и производством. Использую Bitrix24 и ClickUp, чтобы задачи выполнялись вовремя, а логика работы была понятна каждому сотруднику.</li></ul></div><div style="display:contents" dir="auto"><ul id="3041cf04-d998-80e8-af8f-f5ec7a1a05f7" class="bulleted-list"><li style="list-style-type:disc"><strong>Внедряю культуру работы:</strong> Провел более 100 часов обучающих сессий. Моя цель — не просто сделать, а интегрировать его в жизнь команды, обучив людей использовать возможности на максимум.</li></ul></div><div style="display:contents" dir="auto"><ul id="3041cf04-d998-808f-842b-f373b4e6f7d9" class="bulleted-list"><li style="list-style-type:disc"><strong>Развиваю сообщество:</strong> Делюсь опытом и готовыми решениями в своем YouTube-канале и создаю специализированные шаблоны для маркетплейсов.</li></ul></div><div style="display:contents" dir="auto"><h3 id="3041cf04-d998-8004-a44f-d43077ea7449" class=""><strong>Мой стек</strong></h3></div><div style="display:contents" dir="auto"><p id="3041cf04-d998-8039-9038-e95f8dbbaaf3" class="">Notion, <a href="http://Buildin.AI">Buildin.AI</a>, ClickUp, n8n, Zapier, Bitrix24, ERP-системы, Sora, <a href="http://Lovable.app">Lovable.app</a>, Gemini, Perplexity, OpenAI API и AI-интеграции.</p></div><div style="display:contents" dir="auto"><h3 id="3071cf04-d998-808e-8231-f4ad000adf64" class=""><strong>Мои принципы</strong></h3></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80aa-b350-ca3504e4f5ff" class="bulleted-list"><li style="list-style-type:disc"><strong>«Сначала аудит — потом инструменты».</strong> Я не продаю шаблоны, а решаю конкретную бизнес-задачу. Автоматизировать хаос нельзя.</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8048-bcbb-da39fa549b8e" class="bulleted-list"><li style="list-style-type:disc"><strong>«Прозрачность процессов».</strong> Вы видите статус работ в реальном времени на общем дашборде.</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8011-80af-ca4d91f7ac24" class="bulleted-list"><li style="list-style-type:disc"><strong>«Обучение включено».</strong> Я не оставляю команду один на один с новой системой. В стоимость входит обучение и видео-инструкции.</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80f0-ad24-c49f9c940d1e" class="bulleted-list"><li style="list-style-type:disc"><strong>«Просто о сложном».</strong> Объясняю логику работы без сложной терминологии, чтобы в системе мог разобраться любой сотрудник.</li></ul></div><div style="display:contents" dir="auto"><h2 id="3081cf04-d998-80fd-aa53-d66ac6d4de01" class="">Опыт работы</h2></div><div style="display:contents" dir="auto"><h3 id="c4a26a75-3fe1-4b59-8718-7b55e0062474" class="">Фриланс / Самозанятость</h3></div><div style="display:contents" dir="auto"><p id="c1d89258-9b88-4b36-984a-57379faf6155" class=""><strong>Консультант по автоматизации бизнес-процессов | Июль 2020 – Июль 2025 (5 лет)</strong></p></div><div style="display:contents" dir="auto"><p id="e75b1858-d159-4aa4-804e-ad42f5affb02" class="">50+ реализованных проектов для команд 2–15 человек.</p></div><div style="display:contents" dir="auto"><p id="83406fce-272b-4c55-893c-607a617db6d3" class=""><strong>Ключевые направления:</strong></p></div><div style="display:contents" dir="auto"><ul id="421f4883-ffba-401c-9f8d-03257f466fc4" class="bulleted-list"><li style="list-style-type:disc">Проектирование рабочих пространств (Notion, ClickUp)</li></ul></div><div style="display:contents" dir="auto"><ul id="b56353f5-3b4b-470f-a07f-5fd249033bdd" class="bulleted-list"><li style="list-style-type:disc">Автоматизации: Email → Notion, интеграции через n8n / Zapier</li></ul></div><div style="display:contents" dir="auto"><ul id="97a60730-7544-47c2-aa45-5eb526a8ffb1" class="bulleted-list"><li style="list-style-type:disc">AI-агенты для повторяющихся задач</li></ul></div><div style="display:contents" dir="auto"><ul id="3a5d7ebc-6c8c-43c3-9277-bb54762e26e2" class="bulleted-list"><li style="list-style-type:disc">Настройка процессов и обучение команд</li></ul></div><div style="display:contents" dir="auto"><p id="a4ef2e75-b16b-467c-bdbf-4b185b216ed9" class=""><strong>Результаты:</strong></p></div><div style="display:contents" dir="auto"><ul id="54720c78-af34-4ad1-9029-39eb75c3426a" class="bulleted-list"><li style="list-style-type:disc">Сокращение операционного времени команд</li></ul></div><div style="display:contents" dir="auto"><ul id="1a24d972-eae4-47a8-b354-2cf50077a2f2" class="bulleted-list"><li style="list-style-type:disc">Систематизация хаотичных процессов</li></ul></div><div style="display:contents" dir="auto"><ul id="d74ef5f6-fc91-4cba-8cbe-d757893278ad" class="bulleted-list"><li style="list-style-type:disc">Повторные заказы и долгосрочные клиенты</li></ul></div><div style="display:contents" dir="auto"><ul id="1b1c6dcc-c0cb-4dc5-98c6-dfc14694143a" class="bulleted-list"><li style="list-style-type:disc">68 коммерческих шаблонов на маркетплейсе Notion, 603 загрузки: <a href="http://notion.com/@danyanovich">notion.com/@danyanovich</a></li></ul></div><div style="display:contents" dir="auto"><hr id="9ca56fe2-5663-4aab-9278-8ba4d9bd45e1"/></div><div style="display:contents" dir="auto"><h3 id="96811d3e-1cda-4b7b-9089-6769fcddaca9" class="">Viora Build</h3></div><div style="display:contents" dir="auto"><p id="486913c8-525b-40ae-bd04-fe244523fd83" class=""><strong>IT-специалист / Менеджер направления | Июль 2024 – Февраль 2026 (1 год 8 мес.)</strong></p></div><div style="display:contents" dir="auto"><p id="87a8bc70-c37c-426d-ae64-966a1e7fb993" class="">Работал в двух ролях: IT-специалист (автоматизация, цифровая инфраструктура) и менеджер направления (операционные процессы, развитие отделов).</p></div><div style="display:contents" dir="auto"><p id="6ed0d3b1-1714-4632-9a7a-e5b6be70468f" class=""><strong>Ключевые результаты:</strong></p></div><div style="display:contents" dir="auto"><ul id="03c08c81-9e14-4a5a-8e7d-91a0b6fad7c7" class="bulleted-list"><li style="list-style-type:disc">Сократил операционные затраты времени на 30–40% за счёт автоматизации процессов</li></ul></div><div style="display:contents" dir="auto"><ul id="248ddc19-8e05-4887-be12-847eb9f2d349" class="bulleted-list"><li style="list-style-type:disc">Внедрил AI-инструменты для автоматизации почты, задач и внутренней отчётности</li></ul></div><div style="display:contents" dir="auto"><ul id="88928f21-85ea-4507-a06d-429ce9495526" class="bulleted-list"><li style="list-style-type:disc">Создал веб-инструмент для анализа смет и актуализации цен на материалы</li></ul></div><div style="display:contents" dir="auto"><ul id="4326febb-d4d9-45b7-ab50-89f0d4387715" class="bulleted-list"><li style="list-style-type:disc">Запустил отдел продаж: выстроил воронку, внедрил CRM, обучил сотрудников</li></ul></div><div style="display:contents" dir="auto"><ul id="df325af5-ed5d-4a8d-9955-6b202106962f" class="bulleted-list"><li style="list-style-type:disc">Разработал корпоративную базу знаний и стандартизировал процессы</li></ul></div><div style="display:contents" dir="auto"><p id="d15c59fe-f6a8-492b-8a57-8dfb498654ce" class="">Используемые инструменты: OpenAI API, Zapier, ClickUp API, Notion API, Telegram Bot API</p></div><div style="display:contents" dir="auto"><h3 id="3081cf04-d998-8024-9cf3-dba8ee858128" class="">Часть реализованных проектов</h3></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Email AI Ассистент</summary><div class="indented"><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-801d-a20c-d9aab83e02a5" class="">📊 Краткая сводка</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8049-b295-e5f995dbe242" class="">Полностью автоматизированная система, которая отслеживает письма в Gmail, анализирует их через OpenAI, категоризирует по типам (Work, Personal, Sales, Support, Spam), определяет приоритет и создает структурированные записи в Notion. Система включает уведомления в Slack/Telegram для критичных писем, сохранение вложений в Google Drive и условные автоответы. Стоит ~$20-30/месяц и экономит часы времени на обработку входящей корреспонденции.</p></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-80c0-b28d-f7337dcf346f"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-80c0-8e5c-fe3a72c4e418" class="">🎯 Суть проекта</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-809e-8332-dd4fce261e64" class=""><strong>Email to Notion Automation</strong> — реализованная система автоматической обработки входящих электронных писем и их организации в Notion через Zapier и OpenAI.</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8015-84c1-c2764c89a18d" class="">Разработал комплексную автоматизацию, которая:</p></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8044-909f-d7093ea0dbe5" class="bulleted-list"><li style="list-style-type:disc">Отслеживает новые письма в Gmail с помощью Zapier триггера</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8082-8a0e-d9e0779f2f4d" class="bulleted-list"><li style="list-style-type:disc">Анализирует содержание письма через OpenAI API (GPT-3.5-turbo или GPT-4) для интеллектуального определения параметров</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8009-8eea-c3a9e27e10b4" class="bulleted-list"><li style="list-style-type:disc">Автоматически категоризирует письма (Work, Personal, Sales, Support, Spam, Other)</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8014-bc9c-f4e4280b9911" class="bulleted-list"><li style="list-style-type:disc">Определяет приоритет (High, Medium, Low) на основе содержания и отправителя</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8090-9db7-fc1abc3dc2ab" class="bulleted-list"><li style="list-style-type:disc">Генерирует краткие резюме письма для быстрого обзора</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80ca-b561-c8a46f881966" class="bulleted-list"><li style="list-style-type:disc">Проверяет требуется ли действие/ответ на письмо</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8090-82da-e09a1f74abb9" class="bulleted-list"><li style="list-style-type:disc">Создает структурированные записи в Notion базе данных с полной информацией</li></ul></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-808b-8ed2-dc38f605f5f9"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-8067-8f76-fae247896c39" class="">🏗️ Архитектура и компоненты</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8035-8b78-c07f613a4e54" class="">Проект использует <strong>трёхуровневую архитектуру автоматизации</strong> через Zapier:</p></div><div style="display:contents" dir="auto"><ol type="1" id="3071cf04-d998-805c-92c0-f83ae04be973" class="numbered-list" start="1"><li><strong>Триггер</strong> — отслеживает новые письма в Gmail с фильтрацией по ярлыкам и исключением noreply адресов и спама</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="3071cf04-d998-808e-8056-ffde9468c2f9" class="numbered-list" start="2"><li><strong>Первый экшн</strong> — отправляет текст письма в OpenAI для анализа с детальным промптом, определяющим категорию, приоритет, необходимость действия и создающим резюме в формате JSON</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="3071cf04-d998-80cf-9c58-f8fce6ed695c" class="numbered-list" start="3"><li><strong>Второй экшн</strong> — использует Formatter для парсинга JSON результата из OpenAI в отдельные переменные</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="3071cf04-d998-8092-9fa9-e0c931cc749d" class="numbered-list" start="4"><li><strong>Третий экшн</strong> — создает новую запись в Notion с автоматическим сопоставлением всех полей: тема письма, отправитель, дата получения, содержание, категория, приоритет, флаг действия, резюме и ID письма</li></ol></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-80af-9c56-f00560015e1d"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-80d8-b7d4-de12ef902fb1" class="">📑 Структура Notion базы данных</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80fc-b69d-e4280ca54ea7" class="">Создана специализированная таблица <strong>&quot;Email Inbox&quot;</strong> в Notion с полным набором полей для управления письмами.</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-801a-ac89-c3a5b163c21c" class=""><strong>Основное поле:</strong></p></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8067-81aa-deaf56e45eb5" class="bulleted-list"><li style="list-style-type:disc"><strong>Тема письма</strong> — используется как основной заголовок (Title field)</li></ul></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80e5-acdd-d6a565750dff" class=""><strong>Дополнительные поля:</strong></p></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8077-8bd3-e1017bc13eea" class="bulleted-list"><li style="list-style-type:disc"><strong>От кого</strong> (Text) — имя отправителя</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80ae-bcc4-d1a6753a98f0" class="bulleted-list"><li style="list-style-type:disc"><strong>Дата получения</strong> (Date) — отслеживание времени получения</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-801c-b87a-e05154284bd4" class="bulleted-list"><li style="list-style-type:disc"><strong>Содержание</strong> (Text) — полный текст письма</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80a7-a6cd-f0d951e62ceb" class="bulleted-list"><li style="list-style-type:disc"><strong>Категория</strong> (Select) — опции: Work, Personal, Sales, Support, Spam, Other</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80bc-ac9c-f70f7f60b8d5" class="bulleted-list"><li style="list-style-type:disc"><strong>Приоритет</strong> (Select) — опции: High, Medium, Low</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-807c-9892-fd5f8143a21a" class="bulleted-list"><li style="list-style-type:disc"><strong>Действие требуется</strong> (Checkbox) — флаг требуемого ответа</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8040-8539-c6adf3e064a0" class="bulleted-list"><li style="list-style-type:disc"><strong>Краткое резюме</strong> (Text) — AI-генерированное краткое описание</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-806a-b8bc-df021f4bf067" class="bulleted-list"><li style="list-style-type:disc"><strong>Email ID</strong> (Text) — уникальный идентификатор письма</li></ul></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80ad-b858-e44ea7441ddb" class=""><strong>Безопасность:</strong> Интеграция Notion настроена через Custom Integration с выделением доступа только к требуемой базе данных.</p></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-8077-9ecd-d08c791f583f"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-8090-87af-fb5bcbc0caa2" class="">⚡ Расширения и дополнительные функции</h2></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80b3-a4df-ebe5107c6dfc" class="bulleted-list"><li style="list-style-type:disc"><strong>Сохранение вложений</strong> — автоматическое сохранение в Google Drive с созданием ссылок в Notion записи для быстрого доступа</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8054-a4ac-f3432276e367" class="bulleted-list"><li style="list-style-type:disc"><strong>Уведомления</strong> — настроены для писем с высоким приоритетом через Slack, email и Telegram бота для мгновенного оповещения критичных писем</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8020-a512-d44494599d4a" class="bulleted-list"><li style="list-style-type:disc"><strong>Продвинутые фильтры</strong> — исключают noreply письма, спам и позволяют обрабатывать только письма от указанных отправителей</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8045-9017-f4563089ee9a" class="bulleted-list"><li style="list-style-type:disc"><strong>Условные автоответы</strong> — автоматически отправляются для категорий Sales и Support с использованием Zapier шаблонов ответов, экономя время на рутинные ответы</li></ul></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-8090-8f95-ee56778d5453"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-80dd-befc-e2e8b66a44ac" class="">💰 Оптимизация и экономия средств</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80bc-b951-e92c5cee7da2" class=""><strong>Стратегии снижения стоимости:</strong></p></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-801c-b55b-e5ee38cd7f46" class="bulleted-list"><li style="list-style-type:disc"><strong>Выбор модели</strong> — использование GPT-3.5-turbo вместо дорогого GPT-4</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-803b-9411-df4912669650" class="bulleted-list"><li style="list-style-type:disc"><strong>Умные фильтры</strong> — на уровне Zapier для предотвращения обработки ненужных писем</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8076-8ba5-f64596831b34" class="bulleted-list"><li style="list-style-type:disc"><strong>Расписание</strong> — ограничение количества обрабатываемых писем в день через расписание запусков</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8068-a2aa-fc6c0144bb13" class="bulleted-list"><li style="list-style-type:disc"><strong>Детальный промпт</strong> — специфичный промпт обеспечивает высокую точность категоризации и приоритизации с первой попытки, исключая необходимость повторной обработки</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80fa-a064-d23a08fa2987" class="bulleted-list"><li style="list-style-type:disc"><strong>Few-shot примеры</strong> — в промпте улучшают качество анализа AI</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8039-9929-fe5e478a92ce" class="bulleted-list"><li style="list-style-type:disc"><strong>Кэширование</strong> — результаты в промежуточном хранилище Zapier предотвращают переобработку писем при сбоях</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80cf-a3b7-c7ebb04c364a" class="bulleted-list"><li style="list-style-type:disc"><strong>Батчинг и расписание</strong> — оптимизируют использование API квот</li></ul></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-804c-a638-ed182dcd5c99"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-80a9-a993-e3fde61fc087" class="">🔍 Мониторинг и качество</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8083-a804-da4d2632a6e8" class=""><strong>Контроль и отладка:</strong></p></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80b0-9062-e1630484b3a6" class="bulleted-list"><li style="list-style-type:disc"><strong>Zapier Logs</strong> — отображают все выполненные и ошибочные экшны с подробной отладочной информацией</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80e2-835a-f8806c2eeff0" class="bulleted-list"><li style="list-style-type:disc"><strong>Retry механизм</strong> — автоматически повторяет неудачные операции при временных сбоях API</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-803b-b715-cc76b514ba3e" class="bulleted-list"><li style="list-style-type:disc"><strong>Регулярное тестирование</strong> — отправка тестовых писем и проверка корректности категоризации, приоритизации, резюме и создания записей в Notion</li></ul></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8057-89d2-e05a3a3a6d4b" class=""><strong>Ключевые метрики:</strong></p></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8041-bbe3-ee1718f65ac9" class="bulleted-list"><li style="list-style-type:disc">Количество обработанных писем</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8053-8a32-d34ed74d1bff" class="bulleted-list"><li style="list-style-type:disc">Точность категоризации</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8008-ad8a-d667db6fd206" class="bulleted-list"><li style="list-style-type:disc">Время обработки одного письма</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80b4-8693-f8295b22e4d2" class="bulleted-list"><li style="list-style-type:disc">Общая месячная стоимость автоматизации (~$20-30 при использовании Zapier платный тариф, OpenAI API и Notion)</li></ul></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-80bf-b2ff-e2a3de818537"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-8039-9a95-c7f37a34c6df" class="">🛠️ Технический стек и интеграции</h2></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80ba-8e0b-f35632780ce2" class="bulleted-list"><li style="list-style-type:disc"><strong>Zapier</strong> ($19-99/месяц) — основная платформа для оркестрации автоматизации</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80ed-a46f-da35fca604cc" class="bulleted-list"><li style="list-style-type:disc"><strong>Gmail</strong> (бесплатно) — источник входящих писем с фильтрацией по ярлыкам</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80aa-9879-c16b8f4d145c" class="bulleted-list"><li style="list-style-type:disc"><strong>OpenAI API</strong> ($0,50-5/месяц) — анализ и категоризация содержания писем</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80c9-9c77-f92cc3a3dccb" class="bulleted-list"><li style="list-style-type:disc"><strong>Notion</strong> (бесплатно-$10/месяц) — база данных для организации и управления письмами</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80c3-be5f-e9cd671e40c3" class="bulleted-list"><li style="list-style-type:disc"><strong>Google Drive</strong> (опционально) — хранение вложений с ссылками в Notion</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80d6-b099-ea76462e939a" class="bulleted-list"><li style="list-style-type:disc"><strong>Slack/Telegram</strong> (опционально) — уведомления о критичных письмах</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8011-a5c9-f039d380247e" class="bulleted-list"><li style="list-style-type:disc"><strong>Formatter</strong> (встроен в Zapier) — парсинг JSON результатов OpenAI</li></ul></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-80f6-bc4f-c3d5ff5aeb57"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-802e-88d1-de06144128e9" class="">🎁 Результат проекта</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8017-9e31-fe4f9e7ad756" class=""><strong>Преимущества для пользователей:</strong></p></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8097-a3cd-e91f86da48bd" class="bulleted-list"><li style="list-style-type:disc">✅ Полностью автоматизированная система управления входящей корреспонденцией</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-801c-ad2c-d03e797178c0" class="bulleted-list"><li style="list-style-type:disc">✅ Интеллектуальная категоризация, приоритизация и резюме всех писем</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8055-913c-e17b6ae105fc" class="bulleted-list"><li style="list-style-type:disc">✅ Письма организованы в структурированную Notion базу данных, которую легко фильтровать и искать по категориям, приоритету и действиям</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8057-95fd-e73625b31507" class="bulleted-list"><li style="list-style-type:disc">✅ Критичные письма автоматически отправляют уведомления через Slack/Telegram, обеспечивая мгновенное оповещение</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80cd-a2df-c27adba7da6c" class="bulleted-list"><li style="list-style-type:disc">✅ Минимальное обслуживание после настройки</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80fa-8f11-e39b8d1ad1ce" class="bulleted-list"><li style="list-style-type:disc">✅ Низкая месячная стоимость благодаря оптимизации</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80ae-951e-c48d06b14f47" class="bulleted-list"><li style="list-style-type:disc">✅ Легко расширяется новыми функциями (автоответы, вложения, дополнительные уведомления)</li></ul></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8047-88f4-d41f77f76889" class=""><strong>Итоговый результат</strong> — значительная экономия времени на ежедневную обработку и организацию email через естественную интеграцию AI анализа.</p></div></div></details></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>ClickUp Reports Agent</strong></summary><div class="indented"><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-8035-81d0-da3c43c8460d" class="">📋 Краткая сводка</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80ba-8438-fffcbf2a0e63" class="">Полностью готовый к использованию Python-агент для автоматизированной оценки качества выполнения задач в ClickUp. Система загружает задачи, анализирует их через локальную AI-модель, выставляет оценки по критериям скорости и качества, а затем автоматически записывает результаты обратно в ClickUp с полной историей анализа.</p></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-80e7-b635-f38d6da12654"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-803b-8b52-fca73887717b" class=""><strong>Суть проекта</strong></h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-802b-953a-fc047e9b5def" class=""><strong>ClickUp Reports Agent</strong> — реализованный инструмент для объективной оценки качества выполнения задач. Агент:</p></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8016-950e-e0de5c1f7887" class="bulleted-list"><li style="list-style-type:disc">Загружает активные задачи из ClickUp по выбранному пространству или списку</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-808f-a15f-c2f41ff1f9df" class="bulleted-list"><li style="list-style-type:disc">Формирует структурированный промпт с полной информацией о задаче (описание, история комментариев, чеклисты, контекст проекта)</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-807d-998b-fb7e59e4e01a" class="bulleted-list"><li style="list-style-type:disc">Отправляет контекст в локально запущенную модель LM Studio (openai/gpt-oss-20b)</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8056-a34d-c45fe58a7636" class="bulleted-list"><li style="list-style-type:disc">Анализирует работу и выдаёт оценки по двум критериям: скорость выполнения и качество кода/работы</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8030-b2da-e51cc352f3a4" class="bulleted-list"><li style="list-style-type:disc">Автоматически записывает результаты в кастомные поля ClickUp и добавляет аналитический комментарий</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8015-b5b5-c0dc991179b6" class="bulleted-list"><li style="list-style-type:disc">Переводит задачу в финальный статус при необходимости</li></ul></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-8072-a45f-e14323372789"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-80b8-b62a-fdd5841a8c2c" class=""><strong>Особенности реализации</strong></h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-806b-a88a-f32ceeb9c5e1" class="">Проект реализует постоянное сохранение истории оценок с возможностью проверки предыдущих результатов. Агент анализирует динамику оценок для отслеживания тренда улучшения или снижения качества, выявляя паттерны и повышая точность оценок через накопленные данные.</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8022-8854-f38d52d01a04" class="">Система ведёт полный архив всех оценок и сравнивает текущие результаты с историческими данными для выявления закономерностей.</p></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-80da-86fe-ff00aaaded94"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-8096-bc60-f62e34c524f0" class=""><strong>Готовность к использованию</strong></h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80f0-b72d-e06b4b40cfa1" class="">Система полностью готова к использованию:</p></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-801e-ad03-d627daa837fb" class="bulleted-list"><li style="list-style-type:disc">Поддерживает ручной запуск или запуск по расписанию (cron, GitHub Actions)</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-807c-869a-cc1ea3dbe67c" class="bulleted-list"><li style="list-style-type:disc">Режим <code>-dry-run</code> для безопасного тестирования конфигурации</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8034-b544-f696a226ecb3" class="bulleted-list"><li style="list-style-type:disc">Гибкая система настройки через <code>.env</code> файл со всеми необходимыми переменными</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-803e-9326-c656944c599a" class="bulleted-list"><li style="list-style-type:disc">CLI-флаги для переопределения параметров на лету</li></ul></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-8054-8425-c398f10ab40e"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-80be-a6ae-c3a74ceefea9" class=""><strong>Технический стек</strong></h2></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80f3-9e14-d9739d788af7" class="bulleted-list"><li style="list-style-type:disc"><strong>Python 3.10+</strong> с асинхронной обработкой через asyncio</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80f3-96d7-f1d346b99d51" class="bulleted-list"><li style="list-style-type:disc"><strong>ClickUp API</strong> — чтение и запись задач, работа с кастомными полями</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80b9-aef8-dc5f9f49c230" class="bulleted-list"><li style="list-style-type:disc"><strong>LM Studio</strong> с локальной моделью openai/gpt-oss-20b</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8008-9c28-f00585fd0588" class="bulleted-list"><li style="list-style-type:disc">Модульная архитектура: отдельные модули для конфигурации, API ClickUp, взаимодействия с LM Studio, основной бизнес-логики оркестратора</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80f6-9b84-d942ad77b6ca" class="bulleted-list"><li style="list-style-type:disc">Система логирования и хранение истории оценок для отчётности</li></ul></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-803c-a6fc-ef2d536e1ce7"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-80cf-bacd-c8b31471f33a" class=""><strong>Результат проекта</strong></h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8069-91db-f14dc910274c" class="">Руководители и PM получают единообразные, воспроизводимые оценки всех задач без ручной проверки, экономя часы времени на анализ качества работы.</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80bf-afdd-d947b3d87ce7" class="">Подход к оценке становится прозрачным и объективным благодаря единой модели, которая применяет одинаковые стандарты ко всем задачам.</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8068-a38b-c5a0f81541b4" class="">Система готова к интеграции с кроном для автоматического запуска и масштабируется под любые объёмы работ, обеспечивая полную готовность данных для отчётности и аналитики.</p></div></div></details></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Construction AI Agent</summary><div class="indented"><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-80ca-879c-f2efde2ba767" class="">📌 Краткая сводка</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8040-8ce6-c864d1383097" class=""><strong>Construction AI Agent</strong> — универсальный инструмент для строительных специалистов, объединяющий поиск цен на материалы, управление Google Sheets и проверку смет. Система включает интеллектуальный поиск с кэшированием, автоматический fallback на локальную LLM, веб-интерфейс и полный мониторинг через Prometheus.</p></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-80b3-ba60-cd66318a76a1"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-80e6-8501-d10101084d73" class="">🎯 Суть проекта</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8000-b202-c81f32e07af4" class="">Construction AI Agent реализует комплексное решение для специалистов по строительству:</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-805b-9d2c-e82dcf681f7f" class=""><strong>Поиск материалов</strong> — интеллектуальный поиск цен с использованием OpenAI, веб-поиска и локальной базы данных (data/local_materials.csv)</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-800c-b92e-ec9b1835418e" class=""><strong>Управление Google Sheets</strong> — чтение, запись, генерация формул и Markdown-отчётов через естественный язык</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80f7-8a10-f74c8825b7ce" class=""><strong>Проверка смет</strong> — автоматическое выявление дубликатов, отсутствующих кодов и генерация подсказок</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80ac-a8b2-ee9ba5371e58" class=""><strong>Импорт/экспорт</strong> — конвертация Excel/Google Sheets смет в формат VIORA BUILD с авто-распознаванием колонок</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80b1-b423-e8846ce148d6" class=""><strong>Управление базой</strong> — поиск записей, подготовка вставок, обновлений и удалений с подтверждением</p></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-806d-a90a-fc978c1b47b5"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-80f2-8184-c81048909c3e" class="">⚡ Ключевые особенности</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80db-acd9-f9e55fd6a29c" class=""><strong>Агрессивное кэширование</strong> — SQLite-кэш с детерминированными ключами, сохраняется после перезапуска, экономит API-бюджет при повторных запросах</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80b5-9ec2-c6dafbc2325a" class=""><strong>Надёжный fallback</strong> — автоматический переход на локальную LLM (LM Studio, qwen/qwen3-vl-4b) при недоступности OpenAI API</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80e0-bab1-c7ae665e5edc" class=""><strong>Оптимизация производительности</strong> — ограничение скорости запросов и поддержка параллельных потоков при пакетном поиске материалов</p></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-8088-89c7-ef9ef36a6708"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-80db-82f4-e748f1eda705" class="">🔌 Интеграции и возможности</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8078-a83f-cecd229d8aa6" class=""><strong>Google Sheets</strong> — полная интеграция через сервисный аккаунт, синхронизация базы материалов между облаком и локальным CSV, импорт/экспорт смет</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8043-b97f-c636f7bc724f" class=""><strong>Веб-интерфейс</strong> — Flask + Vue/Tailwind (frontend/unified.html) с удобным UI для всех операций</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8087-a716-ed85fb7c2ea6" class=""><strong>Программный доступ</strong> — класс ConstructionAIAgent для интеграции в различные рабочие процессы через CLI и код</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8057-ae41-d4be7b0ec7e8" class=""><strong>Расширенный веб-поиск</strong> — поддержка Bing Search и ChatGPT Search для актуальных цен на материалы</p></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-8041-841e-dead6cd61394"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-8054-a22c-c714e51800d2" class="">📊 Мониторинг и наблюдаемость</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8094-a723-e218f4c3a4b4" class="">Система автоматически поднимает HTTP-эндпоинт с метриками Prometheus (порт 9000 по умолчанию) в формате text exposition.</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8062-b75f-fd4da6fdfe56" class=""><strong>Отслеживаемые метрики:</strong></p></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8011-832a-e672a05f7246" class="bulleted-list"><li style="list-style-type:disc">количество и время поиска материалов</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-802f-8b43-d9734f127137" class="bulleted-list"><li style="list-style-type:disc">попадания и промахи кэша цен</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8028-86b5-ddbdad16ad9d" class="bulleted-list"><li style="list-style-type:disc">количество запросов к LLM с учётом fallback</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80d3-bc47-d444142429f2" class="bulleted-list"><li style="list-style-type:disc">число и длительность команд Google Sheets</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-802d-a582-c2286c3d9f15" class="bulleted-list"><li style="list-style-type:disc">число и длительность проверок смет</li></ul></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80cb-9bd8-d0de01a405f4" class=""><strong>Интеграция</strong> — совместимо с Prometheus/Grafana для полной видимости в работу системы</p></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-8052-8f7c-fcfed2571e1e"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-8022-a61a-e925d0b17756" class="">🏗️ Технический стек</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8093-9175-f737194d9eaa" class=""><strong>Язык и окружение:</strong> Python 3.10+ с асинхронными операциями</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8083-95e7-df2adbecff31" class=""><strong>API и сервисы:</strong> OpenAI API, Google Sheets API (через сервисный аккаунт)</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80ee-8920-c038a53eb8e2" class=""><strong>Хранилище:</strong> SQLite для локального кэширования</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8013-aa81-d187285c0e1c" class=""><strong>Фронтенд:</strong> Flask + Vue/Tailwind</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80be-b462-f60fcfd200df" class=""><strong>Фреймворки:</strong> LangChain для расширенных агентских возможностей</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8007-9a73-fff51b7de339" class=""><strong>Мониторинг:</strong> Prometheus metrics</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80a6-ba8a-ffc859ed453d" class=""><strong>Архитектура:</strong> модульная система с отдельными компонентами для поиска цен, работы с Google Sheets, проверки смет, импорта Excel, управления кэшем и базой материалов</p></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-80b2-aaf6-f81bf7a3c609"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-80f1-be7f-cd56f44447af" class="">✅ Результаты проекта</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-808a-8da9-e302fc85d643" class="">Строительные специалисты и сметчики получают:</p></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80f3-a92d-ec54eae493c6" class="bulleted-list"><li style="list-style-type:disc"><strong>Единый инструмент</strong> для управления материалами и проверки смет</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-803d-afa7-fa53bbe6bdda" class="bulleted-list"><li style="list-style-type:disc"><strong>Ускоренные рабочие процессы</strong> благодаря автоматизации</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-807c-a5bb-d25f91f93a1e" class="bulleted-list"><li style="list-style-type:disc"><strong>Актуальные цены</strong> с кэшированием для экономии времени и бюджета</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80f1-bab8-de9a65cdfe74" class="bulleted-list"><li style="list-style-type:disc"><strong>Выявление ошибок</strong> — автоматическая проверка выявляет проблемы до использования</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80ab-92de-f3006715dec1" class="bulleted-list"><li style="list-style-type:disc"><strong>Совместную работу</strong> — интеграция с Google Sheets для команд</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80f3-9395-e65574115823" class="bulleted-list"><li style="list-style-type:disc"><strong>Надёжность</strong> — fallback на локальную LLM гарантирует работоспособность при любых обстоятельствах</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80af-84a3-c541ccc66780" class="bulleted-list"><li style="list-style-type:disc"><strong>Гибкость</strong> — веб-интерфейс, CLI и программный API для различных сценариев интеграции</li></ul></div></div></details></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Telegram to ClickUp</summary><div class="indented"><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-809d-bef6-d42739d4bca8" class="">📋 Краткая сводка</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8089-8790-e03725a0fe65" class=""><strong>Telegram to ClickUp</strong> — полнофункциональная система автоматической обработки голосовых сообщений из Telegram группы и создания задач в ClickUp. Система транскрибирует аудио через OpenAI Whisper, анализирует текст через GPT-4 и автоматически создает задачи с полной информацией (название, описание, дедлайн, приоритет, ответственный). Работает по расписанию (каждый час), поддерживает различные форматы аудио и интегрируется с ClickUp REST API.</p></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-808b-add2-c4294f763712"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-801f-a471-cc00c90e629d" class="">🎯 Суть проекта</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80c6-8a57-d5371b2e0c8f" class="">Разработана полнофункциональная автоматизация, которая:</p></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-808a-945e-fbb62c48685e" class="bulleted-list"><li style="list-style-type:disc">Проверяет новые голосовые и аудио сообщения в Telegram группе каждый час</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-806d-88a9-f2e929fc18f4" class="bulleted-list"><li style="list-style-type:disc">Транскрибирует их через OpenAI Whisper API с высокой точностью</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8013-b203-f6aaf0f73d75" class="bulleted-list"><li style="list-style-type:disc">Анализирует текст через GPT-4 для интеллектуального извлечения параметров задач</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-807e-b20c-e785b2af4e9f" class="bulleted-list"><li style="list-style-type:disc">Создает отдельные задачи в ClickUp с полной информацией: названием, описанием, дедлайном, приоритетом и ответственным</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80a3-8b04-d93eba506be0" class="bulleted-list"><li style="list-style-type:disc">Поддерживает различные форматы аудио: голосовые сообщения, пересланные голосовые, аудио файлы (MP3, OGG, M4A, WAV), сообщения из каналов и пересланные аудио из других чатов</li></ul></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-80e8-87d7-c7da84115b1b"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-8043-a511-d6c18b817e13" class="">✨ Ключевые возможности</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8083-9b9c-de52ed799692" class=""><strong>Интеграция и API</strong></p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8023-ac63-f6876e1474dc" class="">Система полностью интегрирована с ClickUp REST API для прямого создания задач по токену. Поддерживает гибкую интерпретацию дедлайнов — как в формате полных дат (YYYY-MM-DD), так и в полном ISO 8601 формате (2025-01-05T12:30:00+03:00) и относительных временных фраз («завтра», «через неделю», «до пятницы»).</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-802f-b1cf-ca6682125a2c" class=""><strong>Управление состоянием и производительность</strong></p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-807b-ad1b-f63c05854258" class="">Система ведёт управление состояния через state.json для отслеживания последнего обработанного события Telegram и предотвращения двойной обработки сообщений. Параллельная обработка (загрузка аудио, транскрибирование, анализ через GPT) ускоряет обработку больших очередей голосовых сообщений.</p></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-807f-94cd-ee9a2677cf3a"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-80c3-a209-ccb659fefe6b" class="">⚙️ Конфигурация и гибкость</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8013-ac34-c4fcc14a4c26" class="">Проект предоставляет расширенную конфигурацию через config.json с управлением:</p></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-803e-bc55-cd93511c6d9b" class="bulleted-list"><li style="list-style-type:disc">Сроками хранения логов и архивных файлов</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80a6-9594-dbe95ac6d2ab" class="bulleted-list"><li style="list-style-type:disc">Параметрами кэширования участников ClickUp</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8017-bd56-e440d68220f1" class="bulleted-list"><li style="list-style-type:disc">Количеством параллельных работников при загрузке и обработке через OpenAI</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80d0-8b11-d18acf0dcfb2" class="bulleted-list"><li style="list-style-type:disc">Стратегией повторных попыток при сбоях API</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80e8-80a0-cdea84f926c0" class="bulleted-list"><li style="list-style-type:disc">Автоматическими напоминаниями в ClickUp до дедлайна</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80e4-ae22-c7b01807b4fb" class="bulleted-list"><li style="list-style-type:disc">Отправкой итоговой сводки в Telegram</li></ul></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-808b-a45c-d44a3e306eda" class=""><strong>Сопоставление исполнителей</strong></p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8043-9af1-d0a15f0743d4" class="">Поддерживает ручное сопоставление исполнителей и их псевдонимов для ClickUp через assignee_map и assignee_aliases, что позволяет правильно назначать задачи по именам, упомянутым в голосовых сообщениях. Все API ключи хранятся безопасно в переменных окружения или защищённом файле.</p></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-8057-9143-c02bcb305bd8"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-80f3-8859-ef3727aa9f45" class="">📊 Мониторинг и отчётность</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-800a-bdac-cb5f95e68b9f" class=""><strong>Автоматические отчеты</strong></p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80c3-8f26-db1049b53129" class="">Система автоматически ведёт подробные Markdown-отчеты после каждого запуска в папке logs/, содержащие:</p></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80a2-8599-fa22f75b0bdb" class="bulleted-list"><li style="list-style-type:disc">Количество обработанных сообщений</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8016-b113-ced19a7d7e8b" class="bulleted-list"><li style="list-style-type:disc">Полные транскрипции голосовых</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8034-af20-e948e404021b" class="bulleted-list"><li style="list-style-type:disc">Извлеченные задачи с параметрами</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80e6-aa0f-e86f15e38222" class="bulleted-list"><li style="list-style-type:disc">ID созданных задач в ClickUp</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80f1-95a7-d8da73e32401" class="bulleted-list"><li style="list-style-type:disc">Информацию об ошибках</li></ul></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8067-94e4-edb7ba9d205a" class=""><strong>Уведомления и логирование</strong></p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80b2-b170-f33ab3f8fbbc" class="">При включении send_summary_to_telegram бот отправляет краткую сводку в Telegram чат с информацией о количестве сообщений, задач, ошибок и ссылкой на детальный лог. Логирование поддерживает разные уровни детализации через переменную LOG_LEVEL, что помогает при отладке. Система управляет сроком хранения логов и архивных файлов через log_retention_days и tasks_retention_days.</p></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-801c-b913-cfee33528e1a"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-8059-9863-c30ac7391886" class="">🧪 Режимы работы и тестирование</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8005-a7de-ff152328f90b" class=""><strong>Автоматизация</strong></p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80be-848b-d5a265a5405f" class="">Проект полностью готов к использованию с автоматическим запуском по расписанию (каждый час) через системную задачу.</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80ce-a5db-c3c9e4307ce1" class=""><strong>Режимы тестирования</strong></p></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8035-94ed-df408b6ef8c3" class="bulleted-list"><li style="list-style-type:disc"><strong>-dry-run</strong> — безопасное тестирование конфигурации без создания задач в ClickUp</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-805a-8076-cb693bcecc19" class="bulleted-list"><li style="list-style-type:disc"><strong>-limit</strong> — ограничение количества обработанных сообщений при тестировании</li></ul></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80c3-9c9b-cddf6643b9fc" class=""><strong>Повторное создание задач</strong></p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8000-85a6-c357288023aa" class="">Функция create_clickup_tasks.py позволяет повторно создавать задачи из сохранённых JSON файлов при необходимости, включая режимы --dry-run и --force для пересоздания уже существующих задач.</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8090-9b90-c9d8e08d54a3" class=""><strong>Тестирование</strong></p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80db-bd49-e63409c22678" class="">В репозитории есть полный набор юнит- и интеграционных тестов с моками Telegram, OpenAI и ClickUp для проверки разбора исполнителей, дедлайнов, кэширования и полного цикла обработки.</p></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-80de-a230-e3cf6ebfe29c"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-80ed-99bf-dc969c5e4575" class="">🛠️ Технический стек и архитектура</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8086-a572-fdca4e0e2f31" class=""><strong>Основные технологии</strong></p></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80f2-a94d-d25e56529ded" class="bulleted-list"><li style="list-style-type:disc"><strong>Python 3.10+</strong> с асинхронной обработкой через параллельные работники</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-802e-8e45-e690fb878e28" class="bulleted-list"><li style="list-style-type:disc"><strong>Telegram Bot API</strong> для получения голосовых сообщений</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8035-b3b2-fb573264d0e0" class="bulleted-list"><li style="list-style-type:disc"><strong>OpenAI API</strong> (Whisper для транскрипции + GPT-4 для анализа)</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80bb-8e0b-fd7381b515f4" class="bulleted-list"><li style="list-style-type:disc"><strong>ClickUp REST API</strong> для создания задач с полными параметрами</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8098-a13a-d9da96b44939" class="bulleted-list"><li style="list-style-type:disc"><strong>SQLite</strong> для локального кэширования участников ClickUp</li></ul></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80f8-ab8d-c1df97cf7d3a" class=""><strong>Структура проекта</strong></p></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-8016-abb9-d80ed5ba7e33" class="bulleted-list"><li style="list-style-type:disc">Модульная архитектура: отдельные модули для работы с ClickUp API, парсинга параметров задач, управления логами и состоянием</li></ul></div><div style="display:contents" dir="auto"><ul id="3071cf04-d998-80fd-9193-f48d6dc1d781" class="bulleted-list"><li style="list-style-type:disc">Управление зависимостями через pip-tools с <a href="http://requirements.in/">requirements.in</a> и requirements.lock</li></ul></div><div style="display:contents" dir="auto"><hr id="3071cf04-d998-802a-8b07-e2738c7dc309"/></div><div style="display:contents" dir="auto"><h2 id="3071cf04-d998-806e-bd35-c7d915f8d5cc" class="">🎁 Результат проекта</h2></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-80cf-b2ee-fe8e6ababd5f" class="">Команды получают полностью автоматизированный способ создания задач в ClickUp через естественную речь в Telegram. Голосовые сообщения обрабатываются в фоновом режиме каждый час, задачи создаются автоматически с корректными параметрами (дедлайны, приоритеты, ответственные), а детальные отчеты обеспечивают полную видимость в процесс.</p></div><div style="display:contents" dir="auto"><p id="3071cf04-d998-8029-b70c-e6120809de33" class="">Система надёжно отслеживает обработанные сообщения, избегает дублирования, поддерживает различные форматы аудио и работает с множеством параллельных сообщений. Интеграция с Telegram для отправки итоговой сводки позволяет команде сразу видеть результаты, а гибкая конфигурация обеспечивает легкую адаптацию под специфику каждой команды.</p></div></div></details></div><div style="display:contents" dir="auto"><hr id="8c078ab8-b59c-4db3-b4c1-19b6d60d7e97"/></div><div style="display:contents" dir="auto"><h3 id="26ed59e8-4ca6-48b7-9d46-e106dd03fd1c" class="">Viora Consulting</h3></div><div style="display:contents" dir="auto"><p id="40307451-a337-4d7a-af45-9953f8ac8528" class=""><strong>Исполнительный директор (CEO) | Август 2025 – Февраль 2026 (7 мес.)</strong></p></div><div style="display:contents" dir="auto"><p id="fc26e76a-cdb8-4109-a516-1c028440bb6c" class="">Возглавил запуск консалтингового направления и вывел на рынок образовательный продукт по планированию строительства в Португалии.</p></div><div style="display:contents" dir="auto"><p id="a51f1aef-b7b6-4f43-9b2a-54950ef5c7d0" class=""><strong>Ключевые результаты:</strong></p></div><div style="display:contents" dir="auto"><ul id="255e4b02-f7a5-4945-b2c8-9e864eadbbfa" class="bulleted-list"><li style="list-style-type:disc">Провёл анализ рынка недвижимости и строительства с использованием AI-инструментов (Gemini, Perplexity)</li></ul></div><div style="display:contents" dir="auto"><ul id="4671a7c2-986a-49c7-87ea-0cc6ca84712e" class="bulleted-list"><li style="list-style-type:disc">Разработал AI-ассистента для автоматизированного сбора и обновления данных от поставщиков</li></ul></div><div style="display:contents" dir="auto"><ul id="9f627bbb-0e5e-49d0-b237-9470fd385d7a" class="bulleted-list"><li style="list-style-type:disc">Создал интерактивную карту регионов Португалии с ценовой аналитикой</li></ul></div><div style="display:contents" dir="auto"><ul id="f10dcc23-85bd-4262-8482-c155af508bb5" class="bulleted-list"><li style="list-style-type:disc">Запустил калькулятор стоимости строительства (~20 параметров, расчёты на основе рыночных данных)</li></ul></div><div style="display:contents" dir="auto"><ul id="6496db10-23b7-44c6-b0cf-f762b2a10bcb" class="bulleted-list"><li style="list-style-type:disc">Упаковал продукт в структурированный сервис с готовой методологией и бюджетными сценариями</li></ul></div><div style="display:contents" dir="auto"><p id="37680d8f-b296-4767-8845-2ee0816f48a7" class="">Роль: стратегия продукта, архитектура решения, запуск MVP, координация разработки и упаковка в коммерческий формат.</p></div><div style="display:contents" dir="auto"><hr id="8cbbe280-b6ea-4588-b7c5-cfe26fae491b"/></div><div style="display:contents" dir="auto"><h3 id="ef947adf-f9aa-45f6-a601-6c96f28095ea" class="">Viora Development</h3></div><div style="display:contents" dir="auto"><p id="2970660e-2f30-4a53-99dc-033d126400be" class=""><strong>UX/UI-дизайнер | Сентябрь 2025 – Февраль 2026 (6 мес.)</strong></p></div><div style="display:contents" dir="auto"><p id="6e9b043f-850e-46dd-aabf-499ef943af1f" class="">Разрабатывал инвестиционные презентации и конверсионные сайты для строительных проектов компании. Переводил архитектурные планы и техническую документацию в понятный визуальный формат для потенциальных инвесторов.</p></div><div style="display:contents" dir="auto"><p id="6ec2f200-37b8-425a-a809-7c62371bac23" class=""><strong>Ключевые результаты:</strong></p></div><div style="display:contents" dir="auto"><ul id="06b5f670-a9d1-4b6f-be63-547c7469b75c" class="bulleted-list"><li style="list-style-type:disc">17 инвестиционных предложений с AI-визуализациями</li></ul></div><div style="display:contents" dir="auto"><ul id="d7e43438-075c-4d5b-b06c-e68af74e778d" class="bulleted-list"><li style="list-style-type:disc">Разработка лендингов и цифровых презентаций под инвестиционную модель проектов</li></ul></div><div style="display:contents" dir="auto"><ul id="1aef9cf5-8d7f-47d5-a8df-f9602c4b6b2b" class="bulleted-list"><li style="list-style-type:disc">Структурирование ценностного предложения и финансовой аргументации</li></ul></div><div style="display:contents" dir="auto"><p id="6c2200d5-ce94-42e0-903e-69c25bef12a4" class="">Технический стек: Sora (AI-визуализация), <a href="http://Lovable.app">Lovable.app</a></p></div><div style="display:contents" dir="auto"><hr id="fc96aa52-deff-47b3-81e5-3aa09448bbd2"/></div><div style="display:contents" dir="auto"><h3 id="0a0aecbd-dd95-4b55-af4a-34d758dc87aa" class="">Т-Банк</h3></div><div style="display:contents" dir="auto"><p id="3171cf04-d998-8054-a0f0-c4660f19b0ae" class=""><strong>Представитель банка | Июнь 2024 – Июнь 2025 (1 год 1 мес.)</strong></p></div><div style="display:contents" dir="auto"><ul id="3081cf04-d998-8073-b565-e64084854d51" class="bulleted-list"><li style="list-style-type:disc">Проведение встреч с клиентами и продажа банковских продуктов</li></ul></div><div style="display:contents" dir="auto"><ul id="3081cf04-d998-801e-ab67-e4b989da6e76" class="bulleted-list"><li style="list-style-type:disc">Работа с возражениями и ведение переговоров</li></ul></div><div style="display:contents" dir="auto"><ul id="3081cf04-d998-8089-a1d3-e87336ffa357" class="bulleted-list"><li style="list-style-type:disc">Работа в CRM и управление воронкой</li></ul></div><div style="display:contents" dir="auto"><ul id="3081cf04-d998-8003-921b-f57ae9fa579b" class="bulleted-list"><li style="list-style-type:disc">Выполнение планов продаж</li></ul></div><div style="display:contents" dir="auto"><p id="3081cf04-d998-80e0-8f0c-d3bc2c5a22cb" class="">Развитые навыки коммуникации, убеждения и самостоятельного управления графиком.</p></div><div style="display:contents" dir="auto"><h3 id="3081cf04-d998-80e6-9106-f9426a682f5a" class="">📊 Развитие отдела продаж и процессов</h3></div><div style="display:contents" dir="auto"><p id="3081cf04-d998-8001-830a-e7997fb99222" class="">Создал отдел продаж с нуля, настроил sales-воронку и бизнес-процессы компании. Внедрил для владельца персонального AI-ассистента для автоматизации регулярных задач и ускорения принятия решений.</p></div><div style="display:contents" dir="auto"><hr id="3081cf04-d998-8077-b97f-f65ca436754f"/></div><div style="display:contents" dir="auto"><h3 id="3081cf04-d998-8019-9cf0-daf3f891d9cd" class="">📚 База знаний компании</h3></div><div style="display:contents" dir="auto"><p id="3081cf04-d998-8081-9623-ebeb9496d35e" class="">Разработал структурированное хранилище процессов и знаний компании — инструмент для быстрого адаптирования новых сотрудников и стандартизации работы.</p></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">🔗 Доказательство:</summary><div class="indented"><div style="display:contents" dir="ltr"><figure id="3081cf04-d998-808b-8502-cf10b624c52d" class="image"><a href="%D0%9F%D1%83%D1%82%D0%B8%D0%BD%D1%86%D0%B5%D0%B2%20%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0/CleanShot_2026-02-15_at_15.22.302x.png"><img style="width:1569.991455078125px" src="%D0%9F%D1%83%D1%82%D0%B8%D0%BD%D1%86%D0%B5%D0%B2%20%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0/CleanShot_2026-02-15_at_15.22.302x.png"/></a></figure></div></div></details></div><div style="display:contents" dir="auto"><hr id="3081cf04-d998-80f7-8aa5-c274ed6cbca2"/></div><div style="display:contents" dir="auto"><h3 id="3081cf04-d998-80d8-99f2-e7a7aec4a2f4" class="">🎨 Направление: Создание промо-материалов</h3></div><div style="display:contents" dir="auto"><p id="3081cf04-d998-801e-a8d8-ff7dd5d3964f" class="">Инициировал направление по разработке сайтов и промо-материалов для инвестиционного направления в компанию. Разработал подход к генерации визуальных эскизов, исходя из планов проектов</p></div><div style="display:contents" dir="auto"><p id="3081cf04-d998-80ca-a90e-f40d442b82e3" class=""><strong>Результаты:</strong></p></div><div style="display:contents" dir="auto"><ul id="3081cf04-d998-80ce-b908-fe6b1321d7cb" class="bulleted-list"><li style="list-style-type:disc">Количество созданных проектов: 10</li></ul></div><div style="display:contents" dir="auto"><p id="3081cf04-d998-80e7-9f01-c322e60b408d" class="">🔗 Доказательства: </p></div><div style="display:contents" dir="auto"><p id="3081cf04-d998-80f0-84bd-c95d268d482b" class=""><a href="https://dev-l29.viorabuild.org/">https://dev-l29.viorabuild.org/</a></p></div><div style="display:contents" dir="auto"><p id="3081cf04-d998-805a-ab53-f72ed9561eae" class=""><a href="https://dev-l30.viorabuild.org/">https://dev-l30.viorabuild.org/</a></p></div><div style="display:contents" dir="auto"><p id="3081cf04-d998-8099-86a0-cdd6f35505a6" class=""><a href="https://algarve-haven-ventures.lovable.app/">https://algarve-haven-ventures.lovable.app/</a></p></div><div style="display:contents" dir="auto"><hr id="3081cf04-d998-80fc-84c5-fa62e7b9dee8"/></div><div style="display:contents" dir="auto"><h3 id="3081cf04-d998-802a-90f5-d636e9b0e396" class="">🏗️ Направление: Курс по планированию строительства в Португалии</h3></div><div style="display:contents" dir="auto"><p id="3081cf04-d998-806b-8abc-de871f84f3df" class="">Создал курс/сервис помощи клиентам в планировании строительства в Португалии — полное руководство от анализа рынка до подбора материалов и подрядчиков.</p></div><div style="display:contents" dir="auto"><p id="3081cf04-d998-8068-82fe-f8739d81062e" class=""><strong>Что я сделал с помощью AI:</strong></p></div><div style="display:contents" dir="auto"><ul id="3081cf04-d998-8015-9ed2-d7228a9575a4" class="bulleted-list"><li style="list-style-type:disc">Провел глубокий анализ рынка недвижимости, цен на работы, цены материалов и подрядчиков в Португалии через Gemini и Perplexity</li></ul></div><div style="display:contents" dir="auto"><ul id="3081cf04-d998-805d-8ff1-c6df85215e90" class="bulleted-list"><li style="list-style-type:disc">Создал AI-ассистента, который самостоятельно общается с поставщиками материалов, собирает актуальные данные и формирует базу предложений</li></ul></div><div style="display:contents" dir="auto"><ul id="3081cf04-d998-80fb-9182-d1b6d202f2fb" class="bulleted-list"><li style="list-style-type:disc">Структурировал всю информацию в понятный курс/гайд, помогающий людям планировать строительство с четким пониманием реальных бюджетов и процессов</li></ul></div><div style="display:contents" dir="auto"><p id="3081cf04-d998-80cb-9326-f2fa9f0e3265" class=""><strong>Результат:</strong></p></div><div style="display:contents" dir="auto"><ul id="3081cf04-d998-80fd-9d04-cfa8dad9aba9" class="bulleted-list"><li style="list-style-type:disc">Готовый курс, который экономит часы на исследование рынка для клиентов</li></ul></div><div style="display:contents" dir="auto"><ul id="3081cf04-d998-8042-a609-c4592192e172" class="bulleted-list"><li style="list-style-type:disc">Интегрированная система сбора данных через AI-ассистента</li></ul></div><div style="display:contents" dir="auto"><ul id="3081cf04-d998-8094-8e44-dda60fb5dde5" class="bulleted-list"><li style="list-style-type:disc">База актуальных цен и подрядчиков</li></ul></div><div style="display:contents" dir="ltr"><figure id="3081cf04-d998-8017-a50c-f01b0b691412"><a href="https://viora-consulting.lovable.app/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Чекап</div><div class="bookmark-description">Гарантируем, что за один день вы узнаете, с чего начать строительство дома в Португалии, как не потерять время и деньги, какой дом под ваш бюджет вы сможете построить, а также как получить финансирование на строительство</div></div><div class="bookmark-href"><img src="https://viora-consulting.lovable.app/favicon.ico" class="icon bookmark-icon"/>https://viora-consulting.lovable.app/</div></div><img src="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b4b28067-2a86-4885-b1c5-84f4d0e0cfa6/id-preview-adcb30ed--a344098f-94d8-44c7-9895-653e1eaa913e.lovable.app-1768490968675.png" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><div id="3081cf04-d998-8004-ba41-e04003ca3b10" class="column-list"><div style="display:contents" dir="auto"><div id="3081cf04-d998-80c3-a5b4-d3eccdcf8d06" style="width:33.333333333333336%" class="column"><div style="display:contents" dir="ltr"><figure id="3081cf04-d998-80c2-809e-f34b2a0c11f9" class="image"><a href="%D0%9F%D1%83%D1%82%D0%B8%D0%BD%D1%86%D0%B5%D0%B2%20%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0/CleanShot_2026-02-15_at_15.14.352x_Large.jpeg"><img style="width:760.9722290039062px" src="%D0%9F%D1%83%D1%82%D0%B8%D0%BD%D1%86%D0%B5%D0%B2%20%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0/CleanShot_2026-02-15_at_15.14.352x_Large.jpeg"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="3081cf04-d998-8089-9b01-c31ad7b955ef" style="width:33.333333333333336%" class="column"><div style="display:contents" dir="ltr"><figure id="3081cf04-d998-80df-8fe8-f2c691945871" class="image"><a href="%D0%9F%D1%83%D1%82%D0%B8%D0%BD%D1%86%D0%B5%D0%B2%20%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0/CleanShot_2026-02-15_at_15.15.042x_Large.jpeg"><img style="width:760.98095703125px" src="%D0%9F%D1%83%D1%82%D0%B8%D0%BD%D1%86%D0%B5%D0%B2%20%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0/CleanShot_2026-02-15_at_15.15.042x_Large.jpeg"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="3081cf04-d998-808c-8e1c-d2b984bd4ddc" style="width:33.33333333333333%" class="column"><div style="display:contents" dir="ltr"><figure id="3081cf04-d998-806b-90b7-e4eac804617f" class="image"><a href="%D0%9F%D1%83%D1%82%D0%B8%D0%BD%D1%86%D0%B5%D0%B2%20%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0/CleanShot_2026-02-15_at_15.15.202x_Large.jpeg"><img style="width:1569.991455078125px" src="%D0%9F%D1%83%D1%82%D0%B8%D0%BD%D1%86%D0%B5%D0%B2%20%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0/CleanShot_2026-02-15_at_15.15.202x_Large.jpeg"/></a></figure></div></div></div></div></div><div style="display:contents" dir="auto"><div id="3081cf04-d998-80ca-98a6-f808b52cf226" class="column-list"><div style="display:contents" dir="auto"><div id="3081cf04-d998-8011-9cc9-c6301495ba3b" style="width:33.333333333333336%" class="column"><div style="display:contents" dir="ltr"><figure id="3081cf04-d998-8060-a752-d9eafbd8f2f6" class="image"><a href="%D0%9F%D1%83%D1%82%D0%B8%D0%BD%D1%86%D0%B5%D0%B2%20%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0/CleanShot_2026-02-15_at_15.15.262x_Large.jpeg"><img style="width:1569.991455078125px" src="%D0%9F%D1%83%D1%82%D0%B8%D0%BD%D1%86%D0%B5%D0%B2%20%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0/CleanShot_2026-02-15_at_15.15.262x_Large.jpeg"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="3081cf04-d998-8071-9e00-f28cde23a39d" style="width:33.333333333333336%" class="column"><div style="display:contents" dir="ltr"><figure id="3081cf04-d998-809c-a321-d6b4f550e305" class="image"><a href="%D0%9F%D1%83%D1%82%D0%B8%D0%BD%D1%86%D0%B5%D0%B2%20%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0/CleanShot_2026-02-15_at_15.15.522x_Large.jpeg"><img style="width:1569.991455078125px" src="%D0%9F%D1%83%D1%82%D0%B8%D0%BD%D1%86%D0%B5%D0%B2%20%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0/CleanShot_2026-02-15_at_15.15.522x_Large.jpeg"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="3081cf04-d998-800d-afc6-d196bfc02ead" style="width:33.33333333333333%" class="column"><div style="display:contents" dir="ltr"><figure id="3081cf04-d998-800d-9e60-ff10b7d38b6b" class="image"><a href="%D0%9F%D1%83%D1%82%D0%B8%D0%BD%D1%86%D0%B5%D0%B2%20%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0/CleanShot_2026-02-15_at_15.14.012x_Large.jpeg"><img style="width:1569.991455078125px" src="%D0%9F%D1%83%D1%82%D0%B8%D0%BD%D1%86%D0%B5%D0%B2%20%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0/CleanShot_2026-02-15_at_15.14.012x_Large.jpeg"/></a></figure></div></div></div></div></div><div style="display:contents" dir="auto"><h3 id="3081cf04-d998-8057-8623-d68c52598eda" class="">Соц. сети</h3></div><div style="display:contents" dir="auto"><p id="3081cf04-d998-80b4-ad27-dc79550ed08a" class=""><a href="https://www.youtube.com/@danyanovich">https://www.youtube.com/@danyanovich</a></p></div><div style="display:contents" dir="auto"><p id="3081cf04-d998-802d-9aae-cde4d6348f09" class=""><a href="https://danyanovich.site/">https://danyanovich.site/</a></p></div><div style="display:contents" dir="ltr"><figure id="3081cf04-d998-80b7-9539-f12ab7245705" class="image"><a href="%D0%9F%D1%83%D1%82%D0%B8%D0%BD%D1%86%D0%B5%D0%B2%20%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0/%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0_short.jpeg"><img style="width:240px" src="%D0%9F%D1%83%D1%82%D0%B8%D0%BD%D1%86%D0%B5%D0%B2%20%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0/%D0%94%D0%B0%D0%BD%D0%B8%D0%BB%D0%B0_short.jpeg"/></a></figure></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

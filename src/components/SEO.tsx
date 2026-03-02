@@ -64,7 +64,7 @@ export const getServiceSchema = (isRu: boolean) => ({
   '@type': 'Service',
   '@id': `${BASE_URL}/consulting#service`,
   name: isRu ? 'Консультации по Notion и AI' : 'Notion and AI Consulting',
-  description: isRu 
+  description: isRu
     ? 'Персональные консультации по настройке Notion и внедрению AI-инструментов'
     : 'Personal consulting on Notion setup and AI tool implementation',
   provider: {
@@ -103,7 +103,7 @@ export const getCourseSchema = (isRu: boolean) => ({
   '@type': 'ItemList',
   '@id': `${BASE_URL}/courses#courselist`,
   name: isRu ? 'Курсы по Notion и AI' : 'Notion and AI Courses',
-  description: isRu 
+  description: isRu
     ? 'Обучающие курсы по работе с Notion и AI-инструментами'
     : 'Training courses on Notion and AI tools',
   itemListElement: [
@@ -140,7 +140,7 @@ export const getBlogSchema = (isRu: boolean) => ({
   '@type': 'Blog',
   '@id': `${BASE_URL}/blog#blog`,
   name: isRu ? 'Блог Дэна Яновича' : 'Dan Yanovich Blog',
-  description: isRu 
+  description: isRu
     ? 'Статьи о Notion, AI и продуктивности'
     : 'Articles about Notion, AI and productivity',
   url: `${BASE_URL}/blog`,
@@ -156,7 +156,7 @@ export const getTemplatesSchema = (isRu: boolean) => ({
   '@type': 'CollectionPage',
   '@id': `${BASE_URL}/templates#collection`,
   name: isRu ? 'Шаблоны Notion' : 'Notion Templates',
-  description: isRu 
+  description: isRu
     ? 'Коллекция профессиональных шаблонов Notion для бизнеса и личного использования'
     : 'Collection of professional Notion templates for business and personal use',
   url: `${BASE_URL}/templates`,
@@ -208,7 +208,7 @@ export const getReviewsSchema = (isRu: boolean) => ({
   '@type': 'WebPage',
   '@id': `${BASE_URL}/reviews#reviews`,
   name: isRu ? 'Отзывы клиентов' : 'Client Reviews',
-  description: isRu 
+  description: isRu
     ? 'Отзывы о шаблонах Notion и консультациях Дэна Яновича'
     : 'Reviews of Dan Yanovich Notion templates and consulting',
   url: `${BASE_URL}/reviews`,
@@ -245,7 +245,7 @@ const SEO = ({
 }: SEOProps) => {
   const { i18n } = useTranslation();
   const isRu = i18n.language === 'ru';
-  
+
   const title = isRu ? titleRu : titleEn;
   const description = isRu ? descriptionRu : descriptionEn;
   const locale = isRu ? 'ru_RU' : 'en_US';
@@ -257,8 +257,8 @@ const SEO = ({
     getWebSiteSchema(),
   ];
 
-  const schemas = structuredData 
-    ? Array.isArray(structuredData) 
+  const schemas = structuredData
+    ? Array.isArray(structuredData)
       ? [...defaultSchemas, ...structuredData]
       : [...defaultSchemas, structuredData]
     : defaultSchemas;
@@ -267,37 +267,37 @@ const SEO = ({
     <Helmet>
       {/* Language */}
       <html lang={isRu ? 'ru' : 'en'} />
-      
+
       {/* Basic Meta Tags */}
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta name="author" content={author} />
-      
+
       {/* Open Graph */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content={type} />
-      <meta property="og:site_name" content="Дэн Янович" />
+      <meta property="og:site_name" content={isRu ? 'Дэн Янович' : 'Dan Yanovich'} />
       <meta property="og:locale" content={locale} />
       <meta property="og:locale:alternate" content={alternateLocale} />
-      
+
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
-      
+
       {/* Canonical URL */}
       <link rel="canonical" href={url} />
-      
+
       {/* Hreflang for multilingual */}
       <link rel="alternate" hrefLang="ru" href={url} />
       <link rel="alternate" hrefLang="en" href={url} />
       <link rel="alternate" hrefLang="x-default" href={url} />
-      
+
       {/* Structured Data - Multiple schemas */}
       {schemas.map((schema, index) => (
         <script key={index} type="application/ld+json">
