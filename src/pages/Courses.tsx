@@ -10,21 +10,21 @@ const Courses = () => {
     {
       icon: BookOpen,
       title: i18n.language === 'ru' ? "Практический подход" : "Practical Approach",
-      description: i18n.language === 'ru' 
+      description: i18n.language === 'ru'
         ? "Все материалы основаны на реальных кейсах и проектах"
         : "All materials based on real cases and projects",
     },
     {
       icon: Clock,
       title: i18n.language === 'ru' ? "В вашем темпе" : "At Your Pace",
-      description: i18n.language === 'ru' 
+      description: i18n.language === 'ru'
         ? "Учитесь когда удобно, доступ к материалам навсегда"
         : "Learn at your convenience, lifetime access to materials",
     },
     {
       icon: Users,
       title: i18n.language === 'ru' ? "Поддержка" : "Support",
-      description: i18n.language === 'ru' 
+      description: i18n.language === 'ru'
         ? "Консультации и помощь в процессе обучения"
         : "Consultation and assistance during training",
     },
@@ -55,7 +55,7 @@ const Courses = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
+      <SEO
         titleRu="Курсы по Notion | Дэн Янович"
         titleEn="Notion Courses | Dan Yanovich"
         descriptionRu="Обучающие курсы по работе с Notion и AI-инструментами. Практический подход, постоянный доступ к материалам."
@@ -63,13 +63,13 @@ const Courses = () => {
         url="https://danyanovich.com/courses"
         structuredData={[courseSchema, breadcrumbSchema]}
       />
-      
+
       {/* Hero Section with "In Development" Banner */}
-      <section className="bg-muted/30 py-16 md:py-20 border-b">
+      <section className="bg-pastel-mint py-16 md:py-20 border-b-2 border-foreground">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             {/* In Development Badge */}
-            <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-md text-base font-medium">
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none text-base font-bold uppercase tracking-wider">
               <span>🚧</span>
               <span>{t('common.inDevelopment')}</span>
             </div>
@@ -82,13 +82,13 @@ const Courses = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-16 md:py-20 bg-card border-b-2 border-foreground">
         <div className="container">
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {courseFeatures.map((feature, index) => (
-              <Card key={index} className="text-center">
+              <Card key={index} className="text-center rounded-none border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all">
                 <CardHeader className="space-y-4">
-                  <div className="inline-flex p-4 bg-primary text-primary-foreground rounded-lg mx-auto">
+                  <div className="inline-flex p-4 bg-primary text-primary-foreground border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] mx-auto">
                     <feature.icon className="h-6 w-6" />
                   </div>
                   <h3 className="text-lg font-bold">{feature.title}</h3>
@@ -112,8 +112,8 @@ const Courses = () => {
           </h2>
           <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {benefits.map((benefit, index) => (
-              <div key={index} className="flex items-start gap-3 border rounded-lg p-4 bg-background">
-                <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+              <div key={index} className="flex items-start gap-3 border-2 border-foreground rounded-none shadow-[4px_4px_0px_0px_currentColor] p-4 bg-card hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all">
+                <CheckCircle className="h-5 w-5 text-foreground flex-shrink-0 mt-0.5" />
                 <span className="text-sm">{benefit}</span>
               </div>
             ))}

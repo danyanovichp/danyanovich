@@ -62,7 +62,7 @@ const ProjectContent = ({ project, index, total, isRu }: { project: typeof portf
       {project.features.map((feature, fi) => (
         <div
           key={fi}
-          className="rounded-2xl bg-background/60 backdrop-blur-sm p-5 space-y-3"
+          className="rounded-none bg-card border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] p-5 space-y-3"
         >
           <h4 className="text-sm font-semibold font-display">
             {isRu ? feature.title_ru : feature.title_en}
@@ -168,7 +168,7 @@ const Cases = () => {
           {portfolioProjects.map((project, index) => (
             <div
               key={project.id}
-              className={`rounded-3xl ${pastelBgClasses[index % pastelBgClasses.length]}`}
+              className={`border-b-2 border-foreground ${pastelBgClasses[index % pastelBgClasses.length]} rounded-none`}
             >
               <ProjectContent project={project} index={index} total={total} isRu={isRu} />
             </div>
@@ -199,17 +199,17 @@ const Cases = () => {
             variant="outline"
             size="icon"
             onClick={prev}
-            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 rounded-full shadow-lg bg-background/80 backdrop-blur-sm h-10 w-10 md:h-12 md:w-12"
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 rounded-none border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] bg-card h-10 w-10 md:h-12 md:w-12 hover:-translate-y-[calc(50%+2px)] hover:-translate-x-[2px] hover:shadow-[6px_6px_0px_0px_currentColor] transition-all"
           >
-            <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
+            <ChevronLeft className="h-5 w-5 md:h-6 md:w-6 text-foreground" />
           </Button>
           <Button
             variant="outline"
             size="icon"
             onClick={next}
-            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 rounded-full shadow-lg bg-background/80 backdrop-blur-sm h-10 w-10 md:h-12 md:w-12"
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 rounded-none border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] bg-card h-10 w-10 md:h-12 md:w-12 hover:-translate-y-[calc(50%+2px)] hover:translate-x-[2px] hover:shadow-[6px_6px_0px_0px_currentColor] transition-all"
           >
-            <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
+            <ChevronRight className="h-5 w-5 md:h-6 md:w-6 text-foreground" />
           </Button>
 
           {/* Dot indicators */}
@@ -218,11 +218,10 @@ const Cases = () => {
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`h-2.5 rounded-full transition-all duration-300 ${
-                  index === currentSlide
-                    ? 'bg-foreground w-8'
-                    : 'bg-foreground/30 w-2.5 hover:bg-foreground/50'
-                }`}
+                className={`h-2.5 rounded-full transition-all duration-300 ${index === currentSlide
+                    ? 'bg-foreground w-8 rounded-none border-2 border-foreground'
+                    : 'bg-card w-2.5 hover:bg-muted border-2 border-foreground rounded-none'
+                  }`}
               />
             ))}
           </div>

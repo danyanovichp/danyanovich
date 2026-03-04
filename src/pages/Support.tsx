@@ -16,13 +16,13 @@ const Support = () => {
         descriptionEn="Support my work with cryptocurrency"
       />
       <div className="relative min-h-screen">
-        
+
 
         {/* Hero */}
         <section className="container mx-auto px-4 pt-24 pb-12 relative z-10">
           <AnimatedSection>
             <div className="text-center max-w-2xl mx-auto">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-pastel-peach/30 mb-6">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-none bg-pastel-yellow border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] mb-6">
                 <Heart className="h-8 w-8 text-foreground" />
               </div>
               <h1 className="font-display text-4xl md:text-5xl font-bold tracking-tight mb-4">
@@ -41,8 +41,8 @@ const Support = () => {
         <section className="container mx-auto px-4 pb-12 relative z-10">
           <AnimatedSection>
             <div className="max-w-2xl mx-auto">
-              <div className="rounded-2xl p-8 bg-pastel-peach/20 border border-border/10 text-center transition-all hover:scale-[1.01]">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-pastel-peach/40 mb-4">
+              <div className="rounded-none p-8 bg-card border-2 border-foreground shadow-[8px_8px_0px_0px_currentColor] text-center transition-all hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0px_0px_currentColor]">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-none bg-pastel-pink border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] mb-4">
                   <CreditCard className="h-6 w-6 text-foreground" />
                 </div>
                 <h2 className="font-display text-xl font-semibold mb-2">
@@ -57,7 +57,7 @@ const Support = () => {
                   href="https://nowpayments.io/donation/danyanovich"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 rounded-xl font-medium hover:opacity-90 transition-opacity"
+                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground border-2 border-foreground px-6 py-3 rounded-none font-bold uppercase tracking-wider shadow-[4px_4px_0px_0px_currentColor] hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[6px_6px_0px_0px_currentColor] transition-all"
                 >
                   {isRu ? 'Поддержать' : 'Donate Now'}
                   <ExternalLink className="h-4 w-4" />

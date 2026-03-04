@@ -50,7 +50,7 @@ const Consulting = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
+      <SEO
         titleRu="Консалтинг | Дэн Янович"
         titleEn="Consulting | Dan Yanovich"
         descriptionRu="Персональные консультации по Notion и AI-инструментам. Стратегия, обучение и автоматизация бизнес-процессов."
@@ -59,11 +59,11 @@ const Consulting = () => {
         structuredData={[serviceSchema, breadcrumbSchema]}
       />
       {/* Hero Section with "In Development" Banner */}
-      <section className="bg-muted/30 py-16 md:py-20 border-b">
+      <section className="bg-pastel-yellow py-16 md:py-20 border-b-2 border-foreground">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             {/* In Development Badge */}
-            <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-md text-base font-medium">
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none text-base font-bold uppercase tracking-wider">
               <span>🚧</span>
               <span>{t('common.inDevelopment')}</span>
             </div>
@@ -85,7 +85,7 @@ const Consulting = () => {
             {services.map((service, index) => (
               <Card key={index} className="text-center">
                 <CardHeader className="space-y-4">
-                  <div className="inline-flex p-4 bg-primary text-primary-foreground rounded-lg mx-auto">
+                  <div className="inline-flex p-4 bg-primary text-primary-foreground border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none mx-auto">
                     <service.icon className="h-6 w-6" />
                   </div>
                   <h3 className="text-lg font-bold">{service.title}</h3>
@@ -102,7 +102,7 @@ const Consulting = () => {
           {/* CTA */}
           <div className="text-center max-w-2xl mx-auto space-y-6">
             <p className="text-base text-muted-foreground">
-              {i18n.language === 'ru' 
+              {i18n.language === 'ru'
                 ? 'Заинтересованы в консалтинговых услугах? Свяжитесь со мной для обсуждения вашего проекта.'
                 : 'Interested in consulting services? Contact me to discuss your project.'}
             </p>

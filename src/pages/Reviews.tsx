@@ -17,7 +17,7 @@ const Reviews = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
+      <SEO
         titleRu="Отзывы клиентов | Дэн Янович"
         titleEn="Client Reviews | Dan Yanovich"
         descriptionRu="Отзывы о шаблонах Notion и консультациях от Дэна Яновича. Реальные истории успеха клиентов."
@@ -27,11 +27,11 @@ const Reviews = () => {
       />
 
       {/* Hero Section */}
-      <section className="bg-muted/30 py-16 md:py-20 border-b">
+      <section className="bg-pastel-pink py-16 md:py-20 border-b-2 border-foreground">
         <div className="container">
-          <div className="max-w-3xl mx-auto text-center space-y-4">
-            <h1 className="text-3xl md:text-5xl font-bold">{t('reviews.title')}</h1>
-            <p className="text-base md:text-lg text-muted-foreground">{t('reviews.subtitle')}</p>
+          <div className="max-w-3xl mx-auto text-center space-y-4 bg-card border-2 border-foreground shadow-[8px_8px_0px_0px_currentColor] p-8">
+            <h1 className="text-3xl md:text-5xl font-bold font-display">{t('reviews.title')}</h1>
+            <p className="text-base md:text-lg font-medium">{t('reviews.subtitle')}</p>
           </div>
         </div>
       </section>
@@ -47,19 +47,19 @@ const Reviews = () => {
             ) : reviews.length > 0 ? (
               <div className="grid gap-6 md:grid-cols-2">
                 {reviews.map((review) => (
-                  <Card key={review.id} className="p-6 space-y-4">
+                  <Card key={review.id} className="p-6 space-y-4 rounded-none border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all bg-card">
                     <div className="flex items-center gap-1">
                       {[...Array(5)].map((_, i) => (
-                        <Star 
-                          key={i} 
-                          className={`h-4 w-4 ${i < review.rating ? 'text-yellow-500 fill-yellow-500' : 'text-muted-foreground'}`}
+                        <Star
+                          key={i}
+                          className={`h-4 w-4 ${i < review.rating ? 'text-foreground fill-foreground' : 'text-muted-foreground'}`}
                         />
                       ))}
                     </div>
-                    <p className="text-sm text-muted-foreground">{review.review_text}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="font-medium text-sm">{review.author_name}</span>
-                      <span className="text-xs text-muted-foreground">
+                    <p className="text-sm font-medium">{review.review_text}</p>
+                    <div className="flex items-center justify-between border-t-2 border-foreground pt-4 mt-2">
+                      <span className="font-bold text-sm uppercase tracking-wider">{review.author_name}</span>
+                      <span className="text-xs font-bold text-foreground/70">
                         {new Date(review.created_at).toLocaleDateString(isRu ? 'ru-RU' : 'en-US')}
                       </span>
                     </div>

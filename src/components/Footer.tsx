@@ -22,7 +22,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative border-t border-border/5 mt-auto">
+    <footer className="relative border-t-2 border-foreground bg-card mt-auto">
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {/* Brand */}
@@ -31,17 +31,17 @@ const Footer = () => {
               {i18n.language === 'ru' ? 'Дэн Янович' : 'Dan Yanovich'}
             </span>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              {i18n.language === 'ru' 
+              {i18n.language === 'ru'
                 ? 'Эксперт по Notion и AI-решениям. Помогаю оптимизировать рабочие процессы.'
                 : 'Notion and AI solutions expert. Optimizing workflows and productivity.'}
             </p>
             <div className="flex gap-2 pt-2">
-              <Button variant="outline" size="icon" asChild className="rounded-full h-9 w-9">
+              <Button variant="outline" size="icon" asChild className="rounded-none h-9 w-9">
                 <a href="https://www.youtube.com/channel/UCzcTrBkzXgA9aaH05cWVi2g" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                   <Youtube className="h-4 w-4" />
                 </a>
               </Button>
-              <Button variant="outline" size="icon" asChild className="rounded-full h-9 w-9">
+              <Button variant="outline" size="icon" asChild className="rounded-none h-9 w-9">
                 <a href="https://t.me/danyanovichp" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
                   <MessageCircle className="h-4 w-4" />
                 </a>
@@ -82,7 +82,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-border/5 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-16 pt-8 border-t-2 border-foreground flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-muted-foreground">
             © {currentYear} {i18n.language === 'ru' ? 'Дэн Янович' : 'Dan Yanovich'}
           </p>

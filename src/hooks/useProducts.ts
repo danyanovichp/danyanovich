@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { useState } from "react";
 
 export interface Product {
   id: string;
@@ -27,48 +26,13 @@ export interface Product {
   updated_at: string;
 }
 
-
 export const useProducts = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchProducts = async () => {
-    try {
-      setIsLoading(true);
-      const { data, error } = await supabase
-        .from("products")
-        .select("*")
-        .order("popularity", { ascending: false });
-
-      if (error) throw error;
-      
-      // Parse JSONB fields
-      const parsedProducts = (data || []).map(p => ({
-        ...p,
-        features_ru: Array.isArray(p.features_ru) ? p.features_ru : [],
-        features_en: Array.isArray(p.features_en) ? p.features_en : [],
-      })) as Product[];
-      
-      setProducts(parsedProducts);
-      setError(null);
-    } catch (err) {
-      console.error("Error fetching products:", err);
-      setError("Ошибка загрузки продуктов");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  const [products] = useState<Product[]>([]);
 
   return {
     products,
-    isLoading,
-    error,
-    fetchProducts,
+    isLoading: false,
+    error: null,
+    fetchProducts: () => { },
   };
 };

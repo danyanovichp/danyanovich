@@ -199,7 +199,7 @@ const FAQ = () => {
   const filteredFaqs = useMemo(() => {
     return faqs.filter(faq => {
       const matchesCategory = activeCategory === 'all' || faq.category === activeCategory;
-      const matchesSearch = searchQuery === '' || 
+      const matchesSearch = searchQuery === '' ||
         faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
         faq.answer.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesCategory && matchesSearch;
@@ -220,7 +220,7 @@ const FAQ = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
+      <SEO
         titleRu="FAQ | Дэн Янович"
         titleEn="FAQ | Dan Yanovich"
         descriptionRu="Ответы на часто задаваемые вопросы о шаблонах Notion, оплате, поддержке и услугах."
@@ -230,14 +230,14 @@ const FAQ = () => {
       />
 
       {/* Hero Section */}
-      <section className="bg-muted/30 py-16 md:py-20 border-b border-border/20">
+      <section className="bg-pastel-mint py-16 md:py-20 border-b-2 border-foreground">
         <div className="container">
-          <div className="max-w-3xl mx-auto text-center space-y-4">
+          <div className="max-w-3xl mx-auto text-center space-y-4 bg-card border-2 border-foreground shadow-[8px_8px_0px_0px_currentColor] p-8">
             <AnimatedSection>
-              <h1 className="text-3xl md:text-5xl font-bold">{t('faq.title')}</h1>
+              <h1 className="text-3xl md:text-5xl font-bold font-display">{t('faq.title')}</h1>
             </AnimatedSection>
             <AnimatedSection delay={100}>
-              <p className="text-base md:text-lg text-muted-foreground">
+              <p className="text-base md:text-lg font-medium">
                 {t('faq.subtitle')}
               </p>
             </AnimatedSection>
@@ -258,7 +258,7 @@ const FAQ = () => {
                   placeholder={i18n.language === 'ru' ? 'Поиск по FAQ...' : 'Search FAQ...'}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 rounded-none border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] focus-visible:ring-0 focus-visible:shadow-none focus-visible:translate-y-[2px] focus-visible:translate-x-[2px] transition-all bg-card font-medium"
                 />
               </div>
             </AnimatedSection>
@@ -271,10 +271,10 @@ const FAQ = () => {
                     <TabsTrigger
                       key={cat.value}
                       value={cat.value}
-                      className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-full px-4 py-2"
+                      className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-none border-2 border-foreground bg-card px-4 py-2 font-bold uppercase tracking-wider shadow-[2px_2px_0px_0px_currentColor] data-[state=active]:shadow-none data-[state=active]:translate-y-[2px] data-[state=active]:translate-x-[2px] transition-all"
                     >
                       {i18n.language === 'ru' ? cat.labelRu : cat.labelEn}
-                      <Badge variant="secondary" className="ml-2 text-xs">
+                      <Badge className="ml-2 text-xs rounded-none border-foreground text-foreground bg-card data-[state=active]:bg-foreground data-[state=active]:text-white shadow-none">
                         {getCategoryCount(cat.value)}
                       </Badge>
                     </TabsTrigger>
@@ -291,12 +291,12 @@ const FAQ = () => {
                     <AccordionItem
                       key={index}
                       value={`item-${index}`}
-                      className="border rounded-lg bg-background px-6"
+                      className="border-2 border-foreground rounded-none bg-card shadow-[4px_4px_0px_0px_currentColor] px-6 data-[state=open]:shadow-none data-[state=open]:translate-y-[2px] data-[state=open]:translate-x-[2px] transition-all mb-4"
                     >
-                      <AccordionTrigger className="text-base font-bold hover:no-underline py-4 text-left">
+                      <AccordionTrigger className="text-base font-bold hover:no-underline py-4 text-left font-display">
                         {faq.question}
                       </AccordionTrigger>
-                      <AccordionContent className="text-sm text-muted-foreground pb-4">
+                      <AccordionContent className="text-sm font-medium pb-4 leading-relaxed">
                         {faq.answer}
                       </AccordionContent>
                     </AccordionItem>
@@ -304,7 +304,7 @@ const FAQ = () => {
                 </Accordion>
               ) : (
                 <div className="text-center py-12 text-muted-foreground">
-                  {i18n.language === 'ru' 
+                  {i18n.language === 'ru'
                     ? 'Ничего не найдено. Попробуйте изменить запрос.'
                     : 'Nothing found. Try changing your search.'}
                 </div>

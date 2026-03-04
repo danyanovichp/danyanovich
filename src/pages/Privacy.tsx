@@ -12,7 +12,7 @@ const Privacy = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
+      <SEO
         titleRu="Политика конфиденциальности | Дэн Янович"
         titleEn="Privacy Policy | Dan Yanovich"
         descriptionRu="Политика конфиденциальности сайта danyanovich.com. Информация о сборе и обработке персональных данных."
@@ -21,10 +21,10 @@ const Privacy = () => {
         structuredData={[breadcrumbSchema]}
       />
 
-      <section className="py-16 md:py-20">
+      <section className="py-16 md:py-20 bg-pastel-lavender border-b-2 border-foreground flex-1">
         <div className="container">
-          <div className="max-w-3xl mx-auto prose dark:prose-invert">
-            <h1>{isRu ? 'Политика конфиденциальности' : 'Privacy Policy'}</h1>
+          <div className="max-w-3xl mx-auto prose dark:prose-invert bg-card border-4 border-foreground shadow-[12px_12px_0px_0px_currentColor] p-8 md:p-12 mb-12">
+            <h1 className="font-display uppercase tracking-wider">{isRu ? 'Политика конфиденциальности' : 'Privacy Policy'}</h1>
             <p className="text-muted-foreground">
               {isRu ? 'Последнее обновление: 27 января 2026' : 'Last updated: January 27, 2026'}
             </p>
@@ -33,7 +33,7 @@ const Privacy = () => {
               <>
                 <h2>1. Общие положения</h2>
                 <p>
-                  Настоящая Политика конфиденциальности определяет порядок обработки и защиты 
+                  Настоящая Политика конфиденциальности определяет порядок обработки и защиты
                   персональных данных пользователей сайта danyanovich.com (далее — «Сайт»).
                 </p>
                 <p>
@@ -58,13 +58,13 @@ const Privacy = () => {
 
                 <h2>4. Защита данных</h2>
                 <p>
-                  Мы принимаем разумные меры для защиты ваших персональных данных от 
+                  Мы принимаем разумные меры для защиты ваших персональных данных от
                   несанкционированного доступа, изменения, раскрытия или уничтожения.
                 </p>
 
                 <h2>5. Передача данных третьим лицам</h2>
                 <p>
-                  Мы не продаём и не передаём ваши персональные данные третьим лицам, 
+                  Мы не продаём и не передаём ваши персональные данные третьим лицам,
                   за исключением случаев, предусмотренных законодательством.
                 </p>
                 <p>Мы используем следующие сервисы:</p>
@@ -85,13 +85,13 @@ const Privacy = () => {
 
                 <h2>7. Контактная информация</h2>
                 <p>
-                  По вопросам, связанным с обработкой персональных данных, вы можете связаться 
+                  По вопросам, связанным с обработкой персональных данных, вы можете связаться
                   со мной через Telegram: <a href="https://t.me/danyanovichp" target="_blank" rel="noopener noreferrer">@danyanovichp</a>
                 </p>
 
                 <h2>8. Изменения в политике</h2>
                 <p>
-                  Мы оставляем за собой право изменять данную Политику конфиденциальности. 
+                  Мы оставляем за собой право изменять данную Политику конфиденциальности.
                   Актуальная версия всегда доступна на этой странице.
                 </p>
               </>
@@ -99,7 +99,7 @@ const Privacy = () => {
               <>
                 <h2>1. General Provisions</h2>
                 <p>
-                  This Privacy Policy defines the procedure for processing and protecting 
+                  This Privacy Policy defines the procedure for processing and protecting
                   personal data of users of danyanovich.com (hereinafter — "Website").
                 </p>
                 <p>
@@ -124,13 +124,13 @@ const Privacy = () => {
 
                 <h2>4. Data Protection</h2>
                 <p>
-                  We take reasonable measures to protect your personal data from 
+                  We take reasonable measures to protect your personal data from
                   unauthorized access, modification, disclosure, or destruction.
                 </p>
 
                 <h2>5. Data Transfer to Third Parties</h2>
                 <p>
-                  We do not sell or transfer your personal data to third parties, 
+                  We do not sell or transfer your personal data to third parties,
                   except as required by law.
                 </p>
                 <p>We use the following services:</p>
@@ -151,13 +151,13 @@ const Privacy = () => {
 
                 <h2>7. Contact Information</h2>
                 <p>
-                  For questions regarding personal data processing, you can contact 
+                  For questions regarding personal data processing, you can contact
                   me via Telegram: <a href="https://t.me/danyanovichp" target="_blank" rel="noopener noreferrer">@danyanovichp</a>
                 </p>
 
                 <h2>8. Policy Changes</h2>
                 <p>
-                  We reserve the right to change this Privacy Policy. 
+                  We reserve the right to change this Privacy Policy.
                   The current version is always available on this page.
                 </p>
               </>

@@ -18,7 +18,7 @@ const Templates = () => {
 
   const mergedTemplates = useMemo(() => {
     const productMap = new Map(products.map(p => [p.id, p]));
-    
+
     return premiumTemplates.map(template => {
       const dbProduct = productMap.get(template.id);
       if (dbProduct) {
@@ -45,11 +45,11 @@ const Templates = () => {
     let filtered = mergedTemplates.filter(template => {
       const title = i18n.language === 'ru' ? template.titleRu : template.titleEn;
       const description = i18n.language === 'ru' ? template.descriptionRu : template.descriptionEn;
-      const matchesSearch = searchQuery === '' || 
+      const matchesSearch = searchQuery === '' ||
         title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         description.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesCategory = selectedCategory === 'all' || template.category === selectedCategory;
-      const matchesStatus = selectedStatus === 'all' || 
+      const matchesStatus = selectedStatus === 'all' ||
         (selectedStatus === 'available' && template.status === 'available') ||
         (selectedStatus === 'development' && template.status === 'development');
       return matchesSearch && matchesCategory && matchesStatus;
@@ -85,10 +85,10 @@ const Templates = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      
+
       {/* Hero Section */}
       <section className="py-20 md:py-28">
-        <SEO 
+        <SEO
           titleRu="Шаблоны Notion | Дэн Янович"
           titleEn="Notion Templates | Dan Yanovich"
           descriptionRu="Готовые системы в Notion для бизнеса и жизни. Шаблоны с базами данных, автоматизациями и визуализациями."
@@ -102,8 +102,8 @@ const Templates = () => {
               {isRu ? 'Шаблоны Notion' : 'Notion Templates'}
             </h1>
             <p className="text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
-              {isRu 
-                ? 'Готовые системы в Notion для бизнеса и жизни. Каждый шаблон — это продуманная структура с базами данных, автоматизациями и визуализациями.' 
+              {isRu
+                ? 'Готовые системы в Notion для бизнеса и жизни. Каждый шаблон — это продуманная структура с базами данных, автоматизациями и визуализациями.'
                 : 'Ready-made Notion systems for business and life. Each template is a thoughtful structure with databases, automations, and visualizations.'}
             </p>
           </div>
@@ -138,32 +138,32 @@ const Templates = () => {
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredTemplates.filter(t => t.status === 'available').map((template, index) => {
-                const title = isRu ? template.titleRu : template.titleEn;
-                const description = isRu ? template.descriptionRu : template.descriptionEn;
-                return (
-                  <Link to={`/templates/${template.id}`} key={index}>
-                    <Card className="cursor-pointer group h-full">
-                      <div className="relative">
-                        <div className="py-4 bg-muted/30 flex items-center justify-center group-hover:bg-muted/50 transition-colors rounded-t-3xl">
-                          <template.icon className="h-5 w-5 text-muted-foreground/50" />
+                {filteredTemplates.filter(t => t.status === 'available').map((template, index) => {
+                  const title = isRu ? template.titleRu : template.titleEn;
+                  const description = isRu ? template.descriptionRu : template.descriptionEn;
+                  return (
+                    <Link to={`/templates/${template.id}`} key={index}>
+                      <Card className="cursor-pointer group h-full">
+                        <div className="relative border-b-2 border-foreground">
+                          <div className="py-4 bg-muted/30 flex items-center justify-center group-hover:bg-pastel-yellow transition-colors">
+                            <template.icon className="h-10 w-10 text-foreground" />
+                          </div>
+                          <div className="absolute top-3 right-3">
+                            <Badge className="bg-primary text-primary-foreground border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] text-sm rounded-none px-3 py-1 font-bold">
+                              {template.price}
+                            </Badge>
+                          </div>
                         </div>
-                        <div className="absolute top-3 right-3">
-                          <Badge className="bg-primary text-primary-foreground text-sm rounded-full px-3 py-1">
-                            {template.price}
-                          </Badge>
-                        </div>
-                      </div>
-                      <CardHeader className="space-y-2 pb-2">
-                        <h3 className="text-base font-bold">{title}</h3>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                );
-              })}
+                        <CardHeader className="space-y-2 pb-2">
+                          <h3 className="text-base font-bold">{title}</h3>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -186,32 +186,32 @@ const Templates = () => {
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredTemplates.filter(t => t.status === 'development').map((template, index) => {
-                const title = isRu ? template.titleRu : template.titleEn;
-                const description = isRu ? template.descriptionRu : template.descriptionEn;
-                return (
-                  <Link to={`/templates/${template.id}`} key={index}>
-                    <Card className="cursor-pointer group h-full opacity-60">
-                      <div className="relative overflow-hidden rounded-t-3xl">
-                        <div className="py-4 bg-muted/30 flex items-center justify-center group-hover:bg-muted/50 transition-colors">
-                          <template.icon className="h-5 w-5 text-muted-foreground/40" />
+                {filteredTemplates.filter(t => t.status === 'development').map((template, index) => {
+                  const title = isRu ? template.titleRu : template.titleEn;
+                  const description = isRu ? template.descriptionRu : template.descriptionEn;
+                  return (
+                    <Link to={`/templates/${template.id}`} key={index}>
+                      <Card className="cursor-pointer group h-full opacity-60">
+                        <div className="relative overflow-hidden border-b-2 border-foreground">
+                          <div className="py-4 bg-muted/30 flex items-center justify-center group-hover:bg-muted/50 transition-colors">
+                            <template.icon className="h-10 w-10 text-muted-foreground/40" />
+                          </div>
+                          <div className="absolute top-3 right-3">
+                            <Badge variant="outline" className="text-xs bg-card border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] rounded-none font-bold">
+                              {template.price}
+                            </Badge>
+                          </div>
                         </div>
-                        <div className="absolute top-3 right-3">
-                          <Badge variant="outline" className="text-xs">
-                            {template.price}
-                          </Badge>
-                        </div>
-                      </div>
-                      <CardHeader className="space-y-2 pb-2">
-                        <h3 className="text-base font-bold">{title}</h3>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                );
-              })}
+                        <CardHeader className="space-y-2 pb-2">
+                          <h3 className="text-base font-bold">{title}</h3>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>

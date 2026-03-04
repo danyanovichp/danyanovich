@@ -1,5 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { useState } from "react";
 
 // Type definitions for site settings
 export interface HeroSettings {
@@ -84,7 +83,7 @@ export interface Program {
   type: 'game' | 'program';
 }
 
-// Default values matching current static content
+// Static site content
 const defaultHero: HeroSettings = {
   title_ru: "Дэн Янович",
   title_en: "Dan Yanovich",
@@ -309,18 +308,6 @@ const defaultPrograms: Program[] = [
   },
 ];
 
-// Settings keys
-type SettingKey = 
-  | 'hero' 
-  | 'consulting' 
-  | 'bio' 
-  | 'stats' 
-  | 'social_links' 
-  | 'expertise_blocks' 
-  | 'tools' 
-  | 'websites' 
-  | 'programs';
-
 interface SiteSettingsState {
   hero: HeroSettings;
   consulting: ConsultingSettings;
@@ -346,41 +333,11 @@ const defaultSettings: SiteSettingsState = {
 };
 
 export function useSiteSettings() {
-  const [settings, setSettings] = useState<SiteSettingsState>(defaultSettings);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const fetchSettings = useCallback(async () => {
-    try {
-      const { data, error } = await supabase
-        .from('site_settings')
-        .select('key, value');
-
-      if (error) throw error;
-
-      if (data && data.length > 0) {
-        const newSettings = { ...defaultSettings };
-        data.forEach((row) => {
-          const key = row.key as SettingKey;
-          if (key in newSettings) {
-            (newSettings as Record<string, unknown>)[key] = row.value;
-          }
-        });
-        setSettings(newSettings);
-      }
-    } catch (error) {
-      console.error('Error fetching site settings:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchSettings();
-  }, [fetchSettings]);
+  const [settings] = useState<SiteSettingsState>(defaultSettings);
 
   return {
     settings,
-    isLoading,
-    refetch: fetchSettings,
+    isLoading: false,
+    refetch: () => { },
   };
 }

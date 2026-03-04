@@ -12,7 +12,7 @@ const Cookies = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
+      <SEO
         titleRu="Политика cookies | Дэн Янович"
         titleEn="Cookie Policy | Dan Yanovich"
         descriptionRu="Политика использования cookies на сайте danyanovich.com."
@@ -21,10 +21,10 @@ const Cookies = () => {
         structuredData={[breadcrumbSchema]}
       />
 
-      <section className="py-16 md:py-20">
+      <section className="py-16 md:py-20 bg-pastel-mint border-b-2 border-foreground flex-1">
         <div className="container">
-          <div className="max-w-3xl mx-auto prose dark:prose-invert">
-            <h1>{isRu ? 'Политика cookies' : 'Cookie Policy'}</h1>
+          <div className="max-w-3xl mx-auto prose dark:prose-invert bg-card border-4 border-foreground shadow-[12px_12px_0px_0px_currentColor] p-8 md:p-12 mb-12">
+            <h1 className="font-display uppercase tracking-wider">{isRu ? 'Политика cookies' : 'Cookie Policy'}</h1>
             <p className="text-muted-foreground">
               {isRu ? 'Последнее обновление: 27 января 2026' : 'Last updated: January 27, 2026'}
             </p>
@@ -33,16 +33,16 @@ const Cookies = () => {
               <>
                 <h2>Что такое cookies?</h2>
                 <p>
-                  Cookies — это небольшие текстовые файлы, которые сохраняются на вашем устройстве 
-                  при посещении веб-сайта. Они помогают сайту запоминать ваши предпочтения и 
+                  Cookies — это небольшие текстовые файлы, которые сохраняются на вашем устройстве
+                  при посещении веб-сайта. Они помогают сайту запоминать ваши предпочтения и
                   улучшать пользовательский опыт.
                 </p>
 
                 <h2>Какие cookies мы используем</h2>
-                
+
                 <h3>Необходимые cookies</h3>
                 <p>
-                  Эти cookies необходимы для работы сайта. Они позволяют запоминать ваши 
+                  Эти cookies необходимы для работы сайта. Они позволяют запоминать ваши
                   настройки (например, выбранный язык или тему оформления).
                 </p>
                 <ul>
@@ -53,7 +53,7 @@ const Cookies = () => {
 
                 <h3>Аналитические cookies</h3>
                 <p>
-                  Мы используем сервисы аналитики для понимания того, как посетители 
+                  Мы используем сервисы аналитики для понимания того, как посетители
                   используют наш сайт. Это помогает нам улучшать контент и функциональность.
                 </p>
                 <ul>
@@ -74,14 +74,14 @@ const Cookies = () => {
 
                 <h2>Согласие на cookies</h2>
                 <p>
-                  При первом посещении сайта вы увидите баннер с запросом согласия на 
-                  использование cookies. Вы можете принять или отклонить использование 
+                  При первом посещении сайта вы увидите баннер с запросом согласия на
+                  использование cookies. Вы можете принять или отклонить использование
                   аналитических cookies.
                 </p>
 
                 <h2>Изменения политики</h2>
                 <p>
-                  Мы можем обновлять данную политику. Актуальная версия всегда доступна 
+                  Мы можем обновлять данную политику. Актуальная версия всегда доступна
                   на этой странице.
                 </p>
 
@@ -95,15 +95,15 @@ const Cookies = () => {
               <>
                 <h2>What are cookies?</h2>
                 <p>
-                  Cookies are small text files that are saved on your device when you visit 
+                  Cookies are small text files that are saved on your device when you visit
                   a website. They help the site remember your preferences and improve user experience.
                 </p>
 
                 <h2>What cookies we use</h2>
-                
+
                 <h3>Necessary cookies</h3>
                 <p>
-                  These cookies are necessary for the website to function. They allow us to 
+                  These cookies are necessary for the website to function. They allow us to
                   remember your settings (e.g., selected language or theme).
                 </p>
                 <ul>
@@ -114,7 +114,7 @@ const Cookies = () => {
 
                 <h3>Analytics cookies</h3>
                 <p>
-                  We use analytics services to understand how visitors use our website. 
+                  We use analytics services to understand how visitors use our website.
                   This helps us improve content and functionality.
                 </p>
                 <ul>
@@ -135,7 +135,7 @@ const Cookies = () => {
 
                 <h2>Cookie consent</h2>
                 <p>
-                  On your first visit, you will see a banner requesting consent to use cookies. 
+                  On your first visit, you will see a banner requesting consent to use cookies.
                   You can accept or decline the use of analytics cookies.
                 </p>
 

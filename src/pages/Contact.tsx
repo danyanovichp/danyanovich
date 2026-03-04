@@ -28,11 +28,11 @@ const getIconComponent = (iconName: string | undefined): React.ComponentType<{ c
 };
 
 const pastelBgClasses = [
-  'bg-pastel-yellow/25',
-  'bg-pastel-pink/25',
-  'bg-pastel-lavender/25',
-  'bg-pastel-mint/25',
-  'bg-pastel-coral/25',
+  'bg-pastel-yellow text-foreground',
+  'bg-pastel-pink text-foreground',
+  'bg-pastel-lavender text-foreground',
+  'bg-pastel-mint text-foreground',
+  'bg-pastel-coral text-foreground',
 ];
 
 const Contact = () => {
@@ -300,7 +300,7 @@ const Contact = () => {
                 <img
                   src="/images/about/Данила_short.jpeg"
                   alt={isRu ? 'Данила Путинцев' : 'Danila Putintsev'}
-                  className="w-48 h-48 object-cover rounded-[2rem] shadow-xl border-4 border-background/50 backdrop-blur-sm -rotate-2 hover:rotate-0 transition-all duration-300"
+                  className="w-48 h-48 object-cover rounded-none border-4 border-foreground shadow-[8px_8px_0px_0px_currentColor] hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0px_0px_currentColor] transition-all duration-300"
                 />
               </div>
             </AnimatedSection>
@@ -308,19 +308,19 @@ const Contact = () => {
             {/* Contact links */}
             <AnimatedSection delay={100}>
               <div className="flex flex-wrap justify-center gap-3">
-                <a href="https://t.me/danyanovich" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pastel-blue/20 text-sm font-medium hover:bg-pastel-blue/30 transition-colors">
+                <a href="https://t.me/danyanovich" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-pastel-blue text-foreground border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] text-sm font-bold uppercase tracking-wider hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none transition-all">
                   <MessageCircle className="h-4 w-4" /> Telegram
                 </a>
-                <a href="https://www.youtube.com/@danyanovich" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pastel-coral/20 text-sm font-medium hover:bg-pastel-coral/30 transition-colors">
+                <a href="https://www.youtube.com/@danyanovich" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-destructive text-white border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] text-sm font-bold uppercase tracking-wider hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none transition-all">
                   <Youtube className="h-4 w-4" /> YouTube
                 </a>
-                <a href="https://www.linkedin.com/in/danila-putintsev/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pastel-lavender/20 text-sm font-medium hover:bg-pastel-lavender/30 transition-colors">
+                <a href="https://www.linkedin.com/in/danila-putintsev/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-primary text-white border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] text-sm font-bold uppercase tracking-wider hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none transition-all">
                   <Linkedin className="h-4 w-4" /> LinkedIn
                 </a>
-                <a href="https://x.com/danyanovich" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pastel-mint/20 text-sm font-medium hover:bg-pastel-mint/30 transition-colors">
+                <a href="https://x.com/danyanovich" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-black text-white border-2 border-foreground hover:bg-neutral-800 shadow-[2px_2px_0px_0px_currentColor] text-sm font-bold uppercase tracking-wider hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none transition-all">
                   <XIcon className="h-4 w-4" /> X/Twitter
                 </a>
-                <a href="mailto:danilaputintsev2512@gmail.com" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pastel-yellow/20 text-sm font-medium hover:bg-pastel-yellow/30 transition-colors">
+                <a href="mailto:danilaputintsev2512@gmail.com" className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-pastel-yellow text-foreground border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] text-sm font-bold uppercase tracking-wider hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none transition-all">
                   <Mail className="h-4 w-4" /> Email
                 </a>
               </div>
@@ -335,7 +335,7 @@ const Contact = () => {
                     variant="outline"
                     size="sm"
                     onClick={() => scrollToSection(section.id)}
-                    className="gap-2 rounded-full hover:bg-pastel-yellow/30 transition-all"
+                    className="gap-2 rounded-none border-2 shadow-[2px_2px_0px_0px_currentColor] hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none transition-all hover:bg-pastel-yellow hover:text-black"
                   >
                     <section.icon className="h-4 w-4" />
                     {section.label}
@@ -352,7 +352,7 @@ const Contact = () => {
         <div className="container">
           <div className="max-w-4xl mx-auto space-y-8">
             <AnimatedSection>
-              <div className="relative bg-pastel-lavender/15 rounded-3xl p-6 md:p-8 space-y-6">
+              <div className="relative bg-card border-4 border-foreground shadow-[8px_8px_0px_0px_currentColor] rounded-none p-6 md:p-8 space-y-6">
                 <h2 className="text-2xl md:text-3xl font-bold font-display">
                   {isRu ? 'Профессиональный профиль' : 'Professional Profile'}
                 </h2>
@@ -389,9 +389,9 @@ const Contact = () => {
                   { title_ru: 'Обучение включено', title_en: 'Training Included', desc_ru: 'Я не оставляю команду один на один с новой системой. В стоимость входит обучение и инструкции.', desc_en: 'I don\'t leave the team alone with a new system. Training and instructions are included.', bg: pastelBgClasses[2] },
                   { title_ru: 'Просто о сложном', title_en: 'Simply about complex things', desc_ru: 'Объясняю логику работы без сложной терминологии, чтобы разобраться мог любой сотрудник.', desc_en: 'Explain logic without complex terminology so any employee can figure it out.', bg: pastelBgClasses[3] },
                 ].map((item, i) => (
-                  <div key={i} className={`${item.bg} rounded-2xl p-5 space-y-2`}>
-                    <h4 className="text-sm font-semibold font-display">{isRu ? item.title_ru : item.title_en}</h4>
-                    <p className="text-xs text-muted-foreground">{isRu ? item.desc_ru : item.desc_en}</p>
+                  <div key={i} className={`${item.bg} border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none p-5 space-y-2 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all`}>
+                    <h4 className="text-sm font-bold font-display">{isRu ? item.title_ru : item.title_en}</h4>
+                    <p className="text-xs text-foreground/80 font-medium">{isRu ? item.desc_ru : item.desc_en}</p>
                   </div>
                 ))}
               </div>
@@ -436,7 +436,7 @@ const Contact = () => {
             <Accordion type="multiple" className="space-y-4">
               {workExperience.map((job, jobIndex) => (
                 <AnimatedSection key={jobIndex} delay={jobIndex * 100}>
-                  <AccordionItem value={`job-${jobIndex}`} className={`${job.bg} rounded-3xl border-0 overflow-hidden`}>
+                  <AccordionItem value={`job-${jobIndex}`} className={`${job.bg} border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none overflow-hidden data-[state=open]:shadow-[2px_2px_0px_0px_currentColor] data-[state=open]:translate-y-[2px] data-[state=open]:translate-x-[2px] transition-all mb-4`}>
                     <AccordionTrigger className="px-6 py-5 hover:no-underline">
                       <div className="flex flex-col items-start text-left gap-1">
                         <div className="flex flex-wrap items-center gap-2">
@@ -459,9 +459,9 @@ const Contact = () => {
                             {isRu ? 'Проекты' : 'Projects'}
                           </p>
                           {job.projects.map((project, pi) => (
-                            <div key={pi} className="rounded-2xl bg-background/60 backdrop-blur-sm p-5 space-y-3">
-                              <h4 className="text-sm font-semibold font-display">{isRu ? project.title_ru : project.title_en}</h4>
-                              <p className="text-xs text-muted-foreground">{isRu ? project.desc_ru : project.desc_en}</p>
+                            <div key={pi} className="rounded-none border-2 border-foreground bg-card/90 p-5 space-y-3">
+                              <h4 className="text-sm font-bold font-display">{isRu ? project.title_ru : project.title_en}</h4>
+                              <p className="text-xs font-medium">{isRu ? project.desc_ru : project.desc_en}</p>
                               <div className="flex flex-wrap gap-1.5">
                                 {project.stack.map((tech, ti) => (
                                   <Badge key={ti} variant="outline" className="text-[10px] font-normal">{tech}</Badge>
@@ -520,10 +520,10 @@ const Contact = () => {
             <div className="grid sm:grid-cols-2 gap-6">
               {techStack.map((category, ci) => (
                 <AnimatedSection key={ci} delay={ci * 100}>
-                  <Card className={`h-full border-0 ${category.bg}`}>
+                  <Card className={`h-full border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none ${category.bg} hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all`}>
                     <CardHeader className="pb-3">
                       <div className="flex items-center gap-3">
-                        <div className="p-3 bg-background/50 rounded-2xl">
+                        <div className="p-3 bg-card border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor]">
                           <category.icon className="h-6 w-6 text-foreground" />
                         </div>
                         <h3 className="text-lg font-bold font-display">{isRu ? category.title_ru : category.title_en}</h3>
@@ -532,7 +532,7 @@ const Contact = () => {
                     <CardContent>
                       <div className="flex flex-wrap gap-2">
                         {(isRu ? category.items : category.items_en).map((item, ii) => (
-                          <Badge key={ii} variant="outline" className="text-xs font-normal">{item}</Badge>
+                          <Badge key={ii} variant="outline" className="text-xs font-bold uppercase">{item}</Badge>
                         ))}
                       </div>
                     </CardContent>
@@ -557,9 +557,9 @@ const Contact = () => {
             <div className="grid sm:grid-cols-2 gap-4">
               {achievements.map((achievement, ai) => (
                 <AnimatedSection key={ai} delay={ai * 80}>
-                  <div className={`${pastelBgClasses[ai % pastelBgClasses.length]} rounded-2xl p-5 flex items-center gap-4`}>
+                  <div className={`${pastelBgClasses[ai % pastelBgClasses.length]} p-5 flex items-center gap-4 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all`}>
                     <span className="text-2xl md:text-3xl font-bold font-display shrink-0 w-16 text-center">{achievement.value}</span>
-                    <p className="text-sm text-muted-foreground">{isRu ? achievement.text_ru : achievement.text_en}</p>
+                    <p className="text-sm font-medium">{isRu ? achievement.text_ru : achievement.text_en}</p>
                   </div>
                 </AnimatedSection>
               ))}
@@ -582,21 +582,21 @@ const Contact = () => {
                 <AnimatedSection key={block.id} delay={index * 100}>
                   <Link to={block.link}>
                     <Card
-                      className={`h-full overflow-hidden border-0 ${pastelBgClasses[index % pastelBgClasses.length]} hover:scale-[1.02] cursor-pointer transition-all`}
+                      className={`h-full overflow-hidden border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none ${pastelBgClasses[index % pastelBgClasses.length].split(' ')[0]} hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] cursor-pointer transition-all`}
                     >
                       <CardHeader className="pb-4">
                         <div className="flex items-center gap-4">
-                          <div className="p-3 bg-background/50 rounded-2xl">
+                          <div className="p-3 bg-card border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] rounded-none">
                             <block.icon className="h-8 w-8 text-foreground" />
                           </div>
                           <h3 className="text-xl md:text-2xl font-bold font-display">{block.title}</h3>
                         </div>
                       </CardHeader>
                       <CardContent className="space-y-4">
-                        <p className="text-muted-foreground leading-relaxed text-sm md:text-base">{block.description}</p>
+                        <p className="text-foreground font-medium leading-relaxed text-sm md:text-base">{block.description}</p>
                         <div className="flex flex-wrap gap-2 pt-2">
                           {block.highlights.map((highlight, i) => (
-                            <span key={i} className="px-3 py-1 bg-background/50 text-foreground text-sm rounded-full font-medium">{highlight}</span>
+                            <span key={i} className="px-3 py-1 bg-card border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] text-foreground text-sm font-bold uppercase tracking-wider">{highlight}</span>
                           ))}
                         </div>
                       </CardContent>
@@ -782,8 +782,8 @@ const ReviewsCarousel = ({ reviews, isRu }: { reviews: any[]; isRu: boolean }) =
                 <Card
                   key={`${review.name}-${currentIndex}-${index}`}
                   className={`h-full transition-all duration-500 border-0 ${index === 1
-                      ? 'md:scale-105 bg-pastel-yellow/20'
-                      : 'opacity-70 md:opacity-100 bg-muted/20'
+                    ? 'md:scale-105 bg-pastel-yellow/20'
+                    : 'opacity-70 md:opacity-100 bg-muted/20'
                     }`}
                 >
                   <CardHeader className="pb-2">

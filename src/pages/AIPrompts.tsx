@@ -33,28 +33,28 @@ const AIPrompts = () => {
   const categories = [
     {
       title: i18n.language === 'ru' ? "Бизнес и маркетинг" : "Business & Marketing",
-      description: i18n.language === 'ru' 
+      description: i18n.language === 'ru'
         ? "Промпты для создания контента, стратегий и анализа"
         : "Prompts for content creation, strategies and analysis",
       count: i18n.language === 'ru' ? "12+ промптов" : "12+ prompts",
     },
     {
       title: i18n.language === 'ru' ? "Разработка" : "Development",
-      description: i18n.language === 'ru' 
+      description: i18n.language === 'ru'
         ? "Помощь в написании кода и решении технических задач"
         : "Help with coding and solving technical problems",
       count: i18n.language === 'ru' ? "15+ промптов" : "15+ prompts",
     },
     {
       title: i18n.language === 'ru' ? "Креатив" : "Creative",
-      description: i18n.language === 'ru' 
+      description: i18n.language === 'ru'
         ? "Генерация идей, сценариев и креативного контента"
         : "Generating ideas, scripts and creative content",
       count: i18n.language === 'ru' ? "10+ промптов" : "10+ prompts",
     },
     {
       title: i18n.language === 'ru' ? "Анализ данных" : "Data Analysis",
-      description: i18n.language === 'ru' 
+      description: i18n.language === 'ru'
         ? "Обработка и интерпретация данных с помощью AI"
         : "Processing and interpreting data with AI",
       count: i18n.language === 'ru' ? "8+ промптов" : "8+ prompts",
@@ -63,20 +63,20 @@ const AIPrompts = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
+      <SEO
         titleRu="AI Промпты | Дэн Янович"
         titleEn="AI Prompts | Dan Yanovich"
         descriptionRu="Коллекция эффективных промптов для ChatGPT, Claude и других AI-моделей. Промпты для бизнеса, разработки и креатива."
         descriptionEn="Collection of effective prompts for ChatGPT, Claude and other AI models. Prompts for business, development and creativity."
         url="https://danyanovich.com/ai-prompts"
       />
-      
+
       {/* Hero Section with "In Development" Banner */}
-      <section className="bg-muted/30 py-16 md:py-20 border-b">
+      <section className="bg-pastel-coral py-16 md:py-20 border-b-2 border-foreground">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             {/* In Development Badge */}
-            <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-md text-base font-medium">
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none text-base font-bold uppercase tracking-wider">
               <span>🚧</span>
               <span>{t('common.inDevelopment')}</span>
             </div>
@@ -90,13 +90,13 @@ const AIPrompts = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 md:py-20 bg-muted/30">
+      <section className="py-16 md:py-20 bg-card border-b-2 border-foreground">
         <div className="container">
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {features.map((feature, index) => (
-              <Card key={index} className="text-center">
+              <Card key={index} className="text-center rounded-none border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all">
                 <CardHeader className="space-y-4">
-                  <div className="inline-flex p-4 bg-primary text-primary-foreground rounded-lg mx-auto">
+                  <div className="inline-flex p-4 bg-primary text-primary-foreground border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] mx-auto">
                     <feature.icon className="h-6 w-6" />
                   </div>
                   <h3 className="text-lg font-bold">{feature.title}</h3>
@@ -120,7 +120,7 @@ const AIPrompts = () => {
           </h2>
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {categories.map((category, index) => (
-              <Card key={index}>
+              <Card key={index} className="rounded-none border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all">
                 <CardHeader>
                   <h3 className="text-lg font-bold">{category.title}</h3>
                   <p className="text-sm text-muted-foreground mt-2">

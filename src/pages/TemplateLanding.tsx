@@ -9,102 +9,37 @@ import { ArrowLeft, Check, ShoppingCart, Sparkles, ExternalLink, ImageIcon, Play
 import { premiumTemplates } from "@/data/premiumTemplates";
 import { secondBrainFeatureSections, secondBrainReviews } from "@/data/secondBrainData";
 import { templateLandingContent } from "@/data/templateLandingContent";
+import { templateLandingContentEn } from "@/data/templateLandingContentEn";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import SEO from "@/components/SEO";
 import AnimatedSection from "@/components/AnimatedSection";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { useEffect } from "react";
 
-interface LandingData {
-  headline: string;
-  subheadline: string;
-  solution_intro: string;
-  solution_description: string;
-  main_image: string;
-  pain_points: string[];
-  features: { icon: string; title: string; description: string }[];
-  views: string[];
-  target_audience: { icon?: string; title: string; description: string }[];
-  screenshots: { url: string; caption?: string; type?: string }[];
-}
 
-const defaultLanding: LandingData = {
-  headline: "",
-  subheadline: "",
-  solution_intro: "",
-  solution_description: "",
-  main_image: "",
-  pain_points: [],
-  features: [],
-  views: [],
-  target_audience: [],
-  screenshots: [],
-};
 
 const TemplateLanding = () => {
   const { templateId } = useParams();
   const { i18n } = useTranslation();
   const { toast } = useToast();
   const [selectedScreenshot, setSelectedScreenshot] = useState<number | null>(null);
-  const [landing, setLanding] = useState<LandingData>(defaultLanding);
-  const [isLoading, setIsLoading] = useState(true);
 
   const template = premiumTemplates.find(t => t.id === templateId);
   const isSecondBrain = templateId === "second-brain-os";
-  const staticLandingContent = templateId ? templateLandingContent[templateId] : null;
+  const isRu = i18n.language === 'ru';
+  const contentMap = isRu ? templateLandingContent : templateLandingContentEn;
+  const staticLandingContent = templateId ? (contentMap[templateId] || templateLandingContent[templateId]) : null;
 
-  // Fetch landing data from DB
-  useEffect(() => {
-    const fetchLanding = async () => {
-      if (!templateId) return;
-      try {
-        const { data, error } = await supabase.rpc('get_public_template_landing', { p_template_id: templateId });
-        if (!error && data && data.length > 0) {
-          const d = data[0];
-          setLanding({
-            headline: d.headline || "",
-            subheadline: d.subheadline || "",
-            solution_intro: d.solution_intro || "",
-            solution_description: d.solution_description || "",
-            main_image: d.main_image || "",
-            pain_points: Array.isArray(d.pain_points) ? d.pain_points as string[] : [],
-            features: Array.isArray(d.features) ? (d.features as any[]) : [],
-            views: Array.isArray(d.views) ? d.views as string[] : [],
-            target_audience: Array.isArray(d.target_audience) ? (d.target_audience as any[]) : [],
-            screenshots: Array.isArray(d.screenshots) ? (d.screenshots as any[]) : [],
-          });
-        }
-      } catch (err) {
-        // silently fail, use static data
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchLanding();
-  }, [templateId]);
-
-  // Determine which content to display - DB data takes priority
-  const hasDbContent = landing.headline && landing.headline.trim() !== "";
-  const displayHeadline = hasDbContent ? landing.headline : (staticLandingContent?.headline || "");
-  const displaySubheadline = hasDbContent ? landing.subheadline : (staticLandingContent?.subheadline || "");
-  const displayPainPoints = landing.pain_points.filter(p => p.trim()).length > 0 
-    ? landing.pain_points 
-    : (staticLandingContent?.painPoints || []);
-  const displaySolution = hasDbContent 
-    ? { intro: landing.solution_intro, description: landing.solution_description }
-    : (staticLandingContent?.solution ? { intro: "", description: staticLandingContent.solution } : null);
-  const displayFeatures = landing.features.filter(f => f.title.trim()).length > 0
-    ? landing.features
-    : (staticLandingContent?.features || []);
-  const displayViews = landing.views.filter(v => v.trim()).length > 0
-    ? landing.views
-    : (staticLandingContent?.views || []);
-  const displayAudience = landing.target_audience.filter(a => a.title.trim()).length > 0
-    ? landing.target_audience
-    : (staticLandingContent?.targetAudience || []);
-  const displayScreenshots = landing.screenshots;
-  const displayMainImage = landing.main_image || template?.image;
+  // Content from static data
+  const hasDbContent = false;
+  const displayHeadline = staticLandingContent?.headline || "";
+  const displaySubheadline = staticLandingContent?.subheadline || "";
+  const displayPainPoints = staticLandingContent?.painPoints || [];
+  const displaySolution = staticLandingContent?.solution ? { intro: "", description: staticLandingContent.solution } : null;
+  const displayFeatures = staticLandingContent?.features || [];
+  const displayViews = staticLandingContent?.views || [];
+  const displayAudience = staticLandingContent?.targetAudience || [];
+  const displayScreenshots: { url: string; caption?: string; type?: string }[] = [];
+  const displayMainImage = template?.image;
 
   if (!template) {
     return (
@@ -147,7 +82,7 @@ const TemplateLanding = () => {
     { question: 'Is there support after purchase?', answer: 'Yes, I provide support via Telegram. I answer questions and help with setup.' },
   ];
 
-  const isRu = i18n.language === 'ru';
+  // isRu is defined above near the top of the component
   const seoTitleRu = `${template.titleRu || title} | Notion шаблон | Дэн Янович`;
   const seoTitleEn = `${template.titleEn || title} | Notion Template | Dan Yanovich`;
   const seoDescriptionRu = `${template.fullDescriptionRu || fullDescription} Купить Notion шаблон ${template.titleRu || title}.`;
@@ -198,7 +133,7 @@ const TemplateLanding = () => {
       />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-muted/50 to-background py-16 md:py-24 border-b border-border/20">
+      <section className="bg-background py-16 md:py-24 border-b-2 border-foreground">
         <div className="container">
           <div className="max-w-5xl mx-auto">
             <Breadcrumb className="mb-8">
@@ -221,16 +156,16 @@ const TemplateLanding = () => {
                 <BreadcrumbItem><BreadcrumbPage>{title}</BreadcrumbPage></BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
-            
+
             <div className="flex flex-col lg:flex-row gap-12 items-center">
               <div className="flex-1 space-y-6">
                 <div className="flex items-center gap-3 flex-wrap">
-                  <Badge className="px-4 py-2 bg-foreground/90 text-background text-sm font-medium rounded-full">📝 Notion</Badge>
-                  <Badge className="px-4 py-2 bg-green-500/90 text-white text-sm font-medium rounded-full">
+                  <Badge className="px-4 py-2 bg-blue-600 text-white text-sm font-bold uppercase rounded-none border-2 border-transparent">📝 Notion</Badge>
+                  <Badge className="px-4 py-2 bg-green-500 text-white text-sm font-bold uppercase rounded-none border-2 border-transparent">
                     ✓ {isRu ? 'Доступен' : 'Available'}
                   </Badge>
                 </div>
-                
+
                 <div className="space-y-4">
                   <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
                     {displayHeadline || title}
@@ -242,15 +177,15 @@ const TemplateLanding = () => {
 
                 <div className="flex flex-wrap gap-2">
                   {features.slice(0, 4).map((feature, idx) => (
-                    <Badge key={idx} variant="secondary" className="px-3 py-1.5 text-sm">{feature}</Badge>
+                    <Badge key={idx} variant="outline" className="px-3 py-1.5 text-sm font-bold rounded-full border-2 border-foreground">{feature}</Badge>
                   ))}
                 </div>
-                
+
                 <div className="flex items-center gap-6 flex-wrap pt-4">
                   <div className="text-4xl md:text-5xl font-bold text-primary">{template.price}</div>
                   <div className="flex flex-wrap gap-3">
                     <a href={template.link} target="_blank" rel="noopener noreferrer">
-                      <Button size="lg" className="gap-2 text-lg px-6 py-6">
+                      <Button size="lg" className="gap-2 text-lg px-6 py-6 rounded-none border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[2px_2px_0px_0px_currentColor] transition-all bg-yellow-400 text-black hover:bg-yellow-500 font-bold">
                         <ShoppingCart className="h-5 w-5" />
                         {isRu ? 'Купить' : 'Buy'}
                         <ExternalLink className="h-4 w-4" />
@@ -259,12 +194,11 @@ const TemplateLanding = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="w-full lg:w-96 shrink-0">
                 <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 rounded-3xl blur-3xl" />
-                  <div className="relative p-8 bg-gradient-to-br from-muted/80 to-muted/40 backdrop-blur-sm rounded-3xl border border-border/50">
-                    <template.icon className="h-32 w-32 text-primary mx-auto" />
+                  <div className="relative p-8 bg-card border-4 border-foreground shadow-[8px_8px_0px_0px_currentColor]">
+                    <template.icon className="h-32 w-32 text-blue-600 mx-auto" strokeWidth={1.5} />
                   </div>
                 </div>
               </div>
@@ -277,24 +211,24 @@ const TemplateLanding = () => {
       {/* Pain Points Section */}
       {displayPainPoints.length > 0 && (
         <AnimatedSection animation="fade-up">
-          <section className="py-16 md:py-24 bg-muted/30">
+          <section className="py-16 md:py-24 bg-background border-b-2 border-foreground">
             <div className="container">
               <div className="max-w-4xl mx-auto space-y-12">
                 <div className="text-center space-y-4">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-destructive/10 rounded-full">
-                    <AlertCircle className="h-5 w-5 text-destructive" />
-                    <span className="text-sm font-medium text-destructive">{isRu ? 'Знакомо?' : 'Sound familiar?'}</span>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-none border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] font-bold uppercase tracking-wider">
+                    <AlertCircle className="h-5 w-5" />
+                    <span className="text-sm font-bold">{isRu ? 'Знакомо?' : 'Sound familiar?'}</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold">{isRu ? 'Узнаёшь себя?' : 'Do you recognize yourself?'}</h2>
                 </div>
                 <div className="grid md:grid-cols-2 gap-6">
                   {displayPainPoints.filter(Boolean).map((point, index) => (
-                    <Card key={index} className="border-destructive/20 bg-destructive/5">
+                    <Card key={index} className="border-2 border-foreground bg-card shadow-[4px_4px_0px_0px_currentColor] rounded-none">
                       <CardContent className="p-6 flex items-start gap-4">
-                        <div className="shrink-0 w-8 h-8 rounded-full bg-destructive/10 flex items-center justify-center mt-0.5">
-                          <span className="text-destructive font-bold">×</span>
+                        <div className="shrink-0 w-8 h-8 flex items-center justify-center mt-0.5 bg-red-500 text-white border-2 border-foreground">
+                          <span className="font-bold text-lg">!</span>
                         </div>
-                        <p className="text-muted-foreground leading-relaxed">{point}</p>
+                        <p className="text-foreground font-medium leading-relaxed">{point}</p>
                       </CardContent>
                     </Card>
                   ))}
@@ -312,15 +246,15 @@ const TemplateLanding = () => {
             <div className="container">
               <div className="max-w-4xl mx-auto space-y-12">
                 <div className="text-center space-y-4">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full">
-                    <Zap className="h-5 w-5 text-primary" />
-                    <span className="text-sm font-medium text-primary">{isRu ? 'Решение' : 'Solution'}</span>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-400 text-black rounded-none border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] font-bold uppercase tracking-wider">
+                    <Zap className="h-5 w-5" />
+                    <span className="text-sm font-bold">{isRu ? 'Решение' : 'Solution'}</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold">{isRu ? 'Представь другую реальность' : 'Imagine a different reality'}</h2>
                 </div>
-                <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
+                <Card className="border-4 border-foreground bg-card shadow-[8px_8px_0px_0px_currentColor] rounded-none">
                   <CardContent className="p-8 md:p-12">
-                    <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                    <p className="text-lg md:text-xl text-foreground font-medium leading-relaxed">
                       {displaySolution.description || displaySolution.intro || ""}
                     </p>
                   </CardContent>
@@ -331,28 +265,27 @@ const TemplateLanding = () => {
         </AnimatedSection>
       )}
 
-      {/* Features Section */}
       {displayFeatures.length > 0 && (
         <AnimatedSection animation="fade-up" delay={200}>
-          <section className="py-16 md:py-24 bg-muted/30">
+          <section className="py-16 md:py-24 bg-background border-y-2 border-foreground">
             <div className="container">
               <div className="max-w-5xl mx-auto space-y-12">
                 <div className="text-center space-y-4">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full">
-                    <Check className="h-5 w-5 text-primary" />
-                    <span className="text-sm font-medium text-primary">{isRu ? 'Возможности' : 'Features'}</span>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-none border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] font-bold uppercase tracking-wider">
+                    <Check className="h-5 w-5" strokeWidth={3} />
+                    <span className="text-sm font-bold">{isRu ? 'Возможности' : 'Features'}</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold">{isRu ? 'Что ты получаешь' : 'What you get'}</h2>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {displayFeatures.filter(f => f.title).map((feature, index) => (
-                    <Card key={index} className="h-full border-border/50 hover:border-primary/30 transition-colors">
+                    <Card key={index} className="h-full border-2 border-foreground bg-card shadow-[4px_4px_0px_0px_currentColor] hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[2px_2px_0px_0px_currentColor] transition-all rounded-none">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-3">
-                          <span className="text-3xl">{feature.icon}</span>
-                          <h3 className="font-semibold text-lg">{feature.title}</h3>
+                          <span className="text-3xl grayscale">{feature.icon}</span>
+                          <h3 className="font-bold text-lg">{feature.title}</h3>
                         </div>
-                        <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                        <p className="text-foreground font-medium leading-relaxed">{feature.description}</p>
                       </CardContent>
                     </Card>
                   ))}
@@ -375,11 +308,11 @@ const TemplateLanding = () => {
                 </div>
                 <div className="space-y-3">
                   {displayViews.filter(Boolean).map((view, index) => (
-                    <div key={index} className="flex items-start gap-3 p-4 rounded-xl bg-muted/50">
-                      <div className="shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-                        <Check className="h-3.5 w-3.5 text-primary" />
+                    <div key={index} className="flex items-start gap-4 p-4 border-2 border-foreground bg-card shadow-[4px_4px_0px_0px_currentColor] rounded-none">
+                      <div className="shrink-0 w-6 h-6 flex items-center justify-center mt-0.5 bg-foreground text-background">
+                        <Check className="h-4 w-4" strokeWidth={3} />
                       </div>
-                      <span className="text-muted-foreground">{view}</span>
+                      <span className="text-foreground font-bold">{view}</span>
                     </div>
                   ))}
                 </div>
@@ -392,23 +325,23 @@ const TemplateLanding = () => {
       {/* Target Audience Section */}
       {displayAudience.length > 0 && (
         <AnimatedSection animation="fade-up" delay={300}>
-          <section className="py-16 md:py-24 bg-muted/30">
+          <section className="py-16 md:py-24 bg-background border-t-2 border-foreground">
             <div className="container">
               <div className="max-w-4xl mx-auto space-y-12">
                 <div className="text-center space-y-4">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/50 rounded-full">
-                    <Users className="h-5 w-5 text-foreground" />
-                    <span className="text-sm font-medium">{isRu ? 'Аудитория' : 'Audience'}</span>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-none border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] font-bold uppercase tracking-wider">
+                    <Users className="h-5 w-5" />
+                    <span className="text-sm font-bold">{isRu ? 'Аудитория' : 'Audience'}</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold">{isRu ? 'Для кого этот шаблон' : 'Who is this template for'}</h2>
                 </div>
                 <div className="grid md:grid-cols-3 gap-6">
                   {displayAudience.filter(a => a.title).map((audience, index) => (
-                    <Card key={index} className="h-full border-border/50">
+                    <Card key={index} className="h-full border-2 border-foreground bg-card shadow-[4px_4px_0px_0px_currentColor] rounded-none">
                       <CardContent className="p-6 space-y-3">
-                        {audience.icon && <span className="text-3xl">{audience.icon}</span>}
-                        <h3 className="font-semibold text-lg">{audience.title}</h3>
-                        <p className="text-muted-foreground leading-relaxed">{audience.description}</p>
+                        {audience.icon && <span className="text-3xl grayscale">{audience.icon}</span>}
+                        <h3 className="font-bold text-lg">{audience.title}</h3>
+                        <p className="text-foreground font-medium leading-relaxed">{audience.description}</p>
                       </CardContent>
                     </Card>
                   ))}
@@ -563,8 +496,8 @@ const TemplateLanding = () => {
                 </div>
                 <div className="grid md:grid-cols-2 gap-6">
                   {displayScreenshots.map((screenshot, index) => (
-                    <Card 
-                      key={index} 
+                    <Card
+                      key={index}
                       className="overflow-hidden border-2 border-border/40 cursor-pointer hover:border-primary/50 transition-colors"
                       onClick={() => setSelectedScreenshot(index)}
                     >
@@ -583,15 +516,15 @@ const TemplateLanding = () => {
                             </Badge>
                           </div>
                         ) : (
-                          <img 
-                            src={screenshot.url} 
+                          <img
+                            src={screenshot.url}
                             alt={screenshot.caption || `${title} - ${isRu ? 'Скриншот' : 'Screenshot'} ${index + 1}`}
-                            className="w-full aspect-video object-cover"
+                            className="w-full aspect-video object-cover border-b-2 border-foreground"
                           />
                         )}
                         {screenshot.caption && (
-                          <div className="p-4 bg-muted/30 border-t">
-                            <p className="text-sm text-muted-foreground text-center">{screenshot.caption}</p>
+                          <div className="p-4 bg-card">
+                            <p className="text-sm font-bold text-foreground text-center uppercase tracking-wider">{screenshot.caption}</p>
                           </div>
                         )}
                       </CardContent>
@@ -639,22 +572,22 @@ const TemplateLanding = () => {
       )}
 
       {/* FAQ Section */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      <section className="py-16 md:py-24 bg-background border-y-2 border-foreground">
         <div className="container">
           <div className="max-w-3xl mx-auto space-y-12">
             <div className="text-center space-y-4">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full">
-                <HelpCircle className="h-5 w-5 text-primary" />
-                <span className="text-sm font-medium text-primary">FAQ</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-400 text-black rounded-none border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] font-bold uppercase tracking-wider">
+                <HelpCircle className="h-5 w-5 text-black" />
+                <span className="text-sm font-bold text-black">FAQ</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">{isRu ? 'Часто задаваемые вопросы' : 'Frequently Asked Questions'}</h2>
               <p className="text-lg text-muted-foreground">{isRu ? 'Ответы на популярные вопросы о шаблоне' : 'Answers to popular questions about the template'}</p>
             </div>
             <Accordion type="single" collapsible className="w-full space-y-4">
               {faqItems.map((item, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border border-border/50 rounded-xl px-6 data-[state=open]:bg-muted/30">
-                  <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-5">{item.question}</AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-base pb-5">{item.answer}</AccordionContent>
+                <AccordionItem key={index} value={`item-${index}`} className="border-2 border-foreground bg-card rounded-none shadow-[4px_4px_0px_0px_currentColor] px-6 data-[state=open]:shadow-[2px_2px_0px_0px_currentColor] data-[state=open]:translate-y-[2px] data-[state=open]:translate-x-[2px] transition-all">
+                  <AccordionTrigger className="text-left text-lg font-bold hover:no-underline py-5">{item.question}</AccordionTrigger>
+                  <AccordionContent className="text-foreground font-medium text-base pb-5">{item.answer}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
@@ -672,7 +605,7 @@ const TemplateLanding = () => {
               <div className="text-4xl md:text-5xl font-bold text-primary">{template.price}</div>
               <div className="flex flex-wrap gap-3">
                 <a href={template.link} target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" className="gap-2 text-lg px-8 py-6">
+                  <Button size="lg" className="gap-2 text-lg px-8 py-6 rounded-none border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[2px_2px_0px_0px_currentColor] transition-all bg-yellow-400 text-black hover:bg-yellow-500 font-bold uppercase tracking-wider">
                     <ShoppingCart className="h-5 w-5" />
                     {isRu ? 'Купить шаблон' : 'Buy Template'}
                     <ExternalLink className="h-4 w-4" />

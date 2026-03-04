@@ -43,7 +43,7 @@ const Home = () => {
 
   return (
     <PageTransition>
-      <SEO 
+      <SEO
         titleRu="Дэн Янович | Notion и AI Эксперт"
         titleEn="Dan Yanovich | Notion & AI Expert"
         descriptionRu="Создаю шаблоны Notion и консультирую по внедрению AI-инструментов. Более 50 проектов, 100+ часов обучения."
@@ -60,15 +60,15 @@ const Home = () => {
               {isRu ? settings.hero.subtitle_ru : settings.hero.subtitle_en}
             </p>
             <div className="flex justify-center gap-8 pt-4">
-              <Link 
-                to="/templates" 
+              <Link
+                to="/templates"
                 className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 group"
               >
                 {isRu ? "Шаблоны Notion" : "Notion Templates"}
                 <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
               </Link>
-              <Link 
-                to="/cases" 
+              <Link
+                to="/cases"
                 className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 group"
               >
                 {isRu ? "Кейсы" : "Cases"}
@@ -89,7 +89,7 @@ const Home = () => {
                 <Link
                   key={card.link + card.titleEn}
                   to={card.link}
-                  className="flex flex-col gap-3 p-6 rounded-2xl hover:bg-muted/50 transition-colors group"
+                  className="flex flex-col gap-3 p-6 bg-card border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all group rounded-none"
                 >
                   <card.icon className="h-5 w-5 text-muted-foreground" />
                   <h3 className="text-base font-semibold">
@@ -112,8 +112,8 @@ const Home = () => {
               <h2 className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
                 {isRu ? "Проекты" : "Projects"}
               </h2>
-              <Link 
-                to="/cases" 
+              <Link
+                to="/cases"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1.5 group"
               >
                 {isRu ? "Все кейсы" : "All cases"}
@@ -125,7 +125,7 @@ const Home = () => {
                 <Link
                   key={project.id}
                   to="/cases"
-                  className="flex items-center gap-4 p-5 rounded-2xl hover:bg-muted/50 transition-colors group"
+                  className="flex items-center gap-4 p-5 bg-card border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all group rounded-none"
                 >
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-1.5">
@@ -150,19 +150,19 @@ const Home = () => {
         {/* Consulting CTA */}
         <section className="container mx-auto px-4 pb-24">
           <div className="max-w-3xl mx-auto">
-            <div className="flex items-center gap-5 p-6 rounded-2xl bg-muted/30">
-              <MessageSquare className="h-5 w-5 text-muted-foreground shrink-0" />
+            <div className="flex items-center gap-5 p-6 bg-pastel-yellow border-2 border-foreground shadow-[6px_6px_0px_0px_currentColor] rounded-none">
+              <MessageSquare className="h-5 w-5 text-foreground shrink-0" />
               <div className="flex-1 min-w-0">
-                <p className="text-base font-medium">
+                <p className="text-base font-bold">
                   {isRu ? settings.consulting.title_ru : settings.consulting.title_en}
                 </p>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-sm font-medium mt-1 text-foreground/80">
                   {isRu ? settings.consulting.description_ru : settings.consulting.description_en}
                 </p>
               </div>
-              <Link 
-                to="/consulting" 
-                className="text-base font-medium shrink-0 inline-flex items-center gap-2 hover:opacity-70 transition-opacity"
+              <Link
+                to="/consulting"
+                className="text-base font-bold shrink-0 inline-flex items-center gap-2 hover:translate-x-1 transition-transform uppercase tracking-wider bg-card border-2 border-foreground px-4 py-2 shadow-[2px_2px_0px_0px_currentColor] hover:shadow-none hover:translate-y-[2px]"
               >
                 {settings.consulting.price}
                 <ArrowRight className="h-3.5 w-3.5" />

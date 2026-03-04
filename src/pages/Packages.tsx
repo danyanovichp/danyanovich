@@ -103,20 +103,20 @@ const Packages = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
+      <SEO
         titleRu="Пакеты услуг | Дэн Янович"
         titleEn="Service Packages | Dan Yanovich"
         descriptionRu="Готовые пакеты услуг для бизнеса и личного использования. Консультации, шаблоны, обучение и поддержка."
         descriptionEn="Ready-made service packages for business and personal use. Consultations, templates, training and support."
         url="https://danyanovich.com/packages"
       />
-      
+
       {/* Hero Section with "In Development" Banner */}
-      <section className="bg-muted/30 py-16 md:py-20 border-b">
+      <section className="bg-pastel-lavender py-16 md:py-20 border-b-2 border-foreground">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             {/* In Development Badge */}
-            <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-md text-base font-medium">
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none text-base font-bold uppercase tracking-wider">
               <span>🚧</span>
               <span>{t('common.inDevelopment')}</span>
             </div>
@@ -135,18 +135,17 @@ const Packages = () => {
             {packages.map((pkg, index) => (
               <Card
                 key={index}
-                className={`relative ${
-                  pkg.popular ? "ring-2 ring-primary" : ""
-                }`}
+                className={`relative ${pkg.popular ? "ring-2 ring-transparent bg-pastel-yellow transform -translate-y-2 -translate-x-2 shadow-[8px_8px_0px_0px_currentColor]" : ""
+                  }`}
               >
                 {pkg.popular && (
-                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 text-sm bg-primary text-primary-foreground">
+                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 text-sm bg-primary text-primary-foreground border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] rounded-none px-4 font-bold">
                     {i18n.language === 'ru' ? 'Популярно' : 'Popular'}
                   </Badge>
                 )}
                 <CardHeader className="space-y-4 text-center">
                   <h3 className="text-xl font-bold">{pkg.name}</h3>
-                  <div className="text-3xl font-bold">{pkg.price}</div>
+                  <div className="text-3xl font-black font-display">{pkg.price}</div>
                   <p className="text-sm text-muted-foreground">
                     {pkg.description}
                   </p>
