@@ -17,7 +17,6 @@ const Header = () => {
   const mainLinks = [
     { href: "/", label: t('nav.home') },
     { href: "/cases", label: i18n.language === 'ru' ? 'КЕЙСЫ' : 'CASES' },
-    { href: "/templates", label: i18n.language === 'ru' ? 'ШАБЛОНЫ' : 'TEMPLATES' },
     { href: "/contact", label: i18n.language === 'ru' ? 'ОБО МНЕ' : 'ABOUT' },
     { href: "/support", label: t('nav.support') },
   ];
@@ -43,8 +42,8 @@ const Header = () => {
                 key={link.href}
                 to={link.href}
                 className={`text-sm font-medium transition-all relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground after:transition-transform after:duration-300 ${location.pathname === link.href || (link.href === '/templates' && location.pathname.startsWith('/templates'))
-                    ? "text-foreground after:scale-x-100"
-                    : "text-muted-foreground hover:text-foreground after:scale-x-0 hover:after:scale-x-100"
+                  ? "text-foreground after:scale-x-100"
+                  : "text-muted-foreground hover:text-foreground after:scale-x-0 hover:after:scale-x-100"
                   }`}
               >
                 {link.label}
@@ -92,8 +91,8 @@ const Header = () => {
                       key={link.href}
                       to={link.href}
                       className={`mobile-menu-item px-4 py-3 text-sm font-bold border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] rounded-none transition-all ${location.pathname === link.href
-                          ? "bg-pastel-yellow text-foreground"
-                          : "text-foreground hover:bg-muted/50"
+                        ? "bg-pastel-yellow text-foreground"
+                        : "text-foreground hover:bg-muted/50"
                         }`}
                       style={{ animationDelay: `${index * 0.05}s` }}
                     >

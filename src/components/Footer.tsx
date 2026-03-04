@@ -9,7 +9,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const productLinks = [
-    { to: '/templates', labelRu: 'Шаблоны Notion', labelEn: 'Notion Templates' },
+    { to: 'https://www.notion.com/@danyanovich', labelRu: 'Шаблоны Notion', labelEn: 'Notion Templates', external: true },
     { to: '/packages', labelRu: 'Пакеты', labelEn: 'Packages' },
     { to: '/consulting', labelRu: 'Консалтинг', labelEn: 'Consulting' },
   ];
@@ -57,9 +57,15 @@ const Footer = () => {
             <ul className="space-y-3 text-sm">
               {productLinks.map((link) => (
                 <li key={link.to}>
-                  <Link to={link.to} className="text-muted-foreground hover:text-foreground transition-colors">
-                    {i18n.language === 'ru' ? link.labelRu : link.labelEn}
-                  </Link>
+                  {link.external ? (
+                    <a href={link.to} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                      {i18n.language === 'ru' ? link.labelRu : link.labelEn}
+                    </a>
+                  ) : (
+                    <Link to={link.to} className="text-muted-foreground hover:text-foreground transition-colors">
+                      {i18n.language === 'ru' ? link.labelRu : link.labelEn}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

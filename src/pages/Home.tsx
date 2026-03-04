@@ -19,7 +19,8 @@ const Home = () => {
       titleEn: "Notion Systems",
       descRu: "Рабочие пространства с базами данных и автоматизациями",
       descEn: "Workspaces with databases and automations",
-      link: "/templates",
+      link: "https://www.notion.com/@danyanovich",
+      external: true,
     },
     {
       icon: Bot,
@@ -60,13 +61,15 @@ const Home = () => {
               {isRu ? settings.hero.subtitle_ru : settings.hero.subtitle_en}
             </p>
             <div className="flex justify-center gap-8 pt-4">
-              <Link
-                to="/templates"
+              <a
+                href="https://www.notion.com/@danyanovich"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 group"
               >
                 {isRu ? "Шаблоны Notion" : "Notion Templates"}
                 <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
+              </a>
               <Link
                 to="/cases"
                 className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 group"
@@ -85,22 +88,30 @@ const Home = () => {
               {isRu ? "Чем я занимаюсь" : "What I Do"}
             </h2>
             <div className="grid md:grid-cols-3 gap-2">
-              {expertiseCards.map((card) => (
-                <Link
-                  key={card.link + card.titleEn}
-                  to={card.link}
-                  className="flex flex-col gap-3 p-6 bg-card border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all group rounded-none"
-                >
-                  <card.icon className="h-5 w-5 text-muted-foreground" />
-                  <h3 className="text-base font-semibold">
-                    {isRu ? card.titleRu : card.titleEn}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {isRu ? card.descRu : card.descEn}
-                  </p>
-                  <ArrowRight className="h-4 w-4 text-muted-foreground/0 group-hover:text-muted-foreground transition-colors" />
-                </Link>
-              ))}
+              {expertiseCards.map((card) => {
+                const cardContent = (
+                  <>
+                    <card.icon className="h-5 w-5 text-muted-foreground" />
+                    <h3 className="text-base font-semibold">
+                      {isRu ? card.titleRu : card.titleEn}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {isRu ? card.descRu : card.descEn}
+                    </p>
+                    <ArrowRight className="h-4 w-4 text-muted-foreground/0 group-hover:text-muted-foreground transition-colors" />
+                  </>
+                );
+                const className = "flex flex-col gap-3 p-6 bg-card border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all group rounded-none";
+                return card.external ? (
+                  <a key={card.link + card.titleEn} href={card.link} target="_blank" rel="noopener noreferrer" className={className}>
+                    {cardContent}
+                  </a>
+                ) : (
+                  <Link key={card.link + card.titleEn} to={card.link} className={className}>
+                    {cardContent}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>

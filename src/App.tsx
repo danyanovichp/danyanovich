@@ -19,8 +19,6 @@ import GoogleAnalytics from "./components/GoogleAnalytics";
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
 const Portfolio = lazy(() => import("./pages/Portfolio"));
-const Templates = lazy(() => import("./pages/Templates"));
-const TemplateLanding = lazy(() => import("./pages/TemplateLanding"));
 const Courses = lazy(() => import("./pages/Courses"));
 const AIPrompts = lazy(() => import("./pages/AIPrompts"));
 const Packages = lazy(() => import("./pages/Packages"));
@@ -59,9 +57,6 @@ const App = () => (
               <Suspense fallback={<PageLoader />}>
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  <Route path="/products" element={<PageTransition><Templates /></PageTransition>} />
-                  <Route path="/templates" element={<PageTransition><Templates /></PageTransition>} />
-                  <Route path="/templates/:templateId" element={<PageTransition><TemplateLanding /></PageTransition>} />
                   <Route path="/courses" element={<PageTransition><Courses /></PageTransition>} />
                   <Route path="/ai-prompts" element={<PageTransition><AIPrompts /></PageTransition>} />
                   <Route path="/consulting" element={<PageTransition><Consulting /></PageTransition>} />
