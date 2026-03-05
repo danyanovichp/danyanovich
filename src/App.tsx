@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { HelmetProvider } from "react-helmet-async";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import "./lib/i18n";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -89,6 +90,7 @@ const App = () => (
             <CookieBanner />
             <YandexMetrika />
             <GoogleAnalytics />
+            <SpeedInsights />
           </div>
         </BrowserRouter>
       </TooltipProvider>
