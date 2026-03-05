@@ -1,5 +1,6 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 import { Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import SEO from "@/components/SEO";
@@ -109,19 +110,63 @@ const ProjectContent = ({ project, index, total, isRu }: { project: typeof portf
 const Cases = () => {
   const { i18n } = useTranslation();
   const isRu = i18n.language === "ru";
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialType = searchParams.get('type') === 'vibecoding' ? 'vibecoding' : 'automation';
+  const [filter, setFilter] = useState<'automation' | 'vibecoding'>(initialType);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const total = portfolioProjects.length;
+
+  // Tool filter from URL param
+  const toolFilter = searchParams.get('tool') || null;
+
+  const filteredProjects = portfolioProjects.filter(p => {
+    const typeMatch = p.type === filter;
+    if (!toolFilter) return typeMatch;
+    // Filter by tool: check if any tag matches (case-insensitive)
+    const toolMatch = p.tags.some(tag =>
+      tag.toLowerCase().includes(toolFilter.toLowerCase()) ||
+      toolFilter.toLowerCase().includes(tag.toLowerCase())
+    );
+    return toolMatch;
+  });
+  const total = filteredProjects.length;
   const isMobile = useIsMobile();
+
+  // Sync filter with URL param changes (e.g. back button)
+  useEffect(() => {
+    const type = searchParams.get('type');
+    if (type === 'automation' || type === 'vibecoding') {
+      setFilter(type);
+    }
+  }, [searchParams]);
+
+  const handleFilterChange = (newFilter: 'automation' | 'vibecoding') => {
+    const newParams: Record<string, string> = { type: newFilter };
+    if (toolFilter) newParams.tool = toolFilter;
+    setFilter(newFilter);
+    setSearchParams(newParams);
+  };
+
+  const clearToolFilter = () => {
+    const newParams: Record<string, string> = { type: filter };
+    setSearchParams(newParams);
+  };
+
+  // Reset slide when filter changes
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, [filter]);
 
   // Touch swipe support
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
   const next = useCallback(() => {
+    if (total === 0) return;
     setCurrentSlide((prev) => (prev + 1) % total);
   }, [total]);
 
   const prev = useCallback(() => {
+    if (total === 0) return;
     setCurrentSlide((prev) => (prev - 1 + total) % total);
   }, [total]);
 
@@ -162,69 +207,129 @@ const Cases = () => {
         url="https://danyanovich.com/cases"
       />
 
-      {isMobile ? (
-        /* Mobile: vertical scroll layout */
-        <div className="flex-1 space-y-6 py-6 px-2">
-          {portfolioProjects.map((project, index) => (
-            <div
-              key={project.id}
-              className={`border-b-2 border-foreground ${pastelBgClasses[index % pastelBgClasses.length]} rounded-none`}
-            >
-              <ProjectContent project={project} index={index} total={total} isRu={isRu} />
-            </div>
-          ))}
-        </div>
-      ) : (
-        /* Desktop/Tablet: horizontal slider with touch swipe */
-        <div className="flex-1 relative overflow-hidden">
-          <div
-            className="flex h-full transition-transform duration-500 ease-out"
-            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            {portfolioProjects.map((project, index) => (
-              <div
-                key={project.id}
-                className={`w-full flex-shrink-0 h-full overflow-y-auto ${pastelBgClasses[index % pastelBgClasses.length]}`}
-              >
-                <ProjectContent project={project} index={index} total={total} isRu={isRu} />
+      {/* Strategy Switcher */}
+      <div className="container mx-auto px-4 pt-12 md:pt-20">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8 md:mb-12">
+          <div className="space-y-1 text-center md:text-left">
+            <h2 className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
+              {isRu ? "Категории" : "Categories"}
+            </h2>
+            {toolFilter && (
+              <div className="flex items-center gap-2 mt-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-pastel-yellow border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] text-xs font-bold uppercase tracking-wider">
+                  {isRu ? "Инструмент:" : "Tool:"} {toolFilter}
+                </span>
+                <button
+                  onClick={clearToolFilter}
+                  className="text-xs text-muted-foreground hover:text-foreground underline transition-colors"
+                >
+                  {isRu ? "сбросить" : "clear"}
+                </button>
               </div>
-            ))}
+            )}
           </div>
-
-          {/* Navigation arrows */}
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={prev}
-            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 rounded-none border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] bg-card h-10 w-10 md:h-12 md:w-12 hover:-translate-y-[calc(50%+2px)] hover:-translate-x-[2px] hover:shadow-[6px_6px_0px_0px_currentColor] transition-all"
-          >
-            <ChevronLeft className="h-5 w-5 md:h-6 md:w-6 text-foreground" />
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={next}
-            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 rounded-none border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] bg-card h-10 w-10 md:h-12 md:w-12 hover:-translate-y-[calc(50%+2px)] hover:translate-x-[2px] hover:shadow-[6px_6px_0px_0px_currentColor] transition-all"
-          >
-            <ChevronRight className="h-5 w-5 md:h-6 md:w-6 text-foreground" />
-          </Button>
-
-          {/* Dot indicators */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-            {portfolioProjects.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`h-2.5 rounded-full transition-all duration-300 ${index === currentSlide
-                    ? 'bg-foreground w-8 rounded-none border-2 border-foreground'
-                    : 'bg-card w-2.5 hover:bg-muted border-2 border-foreground rounded-none'
-                  }`}
-              />
-            ))}
+          <div className="flex bg-card border-2 border-foreground p-1 shadow-[4px_4px_0px_0px_currentColor]">
+            <button
+              onClick={() => handleFilterChange('automation')}
+              className={`px-6 py-2.5 text-sm font-bold uppercase tracking-wider transition-all rounded-none ${filter === 'automation'
+                ? 'bg-foreground text-background'
+                : 'hover:bg-muted text-foreground'
+                }`}
+            >
+              {isRu ? 'Автоматизации' : 'Automations'}
+            </button>
+            <button
+              onClick={() => handleFilterChange('vibecoding')}
+              className={`px-6 py-2.5 text-sm font-bold uppercase tracking-wider transition-all rounded-none ${filter === 'vibecoding'
+                ? 'bg-foreground text-background'
+                : 'hover:bg-muted text-foreground'
+                }`}
+            >
+              {isRu ? 'Вайбкодинг' : 'Vibecoding'}
+            </button>
           </div>
+        </div>
+      </div>
+
+      {total > 0 ? (
+        <>
+          {isMobile ? (
+            /* Mobile: vertical scroll layout */
+            <div className="flex-1 space-y-6 pb-12 px-2">
+              {filteredProjects.map((project, index) => (
+                <div
+                  key={project.id}
+                  className={`border-b-2 border-foreground ${pastelBgClasses[index % pastelBgClasses.length]} rounded-none`}
+                >
+                  <ProjectContent project={project} index={index} total={total} isRu={isRu} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            /* Desktop/Tablet: horizontal slider with touch swipe */
+            <div className="flex-1 relative overflow-hidden">
+              <div
+                className="flex h-full transition-transform duration-500 ease-out"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                {filteredProjects.map((project, index) => (
+                  <div
+                    key={project.id}
+                    className={`w-full flex-shrink-0 h-full overflow-y-auto ${pastelBgClasses[index % pastelBgClasses.length]}`}
+                  >
+                    <ProjectContent project={project} index={index} total={total} isRu={isRu} />
+                  </div>
+                ))}
+              </div>
+
+              {/* Navigation arrows */}
+              {total > 1 && (
+                <>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={prev}
+                    className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 rounded-none border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] bg-card h-10 w-10 md:h-12 md:w-12 hover:-translate-y-[calc(50%+2px)] hover:-translate-x-[2px] hover:shadow-[6px_6px_0px_0px_currentColor] transition-all"
+                  >
+                    <ChevronLeft className="h-5 w-5 md:h-6 md:w-6 text-foreground" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={next}
+                    className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 rounded-none border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] bg-card h-10 w-10 md:h-12 md:w-12 hover:-translate-y-[calc(50%+2px)] hover:translate-x-[2px] hover:shadow-[6px_6px_0px_0px_currentColor] transition-all"
+                  >
+                    <ChevronRight className="h-5 w-5 md:h-6 md:w-6 text-foreground" />
+                  </Button>
+                </>
+              )}
+
+              {/* Dot indicators */}
+              {total > 1 && (
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                  {filteredProjects.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`h-2.5 rounded-full transition-all duration-300 ${index === currentSlide
+                        ? 'bg-foreground w-8 rounded-none border-2 border-foreground'
+                        : 'bg-card w-2.5 hover:bg-muted border-2 border-foreground rounded-none'
+                        }`}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </>
+      ) : (
+        <div className="flex-1 flex items-center justify-center py-20">
+          <p className="text-muted-foreground italic">
+            {isRu ? "В этой категории пока нет кейсов." : "No cases in this category yet."}
+          </p>
         </div>
       )}
     </div>

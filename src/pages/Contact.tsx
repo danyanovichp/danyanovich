@@ -416,218 +416,6 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Statistics */}
-      <section className="py-16 md:py-20">
-        <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <AnimatedSection>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {[
-                  { value: `${settings.stats.projects}+`, label_ru: 'Проектов', label_en: 'Projects', bg: 'bg-pastel-yellow/25' },
-                  { value: `80+`, label_ru: 'Шаблонов (паблик)', label_en: 'Templates (Public)', bg: 'bg-pastel-pink/25' },
-                  { value: '17', label_ru: 'Коммерч. предложений', label_en: 'Commercial Proposals', bg: 'bg-pastel-lavender/25' },
-                  { value: `${settings.stats.hours}+`, label_ru: 'Часов обучения', label_en: 'Training Hours', bg: 'bg-pastel-mint/25' },
-                ].map((stat, i) => (
-                  <div key={i} className={`${stat.bg} rounded-3xl p-6 text-center space-y-2`}>
-                    <p className="text-3xl md:text-4xl font-bold font-display">{stat.value}</p>
-                    <p className="text-sm text-muted-foreground">{isRu ? stat.label_ru : stat.label_en}</p>
-                  </div>
-                ))}
-              </div>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
-      {/* Work Experience */}
-      <section id="experience" className="py-16 md:py-20 scroll-mt-20">
-        <div className="container">
-          <div className="max-w-5xl mx-auto space-y-6">
-            <AnimatedSection>
-              <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-6">
-                {isRu ? 'Опыт работы' : 'Work Experience'}
-              </h2>
-
-              <div className="flex flex-wrap justify-center gap-2 mb-10">
-                <Button
-                  variant={activeExpFilter === 'all' ? 'default' : 'outline'}
-                  size="sm" onClick={() => setActiveExpFilter('all')}
-                  className={activeExpFilter === 'all' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
-                >
-                  {isRu ? 'Всё' : 'All'}
-                </Button>
-                <Button
-                  variant={activeExpFilter === 'automation' ? 'default' : 'outline'}
-                  size="sm" onClick={() => setActiveExpFilter('automation')}
-                  className={activeExpFilter === 'automation' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
-                >
-                  {isRu ? 'Автоматизация & IT' : 'Automation & IT'}
-                </Button>
-                <Button
-                  variant={activeExpFilter === 'consulting' ? 'default' : 'outline'}
-                  size="sm" onClick={() => setActiveExpFilter('consulting')}
-                  className={activeExpFilter === 'consulting' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
-                >
-                  {isRu ? 'Консалтинг' : 'Consulting'}
-                </Button>
-                <Button
-                  variant={activeExpFilter === 'product' ? 'default' : 'outline'}
-                  size="sm" onClick={() => setActiveExpFilter('product')}
-                  className={activeExpFilter === 'product' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
-                >
-                  {isRu ? 'Продукты' : 'Products'}
-                </Button>
-                <Button
-                  variant={activeExpFilter === 'freelance' ? 'default' : 'outline'}
-                  size="sm" onClick={() => setActiveExpFilter('freelance')}
-                  className={activeExpFilter === 'freelance' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
-                >
-                  {isRu ? 'Фриланс' : 'Freelance'}
-                </Button>
-              </div>
-            </AnimatedSection>
-
-            <Accordion type="multiple" className="space-y-4">
-              {filteredExperience.map((job, jobIndex) => (
-                <AnimatedSection key={jobIndex} delay={jobIndex * 100}>
-                  <AccordionItem value={`job-${jobIndex}`} className={`${job.bg} border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none overflow-hidden data-[state=open]:shadow-[2px_2px_0px_0px_currentColor] data-[state=open]:translate-y-[2px] data-[state=open]:translate-x-[2px] transition-all mb-4`}>
-                    <AccordionTrigger className="px-6 py-5 hover:no-underline">
-                      <div className="flex flex-col items-start text-left gap-1">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <h3 className="text-lg md:text-xl font-bold font-display">{isRu ? job.role_ru : job.role_en}</h3>
-                          <Badge variant="outline" className="text-xs">{job.company}</Badge>
-                        </div>
-                        <p className="text-xs text-muted-foreground">
-                          {isRu ? job.company_desc_ru : job.company_desc_en} · {isRu ? job.period_ru : job.period_en}
-                        </p>
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent className="px-6 pb-6 space-y-5">
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {isRu ? job.description_ru : job.description_en}
-                      </p>
-
-                      {job.projects.length > 0 && (
-                        <div className="space-y-4">
-                          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground font-display">
-                            {isRu ? 'Проекты' : 'Projects'}
-                          </p>
-                          {job.projects.map((project, pi) => (
-                            <div key={pi} className="rounded-none border-2 border-foreground bg-card/90 p-5 space-y-3">
-                              <h4 className="text-sm font-bold font-display">{isRu ? project.title_ru : project.title_en}</h4>
-                              <p className="text-xs font-medium">{isRu ? project.desc_ru : project.desc_en}</p>
-                              <div className="flex flex-wrap gap-1.5">
-                                {project.stack.map((tech, ti) => (
-                                  <Badge key={ti} variant="outline" className="text-[10px] font-normal">{tech}</Badge>
-                                ))}
-                              </div>
-                              <ul className="space-y-1">
-                                {(isRu ? project.results_ru : project.results_en).map((r, ri) => (
-                                  <li key={ri} className="flex items-start gap-2 text-xs text-muted-foreground">
-                                    <Check className="h-3 w-3 mt-0.5 text-accent-lime shrink-0" />
-                                    {r}
-                                  </li>
-                                ))}
-                              </ul>
-                              {project.images && project.images.length > 0 && (
-                                <div className="grid grid-cols-2 gap-2 mt-3">
-                                  {project.images.map((img: string, imgIdx: number) => (
-                                    <div key={imgIdx} className="relative aspect-video rounded-lg overflow-hidden border border-border/50 shadow-sm focus-within:ring-2 focus-within:ring-primary group/img">
-                                      <img
-                                        src={img}
-                                        alt={isRu ? project.title_ru : project.title_en}
-                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover/img:scale-105"
-                                        loading="lazy"
-                                      />
-                                      <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors" />
-                                      {/* Accessible link to open full image */}
-                                      <a href={img} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" aria-label={`View full image for ${isRu ? project.title_ru : project.title_en}`}>
-                                        <span className="sr-only">View full image</span>
-                                      </a>
-                                    </div>
-                                  ))}
-                                </div>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </AccordionContent>
-                  </AccordionItem>
-                </AnimatedSection>
-              ))}
-            </Accordion>
-          </div>
-        </div>
-      </section>
-
-      {/* Technical Stack */}
-      <section id="tech-stack" className="py-16 md:py-20 scroll-mt-20">
-        <div className="container">
-          <div className="max-w-5xl mx-auto">
-            <AnimatedSection>
-              <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-6">
-                {isRu ? 'Технический стек' : 'Technical Stack'}
-              </h2>
-              <div className="flex flex-wrap justify-center gap-2 mb-10">
-                <Button
-                  variant={activeStackFilter === 'all' ? 'default' : 'outline'}
-                  size="sm" onClick={() => setActiveStackFilter('all')}
-                  className={activeStackFilter === 'all' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
-                >
-                  {isRu ? 'Весь стек' : 'All Stack'}
-                </Button>
-                <Button
-                  variant={activeStackFilter === 'nocode' ? 'default' : 'outline'}
-                  size="sm" onClick={() => setActiveStackFilter('nocode')}
-                  className={activeStackFilter === 'nocode' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
-                >
-                  No-Code
-                </Button>
-                <Button
-                  variant={activeStackFilter === 'code' ? 'default' : 'outline'}
-                  size="sm" onClick={() => setActiveStackFilter('code')}
-                  className={activeStackFilter === 'code' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
-                >
-                  Code
-                </Button>
-                <Button
-                  variant={activeStackFilter === 'ai' ? 'default' : 'outline'}
-                  size="sm" onClick={() => setActiveStackFilter('ai')}
-                  className={activeStackFilter === 'ai' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
-                >
-                  AI
-                </Button>
-              </div>
-            </AnimatedSection>
-
-            <div className="grid sm:grid-cols-2 gap-6">
-              {filteredStack.map((category, ci) => (
-                <AnimatedSection key={ci} delay={ci * 100}>
-                  <Card className={`h-full border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none ${category.bg} hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all`}>
-                    <CardHeader className="pb-3">
-                      <div className="flex items-center gap-3">
-                        <div className="p-3 bg-card border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor]">
-                          <category.icon className="h-6 w-6 text-foreground" />
-                        </div>
-                        <h3 className="text-lg font-bold font-display">{isRu ? category.title_ru : category.title_en}</h3>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex flex-wrap gap-2">
-                        {(isRu ? category.items : category.items_en).map((item, ii) => (
-                          <Badge key={ii} variant="outline" className="text-xs font-bold uppercase">{item}</Badge>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </AnimatedSection>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Key Achievements */}
       <section id="achievements" className="py-16 md:py-20 scroll-mt-20">
         <div className="container">
@@ -639,11 +427,65 @@ const Contact = () => {
             </AnimatedSection>
 
             <div className="grid sm:grid-cols-2 gap-4">
-              {achievements.map((achievement, ai) => (
+              {[
+                { value: `${settings.stats.projects}+`, text_ru: `${settings.stats.projects}+ проектов по автоматизации`, text_en: `${settings.stats.projects}+ automation projects`, bg: 'bg-pastel-yellow text-foreground' },
+                { value: `80+`, text_ru: `80+ Notion шаблонов (80% в паблике)`, text_en: `80+ Notion templates (80% public)`, bg: 'bg-pastel-pink text-foreground' },
+                { value: `${settings.stats.hours}+`, text_ru: `${settings.stats.hours}+ часов обучающих сессий`, text_en: `${settings.stats.hours}+ hours of training sessions`, bg: 'bg-pastel-lavender text-foreground' },
+                { value: `4`, text_ru: '4 комплексные системы автоматизации в Viora Build', text_en: '4 complex automation systems at Viora Build', bg: 'bg-pastel-mint text-foreground' },
+                { value: `17`, text_ru: '17 коммерческих предложений с визуализациями', text_en: '17 commercial proposals with visualizations', bg: 'bg-pastel-coral text-foreground' },
+                { value: `3`, text_ru: 'Развитие 3 направлений бизнеса (Build, Consulting, Development)', text_en: '3 business divisions developed (Build, Consulting, Development)', bg: 'bg-pastel-yellow text-foreground' },
+              ].map((achievement, ai) => (
                 <AnimatedSection key={ai} delay={ai * 80}>
-                  <div className={`${pastelBgClasses[ai % pastelBgClasses.length]} p-5 flex items-center gap-4 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all`}>
-                    <span className="text-2xl md:text-3xl font-bold font-display shrink-0 w-16 text-center">{achievement.value}</span>
+                  <div className={`${achievement.bg} p-5 flex items-center gap-4 border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all`}>
+                    <span className="text-2xl md:text-3xl font-bold font-display shrink-0 w-20 text-center">{achievement.value}</span>
                     <p className="text-sm font-medium">{isRu ? achievement.text_ru : achievement.text_en}</p>
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Expertise Blocks (from settings) */}
+      <section id="tech-stack" className="py-16 md:py-20 scroll-mt-20">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <AnimatedSection>
+              <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-10">
+                {isRu ? 'Технический стек' : 'Tech Stack'}
+              </h2>
+            </AnimatedSection>
+            <div className="grid md:grid-cols-2 gap-6">
+              {techStack.map((category, ci) => (
+                <AnimatedSection key={category.type} delay={ci * 100}>
+                  <div className={`${category.bg} border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none p-6 space-y-4 h-full`}>
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-card border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] rounded-none">
+                        <category.icon className="h-6 w-6 text-foreground" />
+                      </div>
+                      <h3 className="text-lg font-bold font-display">
+                        {isRu ? category.title_ru : category.title_en}
+                      </h3>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {(isRu ? category.items : category.items_en).map((item, ii) => {
+                        // Notion → /notion, rest → /cases?tool=item
+                        const isNotion = item.toLowerCase().startsWith('notion');
+                        const href = isNotion
+                          ? '/notion'
+                          : `/cases?tool=${encodeURIComponent(item.split(' ')[0].replace(/[()]/g, ''))}`;
+                        return (
+                          <Link
+                            key={ii}
+                            to={href}
+                            className="px-3 py-1 bg-card border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] text-foreground text-xs font-bold uppercase tracking-wider hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-[4px_4px_0px_0px_currentColor] transition-all cursor-pointer"
+                          >
+                            {item}
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
                 </AnimatedSection>
               ))}
@@ -705,8 +547,8 @@ const Contact = () => {
 
             {/* Contact info card */}
             <AnimatedSection delay={50}>
-              <div className="bg-pastel-blue/15 rounded-3xl p-6 md:p-8 mb-8 space-y-4">
-                <div className="grid sm:grid-cols-2 gap-4 text-sm">
+              <div className="bg-card border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none p-5 mb-8">
+                <div className="grid sm:grid-cols-2 gap-3 text-sm">
                   <div className="flex items-center gap-3">
                     <MapPin className="h-4 w-4 text-muted-foreground shrink-0" />
                     <span>{isRu ? 'Россия · GMT+3' : 'Russia · GMT+3'}</span>
@@ -727,26 +569,17 @@ const Contact = () => {
               </div>
             </AnimatedSection>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
               {socialLinks.map((social, index) => {
                 const IconComponent = social.icon;
                 return (
-                  <AnimatedSection key={index} delay={index * 100}>
-                    <a href={social.link} target="_blank" rel="noopener noreferrer" className="block h-full">
-                      <Card className={`group cursor-pointer h-full transition-all hover:scale-[1.02] border-0 ${pastelBgClasses[index % pastelBgClasses.length]}`}>
-                        <CardHeader className="space-y-4">
-                          <div className="inline-flex p-4 bg-background/50 rounded-2xl w-fit">
-                            <IconComponent className="h-6 w-6" />
-                          </div>
-                          <h3 className="text-lg font-bold font-display">{social.title}</h3>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                          <p className="text-sm text-muted-foreground">{social.description}</p>
-                          <span className="text-sm font-medium inline-flex items-center gap-2 group-hover:underline">
-                            {social.handle}
-                          </span>
-                        </CardContent>
-                      </Card>
+                  <AnimatedSection key={index} delay={index * 80}>
+                    <a href={social.link} target="_blank" rel="noopener noreferrer" className="block">
+                      <div className={`${pastelBgClasses[index % pastelBgClasses.length]} border-2 border-foreground shadow-[3px_3px_0px_0px_currentColor] rounded-none p-4 flex flex-col items-center gap-2 text-center hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[5px_5px_0px_0px_currentColor] transition-all`}>
+                        <IconComponent className="h-5 w-5" />
+                        <span className="text-sm font-bold font-display">{social.title}</span>
+                        <span className="text-xs font-medium opacity-80">{social.handle}</span>
+                      </div>
                     </a>
                   </AnimatedSection>
                 );
@@ -836,10 +669,6 @@ const ReviewsCarousel = ({ reviews, isRu }: { reviews: any[]; isRu: boolean }) =
         <div className="max-w-6xl mx-auto">
           <AnimatedSection>
             <div className="text-center mb-12">
-              <Badge variant="outline" className="mb-4">
-                <Award className="h-3 w-3 mr-1" />
-                Kwork PRO
-              </Badge>
               <h2 className="text-3xl md:text-4xl font-bold font-display mb-2">
                 {isRu ? 'Отзывы клиентов' : 'Client Reviews'}
               </h2>
@@ -903,13 +732,9 @@ const ReviewsCarousel = ({ reviews, isRu }: { reviews: any[]; isRu: boolean }) =
 
           <AnimatedSection delay={300}>
             <div className="mt-12 text-center">
-              <a href="https://kwork.ru/user/danyanovich" target="_blank" rel="noopener noreferrer" className="inline-flex flex-col items-center gap-3">
-                <Badge className="bg-pastel-mint/30 text-foreground border-pastel-mint/50 hover:bg-pastel-mint/40">
-                  <Star className="h-3 w-3 mr-1 fill-current" />
-                  {isRu ? 'PRO продавец' : 'PRO seller'}
-                </Badge>
-                <Button variant="outline" className="gap-2 group rounded-full">
-                  <ExternalLink className="h-4 w-4 group-hover:rotate-12 transition-transform" />
+              <a href="https://kwork.ru/user/danyanovich" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="gap-2 group rounded-none border-2 border-foreground shadow-[3px_3px_0px_0px_currentColor] hover:shadow-none hover:translate-y-[2px] hover:translate-x-[2px] transition-all">
+                  <ExternalLink className="h-4 w-4" />
                   {isRu ? 'Все отзывы на Kwork' : 'All reviews on Kwork'}
                 </Button>
               </a>

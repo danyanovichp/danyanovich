@@ -2,7 +2,7 @@ import { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { HelmetProvider } from "react-helmet-async";
 import "./lib/i18n";
@@ -36,6 +36,7 @@ const Terms = lazy(() => import("./pages/Terms"));
 const Cookies = lazy(() => import("./pages/Cookies"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const NotionTemplates = lazy(() => import("./pages/NotionTemplates"));
+
 const Blog = lazy(() => import("./pages/Blog"));
 
 
@@ -59,7 +60,8 @@ const App = () => (
               <Suspense fallback={<PageLoader />}>
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  <Route path="/notiontemplates" element={<PageTransition><NotionTemplates /></PageTransition>} />
+                  <Route path="/notion" element={<PageTransition><NotionTemplates /></PageTransition>} />
+                  <Route path="/notiontemplates" element={<Navigate to="/notion" replace />} />
                   <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
                   <Route path="/courses" element={<PageTransition><Courses /></PageTransition>} />
                   <Route path="/ai-prompts" element={<PageTransition><AIPrompts /></PageTransition>} />

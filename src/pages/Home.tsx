@@ -19,7 +19,7 @@ const Home = () => {
       titleEn: "Notion Templates",
       descRu: "Рабочие пространства с базами данных и автоматизациями",
       descEn: "Workspaces with databases and automations",
-      link: "/notiontemplates",
+      link: "/notion",
       external: false,
     },
     {
@@ -28,7 +28,7 @@ const Home = () => {
       titleEn: "Automations & AI",
       descRu: "Промпты, агенты и интеграции с ИИ",
       descEn: "Prompts, agents and AI integrations",
-      link: "/cases",
+      link: "/cases?type=automation",
     },
     {
       icon: Code2,
@@ -36,7 +36,7 @@ const Home = () => {
       titleEn: "Vibecoding",
       descRu: "Веб-приложения с помощью AI-инструментов",
       descEn: "Web apps built with AI tools",
-      link: "/cases",
+      link: "/cases?type=vibecoding",
     },
   ];
 
@@ -62,7 +62,7 @@ const Home = () => {
             </p>
             <div className="flex justify-center gap-8 pt-4">
               <Link
-                to="/notiontemplates"
+                to="/notion"
                 className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 group"
               >
                 {isRu ? "Шаблоны Notion" : "Notion Templates"}

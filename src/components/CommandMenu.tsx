@@ -30,7 +30,7 @@ const CommandMenu = () => {
 
     const pages = [
         { name: isRu ? "Главная" : "Home", route: "/", icon: Home, keywords: ["home", "main", "start", "главная"] },
-        { name: isRu ? "Рабочие пространства" : "Notion Templates", route: "/notiontemplates", icon: FileText, keywords: ["notion", "templates", "шаблоны", "экосистема"] },
+        { name: isRu ? "Рабочие пространства" : "Notion Templates", route: "/notion", icon: FileText, keywords: ["notion", "templates", "шаблоны", "экосистема"] },
         { name: isRu ? "AI Промпты" : "AI Prompts", route: "/ai-prompts", icon: Bot, keywords: ["ai", "prompts", "промпты", "чат", "chatgpt", "claude"] },
         { name: isRu ? "Обучающие курсы" : "Courses", route: "/courses", icon: GraduationCap, keywords: ["courses", "обучение", "курсы", "наставничество"] },
         { name: isRu ? "Услуги консалтинга" : "Consulting", route: "/consulting", icon: Briefcase, keywords: ["consulting", "консалтинг", "услуги", "бизнес"] },

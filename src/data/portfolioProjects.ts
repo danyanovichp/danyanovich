@@ -36,6 +36,7 @@ export interface PortfolioProject {
     connections: WorkflowConnection[];
   };
   cost?: string;
+  type: 'automation' | 'vibecoding';
 }
 
 export const portfolioProjects: PortfolioProject[] = [
@@ -98,6 +99,7 @@ export const portfolioProjects: PortfolioProject[] = [
       'Maintenance cost: ~$20-30/mo',
     ],
     cost: '$20-30/мес',
+    type: 'automation',
     workflow: {
       nodes: [
         { id: 'gmail', label: 'Gmail', icon: '📧', color: '0 72% 51%', x: 5, y: 40 },
@@ -179,6 +181,7 @@ export const portfolioProjects: PortfolioProject[] = [
       'Saves hours of manual analysis for the manager',
       'Complete scoring history for HR decisions and analytics',
     ],
+    type: 'automation',
     workflow: {
       nodes: [
         { id: 'clickup', label: 'ClickUp', icon: '✅', color: '270 60% 55%', x: 5, y: 40 },
@@ -263,6 +266,7 @@ export const portfolioProjects: PortfolioProject[] = [
       'Local LLM fallback when OpenAI unavailable',
       'Load monitoring via Prometheus',
     ],
+    type: 'vibecoding',
     workflow: {
       nodes: [
         { id: 'user', label: 'User', icon: '👤', color: '0 0% 50%', x: 5, y: 40 },
@@ -346,6 +350,7 @@ export const portfolioProjects: PortfolioProject[] = [
       'Transparency: Telegram report for every action',
       'All Telegram audio formats supported',
     ],
+    type: 'automation',
     workflow: {
       nodes: [
         { id: 'tg', label: 'Telegram', icon: '✈️', color: '200 80% 50%', x: 5, y: 40 },
@@ -429,6 +434,7 @@ export const portfolioProjects: PortfolioProject[] = [
       'Dual channel: voice + Telegram = 100% coverage',
       'Reschedule and modify tasks during the call',
     ],
+    type: 'automation',
     workflow: {
       nodes: [
         { id: 'gh', label: 'GitHub Actions', icon: '⏰', color: '0 0% 30%', x: 5, y: 40 },
