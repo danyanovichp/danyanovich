@@ -673,7 +673,7 @@ const ReviewsCarousel = ({ reviews, isRu }: { reviews: any[]; isRu: boolean }) =
                 {isRu ? 'Отзывы клиентов' : 'Client Reviews'}
               </h2>
               <p className="text-muted-foreground">
-                {isRu ? `${reviews.length}+ положительных отзывов на Kwork` : `${reviews.length}+ positive reviews on Kwork`}
+                {isRu ? `22+ положительных отзывов на Kwork` : `22+ positive reviews on Kwork`}
               </p>
             </div>
           </AnimatedSection>
