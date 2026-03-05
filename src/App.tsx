@@ -35,6 +35,8 @@ const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Cookies = lazy(() => import("./pages/Cookies"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const NotionTemplates = lazy(() => import("./pages/NotionTemplates"));
+const Blog = lazy(() => import("./pages/Blog"));
 
 
 
@@ -57,6 +59,8 @@ const App = () => (
               <Suspense fallback={<PageLoader />}>
                 <Routes>
                   <Route path="/" element={<Home />} />
+                  <Route path="/notiontemplates" element={<PageTransition><NotionTemplates /></PageTransition>} />
+                  <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
                   <Route path="/courses" element={<PageTransition><Courses /></PageTransition>} />
                   <Route path="/ai-prompts" element={<PageTransition><AIPrompts /></PageTransition>} />
                   <Route path="/consulting" element={<PageTransition><Consulting /></PageTransition>} />

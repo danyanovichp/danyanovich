@@ -15,25 +15,25 @@ const Home = () => {
   const expertiseCards = [
     {
       icon: FileText,
-      titleRu: "Notion-системы",
-      titleEn: "Notion Systems",
+      titleRu: "Рабочие пространства Notion",
+      titleEn: "Notion Templates",
       descRu: "Рабочие пространства с базами данных и автоматизациями",
       descEn: "Workspaces with databases and automations",
-      link: "https://www.notion.com/@danyanovich",
-      external: true,
+      link: "/notiontemplates",
+      external: false,
     },
     {
       icon: Bot,
-      titleRu: "AI и автоматизация",
-      titleEn: "AI & Automation",
+      titleRu: "Автоматизации и AI",
+      titleEn: "Automations & AI",
       descRu: "Промпты, агенты и интеграции с ИИ",
       descEn: "Prompts, agents and AI integrations",
       link: "/cases",
     },
     {
       icon: Code2,
-      titleRu: "Vibe Coding",
-      titleEn: "Vibe Coding",
+      titleRu: "Вайбкодинг",
+      titleEn: "Vibecoding",
       descRu: "Веб-приложения с помощью AI-инструментов",
       descEn: "Web apps built with AI tools",
       link: "/cases",
@@ -61,15 +61,13 @@ const Home = () => {
               {isRu ? settings.hero.subtitle_ru : settings.hero.subtitle_en}
             </p>
             <div className="flex justify-center gap-8 pt-4">
-              <a
-                href="https://www.notion.com/@danyanovich"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/notiontemplates"
                 className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 group"
               >
                 {isRu ? "Шаблоны Notion" : "Notion Templates"}
                 <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </a>
+              </Link>
               <Link
                 to="/cases"
                 className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 group"
@@ -181,8 +179,8 @@ const Home = () => {
             </div>
           </div>
         </section>
-      </div>
-    </PageTransition>
+      </div >
+    </PageTransition >
   );
 };
 

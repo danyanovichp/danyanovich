@@ -82,6 +82,10 @@ const Contact = () => {
     }
   };
 
+  // State for interactive filters
+  const [activeExpFilter, setActiveExpFilter] = useState<string>('all');
+  const [activeStackFilter, setActiveStackFilter] = useState<string>('all');
+
   // Work experience data
   const workExperience = [
     {
@@ -92,6 +96,7 @@ const Contact = () => {
       company_desc_en: 'construction company, Portugal',
       period_ru: 'Июль 2024 – Январь 2026 · 1.5 года',
       period_en: 'Jul 2024 – Jan 2026 · 1.5 years',
+      type: 'automation',
       bg: pastelBgClasses[0],
       description_ru: 'Работал в двух ролях одновременно. IT: внедрение систем управления, цифровая инфраструктура, разработка кастомных инструментов. Менеджер: управление процессами, найм и обучение сотрудников.',
       description_en: 'Worked in two roles simultaneously. IT: implementing management systems, digital infrastructure, custom tool development. Manager: process management, hiring and training employees.',
@@ -152,6 +157,7 @@ const Contact = () => {
       company_desc_en: 'consulting division of Viora',
       period_ru: 'Сентябрь 2025 – Январь 2026 · 4 месяца',
       period_en: 'Sep 2025 – Jan 2026 · 4 months',
+      type: 'consulting',
       bg: pastelBgClasses[1],
       description_ru: 'Возглавил консалтинговое направление. Разработал образовательный продукт — полный сервис помощи клиентам в планировании строительства в Португалии с AI-интеграцией.',
       description_en: 'Led the consulting division. Developed an educational product — a complete service for construction planning in Portugal with AI integration.',
@@ -179,6 +185,7 @@ const Contact = () => {
       company_desc_en: 'development division of Viora',
       period_ru: 'Сентябрь 2025 – Январь 2026 · 4 месяца',
       period_en: 'Sep 2025 – Jan 2026 · 4 months',
+      type: 'product',
       bg: pastelBgClasses[2],
       description_ru: 'Создавал коммерческие предложения для инвестиционных строительных проектов: из архитектурных планов генерировал AI-визуализации и собирал промо-сайты.',
       description_en: 'Created commercial proposals for investment construction projects: generated AI visualizations from architectural plans and built promo websites.',
@@ -208,6 +215,7 @@ const Contact = () => {
       company_desc_en: 'T-Bank',
       period_ru: 'Июнь 2024 – Июнь 2025 · 1 год 1 мес.',
       period_en: 'Jun 2024 – Jun 2025 · 1 year 1 mo.',
+      type: 'sales',
       bg: pastelBgClasses[3],
       description_ru: 'Проведение встреч с клиентами и продажа банковских продуктов. Работа с возражениями и ведение переговоров. Работа в CRM и управление воронкой. Выполнение планов продаж. Развитые навыки коммуникации, убеждения и самостоятельного управления графиком.',
       description_en: 'Conducting client meetings and selling banking products. Handling objections and negotiations. Working in CRM and pipeline management. Achieving sales targets. Developed communication, persuasion, and self-management skills.',
@@ -221,6 +229,7 @@ const Contact = () => {
       company_desc_en: 'individual practice',
       period_ru: 'Июль 2020 – Настоящее время · 5+ лет',
       period_en: 'Jul 2020 – Present · 5+ years',
+      type: 'freelance',
       bg: pastelBgClasses[4 % pastelBgClasses.length],
       description_ru: 'Комплексная фриланс-деятельность: консультирование, разработка шаблонов и автоматизаций для компаний разных ниш. 50+ проектов, 500+ Notion шаблонов.',
       description_en: 'Comprehensive freelance activity: consulting, template development and automations for companies across various niches. 50+ projects, 500+ Notion templates.',
@@ -231,48 +240,55 @@ const Contact = () => {
   // Tech stack categories
   const techStack = [
     {
-      title_ru: 'No-Code платформы',
-      title_en: 'No-Code Platforms',
+      title_ru: 'No-Code',
+      title_en: 'No-Code',
       icon: Workflow,
       bg: pastelBgClasses[0],
+      type: 'nocode',
       items: ['Notion (продвинутый)', 'ClickUp', 'Bitrix24', 'Zapier Pro', 'n8n', 'Make.com'],
       items_en: ['Notion (advanced)', 'ClickUp', 'Bitrix24', 'Zapier Pro', 'n8n', 'Make.com'],
     },
     {
-      title_ru: 'Программирование',
-      title_en: 'Programming',
+      title_ru: 'Код',
+      title_en: 'Code',
       icon: Code2,
       bg: pastelBgClasses[1],
+      type: 'code',
       items: ['Python 3.10+', 'Flask / FastAPI', 'JavaScript', 'Vue.js / React', 'REST API', 'Git / GitHub'],
       items_en: ['Python 3.10+', 'Flask / FastAPI', 'JavaScript', 'Vue.js / React', 'REST API', 'Git / GitHub'],
     },
     {
-      title_ru: 'AI и Machine Learning',
-      title_en: 'AI & Machine Learning',
+      title_ru: 'AI Инструменты',
+      title_en: 'AI Tools',
       icon: Bot,
       bg: pastelBgClasses[2],
+      type: 'ai',
       items: ['OpenAI API (GPT-4o, Whisper)', 'LangChain', 'LM Studio', 'AI-агенты', 'Промпт-инжиниринг'],
       items_en: ['OpenAI API (GPT-4o, Whisper)', 'LangChain', 'LM Studio', 'AI Agents', 'Prompt Engineering'],
     },
     {
-      title_ru: 'Базы данных и DevOps',
-      title_en: 'Databases & DevOps',
+      title_ru: 'Базы данных',
+      title_en: 'Databases',
       icon: Database,
       bg: pastelBgClasses[3],
+      type: 'infra',
       items: ['SQLite', 'Google Sheets API', 'Notion API', 'Linux', 'Structured Logging', 'Prometheus'],
       items_en: ['SQLite', 'Google Sheets API', 'Notion API', 'Linux', 'Structured Logging', 'Prometheus'],
     },
   ];
 
-  // Key achievements
+  // Key achievements mapped from settings to keep it alive
   const achievements = [
-    { text_ru: '50+ проектов по автоматизации', text_en: '50+ automation projects', value: '50+' },
-    { text_ru: '500+ Notion шаблонов', text_en: '500+ Notion templates', value: '500+' },
-    { text_ru: '100+ часов обучающих сессий', text_en: '100+ hours of training sessions', value: '100+' },
+    { text_ru: `${settings.stats.projects}+ проектов по автоматизации`, text_en: `${settings.stats.projects}++ automation projects`, value: `${settings.stats.projects}+` },
+    { text_ru: `${settings.stats.templates}+ Notion шаблонов (80% в паблике)`, text_en: `${settings.stats.templates}+ Notion templates (80% public)`, value: `${settings.stats.templates}+` },
+    { text_ru: `${settings.stats.hours}+ часов обучающих сессий`, text_en: `${settings.stats.hours}+ hours of training sessions`, value: `${settings.stats.hours}+` },
     { text_ru: '4 комплексные системы автоматизации в Viora Build', text_en: '4 complex automation systems at Viora Build', value: '4' },
     { text_ru: '17 коммерческих предложений с визуализациями', text_en: '17 commercial proposals with visualizations', value: '17' },
     { text_ru: 'Развитие 3 направлений бизнеса (Build, Consulting, Development)', text_en: '3 business divisions developed (Build, Consulting, Development)', value: '3' },
   ];
+
+  const filteredExperience = activeExpFilter === 'all' ? workExperience : workExperience.filter(w => w.type === activeExpFilter);
+  const filteredStack = activeStackFilter === 'all' ? techStack : techStack.filter(s => s.type === activeStackFilter);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -407,10 +423,10 @@ const Contact = () => {
             <AnimatedSection>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
-                  { value: '50+', label_ru: 'Проектов', label_en: 'Projects', bg: 'bg-pastel-yellow/25' },
-                  { value: '500+', label_ru: 'Шаблонов', label_en: 'Templates', bg: 'bg-pastel-pink/25' },
+                  { value: `${settings.stats.projects}+`, label_ru: 'Проектов', label_en: 'Projects', bg: 'bg-pastel-yellow/25' },
+                  { value: `80+`, label_ru: 'Шаблонов (паблик)', label_en: 'Templates (Public)', bg: 'bg-pastel-pink/25' },
                   { value: '17', label_ru: 'Коммерч. предложений', label_en: 'Commercial Proposals', bg: 'bg-pastel-lavender/25' },
-                  { value: '100+', label_ru: 'Часов обучения', label_en: 'Training Hours', bg: 'bg-pastel-mint/25' },
+                  { value: `${settings.stats.hours}+`, label_ru: 'Часов обучения', label_en: 'Training Hours', bg: 'bg-pastel-mint/25' },
                 ].map((stat, i) => (
                   <div key={i} className={`${stat.bg} rounded-3xl p-6 text-center space-y-2`}>
                     <p className="text-3xl md:text-4xl font-bold font-display">{stat.value}</p>
@@ -428,13 +444,51 @@ const Contact = () => {
         <div className="container">
           <div className="max-w-5xl mx-auto space-y-6">
             <AnimatedSection>
-              <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-6">
                 {isRu ? 'Опыт работы' : 'Work Experience'}
               </h2>
+
+              <div className="flex flex-wrap justify-center gap-2 mb-10">
+                <Button
+                  variant={activeExpFilter === 'all' ? 'default' : 'outline'}
+                  size="sm" onClick={() => setActiveExpFilter('all')}
+                  className={activeExpFilter === 'all' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
+                >
+                  {isRu ? 'Всё' : 'All'}
+                </Button>
+                <Button
+                  variant={activeExpFilter === 'automation' ? 'default' : 'outline'}
+                  size="sm" onClick={() => setActiveExpFilter('automation')}
+                  className={activeExpFilter === 'automation' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
+                >
+                  {isRu ? 'Автоматизация & IT' : 'Automation & IT'}
+                </Button>
+                <Button
+                  variant={activeExpFilter === 'consulting' ? 'default' : 'outline'}
+                  size="sm" onClick={() => setActiveExpFilter('consulting')}
+                  className={activeExpFilter === 'consulting' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
+                >
+                  {isRu ? 'Консалтинг' : 'Consulting'}
+                </Button>
+                <Button
+                  variant={activeExpFilter === 'product' ? 'default' : 'outline'}
+                  size="sm" onClick={() => setActiveExpFilter('product')}
+                  className={activeExpFilter === 'product' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
+                >
+                  {isRu ? 'Продукты' : 'Products'}
+                </Button>
+                <Button
+                  variant={activeExpFilter === 'freelance' ? 'default' : 'outline'}
+                  size="sm" onClick={() => setActiveExpFilter('freelance')}
+                  className={activeExpFilter === 'freelance' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
+                >
+                  {isRu ? 'Фриланс' : 'Freelance'}
+                </Button>
+              </div>
             </AnimatedSection>
 
             <Accordion type="multiple" className="space-y-4">
-              {workExperience.map((job, jobIndex) => (
+              {filteredExperience.map((job, jobIndex) => (
                 <AnimatedSection key={jobIndex} delay={jobIndex * 100}>
                   <AccordionItem value={`job-${jobIndex}`} className={`${job.bg} border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none overflow-hidden data-[state=open]:shadow-[2px_2px_0px_0px_currentColor] data-[state=open]:translate-y-[2px] data-[state=open]:translate-x-[2px] transition-all mb-4`}>
                     <AccordionTrigger className="px-6 py-5 hover:no-underline">
@@ -512,13 +566,43 @@ const Contact = () => {
         <div className="container">
           <div className="max-w-5xl mx-auto">
             <AnimatedSection>
-              <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-6">
                 {isRu ? 'Технический стек' : 'Technical Stack'}
               </h2>
+              <div className="flex flex-wrap justify-center gap-2 mb-10">
+                <Button
+                  variant={activeStackFilter === 'all' ? 'default' : 'outline'}
+                  size="sm" onClick={() => setActiveStackFilter('all')}
+                  className={activeStackFilter === 'all' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
+                >
+                  {isRu ? 'Весь стек' : 'All Stack'}
+                </Button>
+                <Button
+                  variant={activeStackFilter === 'nocode' ? 'default' : 'outline'}
+                  size="sm" onClick={() => setActiveStackFilter('nocode')}
+                  className={activeStackFilter === 'nocode' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
+                >
+                  No-Code
+                </Button>
+                <Button
+                  variant={activeStackFilter === 'code' ? 'default' : 'outline'}
+                  size="sm" onClick={() => setActiveStackFilter('code')}
+                  className={activeStackFilter === 'code' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
+                >
+                  Code
+                </Button>
+                <Button
+                  variant={activeStackFilter === 'ai' ? 'default' : 'outline'}
+                  size="sm" onClick={() => setActiveStackFilter('ai')}
+                  className={activeStackFilter === 'ai' ? 'bg-foreground text-background rounded-none shadow-[2px_2px_0px_0px_currentColor]' : 'rounded-none border-2 border-foreground'}
+                >
+                  AI
+                </Button>
+              </div>
             </AnimatedSection>
 
             <div className="grid sm:grid-cols-2 gap-6">
-              {techStack.map((category, ci) => (
+              {filteredStack.map((category, ci) => (
                 <AnimatedSection key={ci} delay={ci * 100}>
                   <Card className={`h-full border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none ${category.bg} hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all`}>
                     <CardHeader className="pb-3">

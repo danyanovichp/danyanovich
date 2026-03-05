@@ -7,8 +7,9 @@ const resources = {
     translation: {
       nav: {
         home: 'ГЛАВНАЯ',
-        templates: 'ШАБЛОНЫ',
+        templates: 'РАБОЧИЕ ПРОСТРАНСТВА NOTION',
         courses: 'КУРСЫ',
+        blog: 'БЛОГ',
         aiPrompts: 'AI ПРОМПТЫ',
         consulting: 'КОНСАЛТИНГ',
         packages: 'ПАКЕТЫ',
@@ -71,8 +72,8 @@ const resources = {
         subtitle: 'Избранные проекты и реализации',
       },
       templates: {
-        title: 'Шаблоны Notion',
-        subtitle: 'Готовые решения для быстрого старта',
+        title: 'Рабочие пространства Notion',
+        subtitle: 'Готовые решения для вашего бизнеса',
       },
       courses: {
         title: 'Обучающие курсы',
@@ -127,8 +128,9 @@ const resources = {
     translation: {
       nav: {
         home: 'HOME',
-        templates: 'TEMPLATES',
+        templates: 'NOTION TEMPLATES',
         courses: 'COURSES',
+        blog: 'BLOG',
         aiPrompts: 'AI PROMPTS',
         consulting: 'CONSULTING',
         packages: 'PACKAGES',
@@ -192,7 +194,7 @@ const resources = {
       },
       templates: {
         title: 'Notion Templates',
-        subtitle: 'Ready-made solutions for quick start',
+        subtitle: 'Ready-made solutions for your business',
       },
       courses: {
         title: 'Training Courses',

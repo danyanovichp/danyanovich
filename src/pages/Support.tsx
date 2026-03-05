@@ -37,29 +37,63 @@ const Support = () => {
           </AnimatedSection>
         </section>
 
-        {/* NOWPayments Quick Donation */}
-        <section className="container mx-auto px-4 pb-12 relative z-10">
+        {/* Main Donation */}
+        <section className="container mx-auto px-4 pb-8 relative z-10">
           <AnimatedSection>
             <div className="max-w-2xl mx-auto">
-              <div className="rounded-none p-8 bg-card border-2 border-foreground shadow-[8px_8px_0px_0px_currentColor] text-center transition-all hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0px_0px_currentColor]">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-none bg-pastel-pink border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] mb-4">
-                  <CreditCard className="h-6 w-6 text-foreground" />
+              <div className="rounded-none p-8 md:p-12 bg-card border-2 border-foreground shadow-[8px_8px_0px_0px_currentColor] text-center transition-all hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0px_0px_currentColor]">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-none bg-pastel-pink border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] mb-6">
+                  <Heart className="h-8 w-8 text-foreground" />
                 </div>
-                <h2 className="font-display text-xl font-semibold mb-2">
-                  {isRu ? 'Быстрый донат' : 'Quick Donation'}
+                <h2 className="font-display text-2xl md:text-3xl font-bold mb-4">
+                  {isRu ? 'Помочь проекту расти' : 'Help the Project Grow'}
                 </h2>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-muted-foreground mb-8 text-lg leading-relaxed max-w-xl mx-auto">
                   {isRu
-                    ? 'Самый простой способ поддержать — через любую криптовалюту в один клик.'
-                    : 'The easiest way to support — via any cryptocurrency in one click.'}
+                    ? 'Помогите нам стать еще лучше! Ваша поддержка пойдет на создание новых топовых шаблонов для Notion, AI-агентов и полезного контента. Спасибо, что верите в нас 🙏'
+                    : 'Help us become even better! Your donation will support us in creating new top-tier Notion templates, AI agents, and useful content. Thank you for believing in us 🙏'}
                 </p>
+                <a
+                  href={isRu ? "https://web.tribute.tg/d/GFn" : "https://web.tribute.tg/d/GFk"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-full sm:w-auto gap-2 bg-foreground text-background border-2 border-foreground px-8 py-4 text-lg rounded-none font-bold uppercase tracking-wider shadow-[4px_4px_0px_0px_currentColor] hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[6px_6px_0px_0px_currentColor] transition-all"
+                >
+                  {isRu ? 'Поддержать проект' : 'Support the Project'}
+                  <ExternalLink className="h-5 w-5" />
+                </a>
+              </div>
+            </div>
+          </AnimatedSection>
+        </section>
+
+        {/* Crypto Quick Donation */}
+        <section className="container mx-auto px-4 pb-12 relative z-10">
+          <AnimatedSection delay={100}>
+            <div className="max-w-2xl mx-auto">
+              <div className="rounded-none p-6 bg-muted/30 border-2 border-foreground border-dashed text-center flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="flex items-center gap-4 text-left">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-none bg-pastel-yellow border-2 border-foreground shrink-0">
+                    <CreditCard className="h-6 w-6 text-foreground" />
+                  </div>
+                  <div>
+                    <h3 className="font-display font-bold text-lg">
+                      {isRu ? 'Криптовалюта' : 'Cryptocurrency'}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      {isRu
+                        ? 'Также вы можете поддержать нас криптой'
+                        : 'You can also support us with crypto'}
+                    </p>
+                  </div>
+                </div>
                 <a
                   href="https://nowpayments.io/donation/danyanovich"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground border-2 border-foreground px-6 py-3 rounded-none font-bold uppercase tracking-wider shadow-[4px_4px_0px_0px_currentColor] hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[6px_6px_0px_0px_currentColor] transition-all"
+                  className="inline-flex items-center justify-center w-full md:w-auto gap-2 bg-transparent text-foreground border-2 border-foreground px-5 py-2.5 sm:text-sm rounded-none font-bold uppercase tracking-wider hover:bg-foreground hover:text-background transition-colors shrink-0"
                 >
-                  {isRu ? 'Поддержать' : 'Donate Now'}
+                  {isRu ? 'Отправить крипту' : 'Send Crypto'}
                   <ExternalLink className="h-4 w-4" />
                 </a>
               </div>

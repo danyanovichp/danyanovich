@@ -4,6 +4,7 @@ import { useTheme } from "./ThemeProvider";
 import { useTranslation } from "react-i18next";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import CommandMenu from "./CommandMenu";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -16,6 +17,7 @@ const Header = () => {
 
   const mainLinks = [
     { href: "/", label: t('nav.home') },
+    { href: "/blog", label: t('nav.blog') },
     { href: "/cases", label: i18n.language === 'ru' ? 'КЕЙСЫ' : 'CASES' },
     { href: "/contact", label: i18n.language === 'ru' ? 'ОБО МНЕ' : 'ABOUT' },
     { href: "/support", label: t('nav.support') },
@@ -52,7 +54,9 @@ const Header = () => {
           </nav>
 
           {/* Controls */}
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 md:gap-2">
+            <CommandMenu />
+
             <Button
               variant="ghost"
               size="icon"
