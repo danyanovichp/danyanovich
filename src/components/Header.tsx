@@ -4,7 +4,6 @@ import { useTheme } from "./ThemeProvider";
 import { useTranslation } from "react-i18next";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import CommandMenu from "./CommandMenu";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -55,7 +54,6 @@ const Header = () => {
 
           {/* Controls */}
           <div className="flex items-center gap-1 md:gap-2">
-            <CommandMenu />
 
             <Button
               variant="ghost"

@@ -7,14 +7,11 @@ import { ThemeProvider } from "./components/ThemeProvider";
 import { HelmetProvider } from "react-helmet-async";
 import "./lib/i18n";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import PageTransition from "./components/PageTransition";
 
 import ScrollToTop from "./components/ScrollToTop";
 
-import CookieBanner from "./components/CookieBanner";
-import YandexMetrika from "./components/YandexMetrika";
-import GoogleAnalytics from "./components/GoogleAnalytics";
+
 
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -83,12 +80,9 @@ const App = () => (
                 </Routes>
               </Suspense>
             </main>
-            <Footer />
             <ScrollToTop />
 
-            <CookieBanner />
-            <YandexMetrika />
-            <GoogleAnalytics />
+
           </div>
         </BrowserRouter>
       </TooltipProvider>
