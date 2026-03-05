@@ -18,40 +18,21 @@ const Support = () => {
       <div className="relative min-h-screen">
 
 
-        {/* Hero */}
+        {/* Main Donation Card (Combined Hero & Donation) */}
         <section className="container mx-auto px-4 pt-24 pb-12 relative z-10">
-          <AnimatedSection>
-            <div className="text-center max-w-2xl mx-auto">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-none bg-pastel-yellow border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] mb-6">
-                <Heart className="h-8 w-8 text-foreground" />
-              </div>
-              <h1 className="font-display text-4xl md:text-5xl font-bold tracking-tight mb-4">
-                {isRu ? 'Поддержать' : 'Support Me'}
-              </h1>
-              <p className="text-muted-foreground text-lg leading-relaxed">
-                {isRu
-                  ? 'Если мои шаблоны, контент или консультации были вам полезны — вы можете поддержать мою работу. Это помогает создавать больше качественных материалов.'
-                  : 'If my templates, content, or consulting have been helpful to you — you can support my work. It helps me create more quality materials.'}
-              </p>
-            </div>
-          </AnimatedSection>
-        </section>
-
-        {/* Main Donation */}
-        <section className="container mx-auto px-4 pb-8 relative z-10">
           <AnimatedSection>
             <div className="max-w-2xl mx-auto">
               <div className="rounded-none p-8 md:p-12 bg-card border-2 border-foreground shadow-[8px_8px_0px_0px_currentColor] text-center transition-all hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0px_0px_currentColor]">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-none bg-pastel-pink border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] mb-6">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-none bg-pastel-yellow border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] mb-6">
                   <Heart className="h-8 w-8 text-foreground" />
                 </div>
-                <h2 className="font-display text-2xl md:text-3xl font-bold mb-4">
-                  {isRu ? 'Помочь проекту расти' : 'Help the Project Grow'}
-                </h2>
+                <h1 className="font-display text-3xl md:text-4xl font-bold mb-4">
+                  {isRu ? 'Поддержать' : 'Support Me'}
+                </h1>
                 <p className="text-muted-foreground mb-8 text-lg leading-relaxed max-w-xl mx-auto">
                   {isRu
-                    ? 'Помогите нам стать еще лучше! Ваша поддержка пойдет на создание новых топовых шаблонов для Notion, AI-агентов и полезного контента. Спасибо, что верите в нас 🙏'
-                    : 'Help us become even better! Your donation will support us in creating new top-tier Notion templates, AI agents, and useful content. Thank you for believing in us 🙏'}
+                    ? 'Если мои шаблоны, контент или консультации были вам полезны — вы можете поддержать мою работу. Это помогает создавать больше качественных материалов. 🙏'
+                    : 'If my templates, content, or consulting have been helpful to you — you can support my work. It helps me create more quality materials. 🙏'}
                 </p>
                 <a
                   href={isRu ? "https://web.tribute.tg/d/GFn" : "https://web.tribute.tg/d/GFk"}
@@ -59,7 +40,7 @@ const Support = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center w-full sm:w-auto gap-2 bg-foreground text-background border-2 border-foreground px-8 py-4 text-lg rounded-none font-bold uppercase tracking-wider shadow-[4px_4px_0px_0px_currentColor] hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[6px_6px_0px_0px_currentColor] transition-all"
                 >
-                  {isRu ? 'Поддержать проект' : 'Support the Project'}
+                  {isRu ? 'Поддержать' : 'Support'}
                   <ExternalLink className="h-5 w-5" />
                 </a>
               </div>
@@ -82,8 +63,8 @@ const Support = () => {
                     </h3>
                     <p className="text-sm text-muted-foreground">
                       {isRu
-                        ? 'Также вы можете поддержать нас криптой'
-                        : 'You can also support us with crypto'}
+                        ? 'Также вы можете поддержать меня криптой'
+                        : 'You can also support me with crypto'}
                     </p>
                   </div>
                 </div>

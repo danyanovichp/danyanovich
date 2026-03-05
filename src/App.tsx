@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 import PageTransition from "./components/PageTransition";
 
 import ScrollToTop from "./components/ScrollToTop";
-import TelegramWidget from "./components/TelegramWidget";
+
 import CookieBanner from "./components/CookieBanner";
 import YandexMetrika from "./components/YandexMetrika";
 import GoogleAnalytics from "./components/GoogleAnalytics";
@@ -83,7 +83,7 @@ const App = () => (
             </main>
             <Footer />
             <ScrollToTop />
-            <TelegramWidget />
+
             <CookieBanner />
             <YandexMetrika />
             <GoogleAnalytics />
