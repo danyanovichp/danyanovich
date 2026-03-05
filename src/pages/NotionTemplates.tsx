@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { ArrowRight, Download, Eye, FileText, ChevronRight } from "lucide-react";
+import { ArrowRight, Download, Eye, FileText, ChevronRight, Bot } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,7 +13,7 @@ const NotionTemplates = () => {
 
     const stats = [
         {
-            value: "80",
+            value: "88",
             labelRu: "Шаблонов выпущено",
             labelEn: "Templates Released",
             icon: FileText,
@@ -21,7 +21,7 @@ const NotionTemplates = () => {
             bgClass: "bg-pastel-blue/20"
         },
         {
-            value: "4000",
+            value: "4132",
             labelRu: "Просмотров",
             labelEn: "Views",
             icon: Eye,
@@ -29,12 +29,28 @@ const NotionTemplates = () => {
             bgClass: "bg-pastel-pink/20"
         },
         {
-            value: "1000",
+            value: "1192",
             labelRu: "Скачиваний",
             labelEn: "Downloads",
             icon: Download,
             colorClass: "text-accent-lime",
             bgClass: "bg-accent-lime/20"
+        },
+        {
+            value: "3",
+            labelRu: "Создано ИИ агентов",
+            labelEn: "AI Agents Created",
+            icon: Bot,
+            colorClass: "text-pastel-lavender",
+            bgClass: "bg-pastel-lavender/20"
+        },
+        {
+            value: "524",
+            labelRu: "Скачиваний агентов",
+            labelEn: "Agent Downloads",
+            icon: Download,
+            colorClass: "text-accent-coral",
+            bgClass: "bg-accent-coral/20"
         }
     ];
 
@@ -84,9 +100,9 @@ const NotionTemplates = () => {
                                 {isRu ? "Статистика проектов" : "Project Statistics"}
                             </h2>
 
-                            <div className="grid md:grid-cols-3 gap-6">
+                            <div className="flex flex-wrap justify-center gap-6">
                                 {stats.map((stat, i) => (
-                                    <Card key={i} className="rounded-none border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] bg-card hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all overflow-hidden relative group">
+                                    <Card key={i} className="flex-1 min-w-[250px] max-w-[320px] rounded-none border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] bg-card hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all overflow-hidden relative group">
                                         <CardContent className="p-8 flex flex-col items-center justify-center text-center relative z-10">
                                             <div className={`p-4 rounded-full ${stat.bgClass} mb-6 transform group-hover:scale-110 transition-transform duration-300`}>
                                                 <stat.icon className={`w-8 h-8 ${stat.colorClass}`} />
