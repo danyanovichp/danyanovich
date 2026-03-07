@@ -1,4 +1,4 @@
-import { LocalLink as Link } from "@/components/LocalLink";
+import { Link } from "react-router-dom";
 import { LinkProps, useLocation } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 

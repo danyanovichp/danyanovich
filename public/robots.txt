@@ -16,4 +16,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://danyanovich.com/sitemap.xml
+Sitemap: https://danyanovich.site/sitemap.xml
