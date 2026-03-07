@@ -20,7 +20,7 @@ const CaseDetail = () => {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center p-4">
                 <h1 className="text-2xl font-bold mb-4">{isRu ? "Кейс не найден" : "Case not found"}</h1>
-                <Button onClick={() => navigate("/cases")} variant="outline">
+                <Button onClick={() => navigate(`/${i18n.language}/cases`)} variant="outline">
                     <ChevronLeft className="mr-2 h-4 w-4" />
                     {isRu ? "Вернуться к кейсам" : "Back to Cases"}
                 </Button>

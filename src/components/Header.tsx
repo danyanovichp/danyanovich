@@ -1,4 +1,5 @@
-import { Link, useLocation } from "react-router-dom";
+import { LocalLink as Link } from "@/components/LocalLink";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Moon, Sun, Globe } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 import { useTranslation } from "react-i18next";
@@ -10,8 +11,20 @@ const Header = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
 
+  const navigate = useNavigate();
+
   const toggleLanguage = () => {
-    i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
+    const newLang = i18n.language === 'ru' ? 'en' : 'ru';
+
+    // Replace the current language prefix with the new one
+    // We assume the URL matches /ru/something or /en/something
+    const pathParts = location.pathname.split('/');
+    if (pathParts[1] === 'ru' || pathParts[1] === 'en') {
+      pathParts[1] = newLang;
+    }
+
+    const newPath = pathParts.join('/') + location.search + location.hash;
+    navigate(newPath);
   };
 
   const mainLinks = [

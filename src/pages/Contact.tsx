@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-import { Link } from "react-router-dom";
+import { LocalLink as Link } from "@/components/LocalLink";
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Youtube, MessageCircle, FileText, Star, Quote, ExternalLink, User, Code2, Bot, Workflow, Zap, Globe, Gamepad2, AppWindow, ChevronRight, ChevronLeft, Award, Linkedin, Wrench, Trophy, Mail, MapPin, Briefcase, GraduationCap, Check, Clock, Database, Server, Palette, Languages, Calendar } from "lucide-react";
 import * as LucideIcons from "lucide-react";

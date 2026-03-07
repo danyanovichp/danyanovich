@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useSearchParams, Link } from "react-router-dom";
+import { LocalLink as Link } from "@/components/LocalLink";
+import { useSearchParams } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import SEO from "@/components/SEO";
 import { portfolioProjects } from "@/data/portfolioProjects";

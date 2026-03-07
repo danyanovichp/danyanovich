@@ -10,6 +10,8 @@ import Header from "./components/Header";
 import PageTransition from "./components/PageTransition";
 
 import ScrollToTop from "./components/ScrollToTop";
+import LanguageWrapper from "./components/LanguageWrapper";
+import RootRedirect from "./components/RootRedirect";
 
 
 
@@ -57,28 +59,31 @@ const App = () => (
             <main className="flex-1">
               <Suspense fallback={<PageLoader />}>
                 <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/notion" element={<PageTransition><NotionTemplates /></PageTransition>} />
-                  <Route path="/notiontemplates" element={<Navigate to="/notion" replace />} />
-                  <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
-                  <Route path="/courses" element={<PageTransition><Courses /></PageTransition>} />
-                  <Route path="/ai-prompts" element={<PageTransition><AIPrompts /></PageTransition>} />
-                  <Route path="/consulting" element={<PageTransition><Consulting /></PageTransition>} />
-                  <Route path="/packages" element={<PageTransition><Packages /></PageTransition>} />
-                  <Route path="/reviews" element={<PageTransition><Reviews /></PageTransition>} />
-                  <Route path="/faq" element={<PageTransition><FAQ /></PageTransition>} />
-                  <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
-                  <Route path="/portfolio" element={<PageTransition><Portfolio /></PageTransition>} />
-                  <Route path="/cases" element={<PageTransition><Cases /></PageTransition>} />
-                  <Route path="/cases/:id" element={<PageTransition><CaseDetail /></PageTransition>} />
-                  <Route path="/support" element={<PageTransition><Support /></PageTransition>} />
+                  <Route path="/:lang" element={<LanguageWrapper />}>
+                    <Route index element={<Home />} />
+                    <Route path="notion" element={<PageTransition><NotionTemplates /></PageTransition>} />
+                    <Route path="blog" element={<PageTransition><Blog /></PageTransition>} />
+                    <Route path="courses" element={<PageTransition><Courses /></PageTransition>} />
+                    <Route path="ai-prompts" element={<PageTransition><AIPrompts /></PageTransition>} />
+                    <Route path="consulting" element={<PageTransition><Consulting /></PageTransition>} />
+                    <Route path="packages" element={<PageTransition><Packages /></PageTransition>} />
+                    <Route path="reviews" element={<PageTransition><Reviews /></PageTransition>} />
+                    <Route path="faq" element={<PageTransition><FAQ /></PageTransition>} />
+                    <Route path="contact" element={<PageTransition><Contact /></PageTransition>} />
+                    <Route path="portfolio" element={<PageTransition><Portfolio /></PageTransition>} />
+                    <Route path="cases" element={<PageTransition><Cases /></PageTransition>} />
+                    <Route path="cases/:id" element={<PageTransition><CaseDetail /></PageTransition>} />
+                    <Route path="support" element={<PageTransition><Support /></PageTransition>} />
 
-                  <Route path="/ai-training" element={<PageTransition><AITraining /></PageTransition>} />
-                  <Route path="/games/pixel-cafe-tycoon" element={<PageTransition><PixelCafeTycoon /></PageTransition>} />
-                  <Route path="/privacy" element={<PageTransition><Privacy /></PageTransition>} />
-                  <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />
-                  <Route path="/cookies" element={<PageTransition><Cookies /></PageTransition>} />
-                  <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+                    <Route path="ai-training" element={<PageTransition><AITraining /></PageTransition>} />
+                    <Route path="games/pixel-cafe-tycoon" element={<PageTransition><PixelCafeTycoon /></PageTransition>} />
+                    <Route path="privacy" element={<PageTransition><Privacy /></PageTransition>} />
+                    <Route path="terms" element={<PageTransition><Terms /></PageTransition>} />
+                    <Route path="cookies" element={<PageTransition><Cookies /></PageTransition>} />
+                    <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+                  </Route>
+                  <Route path="/notiontemplates" element={<Navigate to="/ru/notion" replace />} />
+                  <Route path="*" element={<RootRedirect />} />
                 </Routes>
               </Suspense>
             </main>

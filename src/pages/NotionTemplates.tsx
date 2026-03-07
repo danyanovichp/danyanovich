@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Download, Eye, FileText, ChevronRight, Bot } from "lucide-react";
-import { Link } from "react-router-dom";
+import { LocalLink as Link } from "@/components/LocalLink";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import PageTransition from "@/components/PageTransition";

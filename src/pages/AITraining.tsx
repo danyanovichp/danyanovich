@@ -2,7 +2,8 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Brain, Sparkles, MessageSquare, Zap, Target, BookOpen, CheckCircle, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { LocalLink as Link } from "@/components/LocalLink";
+
 import SEO, { getBreadcrumbSchema } from "@/components/SEO";
 
 const AITraining = () => {

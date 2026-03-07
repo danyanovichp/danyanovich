@@ -2,7 +2,8 @@ import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
-import { Link } from "react-router-dom";
+import { LocalLink as Link } from "@/components/LocalLink";
+
 import { useTranslation } from "react-i18next";
 import SEO from "@/components/SEO";
 

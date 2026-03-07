@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { LocalLink as Link } from "@/components/LocalLink";
+
 import { useTranslation } from "react-i18next";
 import { ArrowRight, FileText, Bot, Code2, MessageSquare } from "lucide-react";
 import { Badge } from "@/components/ui/badge";

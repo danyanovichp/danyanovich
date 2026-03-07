@@ -251,9 +251,19 @@ const SEO = ({
   const locale = isRu ? 'ru_RU' : 'en_US';
   const alternateLocale = isRu ? 'en_US' : 'ru_RU';
 
+  // Calculate paths
+  const currentPath = url.replace(BASE_URL, '');
+  const cleanPath = currentPath.replace(/^\/(ru|en)/, '');
+  const pathSuffix = cleanPath === '/' ? '' : cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
+
+  const currentUrl = `${BASE_URL}/${i18n.language}${pathSuffix}`;
+  const ruUrl = `${BASE_URL}/ru${pathSuffix}`;
+  const enUrl = `${BASE_URL}/en${pathSuffix}`;
+  const xDefaultUrl = ruUrl; // Set ru as the x-default
+
   // Формируем массив схем для вывода
   const defaultSchemas = [
-    getPersonSchema(url, descriptionRu),
+    getPersonSchema(currentUrl, descriptionRu),
     getWebSiteSchema(),
   ];
 
@@ -278,7 +288,7 @@ const SEO = ({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      <meta property="og:url" content={url} />
+      <meta property="og:url" content={currentUrl} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content={isRu ? 'Дэн Янович' : 'Dan Yanovich'} />
       <meta property="og:locale" content={locale} />
@@ -291,12 +301,12 @@ const SEO = ({
       <meta name="twitter:image" content={image} />
 
       {/* Canonical URL */}
-      <link rel="canonical" href={url} />
+      <link rel="canonical" href={currentUrl} />
 
       {/* Hreflang for multilingual */}
-      <link rel="alternate" hrefLang="ru" href={url} />
-      <link rel="alternate" hrefLang="en" href={url} />
-      <link rel="alternate" hrefLang="x-default" href={url} />
+      <link rel="alternate" hrefLang="ru" href={ruUrl} />
+      <link rel="alternate" hrefLang="en" href={enUrl} />
+      <link rel="alternate" hrefLang="x-default" href={xDefaultUrl} />
 
       {/* Structured Data - Multiple schemas */}
       {schemas.map((schema, index) => (

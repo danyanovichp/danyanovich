@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { LocalLink as Link } from "@/components/LocalLink";
+
 import { useTranslation } from "react-i18next";
 import { Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
