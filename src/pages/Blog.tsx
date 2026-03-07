@@ -5,46 +5,11 @@ import { Badge } from "@/components/ui/badge";
 import PageTransition from "@/components/PageTransition";
 import SEO from "@/components/SEO";
 import AnimatedSection from "@/components/AnimatedSection";
+import { blogPosts } from "@/data/blogPosts";
 
 const Blog = () => {
     const { t, i18n } = useTranslation();
     const isRu = i18n.language === 'ru';
-
-    const mockPosts = [
-        {
-            id: 1,
-            titleRu: "5 способов использовать AI агентов в малом бизнесе",
-            titleEn: "5 Ways to Use AI Agents in Small Business",
-            excerptRu: "Разбираем реальные кейсы применения языковых моделей для автоматизации рутинных задач: от обработки Email до генерации отчетов.",
-            excerptEn: "Analyzing real use cases of language models for automating routine tasks: from Email processing to report generation.",
-            date: "24 Окт 2025",
-            categoryRu: "AI Автоматизация",
-            categoryEn: "AI Automation",
-            colorClass: "bg-pastel-pink",
-        },
-        {
-            id: 2,
-            titleRu: "Как я перестал писать код и начал заниматься Vibecoding",
-            titleEn: "How I Stopped Writing Code and Started Vibecoding",
-            excerptRu: "Почему будущее разработки за AI-ассистентами вроде Cursor и Lovable, и как это меняет профессию разработчика навсегда.",
-            excerptEn: "Why the future of development lies with AI assistants like Cursor and Lovable, and how it changes the developer profession forever.",
-            date: "12 Сен 2025",
-            categoryRu: "Разработка",
-            categoryEn: "Development",
-            colorClass: "bg-pastel-blue",
-        },
-        {
-            id: 3,
-            titleRu: "Идеальная архитектура базы знаний в Notion",
-            titleEn: "The Perfect Knowledge Base Architecture in Notion",
-            excerptRu: "Делюсь своим 4-летним опытом создания корпоративных баз знаний: частые ошибки, правильная структура баз данных и система тегов.",
-            excerptEn: "Sharing my 4 years of experience creating corporate knowledge bases: common mistakes, proper database structure, and tag system.",
-            date: "05 Авг 2025",
-            categoryRu: "Notion",
-            categoryEn: "Notion",
-            colorClass: "bg-pastel-yellow",
-        }
-    ];
 
     return (
         <PageTransition>
@@ -81,7 +46,7 @@ const Blog = () => {
             <section className="py-12 md:py-20 border-t-2 border-foreground bg-muted/30">
                 <div className="container">
                     <div className="max-w-4xl mx-auto space-y-8">
-                        {mockPosts.map((post, i) => (
+                        {blogPosts.map((post, i) => (
                             <AnimatedSection key={post.id} delay={i * 100}>
                                 <Card className={`rounded-none border-2 border-foreground shadow-[6px_6px_0px_0px_currentColor] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[10px_10px_0px_0px_currentColor] transition-all cursor-pointer group bg-card overflow-hidden`}>
                                     <CardContent className="p-0 flex flex-col md:flex-row">

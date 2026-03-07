@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Dan Yanovich Blog &amp; Cases</title>
+    <link>https://danyanovich.site</link>
+    <description>Notes about Notion, AI, automation, and Vibecoding. Showcase of cases and products.</description>
+    <language>ru</language>
+    <lastBuildDate>Sat, 07 Mar 2026 20:27:48 GMT</lastBuildDate>
+
+    <item>
+      <title><![CDATA[5 способов использовать AI агентов в малом бизнесе]]></title>
+      <link>https://danyanovich.site/ru/blog</link>
+      <guid isPermaLink="false">blog-1</guid>
+      <description><![CDATA[Разбираем реальные кейсы применения языковых моделей для автоматизации рутинных задач: от обработки Email до генерации отчетов.]]></description>
+      <pubDate>Sat, 07 Mar 2026 20:27:48 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Как я перестал писать код и начал заниматься Vibecoding]]></title>
+      <link>https://danyanovich.site/ru/blog</link>
+      <guid isPermaLink="false">blog-2</guid>
+      <description><![CDATA[Почему будущее разработки за AI-ассистентами вроде Cursor и Lovable, и как это меняет профессию разработчика навсегда.]]></description>
+      <pubDate>Sat, 07 Mar 2026 20:27:48 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Идеальная архитектура базы знаний в Notion]]></title>
+      <link>https://danyanovich.site/ru/blog</link>
+      <guid isPermaLink="false">blog-3</guid>
+      <description><![CDATA[Делюсь своим 4-летним опытом создания корпоративных баз знаний: частые ошибки, правильная структура баз данных и система тегов.]]></description>
+      <pubDate>Sat, 07 Mar 2026 20:27:48 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Email AI Ассистент]]></title>
+      <link>https://danyanovich.site/ru/cases/email-ai</link>
+      <guid isPermaLink="false">case-email-ai</guid>
+      <description><![CDATA[Полный цикл обработки входящей почты: Zapier отслеживает Gmail, GPT-4o анализирует письмо (категория, приоритет, черновик ответа), автоматически расставляет labels, сохраняет вложения в Google Drive по иерархии папок, создаёт карточку в Notion с AI-черновиком и кнопкой быстрого ответа. Стоимость ~$20-30/мес.
+
+Результаты:
+- Разбор почты сократился с 40 минут до 5-10 минут в день
+- Все вложения структурированы в Google Drive по категориям
+- Единое место управления корреспонденцией в Notion
+- Черновик ответа готов сразу — одно нажатие переносит его в Gmail
+- Стоимость обслуживания: ~$20-30/мес]]></description>
+      <pubDate>Sat, 07 Mar 2026 20:27:48 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[ClickUp Reports Agent]]></title>
+      <link>https://danyanovich.site/ru/cases/clickup-reports</link>
+      <guid isPermaLink="false">case-clickup-reports</guid>
+      <description><![CDATA[Python-агент для персонализированной оценки 5 сотрудников. Загружает задачи из ClickUp, подгружает личную историю из SQLite, для активных задач — прогнозирует время и даёт рекомендации, для закрытых — выставляет оценки скорости и качества. Результаты записываются обратно в ClickUp и архивируются.
+
+Результаты:
+- Объективная и персонализированная оценка каждого из 5 сотрудников
+- AI-рекомендации под конкретного человека на основе его истории
+- Прогноз времени на задачу до её выполнения
+- Сотрудники видят свой прогресс — мотивация и прозрачность
+- Экономия часов руководителя на ручной анализ
+- Полная история оценок для HR-решений и аналитики]]></description>
+      <pubDate>Sat, 07 Mar 2026 20:27:48 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Construction AI Agent]]></title>
+      <link>https://danyanovich.site/ru/cases/construction-ai</link>
+      <guid isPermaLink="false">case-construction-ai</guid>
+      <description><![CDATA[Веб-инструмент для сметчиков: поиск цен на материалы (OpenAI + fallback на локальную LLM), автоматическая проверка смет (дубликаты, коды, формат), экспорт/импорт через Google Sheets. Кэш SQLite для экономии API, мониторинг Prometheus. Три режима: веб, CLI, API.
+
+Результаты:
+- Ускорение рабочих процессов сметчиков на 30-40%
+- Автоматическое выявление ошибок в смётах до их использования
+- Актуальные цены с кэшированием — экономия на API
+- Три режима работы: веб, CLI, API
+- Fallback на локальную LLM при недоступности OpenAI
+- Мониторинг нагрузки через Prometheus]]></description>
+      <pubDate>Sat, 07 Mar 2026 20:27:48 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Telegram to ClickUp]]></title>
+      <link>https://danyanovich.site/ru/cases/telegram-clickup</link>
+      <guid isPermaLink="false">case-telegram-clickup</guid>
+      <description><![CDATA[Бот для создания задач из голосовых и текстовых сообщений Telegram. Whisper транскрибирует аудио, GPT-4 извлекает параметры (название, даты, приоритет, ответственный). Перед созданием проверяет дубли — если задача существует, обновляет её. Отчёт в Telegram по каждому действию.
+
+Результаты:
+- Задачи создаются голосом или текстом — без открытия ClickUp
+- Полные параметры: название, описание, даты, приоритет, ответственный
+- Дубли не создаются — система обновляет существующую задачу
+- Прозрачность: Telegram-отчёт по каждому действию
+- Поддержка всех форматов аудио Telegram]]></description>
+      <pubDate>Sat, 07 Mar 2026 20:27:48 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Voice Call Task Manager]]></title>
+      <link>https://danyanovich.site/ru/cases/voice-calls</link>
+      <guid isPermaLink="false">case-voice-calls</guid>
+      <description><![CDATA[Система голосовых звонков для напоминания о задачах. GitHub Actions запускает скрипт по расписанию, загружает активные задачи из ClickUp для 6 сотрудников, совершает звонок через Twilio. AI-голос озвучивает задачи, принимает голосовой ответ. Если не ответил — fallback в Telegram с кнопками. Итоговый отчёт руководителю.
+
+Результаты:
+- Сотрудники не пропускают задачи — активное голосовое напоминание
+- Статусы обновляются автоматически без входа в ClickUp
+- Работает с 6 сотрудниками параллельно
+- Двойной канал: голос + Telegram = 100% охват
+- Перенос и изменение задач прямо во время звонка]]></description>
+      <pubDate>Sat, 07 Mar 2026 20:27:48 GMT</pubDate>
+    </item>
+  </channel>
+</rss>
