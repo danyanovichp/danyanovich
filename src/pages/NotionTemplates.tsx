@@ -14,7 +14,7 @@ const NotionTemplates = () => {
 
     const stats = [
         {
-            value: "88",
+            value: "181",
             labelRu: "Шаблонов выпущено",
             labelEn: "Templates Released",
             icon: FileText,
@@ -22,7 +22,7 @@ const NotionTemplates = () => {
             bgClass: "bg-pastel-blue/20"
         },
         {
-            value: "4132",
+            value: "4464",
             labelRu: "Просмотров",
             labelEn: "Views",
             icon: Eye,
@@ -30,7 +30,7 @@ const NotionTemplates = () => {
             bgClass: "bg-pastel-pink/20"
         },
         {
-            value: "1192",
+            value: "1288",
             labelRu: "Скачиваний",
             labelEn: "Downloads",
             icon: Download,
@@ -38,7 +38,7 @@ const NotionTemplates = () => {
             bgClass: "bg-accent-lime/20"
         },
         {
-            value: "3",
+            value: "12",
             labelRu: "Создано ИИ агентов",
             labelEn: "AI Agents Created",
             icon: Bot,
@@ -46,7 +46,7 @@ const NotionTemplates = () => {
             bgClass: "bg-pastel-lavender/20"
         },
         {
-            value: "524",
+            value: "753",
             labelRu: "Скачиваний агентов",
             labelEn: "Agent Downloads",
             icon: Download,
