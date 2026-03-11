@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Star, Loader2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import SEO, { getReviewsSchema, getBreadcrumbSchema } from "@/components/SEO";
+import { SITE_URL } from "@/seo/site";
 import { usePublicReviews } from "@/hooks/usePublicReviews";
 
 const Reviews = () => {
@@ -11,8 +12,8 @@ const Reviews = () => {
 
   const reviewsSchema = getReviewsSchema(isRu);
   const breadcrumbSchema = getBreadcrumbSchema([
-    { name: isRu ? 'Главная' : 'Home', url: 'https://danyanovich.com' },
-    { name: isRu ? 'Отзывы' : 'Reviews', url: 'https://danyanovich.com/reviews' },
+    { name: isRu ? 'Главная' : 'Home', url: SITE_URL },
+    { name: isRu ? 'Отзывы' : 'Reviews', url: `${SITE_URL}/reviews` },
   ]);
 
   return (
@@ -22,7 +23,7 @@ const Reviews = () => {
         titleEn="Client Reviews | Dan Yanovich"
         descriptionRu="Отзывы о шаблонах Notion и консультациях от Дэна Яновича. Реальные истории успеха клиентов."
         descriptionEn="Reviews about Notion templates and consultations from Dan Yanovich. Real client success stories."
-        url="https://danyanovich.com/reviews"
+        url="/reviews"
         structuredData={[reviewsSchema, breadcrumbSchema]}
       />
 

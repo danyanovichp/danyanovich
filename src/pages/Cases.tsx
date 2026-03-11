@@ -64,7 +64,7 @@ const Cases = () => {
         titleEn="Cases | Dan Yanovich"
         descriptionRu="Реализованные проекты: AI-автоматизации, агенты, интеграции."
         descriptionEn="Completed projects: AI automations, agents, integrations."
-        url="https://danyanovich.com/cases"
+        url="/cases"
       />
 
       {/* Strategy Switcher */}

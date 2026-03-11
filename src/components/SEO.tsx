@@ -1,5 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
+import { DEFAULT_OG_IMAGE, SITE_URL } from '@/seo/site';
 
 interface SEOProps {
   titleRu?: string;
@@ -12,9 +14,20 @@ interface SEOProps {
   type?: 'website' | 'article' | 'product';
   author?: string;
   structuredData?: object | object[];
+  noindex?: boolean;
+  imageAlt?: string;
 }
 
-const BASE_URL = 'https://danyanovich.site';
+const BASE_URL = SITE_URL;
+const DEFAULT_IMAGE = `${BASE_URL}${DEFAULT_OG_IMAGE}`;
+
+const toAbsoluteUrl = (value: string) => {
+  if (/^https?:\/\//.test(value)) {
+    return value;
+  }
+
+  return `${BASE_URL}${value.startsWith('/') ? value : `/${value}`}`;
+};
 
 // Базовые данные об авторе/организации
 const getPersonSchema = (url: string, description: string) => ({
@@ -24,7 +37,7 @@ const getPersonSchema = (url: string, description: string) => ({
   name: 'Дэн Янович',
   alternateName: 'Dan Yanovich',
   url: BASE_URL,
-  image: `${BASE_URL}/images/dan-yanovich.jpg`,
+  image: DEFAULT_IMAGE,
   sameAs: [
     'https://www.youtube.com/channel/UCzcTrBkzXgA9aaH05cWVi2g',
     'https://t.me/danyanovichp',
@@ -36,14 +49,16 @@ const getPersonSchema = (url: string, description: string) => ({
 });
 
 // Схема веб-сайта
-const getWebSiteSchema = () => ({
+const getWebSiteSchema = (isRu: boolean) => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   '@id': `${BASE_URL}/#website`,
   name: 'Дэн Янович | Notion и AI Эксперт',
   alternateName: 'Dan Yanovich | Notion and AI Expert',
   url: BASE_URL,
-  description: 'Создаю шаблоны Notion и консультирую по внедрению AI-инструментов',
+  description: isRu
+    ? 'Создаю шаблоны Notion и консультирую по внедрению AI-инструментов'
+    : 'I create Notion templates and consult on AI tool implementation',
   inLanguage: ['ru-RU', 'en-US'],
   publisher: {
     '@id': `${BASE_URL}/#person`,
@@ -237,23 +252,30 @@ const SEO = ({
   descriptionRu = 'Создаю шаблоны Notion и консультирую по внедрению AI-инструментов. Более 50 проектов, 100+ часов обучения.',
   descriptionEn = 'I create Notion templates and consult on AI tool implementation. 50+ projects, 100+ hours of training.',
   keywords = 'Notion, AI, автоматизация, шаблоны, консультант, Дэн Янович, продуктивность',
-  image = `${BASE_URL}/images/dan-yanovich.jpg`,
-  url = BASE_URL,
+  image = DEFAULT_IMAGE,
+  url,
   type = 'website',
   author = 'Дэн Янович',
   structuredData,
+  noindex = false,
+  imageAlt = 'Dan Yanovich',
 }: SEOProps) => {
   const { i18n } = useTranslation();
+  const location = useLocation();
   const isRu = i18n.language === 'ru';
 
   const title = isRu ? titleRu : titleEn;
   const description = isRu ? descriptionRu : descriptionEn;
   const locale = isRu ? 'ru_RU' : 'en_US';
   const alternateLocale = isRu ? 'en_US' : 'ru_RU';
+  const imageUrl = toAbsoluteUrl(image);
+  const sourcePath = url
+    ? (url.startsWith('http') ? new URL(url).pathname : url)
+    : location.pathname;
 
   // Calculate paths
-  const currentPath = url.replace(BASE_URL, '');
-  const cleanPath = currentPath.replace(/^\/(ru|en)/, '');
+  const currentPath = sourcePath.replace(BASE_URL, '');
+  const cleanPath = currentPath.replace(/^\/(ru|en)(?=\/|$)/, '');
   const pathSuffix = cleanPath === '/' ? '' : cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
 
   const currentUrl = `${BASE_URL}/${i18n.language}${pathSuffix}`;
@@ -263,8 +285,8 @@ const SEO = ({
 
   // Формируем массив схем для вывода
   const defaultSchemas = [
-    getPersonSchema(currentUrl, descriptionRu),
-    getWebSiteSchema(),
+    getPersonSchema(currentUrl, description),
+    getWebSiteSchema(isRu),
   ];
 
   const schemas = structuredData
@@ -283,11 +305,13 @@ const SEO = ({
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta name="author" content={author} />
+      <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'} />
 
       {/* Open Graph */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={image} />
+      <meta property="og:image" content={imageUrl} />
+      <meta property="og:image:alt" content={imageAlt} />
       <meta property="og:url" content={currentUrl} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content={isRu ? 'Дэн Янович' : 'Dan Yanovich'} />
@@ -298,7 +322,8 @@ const SEO = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
+      <meta name="twitter:image" content={imageUrl} />
+      <meta name="twitter:image:alt" content={imageAlt} />
 
       {/* Canonical URL */}
       <link rel="canonical" href={currentUrl} />

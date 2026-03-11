@@ -35,7 +35,8 @@ const CaseDetail = () => {
                 titleEn={`${project.title_en} | Case | Dan Yanovich`}
                 descriptionRu={project.summary_ru}
                 descriptionEn={project.summary_en}
-                url={`https://danyanovich.com/cases/${project.id}`}
+                url={`/cases/${project.id}`}
+                type="article"
             />
 
             <div className="container max-w-5xl mx-auto py-12 md:py-20 px-4 space-y-10">

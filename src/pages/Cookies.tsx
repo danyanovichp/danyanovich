@@ -1,13 +1,14 @@
 import { useTranslation } from "react-i18next";
 import SEO, { getBreadcrumbSchema } from "@/components/SEO";
+import { SITE_URL } from "@/seo/site";
 
 const Cookies = () => {
   const { i18n } = useTranslation();
   const isRu = i18n.language === 'ru';
 
   const breadcrumbSchema = getBreadcrumbSchema([
-    { name: isRu ? 'Главная' : 'Home', url: 'https://danyanovich.com' },
-    { name: isRu ? 'Политика cookies' : 'Cookie Policy', url: 'https://danyanovich.com/cookies' },
+    { name: isRu ? 'Главная' : 'Home', url: SITE_URL },
+    { name: isRu ? 'Политика cookies' : 'Cookie Policy', url: `${SITE_URL}/cookies` },
   ]);
 
   return (
@@ -15,9 +16,9 @@ const Cookies = () => {
       <SEO
         titleRu="Политика cookies | Дэн Янович"
         titleEn="Cookie Policy | Dan Yanovich"
-        descriptionRu="Политика использования cookies на сайте danyanovich.com."
-        descriptionEn="Cookie policy for danyanovich.com website."
-        url="https://danyanovich.com/cookies"
+        descriptionRu="Политика использования cookies на сайте danyanovich.site."
+        descriptionEn="Cookie policy for danyanovich.site website."
+        url="/cookies"
         structuredData={[breadcrumbSchema]}
       />
 

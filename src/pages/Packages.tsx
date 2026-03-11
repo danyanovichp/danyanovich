@@ -16,7 +16,6 @@ const Packages = () => {
       price: "от 15 000 ₽",
       description: "Идеально для начинающих и малого бизнеса",
       features: [
-        "Консультация 1 час",
         "1 готовый шаблон",
         "Базовая настройка",
         "Инструкция по использованию",
@@ -61,7 +60,6 @@ const Packages = () => {
       price: "from $200",
       description: "Perfect for beginners and small businesses",
       features: [
-        "1 hour consultation",
         "1 ready template",
         "Basic setup",
         "Usage instructions",
@@ -109,7 +107,7 @@ const Packages = () => {
         titleEn="Service Packages | Dan Yanovich"
         descriptionRu="Готовые пакеты услуг для бизнеса и личного использования. Консультации, шаблоны, обучение и поддержка."
         descriptionEn="Ready-made service packages for business and personal use. Consultations, templates, training and support."
-        url="https://danyanovich.com/packages"
+        url="/packages"
       />
 
       {/* Hero Section with "In Development" Banner */}

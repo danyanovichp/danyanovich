@@ -4,12 +4,20 @@ import { useTranslation } from "react-i18next";
 import { Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import SEO from "@/components/SEO";
 
 const NotFound = () => {
   const { i18n } = useTranslation();
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-pastel-yellow">
+      <SEO
+        titleRu="404 | Страница не найдена | Дэн Янович"
+        titleEn="404 | Page Not Found | Dan Yanovich"
+        descriptionRu="Запрошенная страница не найдена."
+        descriptionEn="The requested page could not be found."
+        noindex
+      />
       <div className="container relative z-10">
         <Card className="p-12 md:p-16 text-center max-w-xl mx-auto bg-card border-4 border-foreground shadow-[12px_12px_0px_0px_currentColor] rounded-none">
           <div className="space-y-8">

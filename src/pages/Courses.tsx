@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { BookOpen, Clock, Users, CheckCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import SEO, { getCourseSchema, getBreadcrumbSchema } from "@/components/SEO";
+import { SITE_URL } from "@/seo/site";
 
 const Courses = () => {
   const { t, i18n } = useTranslation();
@@ -49,8 +50,8 @@ const Courses = () => {
   const isRu = i18n.language === 'ru';
   const courseSchema = getCourseSchema(isRu);
   const breadcrumbSchema = getBreadcrumbSchema([
-    { name: isRu ? 'Главная' : 'Home', url: 'https://danyanovich.com' },
-    { name: isRu ? 'Курсы' : 'Courses', url: 'https://danyanovich.com/courses' },
+    { name: isRu ? 'Главная' : 'Home', url: SITE_URL },
+    { name: isRu ? 'Курсы' : 'Courses', url: `${SITE_URL}/courses` },
   ]);
 
   return (
@@ -60,7 +61,7 @@ const Courses = () => {
         titleEn="Notion Courses | Dan Yanovich"
         descriptionRu="Обучающие курсы по работе с Notion и AI-инструментами. Практический подход, постоянный доступ к материалам."
         descriptionEn="Training courses on Notion and AI tools. Practical approach, lifetime access to materials."
-        url="https://danyanovich.com/courses"
+        url="/courses"
         structuredData={[courseSchema, breadcrumbSchema]}
       />
 

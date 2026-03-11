@@ -68,7 +68,7 @@ const AIPrompts = () => {
         titleEn="AI Prompts | Dan Yanovich"
         descriptionRu="Коллекция эффективных промптов для ChatGPT, Claude и других AI-моделей. Промпты для бизнеса, разработки и креатива."
         descriptionEn="Collection of effective prompts for ChatGPT, Claude and other AI models. Prompts for business, development and creativity."
-        url="https://danyanovich.com/ai-prompts"
+        url="/ai-prompts"
       />
 
       {/* Hero Section with "In Development" Banner */}

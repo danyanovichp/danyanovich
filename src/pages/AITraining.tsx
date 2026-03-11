@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { LocalLink as Link } from "@/components/LocalLink";
 
 import SEO, { getBreadcrumbSchema } from "@/components/SEO";
+import { SITE_URL } from "@/seo/site";
 
 const AITraining = () => {
   const { i18n } = useTranslation();
@@ -103,20 +104,20 @@ const AITraining = () => {
   ];
 
   const breadcrumbSchema = getBreadcrumbSchema([
-    { name: isRu ? 'Главная' : 'Home', url: 'https://danyanovich.com' },
-    { name: isRu ? 'ИИ Обучение' : 'AI Training', url: 'https://danyanovich.com/ai-training' },
+    { name: isRu ? 'Главная' : 'Home', url: SITE_URL },
+    { name: isRu ? 'ИИ Обучение' : 'AI Training', url: `${SITE_URL}/ai-training` },
   ]);
 
   const aiTrainingSchema = {
     '@context': 'https://schema.org',
     '@type': 'Course',
-    '@id': 'https://danyanovich.com/ai-training#course',
+    '@id': `${SITE_URL}/ai-training#course`,
     name: isRu ? 'ИИ Обучение' : 'AI Training',
     description: isRu
       ? 'Курс по работе с искусственным интеллектом и промпт-инжинирингу'
       : 'Course on working with artificial intelligence and prompt engineering',
     provider: {
-      '@id': 'https://danyanovich.com/#person',
+      '@id': `${SITE_URL}/#person`,
     },
     educationalLevel: isRu ? 'Начальный - Продвинутый' : 'Beginner - Advanced',
     teaches: ['Prompt Engineering', 'ChatGPT', 'AI Automation', 'Claude', 'Gemini'],
@@ -129,7 +130,7 @@ const AITraining = () => {
         titleEn="AI Training | Dan Yanovich"
         descriptionRu="Обучение работе с искусственным интеллектом: ChatGPT, Claude, Gemini. Промпт-инжиниринг и автоматизация с AI."
         descriptionEn="AI training: ChatGPT, Claude, Gemini. Prompt engineering and AI automation."
-        url="https://danyanovich.com/ai-training"
+        url="/ai-training"
         structuredData={[aiTrainingSchema, breadcrumbSchema]}
       />
 

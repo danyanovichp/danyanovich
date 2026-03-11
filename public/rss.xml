@@ -5,28 +5,28 @@
     <link>https://danyanovich.site</link>
     <description>Notes about Notion, AI, automation, and Vibecoding. Showcase of cases and products.</description>
     <language>ru</language>
-    <lastBuildDate>Sat, 07 Mar 2026 20:27:48 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 11 Mar 2026 19:51:59 GMT</lastBuildDate>
 
     <item>
       <title><![CDATA[5 способов использовать AI агентов в малом бизнесе]]></title>
       <link>https://danyanovich.site/ru/blog</link>
       <guid isPermaLink="false">blog-1</guid>
       <description><![CDATA[Разбираем реальные кейсы применения языковых моделей для автоматизации рутинных задач: от обработки Email до генерации отчетов.]]></description>
-      <pubDate>Sat, 07 Mar 2026 20:27:48 GMT</pubDate>
+      <pubDate>Wed, 11 Mar 2026 19:51:59 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Как я перестал писать код и начал заниматься Vibecoding]]></title>
       <link>https://danyanovich.site/ru/blog</link>
       <guid isPermaLink="false">blog-2</guid>
       <description><![CDATA[Почему будущее разработки за AI-ассистентами вроде Cursor и Lovable, и как это меняет профессию разработчика навсегда.]]></description>
-      <pubDate>Sat, 07 Mar 2026 20:27:48 GMT</pubDate>
+      <pubDate>Wed, 11 Mar 2026 19:51:59 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Идеальная архитектура базы знаний в Notion]]></title>
       <link>https://danyanovich.site/ru/blog</link>
       <guid isPermaLink="false">blog-3</guid>
       <description><![CDATA[Делюсь своим 4-летним опытом создания корпоративных баз знаний: частые ошибки, правильная структура баз данных и система тегов.]]></description>
-      <pubDate>Sat, 07 Mar 2026 20:27:48 GMT</pubDate>
+      <pubDate>Wed, 11 Mar 2026 19:51:59 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Email AI Ассистент]]></title>
@@ -40,7 +40,7 @@
 - Единое место управления корреспонденцией в Notion
 - Черновик ответа готов сразу — одно нажатие переносит его в Gmail
 - Стоимость обслуживания: ~$20-30/мес]]></description>
-      <pubDate>Sat, 07 Mar 2026 20:27:48 GMT</pubDate>
+      <pubDate>Wed, 11 Mar 2026 19:51:59 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[ClickUp Reports Agent]]></title>
@@ -55,7 +55,7 @@
 - Сотрудники видят свой прогресс — мотивация и прозрачность
 - Экономия часов руководителя на ручной анализ
 - Полная история оценок для HR-решений и аналитики]]></description>
-      <pubDate>Sat, 07 Mar 2026 20:27:48 GMT</pubDate>
+      <pubDate>Wed, 11 Mar 2026 19:51:59 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Construction AI Agent]]></title>
@@ -70,7 +70,7 @@
 - Три режима работы: веб, CLI, API
 - Fallback на локальную LLM при недоступности OpenAI
 - Мониторинг нагрузки через Prometheus]]></description>
-      <pubDate>Sat, 07 Mar 2026 20:27:48 GMT</pubDate>
+      <pubDate>Wed, 11 Mar 2026 19:51:59 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Telegram to ClickUp]]></title>
@@ -84,7 +84,7 @@
 - Дубли не создаются — система обновляет существующую задачу
 - Прозрачность: Telegram-отчёт по каждому действию
 - Поддержка всех форматов аудио Telegram]]></description>
-      <pubDate>Sat, 07 Mar 2026 20:27:48 GMT</pubDate>
+      <pubDate>Wed, 11 Mar 2026 19:51:59 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Voice Call Task Manager]]></title>
@@ -98,7 +98,7 @@
 - Работает с 6 сотрудниками параллельно
 - Двойной канал: голос + Telegram = 100% охват
 - Перенос и изменение задач прямо во время звонка]]></description>
-      <pubDate>Sat, 07 Mar 2026 20:27:48 GMT</pubDate>
+      <pubDate>Wed, 11 Mar 2026 19:51:59 GMT</pubDate>
     </item>
   </channel>
 </rss>

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npx esbuild scripts/generate-rss.ts --bundle --platform=node --format=esm --outfile=scripts/generate-rss.bundle.js && node scripts/generate-rss.bundle.js && vite build",
+    "build": "mkdir -p .codex-build && npx esbuild scripts/generate-rss.ts --bundle --platform=node --format=esm --outfile=.codex-build/generate-rss.mjs && node .codex-build/generate-rss.mjs && npx esbuild scripts/generate-seo.ts --bundle --platform=node --format=esm --outfile=.codex-build/generate-seo.mjs && node .codex-build/generate-seo.mjs && vite build && npx esbuild scripts/prerender.ts --bundle --packages=external --platform=node --format=esm --outfile=.codex-build/prerender.mjs && node .codex-build/prerender.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"

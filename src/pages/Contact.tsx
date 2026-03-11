@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { LocalLink as Link } from "@/components/LocalLink";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Youtube, MessageCircle, FileText, Star, Quote, ExternalLink, User, Code2, Bot, Workflow, Zap, Globe, Gamepad2, AppWindow, ChevronRight, ChevronLeft, Award, Linkedin, Wrench, Trophy, Mail, MapPin, Briefcase, GraduationCap, Check, Clock, Database, Server, Palette, Languages, Calendar } from "lucide-react";
+import { Youtube, MessageCircle, FileText, Star, Quote, ExternalLink, User, Code2, Bot, Workflow, Zap, Globe, Gamepad2, AppWindow, ChevronRight, ChevronLeft, Award, Linkedin, Wrench, Trophy, Mail, Briefcase, GraduationCap, Check, Clock, Database, Server, Palette } from "lucide-react";
 import * as LucideIcons from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -47,8 +47,28 @@ const Contact = () => {
     { id: 'experience', label: isRu ? 'Опыт' : 'Experience', icon: Briefcase },
     { id: 'tech-stack', label: isRu ? 'Стек' : 'Stack', icon: Code2 },
     { id: 'achievements', label: isRu ? 'Достижения' : 'Achievements', icon: Trophy },
-    { id: 'social', label: isRu ? 'Контакты' : 'Contacts', icon: MessageCircle },
   ];
+
+  const topSocialLinks = isRu
+    ? [
+        { href: "https://www.youtube.com/@danyanovich", label: "YouTube", icon: Youtube, className: "bg-destructive text-white" },
+        { href: "https://t.me/danyanovichp", label: "Telegram", icon: MessageCircle, className: "bg-pastel-blue text-foreground" },
+        { href: "https://www.notion.so/@danyanovich", label: "Notion", icon: FileText, className: "bg-pastel-lavender text-foreground" },
+        { href: "https://github.com/danyanovich", label: "GitHub", icon: Code2, className: "bg-black text-white" },
+        { href: "https://www.instagram.com/ai.now.danyanovich", label: "Instagram", icon: Globe, className: "bg-pastel-pink text-foreground" },
+        { href: "https://setka.ru/users/019c6fb5-1080-7760-8b89-7b295c06922a?utm_source=seo", label: "Setka", icon: ExternalLink, className: "bg-pastel-mint text-foreground" },
+        { href: "https://www.linkedin.com/in/danila-putintsev/", label: "LinkedIn", icon: Linkedin, className: "bg-primary text-white" },
+        { href: "mailto:danilaputintsev2512@gmail.com", label: "Email", icon: Mail, className: "bg-pastel-yellow text-foreground" },
+      ]
+    : [
+        { href: "https://www.youtube.com/@danyanovichp", label: "YouTube", icon: Youtube, className: "bg-destructive text-white" },
+        { href: "https://t.me/danyanovichp", label: "Telegram", icon: MessageCircle, className: "bg-pastel-blue text-foreground" },
+        { href: "https://www.notion.so/@danyanovich", label: "Notion", icon: FileText, className: "bg-pastel-lavender text-foreground" },
+        { href: "https://github.com/danyanovich", label: "GitHub", icon: Code2, className: "bg-black text-white" },
+        { href: "https://www.instagram.com/ai.now.danyanovich", label: "Instagram", icon: Globe, className: "bg-pastel-pink text-foreground" },
+        { href: "https://www.linkedin.com/in/danila-putintsev/", label: "LinkedIn", icon: Linkedin, className: "bg-primary text-white" },
+        { href: "mailto:danilaputintsev2512@gmail.com", label: "Email", icon: Mail, className: "bg-pastel-yellow text-foreground" },
+      ];
 
   const expertiseBlocks = settings.expertise_blocks.map(block => ({
     id: block.id,
@@ -57,14 +77,6 @@ const Contact = () => {
     description: isRu ? block.description_ru : block.description_en,
     highlights: isRu ? block.highlights_ru : block.highlights_en,
     link: block.link,
-  }));
-
-  const socialLinks = settings.social_links.map(link => ({
-    icon: getIconComponent(link.icon),
-    title: isRu ? link.title_ru : link.title_en,
-    description: isRu ? link.description_ru : link.description_en,
-    handle: link.handle,
-    link: link.link,
   }));
 
   const reviews = [
@@ -325,21 +337,17 @@ const Contact = () => {
             {/* Contact links */}
             <AnimatedSection delay={100}>
               <div className="flex flex-wrap justify-center gap-3">
-                <a href="https://t.me/danyanovich" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-pastel-blue text-foreground border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] text-sm font-bold uppercase tracking-wider hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none transition-all">
-                  <MessageCircle className="h-4 w-4" /> Telegram
-                </a>
-                <a href="https://www.youtube.com/@danyanovich" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-destructive text-white border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] text-sm font-bold uppercase tracking-wider hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none transition-all">
-                  <Youtube className="h-4 w-4" /> YouTube
-                </a>
-                <a href="https://www.linkedin.com/in/danila-putintsev/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-primary text-white border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] text-sm font-bold uppercase tracking-wider hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none transition-all">
-                  <Linkedin className="h-4 w-4" /> LinkedIn
-                </a>
-                <a href="https://x.com/danyanovich" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-black text-white border-2 border-foreground hover:bg-neutral-800 shadow-[2px_2px_0px_0px_currentColor] text-sm font-bold uppercase tracking-wider hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none transition-all">
-                  <XIcon className="h-4 w-4" /> X/Twitter
-                </a>
-                <a href="mailto:danilaputintsev2512@gmail.com" className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-pastel-yellow text-foreground border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] text-sm font-bold uppercase tracking-wider hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none transition-all">
-                  <Mail className="h-4 w-4" /> Email
-                </a>
+                {topSocialLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                    rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-none border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] text-sm font-bold uppercase tracking-wider hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none transition-all ${link.className}`}
+                  >
+                    <link.icon className="h-4 w-4" /> {link.label}
+                  </a>
+                ))}
               </div>
             </AnimatedSection>
 
@@ -531,60 +539,6 @@ const Contact = () => {
                   </Link>
                 </AnimatedSection>
               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Social Links / Contact Info */}
-      <section id="social" className="relative py-16 md:py-20 scroll-mt-20">
-        <div className="container relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <AnimatedSection>
-              <h2 className="text-3xl md:text-4xl text-center mb-12 font-bold font-display">
-                {isRu ? 'Контакты' : 'Get in Touch'}
-              </h2>
-            </AnimatedSection>
-
-            {/* Contact info card */}
-            <AnimatedSection delay={50}>
-              <div className="bg-card border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none p-5 mb-8">
-                <div className="grid sm:grid-cols-2 gap-3 text-sm">
-                  <div className="flex items-center gap-3">
-                    <MapPin className="h-4 w-4 text-muted-foreground shrink-0" />
-                    <span>{isRu ? 'Россия · GMT+3' : 'Russia · GMT+3'}</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Mail className="h-4 w-4 text-muted-foreground shrink-0" />
-                    <a href="mailto:danilaputintsev2512@gmail.com" className="hover:underline">danilaputintsev2512@gmail.com</a>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Languages className="h-4 w-4 text-muted-foreground shrink-0" />
-                    <span>{isRu ? 'Русский (родной), Английский (базовый)' : 'Russian (native), English (basic)'}</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Calendar className="h-4 w-4 text-muted-foreground shrink-0" />
-                    <span>{isRu ? 'Открыт для проектов и сотрудничества' : 'Open for projects and collaboration'}</span>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-              {socialLinks.map((social, index) => {
-                const IconComponent = social.icon;
-                return (
-                  <AnimatedSection key={index} delay={index * 80}>
-                    <a href={social.link} target="_blank" rel="noopener noreferrer" className="block">
-                      <div className={`${pastelBgClasses[index % pastelBgClasses.length]} border-2 border-foreground shadow-[3px_3px_0px_0px_currentColor] rounded-none p-4 flex flex-col items-center gap-2 text-center hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[5px_5px_0px_0px_currentColor] transition-all`}>
-                        <IconComponent className="h-5 w-5" />
-                        <span className="text-sm font-bold font-display">{social.title}</span>
-                        <span className="text-xs font-medium opacity-80">{social.handle}</span>
-                      </div>
-                    </a>
-                  </AnimatedSection>
-                );
-              })}
             </div>
           </div>
         </div>

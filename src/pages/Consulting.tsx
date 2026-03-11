@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { MessageCircle, Target, Users, Zap } from "lucide-react";
 import SEO, { getServiceSchema, getBreadcrumbSchema } from "@/components/SEO";
+import { SITE_URL } from "@/seo/site";
 
 const Consulting = () => {
   const { t, i18n } = useTranslation();
@@ -44,8 +45,8 @@ const Consulting = () => {
   const isRu = i18n.language === 'ru';
   const serviceSchema = getServiceSchema(isRu);
   const breadcrumbSchema = getBreadcrumbSchema([
-    { name: isRu ? 'Главная' : 'Home', url: 'https://danyanovich.com' },
-    { name: isRu ? 'Консалтинг' : 'Consulting', url: 'https://danyanovich.com/consulting' },
+    { name: isRu ? 'Главная' : 'Home', url: SITE_URL },
+    { name: isRu ? 'Консалтинг' : 'Consulting', url: `${SITE_URL}/consulting` },
   ]);
 
   return (
@@ -55,7 +56,7 @@ const Consulting = () => {
         titleEn="Consulting | Dan Yanovich"
         descriptionRu="Персональные консультации по Notion и AI-инструментам. Стратегия, обучение и автоматизация бизнес-процессов."
         descriptionEn="Personal Notion and AI consulting. Strategy, training, and business process automation."
-        url="https://danyanovich.com/consulting"
+        url="/consulting"
         structuredData={[serviceSchema, breadcrumbSchema]}
       />
       {/* Hero Section with "In Development" Banner */}

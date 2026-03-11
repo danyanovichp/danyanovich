@@ -1,145 +1,445 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
+
   <url>
-    <loc>https://danyanovich.site/</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/"/>
-    <lastmod>2026-01-16</lastmod>
+    <loc>https://danyanovich.site/ru</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru"/>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
+
   <url>
-    <loc>https://danyanovich.site/templates</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/templates"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/templates"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/templates"/>
-    <lastmod>2026-01-16</lastmod>
+    <loc>https://danyanovich.site/en</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/ru/notion</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/notion"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/notion"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/notion"/>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  
+
   <url>
-    <loc>https://danyanovich.site/courses</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/courses"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/courses"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/courses"/>
-    <lastmod>2026-01-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://danyanovich.site/en/notion</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/notion"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/notion"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/notion"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
-  
+
   <url>
-    <loc>https://danyanovich.site/ai-prompts</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ai-prompts"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/ai-prompts"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ai-prompts"/>
-    <lastmod>2026-01-16</lastmod>
+    <loc>https://danyanovich.site/ru/consulting</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/consulting"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/consulting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/consulting"/>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
-  
+
   <url>
-    <loc>https://danyanovich.site/ai-training</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ai-training"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/ai-training"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ai-training"/>
-    <lastmod>2026-01-16</lastmod>
+    <loc>https://danyanovich.site/en/consulting</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/consulting"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/consulting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/consulting"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/ru/cases</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/cases"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/cases"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/cases"/>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <url>
-    <loc>https://danyanovich.site/consulting</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/consulting"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/consulting"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/consulting"/>
-    <lastmod>2026-01-16</lastmod>
+    <loc>https://danyanovich.site/en/cases</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/cases"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/cases"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/cases"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/ru/contact</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/contact"/>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <url>
-    <loc>https://danyanovich.site/packages</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/packages"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/packages"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/packages"/>
-    <lastmod>2026-01-16</lastmod>
+    <loc>https://danyanovich.site/en/contact</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/contact"/>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <url>
-    <loc>https://danyanovich.site/portfolio</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/portfolio"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/portfolio"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/portfolio"/>
-    <lastmod>2026-01-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://danyanovich.site/ru/ai-training</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/ai-training"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/ai-training"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/ai-training"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
-    <loc>https://danyanovich.site/cases</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/cases"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/cases"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/cases"/>
-    <lastmod>2026-01-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://danyanovich.site/en/ai-training</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/ai-training"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/ai-training"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/ai-training"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
-  
+
   <url>
-    <loc>https://danyanovich.site/reviews</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/reviews"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/reviews"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/reviews"/>
-    <lastmod>2026-01-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://danyanovich.site/blog</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/blog"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/blog"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/blog"/>
-    <lastmod>2026-01-16</lastmod>
+    <loc>https://danyanovich.site/ru/blog</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/blog"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/blog"/>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+
   <url>
-    <loc>https://danyanovich.site/faq</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/faq"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/faq"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/faq"/>
-    <lastmod>2026-01-16</lastmod>
+    <loc>https://danyanovich.site/en/blog</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/blog"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/blog"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/ru/courses</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/courses"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/courses"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/courses"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/en/courses</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/courses"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/courses"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/courses"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/ru/ai-prompts</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/ai-prompts"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/ai-prompts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/ai-prompts"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/en/ai-prompts</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/ai-prompts"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/ai-prompts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/ai-prompts"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/ru/packages</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/packages"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/packages"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/packages"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/en/packages</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/packages"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/packages"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/packages"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/ru/reviews</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/reviews"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/reviews"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/reviews"/>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
   <url>
-    <loc>https://danyanovich.site/contact</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/contact"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/contact"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/contact"/>
-    <lastmod>2026-01-16</lastmod>
+    <loc>https://danyanovich.site/en/reviews</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/reviews"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/reviews"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/reviews"/>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
   <url>
-    <loc>https://danyanovich.site/games/pixel-cafe-tycoon</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/games/pixel-cafe-tycoon"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/games/pixel-cafe-tycoon"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/games/pixel-cafe-tycoon"/>
-    <lastmod>2026-01-16</lastmod>
+    <loc>https://danyanovich.site/ru/faq</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/faq"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/faq"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/faq"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/en/faq</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/faq"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/faq"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/faq"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/ru/support</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/support"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/support"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/support"/>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  
+
+  <url>
+    <loc>https://danyanovich.site/en/support</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/support"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/support"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/support"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/ru/games/pixel-cafe-tycoon</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/games/pixel-cafe-tycoon"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/games/pixel-cafe-tycoon"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/games/pixel-cafe-tycoon"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/en/games/pixel-cafe-tycoon</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/games/pixel-cafe-tycoon"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/games/pixel-cafe-tycoon"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/games/pixel-cafe-tycoon"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/ru/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/privacy"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/en/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/privacy"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/ru/terms</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/terms"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/en/terms</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/terms"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/ru/cookies</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/cookies"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/cookies"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/cookies"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/en/cookies</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/cookies"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/cookies"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/cookies"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/ru/cases/email-ai</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/cases/email-ai"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/cases/email-ai"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/cases/email-ai"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/en/cases/email-ai</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/cases/email-ai"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/cases/email-ai"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/cases/email-ai"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/ru/cases/clickup-reports</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/cases/clickup-reports"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/cases/clickup-reports"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/cases/clickup-reports"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/en/cases/clickup-reports</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/cases/clickup-reports"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/cases/clickup-reports"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/cases/clickup-reports"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/ru/cases/construction-ai</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/cases/construction-ai"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/cases/construction-ai"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/cases/construction-ai"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/en/cases/construction-ai</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/cases/construction-ai"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/cases/construction-ai"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/cases/construction-ai"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/ru/cases/telegram-clickup</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/cases/telegram-clickup"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/cases/telegram-clickup"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/cases/telegram-clickup"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/en/cases/telegram-clickup</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/cases/telegram-clickup"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/cases/telegram-clickup"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/cases/telegram-clickup"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/ru/cases/voice-calls</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/cases/voice-calls"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/cases/voice-calls"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/cases/voice-calls"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://danyanovich.site/en/cases/voice-calls</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://danyanovich.site/ru/cases/voice-calls"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://danyanovich.site/en/cases/voice-calls"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://danyanovich.site/ru/cases/voice-calls"/>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>

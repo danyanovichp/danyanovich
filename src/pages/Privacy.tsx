@@ -1,13 +1,14 @@
 import { useTranslation } from "react-i18next";
 import SEO, { getBreadcrumbSchema } from "@/components/SEO";
+import { SITE_URL } from "@/seo/site";
 
 const Privacy = () => {
   const { i18n } = useTranslation();
   const isRu = i18n.language === 'ru';
 
   const breadcrumbSchema = getBreadcrumbSchema([
-    { name: isRu ? 'Главная' : 'Home', url: 'https://danyanovich.com' },
-    { name: isRu ? 'Политика конфиденциальности' : 'Privacy Policy', url: 'https://danyanovich.com/privacy' },
+    { name: isRu ? 'Главная' : 'Home', url: SITE_URL },
+    { name: isRu ? 'Политика конфиденциальности' : 'Privacy Policy', url: `${SITE_URL}/privacy` },
   ]);
 
   return (
@@ -15,9 +16,9 @@ const Privacy = () => {
       <SEO
         titleRu="Политика конфиденциальности | Дэн Янович"
         titleEn="Privacy Policy | Dan Yanovich"
-        descriptionRu="Политика конфиденциальности сайта danyanovich.com. Информация о сборе и обработке персональных данных."
-        descriptionEn="Privacy policy of danyanovich.com. Information about collection and processing of personal data."
-        url="https://danyanovich.com/privacy"
+        descriptionRu="Политика конфиденциальности сайта danyanovich.site. Информация о сборе и обработке персональных данных."
+        descriptionEn="Privacy policy of danyanovich.site. Information about collection and processing of personal data."
+        url="/privacy"
         structuredData={[breadcrumbSchema]}
       />
 
@@ -34,7 +35,7 @@ const Privacy = () => {
                 <h2>1. Общие положения</h2>
                 <p>
                   Настоящая Политика конфиденциальности определяет порядок обработки и защиты
-                  персональных данных пользователей сайта danyanovich.com (далее — «Сайт»).
+                  персональных данных пользователей сайта danyanovich.site (далее — «Сайт»).
                 </p>
                 <p>
                   Используя Сайт, вы соглашаетесь с условиями данной Политики конфиденциальности.
@@ -100,7 +101,7 @@ const Privacy = () => {
                 <h2>1. General Provisions</h2>
                 <p>
                   This Privacy Policy defines the procedure for processing and protecting
-                  personal data of users of danyanovich.com (hereinafter — "Website").
+                  personal data of users of danyanovich.site (hereinafter — "Website").
                 </p>
                 <p>
                   By using the Website, you agree to the terms of this Privacy Policy.

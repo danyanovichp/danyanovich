@@ -1,13 +1,14 @@
 import { useTranslation } from "react-i18next";
 import SEO, { getBreadcrumbSchema } from "@/components/SEO";
+import { SITE_URL } from "@/seo/site";
 
 const Terms = () => {
   const { i18n } = useTranslation();
   const isRu = i18n.language === 'ru';
 
   const breadcrumbSchema = getBreadcrumbSchema([
-    { name: isRu ? 'Главная' : 'Home', url: 'https://danyanovich.com' },
-    { name: isRu ? 'Пользовательское соглашение' : 'Terms of Service', url: 'https://danyanovich.com/terms' },
+    { name: isRu ? 'Главная' : 'Home', url: SITE_URL },
+    { name: isRu ? 'Пользовательское соглашение' : 'Terms of Service', url: `${SITE_URL}/terms` },
   ]);
 
   return (
@@ -15,9 +16,9 @@ const Terms = () => {
       <SEO
         titleRu="Пользовательское соглашение | Дэн Янович"
         titleEn="Terms of Service | Dan Yanovich"
-        descriptionRu="Пользовательское соглашение сайта danyanovich.com. Условия использования сервисов и продуктов."
-        descriptionEn="Terms of service for danyanovich.com. Conditions for using services and products."
-        url="https://danyanovich.com/terms"
+        descriptionRu="Пользовательское соглашение сайта danyanovich.site. Условия использования сервисов и продуктов."
+        descriptionEn="Terms of service for danyanovich.site. Conditions for using services and products."
+        url="/terms"
         structuredData={[breadcrumbSchema]}
       />
 
@@ -34,7 +35,7 @@ const Terms = () => {
                 <h2>1. Общие положения</h2>
                 <p>
                   Настоящее Пользовательское соглашение (далее — «Соглашение») регулирует отношения
-                  между владельцем сайта danyanovich.com (далее — «Продавец») и пользователем
+                  между владельцем сайта danyanovich.site (далее — «Продавец») и пользователем
                   (далее — «Покупатель»).
                 </p>
 
@@ -106,7 +107,7 @@ const Terms = () => {
                 <h2>1. General Provisions</h2>
                 <p>
                   This Terms of Service (hereinafter — "Agreement") governs the relationship
-                  between the owner of danyanovich.com (hereinafter — "Seller") and the user
+                  between the owner of danyanovich.site (hereinafter — "Seller") and the user
                   (hereinafter — "Buyer").
                 </p>
 

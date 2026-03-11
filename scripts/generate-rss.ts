@@ -1,8 +1,7 @@
-import fs from 'fs';
-import { portfolioProjects } from '../src/data/portfolioProjects';
-import { blogPosts } from '../src/data/blogPosts';
-
-const SITE_URL = 'https://danyanovich.site';
+import fs from "fs";
+import { portfolioProjects } from "../src/data/portfolioProjects";
+import { blogPosts } from "../src/data/blogPosts";
+import { SITE_URL } from "../src/seo/site";
 
 async function generateRSS() {
     const items: string[] = [];
