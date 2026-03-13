@@ -1,0 +1,17 @@
+<svg width="1280" height="800" viewBox="0 0 1280 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="800" fill="#F4F4F2"/>
+  <rect x="112" y="92" width="1056" height="616" rx="28" fill="#FFFFFF" stroke="#111111" stroke-width="10"/>
+  <rect x="112" y="92" width="1056" height="88" rx="28" fill="#111111"/>
+  <circle cx="180" cy="136" r="10" fill="#FFFFFF"/>
+  <circle cx="220" cy="136" r="10" fill="#FFFFFF" fill-opacity="0.7"/>
+  <circle cx="260" cy="136" r="10" fill="#FFFFFF" fill-opacity="0.45"/>
+  <rect x="324" y="120" width="322" height="34" rx="17" fill="#111111" fill-opacity="0.2"/>
+  <text x="176" y="250" fill="#111111" font-family="Arial, sans-serif" font-size="44" font-weight="700">AgentsPan</text>
+  <text x="176" y="302" fill="#525252" font-family="Arial, sans-serif" font-size="24">Private product workspace with task-aware AI agents</text>
+  <rect x="176" y="360" width="928" height="96" rx="28" fill="#F5F5F4" stroke="#111111" stroke-width="5"/>
+  <rect x="176" y="488" width="296" height="144" rx="24" fill="#E7EEF9" stroke="#111111" stroke-width="5"/>
+  <rect x="492" y="488" width="296" height="144" rx="24" fill="#F6E7D9" stroke="#111111" stroke-width="5"/>
+  <rect x="808" y="488" width="296" height="144" rx="24" fill="#E6F1E7" stroke="#111111" stroke-width="5"/>
+  <rect x="884" y="222" width="220" height="56" rx="18" fill="#111111"/>
+  <text x="927" y="258" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="24" font-weight="700">SOON</text>
+</svg>

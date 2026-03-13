@@ -1,7 +1,7 @@
 import { LocalLink as Link } from "@/components/LocalLink";
 
 import { useTranslation } from "react-i18next";
-import { ArrowRight, FileText, Bot, Code2, MessageSquare } from "lucide-react";
+import { ArrowRight, FileText, Bot, Code2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import PageTransition from "@/components/PageTransition";
 import SEO from "@/components/SEO";
@@ -17,6 +17,9 @@ const Home = () => {
       title: "RoomForge",
       descriptionRu: "Быстрый планировщик интерьера: 2D и изометрический вид, перестановка мебели и экспорт комнаты за секунды.",
       descriptionEn: "A fast interior planner with 2D and isometric views, furniture variations, and instant room export.",
+      metaRu: "Минималистичный браузерный planner",
+      metaEn: "Minimal browser-based planner",
+      preview: "/images/projects/roomforge-preview.svg",
       link: "https://roomforge.vercel.app",
       external: true,
     },
@@ -24,6 +27,9 @@ const Home = () => {
       title: "AgentsPan",
       descriptionRu: "Следующий проект в работе.",
       descriptionEn: "The next project in progress.",
+      metaRu: "Приватная сборка, превью из рабочего пайплайна",
+      metaEn: "Private build, preview from the working pipeline",
+      preview: "/images/projects/agentspan-preview.svg",
       external: false,
     },
   ];
@@ -76,7 +82,7 @@ const Home = () => {
             <p className="text-xl md:text-2xl text-muted-foreground max-w-xl mx-auto font-light">
               {isRu ? settings.hero.subtitle_ru : settings.hero.subtitle_en}
             </p>
-            <div className="max-w-xl mx-auto text-left">
+            <div className="max-w-4xl mx-auto text-left">
               <div className="border-2 border-foreground bg-card p-5 shadow-[4px_4px_0px_0px_currentColor] rounded-none space-y-4">
                 <div className="flex items-center justify-between gap-3">
                   <p className="text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
@@ -86,7 +92,7 @@ const Home = () => {
                     {isRu ? "В работе" : "In Progress"}
                   </Badge>
                 </div>
-                <div className="space-y-3">
+                <div className="grid gap-4 md:grid-cols-2">
                   {currentProjects.map((project) =>
                     project.external ? (
                       <a
@@ -94,27 +100,60 @@ const Home = () => {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block border border-foreground/20 px-4 py-3 transition-colors hover:bg-muted/40"
+                        className="group block overflow-hidden border border-foreground/20 bg-background transition-all hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor]"
                       >
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="min-w-0">
-                            <p className="text-base font-semibold">{project.title}</p>
-                            <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-                              {isRu ? project.descriptionRu : project.descriptionEn}
-                            </p>
+                        <div className="aspect-[16/10] overflow-hidden border-b border-foreground/20 bg-muted/40">
+                          <img
+                            src={project.preview}
+                            alt={`${project.title} preview`}
+                            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div className="space-y-3 p-4">
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="min-w-0">
+                              <p className="text-base font-semibold">{project.title}</p>
+                              <p className="mt-1 text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
+                                {isRu ? project.metaRu : project.metaEn}
+                              </p>
+                            </div>
+                            <ArrowRight className="h-4 w-4 shrink-0 mt-0.5" />
                           </div>
-                          <ArrowRight className="h-4 w-4 shrink-0 mt-0.5" />
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {isRu ? project.descriptionRu : project.descriptionEn}
+                          </p>
                         </div>
                       </a>
                     ) : (
                       <div
                         key={project.title}
-                        className="border border-foreground/20 px-4 py-3"
+                        className="overflow-hidden border border-foreground/20 bg-background opacity-90"
                       >
-                        <p className="text-base font-semibold">{project.title}</p>
-                        <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-                          {isRu ? project.descriptionRu : project.descriptionEn}
-                        </p>
+                        <div className="aspect-[16/10] overflow-hidden border-b border-foreground/20 bg-muted/40">
+                          <img
+                            src={project.preview}
+                            alt={`${project.title} preview`}
+                            className="h-full w-full object-cover"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div className="space-y-3 p-4">
+                          <div className="min-w-0">
+                            <div className="flex items-center justify-between gap-3">
+                              <p className="text-base font-semibold">{project.title}</p>
+                              <Badge variant="outline" className="text-[10px] uppercase tracking-[0.2em]">
+                                {isRu ? "Скоро" : "Soon"}
+                              </Badge>
+                            </div>
+                            <p className="mt-1 text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
+                              {isRu ? project.metaRu : project.metaEn}
+                            </p>
+                          </div>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {isRu ? project.descriptionRu : project.descriptionEn}
+                          </p>
+                        </div>
                       </div>
                     )
                   )}
@@ -217,29 +256,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Consulting CTA */}
-        <section className="container mx-auto px-4 pb-24">
-          <div className="max-w-3xl mx-auto">
-            <div className="flex items-center gap-5 p-6 bg-pastel-yellow border-2 border-foreground shadow-[6px_6px_0px_0px_currentColor] rounded-none">
-              <MessageSquare className="h-5 w-5 text-foreground shrink-0" />
-              <div className="flex-1 min-w-0">
-                <p className="text-base font-bold">
-                  {isRu ? settings.consulting.title_ru : settings.consulting.title_en}
-                </p>
-                <p className="text-sm font-medium mt-1 text-foreground/80">
-                  {isRu ? settings.consulting.description_ru : settings.consulting.description_en}
-                </p>
-              </div>
-              <Link
-                to="/consulting"
-                className="text-base font-bold shrink-0 inline-flex items-center gap-2 hover:translate-x-1 transition-transform uppercase tracking-wider bg-card border-2 border-foreground px-4 py-2 shadow-[2px_2px_0px_0px_currentColor] hover:shadow-none hover:translate-y-[2px]"
-              >
-                {settings.consulting.price}
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-            </div>
-          </div>
-        </section>
       </div >
     </PageTransition >
   );
