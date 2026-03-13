@@ -1,16 +1,47 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Calendar, ArrowRight, BookOpen } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { LocalLink as Link } from "@/components/LocalLink";
 import PageTransition from "@/components/PageTransition";
-import SEO from "@/components/SEO";
+import SEO, { getBlogSchema, getBreadcrumbSchema } from "@/components/SEO";
 import AnimatedSection from "@/components/AnimatedSection";
 import { blogPosts } from "@/data/blogPosts";
+import { SITE_URL } from "@/seo/site";
 
 const Blog = () => {
     const { i18n } = useTranslation();
-    const isRu = i18n.language === 'ru';
+    const isRu = i18n.language === "ru";
+    const [activeCategory, setActiveCategory] = useState<string>("all");
+
+    const categories = Array.from(
+        new Set(blogPosts.map((post) => (isRu ? post.categoryRu : post.categoryEn))),
+    );
+
+    const filteredPosts = activeCategory === "all"
+        ? blogPosts
+        : blogPosts.filter((post) => (isRu ? post.categoryRu : post.categoryEn) === activeCategory);
+
+    const blogListSchema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        itemListElement: filteredPosts.map((post, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: `${SITE_URL}/${i18n.language}/blog/${post.slug}`,
+            name: isRu ? post.titleRu : post.titleEn,
+        })),
+    };
+
+    const breadcrumbSchema = getBreadcrumbSchema([
+        { name: isRu ? "Главная" : "Home", url: `${SITE_URL}/${i18n.language}` },
+        { name: isRu ? "Блог" : "Blog", url: `${SITE_URL}/${i18n.language}/blog` },
+    ]);
+
+    const archiveCountLabel = isRu
+        ? `В архиве ${filteredPosts.length} ${filteredPosts.length === 1 ? "статья" : filteredPosts.length < 5 ? "статьи" : "статей"}`
+        : `${filteredPosts.length} posts in this archive`;
 
     return (
         <PageTransition>
@@ -19,6 +50,8 @@ const Blog = () => {
                 titleEn="Blog | Dan Yanovich"
                 descriptionRu="Заметки о Notion, AI, автоматизации и Vibecoding."
                 descriptionEn="Notes about Notion, AI, automation, and Vibecoding."
+                url="/blog"
+                structuredData={[getBlogSchema(isRu), blogListSchema, breadcrumbSchema]}
             />
 
             <section className="pt-32 pb-16 md:pt-40 md:pb-24 bg-background">
@@ -47,10 +80,38 @@ const Blog = () => {
             <section className="py-12 md:py-20 border-t-2 border-foreground bg-muted/30">
                 <div className="container">
                     <div className="max-w-4xl mx-auto space-y-8">
-                        {blogPosts.map((post, i) => (
+                        <AnimatedSection>
+                            <div className="flex flex-wrap items-center gap-3">
+                                <button
+                                    type="button"
+                                    onClick={() => setActiveCategory("all")}
+                                    className={`px-4 py-2 text-xs font-bold uppercase tracking-wider border-2 border-foreground rounded-none transition-all ${activeCategory === "all" ? "bg-foreground text-background shadow-[3px_3px_0px_0px_currentColor]" : "bg-card text-foreground hover:bg-pastel-yellow"}`}
+                                >
+                                    {isRu ? "Все статьи" : "All Posts"}
+                                </button>
+                                {categories.map((category) => (
+                                    <button
+                                        key={category}
+                                        type="button"
+                                        onClick={() => setActiveCategory(category)}
+                                        className={`px-4 py-2 text-xs font-bold uppercase tracking-wider border-2 border-foreground rounded-none transition-all ${activeCategory === category ? "bg-pastel-blue text-foreground shadow-[3px_3px_0px_0px_currentColor]" : "bg-card text-foreground hover:bg-pastel-pink"}`}
+                                    >
+                                        {category}
+                                    </button>
+                                ))}
+                            </div>
+                        </AnimatedSection>
+
+                        <AnimatedSection>
+                            <p className="text-sm font-medium text-muted-foreground">
+                                {archiveCountLabel}
+                            </p>
+                        </AnimatedSection>
+
+                        {filteredPosts.map((post, i) => (
                             <AnimatedSection key={post.id} delay={i * 100}>
                                 <Link to={`/blog/${post.slug}`} className="block">
-                                    <Card className={`rounded-none border-2 border-foreground shadow-[6px_6px_0px_0px_currentColor] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[10px_10px_0px_0px_currentColor] transition-all cursor-pointer group bg-card overflow-hidden`}>
+                                    <Card className="rounded-none border-2 border-foreground shadow-[6px_6px_0px_0px_currentColor] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[10px_10px_0px_0px_currentColor] transition-all cursor-pointer group bg-card overflow-hidden">
                                         <CardContent className="p-0 flex flex-col md:flex-row">
                                             <div className={`md:w-48 p-6 ${post.colorClass} border-b-2 md:border-b-0 md:border-r-2 border-foreground flex md:flex-col items-center md:items-start justify-between md:justify-center gap-4 shrink-0`}>
                                                 <Badge variant="outline" className="bg-background/80 whitespace-nowrap px-3 py-1 font-bold text-xs">
