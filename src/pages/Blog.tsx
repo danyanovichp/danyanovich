@@ -2,13 +2,14 @@ import { useTranslation } from "react-i18next";
 import { Calendar, ArrowRight, BookOpen } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { LocalLink as Link } from "@/components/LocalLink";
 import PageTransition from "@/components/PageTransition";
 import SEO from "@/components/SEO";
 import AnimatedSection from "@/components/AnimatedSection";
 import { blogPosts } from "@/data/blogPosts";
 
 const Blog = () => {
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
     const isRu = i18n.language === 'ru';
 
     return (
@@ -48,32 +49,39 @@ const Blog = () => {
                     <div className="max-w-4xl mx-auto space-y-8">
                         {blogPosts.map((post, i) => (
                             <AnimatedSection key={post.id} delay={i * 100}>
-                                <Card className={`rounded-none border-2 border-foreground shadow-[6px_6px_0px_0px_currentColor] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[10px_10px_0px_0px_currentColor] transition-all cursor-pointer group bg-card overflow-hidden`}>
-                                    <CardContent className="p-0 flex flex-col md:flex-row">
-                                        <div className={`md:w-48 p-6 ${post.colorClass} border-b-2 md:border-b-0 md:border-r-2 border-foreground flex md:flex-col items-center md:items-start justify-between md:justify-center gap-4 shrink-0`}>
-                                            <Badge variant="outline" className="bg-background/80 whitespace-nowrap px-3 py-1 font-bold text-xs">
-                                                {isRu ? post.categoryRu : post.categoryEn}
-                                            </Badge>
-                                            <div className="flex items-center gap-2 text-sm font-medium bg-background/50 px-2 py-1 rounded-sm">
-                                                <Calendar className="w-4 h-4" />
-                                                {post.date}
+                                <Link to={`/blog/${post.slug}`} className="block">
+                                    <Card className={`rounded-none border-2 border-foreground shadow-[6px_6px_0px_0px_currentColor] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[10px_10px_0px_0px_currentColor] transition-all cursor-pointer group bg-card overflow-hidden`}>
+                                        <CardContent className="p-0 flex flex-col md:flex-row">
+                                            <div className={`md:w-48 p-6 ${post.colorClass} border-b-2 md:border-b-0 md:border-r-2 border-foreground flex md:flex-col items-center md:items-start justify-between md:justify-center gap-4 shrink-0`}>
+                                                <Badge variant="outline" className="bg-background/80 whitespace-nowrap px-3 py-1 font-bold text-xs">
+                                                    {isRu ? post.categoryRu : post.categoryEn}
+                                                </Badge>
+                                                <div className="space-y-2">
+                                                    <div className="flex items-center gap-2 text-sm font-medium bg-background/50 px-2 py-1 rounded-sm">
+                                                        <Calendar className="w-4 h-4" />
+                                                        {post.date}
+                                                    </div>
+                                                    <div className="text-xs font-bold uppercase tracking-wider text-foreground/70">
+                                                        {isRu ? post.readingTimeRu : post.readingTimeEn}
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div className="p-6 md:p-8 flex-1 flex flex-col justify-center">
-                                            <h3 className="text-2xl font-bold font-display mb-3 group-hover:underline underline-offset-4">
-                                                {isRu ? post.titleRu : post.titleEn}
-                                            </h3>
-                                            <p className="text-muted-foreground leading-relaxed mb-6">
-                                                {isRu ? post.excerptRu : post.excerptEn}
-                                            </p>
-                                            <div className="mt-auto flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground">
-                                                {isRu ? "Читать" : "Read More"}
-                                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                            <div className="p-6 md:p-8 flex-1 flex flex-col justify-center">
+                                                <h2 className="text-2xl font-bold font-display mb-3 group-hover:underline underline-offset-4">
+                                                    {isRu ? post.titleRu : post.titleEn}
+                                                </h2>
+                                                <p className="text-muted-foreground leading-relaxed mb-6">
+                                                    {isRu ? post.excerptRu : post.excerptEn}
+                                                </p>
+                                                <div className="mt-auto flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground">
+                                                    {isRu ? "Читать" : "Read More"}
+                                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                                </div>
                                             </div>
-                                        </div>
-                                    </CardContent>
-                                </Card>
+                                        </CardContent>
+                                    </Card>
+                                </Link>
                             </AnimatedSection>
                         ))}
                     </div>

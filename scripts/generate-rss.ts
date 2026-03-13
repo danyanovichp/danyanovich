@@ -8,14 +8,14 @@ async function generateRSS() {
 
     // Add blog posts
     blogPosts.forEach((post) => {
-        const url = `${SITE_URL}/ru/blog`;
+        const url = `${SITE_URL}/ru/blog/${post.slug}`;
         items.push(`
     <item>
       <title><![CDATA[${post.titleRu}]]></title>
       <link>${url}</link>
       <guid isPermaLink="false">blog-${post.id}</guid>
       <description><![CDATA[${post.excerptRu}]]></description>
-      <pubDate>${new Date().toUTCString()}</pubDate>
+      <pubDate>${new Date(post.publishedAt).toUTCString()}</pubDate>
     </item>`);
     });
 

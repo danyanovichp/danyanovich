@@ -5,7 +5,7 @@ import { chromium } from "playwright";
 import { prerenderRoutes } from "../src/seo/site";
 
 const HOST = "127.0.0.1";
-const PORT = 4173;
+const PORT = 4173 + Math.floor(Math.random() * 1000);
 const BASE_URL = `http://${HOST}:${PORT}`;
 const DIST_DIR = path.resolve("./dist");
 

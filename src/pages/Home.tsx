@@ -12,6 +12,21 @@ const Home = () => {
   const { i18n } = useTranslation();
   const isRu = i18n.language === 'ru';
   const { settings } = useSiteSettings();
+  const currentProjects = [
+    {
+      title: "RoomForge",
+      descriptionRu: "Быстрый планировщик интерьера: 2D и изометрический вид, перестановка мебели и экспорт комнаты за секунды.",
+      descriptionEn: "A fast interior planner with 2D and isometric views, furniture variations, and instant room export.",
+      link: "https://roomforge.vercel.app",
+      external: true,
+    },
+    {
+      title: "AgentsPan",
+      descriptionRu: "Следующий проект в работе.",
+      descriptionEn: "The next project in progress.",
+      external: false,
+    },
+  ];
 
   const expertiseCards = [
     {
@@ -61,6 +76,51 @@ const Home = () => {
             <p className="text-xl md:text-2xl text-muted-foreground max-w-xl mx-auto font-light">
               {isRu ? settings.hero.subtitle_ru : settings.hero.subtitle_en}
             </p>
+            <div className="max-w-xl mx-auto text-left">
+              <div className="border-2 border-foreground bg-card p-5 shadow-[4px_4px_0px_0px_currentColor] rounded-none space-y-4">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
+                    {isRu ? "Текущие проекты" : "Current Projects"}
+                  </p>
+                  <Badge variant="outline" className="shrink-0">
+                    {isRu ? "В работе" : "In Progress"}
+                  </Badge>
+                </div>
+                <div className="space-y-3">
+                  {currentProjects.map((project) =>
+                    project.external ? (
+                      <a
+                        key={project.title}
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block border border-foreground/20 px-4 py-3 transition-colors hover:bg-muted/40"
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0">
+                            <p className="text-base font-semibold">{project.title}</p>
+                            <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                              {isRu ? project.descriptionRu : project.descriptionEn}
+                            </p>
+                          </div>
+                          <ArrowRight className="h-4 w-4 shrink-0 mt-0.5" />
+                        </div>
+                      </a>
+                    ) : (
+                      <div
+                        key={project.title}
+                        className="border border-foreground/20 px-4 py-3"
+                      >
+                        <p className="text-base font-semibold">{project.title}</p>
+                        <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                          {isRu ? project.descriptionRu : project.descriptionEn}
+                        </p>
+                      </div>
+                    )
+                  )}
+                </div>
+              </div>
+            </div>
             <div className="flex justify-center gap-8 pt-4">
               <Link
                 to="/notion"

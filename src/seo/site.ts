@@ -1,4 +1,5 @@
 import { portfolioProjects } from "../data/portfolioProjects";
+import { blogPosts } from "../data/blogPosts";
 
 export const SITE_URL = "https://danyanovich.site";
 export const SITE_NAME = "Dan Yanovich";
@@ -67,8 +68,17 @@ export const caseSeoRoutes: SeoRouteEntry[] = portfolioProjects.flatMap((project
   })),
 );
 
+export const blogSeoRoutes: SeoRouteEntry[] = blogPosts.flatMap((post) =>
+  SUPPORTED_LANGUAGES.map((language) => ({
+    path: getLocalizedPath(language, `/blog/${post.slug}`),
+    changefreq: "monthly" as const,
+    priority: 0.75,
+  })),
+);
+
 export const sitemapRoutes: SeoRouteEntry[] = [
   ...localizedSeoRoutes,
+  ...blogSeoRoutes,
   ...caseSeoRoutes,
 ];
 
