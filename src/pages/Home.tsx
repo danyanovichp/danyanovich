@@ -116,7 +116,7 @@ const Home = () => {
         </section>
 
         {/* What I Do */}
-        <section className="container mx-auto px-4 pb-20">
+        <section className="container mx-auto px-4 pb-8">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-8 text-center">
               {isRu ? "Чем я занимаюсь" : "What I Do"}
