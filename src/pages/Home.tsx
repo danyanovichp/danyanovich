@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { LocalLink as Link } from "@/components/LocalLink";
 
 import { useTranslation } from "react-i18next";
@@ -12,6 +13,7 @@ const Home = () => {
   const { i18n } = useTranslation();
   const isRu = i18n.language === 'ru';
   const { settings } = useSiteSettings();
+  const [projectFilter, setProjectFilter] = useState<"in-progress" | "archive">("in-progress");
   const currentProjects = [
     {
       title: "RoomForge",
@@ -88,6 +90,9 @@ const Home = () => {
       external: false,
     })),
   ];
+  const visibleProjects = featuredProjects.filter((project) =>
+    projectFilter === "archive" ? project.kind === "archive" : project.kind !== "archive"
+  );
 
   return (
     <PageTransition>
@@ -179,21 +184,36 @@ const Home = () => {
 
             <div className="space-y-4">
               <div className="flex items-center justify-between gap-3">
-                <p className="text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
-                  {isRu ? "Активные и архивные" : "Active & Archive"}
-                </p>
+                <div className="flex border-2 border-foreground bg-card p-1 shadow-[4px_4px_0px_0px_currentColor]">
+                  <button
+                    onClick={() => setProjectFilter("in-progress")}
+                    className={`px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] transition-all ${projectFilter === "in-progress"
+                      ? "bg-foreground text-background"
+                      : "text-foreground hover:bg-muted"
+                      }`}
+                  >
+                    {isRu ? "В процессе" : "In Progress"}
+                  </button>
+                  <button
+                    onClick={() => setProjectFilter("archive")}
+                    className={`px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] transition-all ${projectFilter === "archive"
+                      ? "bg-foreground text-background"
+                      : "text-foreground hover:bg-muted"
+                      }`}
+                  >
+                    {isRu ? "Архив" : "Archive"}
+                  </button>
+                </div>
                 <Badge variant="outline" className="shrink-0">
-                  {featuredProjects.length}
+                  {visibleProjects.length}
                 </Badge>
               </div>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {featuredProjects.map((project) => {
+                {visibleProjects.map((project) => {
                   const statusLabel =
                     project.kind === "archive"
                       ? (isRu ? "Архив" : "Archive")
-                      : project.external
-                        ? (isRu ? "Активный" : "Active")
-                        : (isRu ? "Скоро" : "Soon");
+                      : (isRu ? "В процессе" : "In Progress");
 
                   const cardContent = (
                     <div className="group flex aspect-square flex-col overflow-hidden border-2 border-foreground bg-card shadow-[4px_4px_0px_0px_currentColor] transition-all hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor]">
