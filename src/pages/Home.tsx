@@ -23,15 +23,6 @@ const Home = () => {
       link: "https://roomforge.vercel.app",
       external: true,
     },
-    {
-      title: "AgentsPan",
-      descriptionRu: "Следующий проект в работе.",
-      descriptionEn: "The next project in progress.",
-      metaRu: "Приватная сборка, превью из рабочего пайплайна",
-      metaEn: "Private build, preview from the working pipeline",
-      preview: "/images/projects/agentspan-preview.svg",
-      external: false,
-    },
   ];
 
   const expertiseCards = [
@@ -63,6 +54,40 @@ const Home = () => {
   ];
 
   const archiveProjects = portfolioProjects.slice(0, 4);
+  const featuredProjects = [
+    ...currentProjects.map((project) => ({
+      kind: "current" as const,
+      title: project.title,
+      descriptionRu: project.descriptionRu,
+      descriptionEn: project.descriptionEn,
+      metaRu: project.metaRu,
+      metaEn: project.metaEn,
+      preview: project.preview,
+      link: project.link,
+      external: project.external,
+    })),
+    {
+      kind: "archive" as const,
+      title: "AgentsPan",
+      descriptionRu: "Embedded control plane для локальных AI-агентов: быстрый онбординг в одну команду, мультиарендный runtime и React UI для управления агентами.",
+      descriptionEn: "Embedded control plane for local AI agents with one-command onboarding, a multi-tenant runtime, and a React UI for agent operations.",
+      metaRu: "Архивный open-source проект",
+      metaEn: "Archived open-source project",
+      preview: "/images/projects/agentspan-preview.svg",
+      link: "https://github.com/danyanovich/agentspan",
+      external: true,
+    },
+    ...archiveProjects.map((project) => ({
+      kind: "archive" as const,
+      title: isRu ? project.title_ru : project.title_en,
+      descriptionRu: project.summary_ru,
+      descriptionEn: project.summary_en,
+      metaRu: project.category_ru,
+      metaEn: project.category_en,
+      link: "/cases",
+      external: false,
+    })),
+  ];
 
   return (
     <PageTransition>
@@ -155,112 +180,115 @@ const Home = () => {
             <div className="space-y-4">
               <div className="flex items-center justify-between gap-3">
                 <p className="text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
-                  {isRu ? "В процессе" : "In Progress"}
+                  {isRu ? "Активные и архивные" : "Active & Archive"}
                 </p>
                 <Badge variant="outline" className="shrink-0">
-                  {currentProjects.length}
+                  {featuredProjects.length}
                 </Badge>
               </div>
-              <div className="grid gap-4 md:grid-cols-2">
-                {currentProjects.map((project) =>
-                  project.external ? (
-                    <a
-                      key={project.title}
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group block overflow-hidden border-2 border-foreground bg-card shadow-[4px_4px_0px_0px_currentColor] transition-all hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor]"
-                    >
-                      <div className="aspect-[16/10] overflow-hidden border-b-2 border-foreground bg-muted/40">
-                        <img
-                          src={project.preview}
-                          alt={`${project.title} preview`}
-                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div className="space-y-3 p-4">
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="min-w-0">
-                            <p className="text-base font-semibold">{project.title}</p>
-                            <p className="mt-1 text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
-                              {isRu ? project.metaRu : project.metaEn}
-                            </p>
-                          </div>
-                          <ArrowRight className="h-4 w-4 shrink-0 mt-0.5" />
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {featuredProjects.map((project) => {
+                  const statusLabel =
+                    project.kind === "archive"
+                      ? (isRu ? "Архив" : "Archive")
+                      : project.external
+                        ? (isRu ? "Активный" : "Active")
+                        : (isRu ? "Скоро" : "Soon");
+
+                  const cardContent = (
+                    <div className="group flex aspect-square flex-col overflow-hidden border-2 border-foreground bg-card shadow-[4px_4px_0px_0px_currentColor] transition-all hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor]">
+                      {"preview" in project && project.preview ? (
+                        <div className="aspect-[16/10] overflow-hidden border-b-2 border-foreground bg-muted/40">
+                          <img
+                            src={project.preview}
+                            alt={`${project.title} preview`}
+                            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                            loading="lazy"
+                          />
                         </div>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                          {isRu ? project.descriptionRu : project.descriptionEn}
-                        </p>
-                      </div>
-                    </a>
-                  ) : (
-                    <div
-                      key={project.title}
-                      className="overflow-hidden border-2 border-foreground bg-card shadow-[4px_4px_0px_0px_currentColor] opacity-90"
-                    >
-                      <div className="aspect-[16/10] overflow-hidden border-b-2 border-foreground bg-muted/40">
-                        <img
-                          src={project.preview}
-                          alt={`${project.title} preview`}
-                          className="h-full w-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div className="space-y-3 p-4">
-                        <div className="min-w-0">
-                          <div className="flex items-center justify-between gap-3">
-                            <p className="text-base font-semibold">{project.title}</p>
-                            <Badge variant="outline" className="text-[10px] uppercase tracking-[0.2em]">
-                              {isRu ? "Скоро" : "Soon"}
-                            </Badge>
-                          </div>
-                          <p className="mt-1 text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
+                      ) : (
+                        <div className="flex min-h-[7rem] items-center justify-between border-b-2 border-foreground bg-muted/30 px-4 py-3">
+                          <p className="text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
                             {isRu ? project.metaRu : project.metaEn}
                           </p>
+                          <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground/0 transition-colors group-hover:text-muted-foreground" />
                         </div>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                          {isRu ? project.descriptionRu : project.descriptionEn}
-                        </p>
+                      )}
+                      <div className="flex flex-1 flex-col justify-between gap-4 p-4">
+                        <div className="space-y-3">
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="min-w-0">
+                              <p className="text-base font-semibold">{project.title}</p>
+                              {"preview" in project && project.preview ? (
+                                <p className="mt-1 text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
+                                  {isRu ? project.metaRu : project.metaEn}
+                                </p>
+                              ) : null}
+                            </div>
+                            <Badge variant="outline" className="shrink-0 text-[10px] uppercase tracking-[0.2em]">
+                              {statusLabel}
+                            </Badge>
+                          </div>
+                          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-5">
+                            {isRu ? project.descriptionRu : project.descriptionEn}
+                          </p>
+                        </div>
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
+                            {project.kind === "archive"
+                              ? (isRu ? "Смотреть кейсы" : "View cases")
+                              : project.external
+                                ? (isRu ? "Открыть проект" : "Open project")
+                                : (isRu ? "В разработке" : "In progress")}
+                          </span>
+                          <ArrowRight className="h-4 w-4 shrink-0" />
+                        </div>
                       </div>
                     </div>
-                  )
-                )}
-              </div>
-            </div>
+                  );
 
-            <div className="space-y-4">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
-                  {isRu ? "Архив" : "Archive"}
-                </p>
-                <Badge variant="outline" className="shrink-0">
-                  {archiveProjects.length}
-                </Badge>
-              </div>
-              <div className="grid gap-3">
-                {archiveProjects.map((project) => (
-                  <Link
-                    key={project.id}
-                    to="/cases"
-                    className="flex items-center gap-4 p-5 bg-card border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_currentColor] transition-all group rounded-none"
-                  >
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-3 mb-1.5">
-                        <h3 className="text-base font-semibold truncate">
-                          {isRu ? project.title_ru : project.title_en}
-                        </h3>
-                        <Badge variant="outline" className="text-xs shrink-0">
-                          {isRu ? project.category_ru : project.category_en}
-                        </Badge>
-                      </div>
-                      <p className="text-sm text-muted-foreground line-clamp-2">
-                        {isRu ? project.summary_ru : project.summary_en}
-                      </p>
+                  if (project.kind === "archive") {
+                    if (project.external && project.link) {
+                      return (
+                        <a
+                          key={`${project.kind}-${project.title}`}
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block"
+                        >
+                          {cardContent}
+                        </a>
+                      );
+                    }
+
+                    return (
+                      <Link key={`${project.kind}-${project.title}`} to={project.link} className="block">
+                        {cardContent}
+                      </Link>
+                    );
+                  }
+
+                  if (project.external && project.link) {
+                    return (
+                      <a
+                        key={`${project.kind}-${project.title}`}
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        {cardContent}
+                      </a>
+                    );
+                  }
+
+                  return (
+                    <div key={`${project.kind}-${project.title}`} className="block opacity-90">
+                      {cardContent}
                     </div>
-                    <ArrowRight className="h-3.5 w-3.5 text-muted-foreground/0 group-hover:text-muted-foreground transition-colors shrink-0" />
-                  </Link>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
