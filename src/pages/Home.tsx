@@ -112,22 +112,6 @@ const Home = () => {
             <p className="text-xl md:text-2xl text-muted-foreground max-w-xl mx-auto font-light">
               {isRu ? settings.hero.subtitle_ru : settings.hero.subtitle_en}
             </p>
-            <div className="flex justify-center gap-8 pt-4">
-              <Link
-                to="/notion"
-                className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 group"
-              >
-                {isRu ? "Шаблоны Notion" : "Notion Templates"}
-                <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-              <Link
-                to="/cases"
-                className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 group"
-              >
-                {isRu ? "Кейсы" : "Cases"}
-                <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-            </div>
           </div>
         </section>
 
