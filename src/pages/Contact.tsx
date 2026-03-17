@@ -36,10 +36,54 @@ const pastelBgClasses = [
   'bg-pastel-coral text-foreground',
 ];
 
+interface ReviewItem {
+  name: string;
+  project: string;
+  text: string;
+  rating: number;
+}
+
+interface ExperienceLink {
+  href: string;
+  label_ru: string;
+  label_en: string;
+  external?: boolean;
+}
+
+interface ExperienceProject {
+  title_ru: string;
+  title_en: string;
+  desc_ru: string;
+  desc_en: string;
+  stack: string[];
+  results_ru: string[];
+  results_en: string[];
+  link?: string;
+  links?: ExperienceLink[];
+  images?: string[];
+}
+
+interface ExperienceItem {
+  role_ru: string;
+  role_en: string;
+  company: string;
+  company_desc_ru: string;
+  company_desc_en: string;
+  period_ru: string;
+  period_en: string;
+  type: 'hybrid' | 'sales' | 'freelance';
+  bg: string;
+  description_ru: string;
+  description_en: string;
+  highlights_ru?: string[];
+  highlights_en?: string[];
+  projects: ExperienceProject[];
+}
+
 const Contact = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const isRu = i18n.language === 'ru';
-  const { settings, isLoading } = useSiteSettings();
+  const { settings } = useSiteSettings();
 
   // Navigation sections
   const sections = [
@@ -79,7 +123,7 @@ const Contact = () => {
     link: block.link,
   }));
 
-  const reviews = [
+  const reviews: ReviewItem[] = [
     { name: "Dmitri_Str", project: isRu ? "Оптимизация шаблона Notion" : "Notion Template Optimization", text: isRu ? "Очень редко сейчас встретишь профессионалов такого уровня, очень быстро разобрался в задаче, максимально приветлив, предложил хорошие идеи, что в итоге улучшило изначально задуманное. Быстро и качественно выполнил. Если вам нужно качество и профессионал, то однозначно рекомендую!" : "Very rare to find professionals of this level. Quickly understood the task, very friendly, suggested good ideas that improved the original concept. Fast and quality work. Highly recommend!", rating: 5 },
     { name: "edgadirov", project: isRu ? "Notion база данных + шаблон" : "Notion Database + Template", text: isRu ? "Отличная работа! Данил очень ответственный человек. К работе подошел с профессионализмом. Делали шаблон для облегчения работы учеников. Даже несколько раз созвонились, помог разобраться в notion и помог найти лучшее решение. Все сделано идеально!" : "Excellent work! Danil is very responsible. Approached the work professionally. Made a template for students. Even had several calls, helped understand Notion and find the best solution. Everything done perfectly!", rating: 5 },
     { name: "nesmeyanna", project: isRu ? "Notion 2 доски" : "Notion 2 Boards", text: isRu ? "Данила восхитителен! В работе была простая задача, он дополнил её так, как я и не могла предположить, не зная о всех возможностях Notion. Рекомендую как профессионала, с удовольствием обращусь ещё." : "Danila is amazing! It was a simple task, but he enhanced it in ways I couldn't imagine, not knowing all of Notion's capabilities. Recommend as a professional!", rating: 5 },
@@ -100,122 +144,89 @@ const Contact = () => {
   const [activeStackFilter, setActiveStackFilter] = useState<string>('all');
 
   // Work experience data
-  const workExperience = [
+  const workExperience: ExperienceItem[] = [
     {
-      role_ru: 'IT-специалист и Менеджер',
-      role_en: 'IT Specialist & Manager',
+      role_ru: 'IT-специалист / Менеджер направления',
+      role_en: 'IT Specialist / Direction Manager',
       company: 'Viora Build',
       company_desc_ru: 'строительная компания, Португалия',
       company_desc_en: 'construction company, Portugal',
-      period_ru: 'Июль 2024 – Январь 2026 · 1.5 года',
-      period_en: 'Jul 2024 – Jan 2026 · 1.5 years',
-      type: 'automation',
+      period_ru: 'Июль 2024 – Февраль 2026 · 1 год 8 мес.',
+      period_en: 'Jul 2024 – Feb 2026 · 1 year 8 mo.',
+      type: 'hybrid',
       bg: pastelBgClasses[0],
-      description_ru: 'Работал в двух ролях одновременно. IT: внедрение систем управления, цифровая инфраструктура, разработка кастомных инструментов. Менеджер: управление процессами, найм и обучение сотрудников.',
-      description_en: 'Worked in two roles simultaneously. IT: implementing management systems, digital infrastructure, custom tool development. Manager: process management, hiring and training employees.',
+      description_ru: 'Работал сразу в двух плоскостях: выстраивал цифровую инфраструктуру компании и управлял операционными процессами на 3 строительных проектах вилл. Помог стабилизировать сроки, внедрил 4 AI-инструмента, запустил продажи, базу знаний и продуктовые инициативы.',
+      description_en: 'Worked across two tracks at once: built the company’s digital infrastructure and managed operations for 3 villa construction projects. Helped stabilize timelines, implemented 4 AI tools, and launched sales, knowledge base, and product initiatives.',
+      highlights_ru: ['3 проекта вилл завершены в срок', '4 AI-инструмента', '17 коммерческих предложений', 'MVP продукта запущен'],
+      highlights_en: ['3 villa projects delivered on time', '4 AI tools', '17 commercial proposals', 'MVP launched'],
       projects: [
         {
-          title_ru: 'Email AI Ассистент',
-          title_en: 'Email AI Assistant',
-          desc_ru: 'Система автоматического анализа, категоризации и обработки входящей корреспонденции с AI-рекомендациями для ответов.',
-          desc_en: 'Automated email analysis, categorization and processing system with AI-powered response recommendations.',
-          stack: ['Zapier', 'Gmail API', 'GPT-4o', 'Notion API', 'Google Drive'],
-          results_ru: ['Полная автоматизация сортировки входящих писем', 'AI-рекомендации (экономия 30-40 мин/день)', 'Единое место управления корреспонденцией'],
-          results_en: ['Full automation of incoming email sorting', 'AI recommendations (saving 30-40 min/day)', 'Single place to manage all correspondence'],
+          title_ru: 'Управление строительными проектами',
+          title_en: 'Construction Project Operations',
+          desc_ru: 'Координировал полный цикл 3 проектов строительства вилл: сроки, ресурсы, бюджет, подрядчики, отчётность и сдача объектов.',
+          desc_en: 'Coordinated the full lifecycle of 3 villa projects: timelines, resources, budget, contractors, reporting, and handover.',
+          stack: ['Jira', 'Project Coordination', 'Weekly Reporting'],
+          results_ru: ['3 проекта завершены в срок', 'Стабильная сдача этапов', 'Прозрачные и воспроизводимые процессы'],
+          results_en: ['3 projects delivered on time', 'Stable milestone delivery', 'Transparent and repeatable processes'],
+          link: '/cases/viora-build',
         },
         {
-          title_ru: 'ClickUp Reports Agent',
-          title_en: 'ClickUp Reports Agent',
-          desc_ru: 'Система автоматической оценки качества и скорости выполнения задач для 5 сотрудников с AI-рекомендациями.',
-          desc_en: 'Automated task quality and speed evaluation system for 5 employees with AI recommendations.',
-          stack: ['Python', 'ClickUp API', 'LM Studio', 'SQLite'],
-          results_ru: ['Объективная оценка производительности', 'Персонализированные рекомендации', 'Полная история оценок'],
-          results_en: ['Objective performance evaluation', 'Personalized recommendations', 'Complete evaluation history'],
+          title_ru: '4 AI-инструмента для операционки',
+          title_en: '4 AI Tools for Operations',
+          desc_ru: 'Внедрил 4 инструмента, которые сократили операционные затраты команды на 30–40%. Ниже только короткие итоги, детали вынесены в отдельные кейсы.',
+          desc_en: 'Implemented 4 tools that reduced team operating costs by 30–40%. Only high-level outcomes are shown here; technical details live in separate case studies.',
+          stack: ['OpenAI API', 'Python', 'Zapier', 'ClickUp', 'Telegram'],
+          results_ru: ['Почта руководителя автоматизирована', 'Оценка команды без ручного анализа', 'Сметы проверяются до использования', 'Задачи создаются голосом'],
+          results_en: ['Founder inbox automated', 'Team evaluation without manual review', 'Estimates checked before use', 'Tasks created by voice'],
+          links: [
+            { href: '/cases/email-ai', label_ru: 'Email AI Ассистент', label_en: 'Email AI Assistant' },
+            { href: '/cases/clickup-reports', label_ru: 'ClickUp Reports Agent', label_en: 'ClickUp Reports Agent' },
+            { href: '/cases/construction-ai', label_ru: 'Construction AI Agent', label_en: 'Construction AI Agent' },
+            { href: '/cases/telegram-clickup', label_ru: 'Telegram → ClickUp', label_en: 'Telegram → ClickUp' },
+          ],
         },
         {
-          title_ru: 'Construction AI Agent',
-          title_en: 'Construction AI Agent',
-          desc_ru: 'Универсальный инструмент для строительных специалистов и сметчиков: поиск цен, проверка смет, управление данными.',
-          desc_en: 'Universal tool for construction specialists: price search, estimate validation, data management.',
-          stack: ['Python', 'Flask', 'Vue.js', 'OpenAI API', 'Google Sheets', 'SQLite'],
-          results_ru: ['Ускорение рабочих процессов на 30-40%', 'Автоматическое выявление ошибок в смётах', 'Актуальные цены с кэшированием'],
-          results_en: ['30-40% workflow acceleration', 'Automatic estimate error detection', 'Up-to-date prices with caching'],
-        },
-        {
-          title_ru: 'Telegram to ClickUp',
-          title_en: 'Telegram to ClickUp',
-          desc_ru: 'Создание и обновление задач в ClickUp из голосовых и текстовых сообщений в Telegram с проверкой дублей.',
-          desc_en: 'Creating and updating ClickUp tasks from voice and text messages in Telegram with duplicate detection.',
-          stack: ['Python', 'Telegram Bot API', 'OpenAI Whisper', 'GPT-4', 'ClickUp API'],
-          results_ru: ['Задачи создаются голосом — без входа в ClickUp', 'Дубли не создаются — умное обновление', 'Прозрачность через Telegram-отчёты'],
-          results_en: ['Tasks created by voice — no ClickUp login needed', 'No duplicates — smart update system', 'Transparency via Telegram reports'],
-        },
-        {
-          title_ru: 'База знаний компании',
-          title_en: 'Company Knowledge Base',
-          desc_ru: 'Разработал структурированное хранилище процессов и знаний компании — инструмент для быстрого адаптирования новых сотрудников и стандартизации работы.',
-          desc_en: 'Developed a structured repository of company processes and knowledge — a tool for fast onboarding of new employees and work standardization.',
-          stack: ['Notion'],
-          results_ru: ['Единый источник истины', 'Ускорение онбординга'],
-          results_en: ['Single source of truth', 'Faster onboarding'],
+          title_ru: 'Продажи и база знаний',
+          title_en: 'Sales Function and Knowledge Base',
+          desc_ru: 'Собрал sales-воронку, нанял и обучил команду, настроил amoCRM и структурировал все процессы компании в Notion.',
+          desc_en: 'Built the sales funnel, hired and trained the team, configured amoCRM, and structured all company processes in Notion.',
+          stack: ['amoCRM', 'Notion', 'SOP', 'Sales Operations'],
+          results_ru: ['Отдел продаж запущен с нуля', 'Онбординг ускорился с недель до дней', 'Единый источник знаний для команды'],
+          results_en: ['Sales function launched from scratch', 'Onboarding reduced from weeks to days', 'Single source of truth for the team'],
           images: ['/images/about/CleanShot_2026-02-15_at_15.22.302x.png']
-        }
-      ],
-    },
-    {
-      role_ru: 'CEO',
-      role_en: 'CEO',
-      company: 'Viora Consulting',
-      company_desc_ru: 'консалтинговое направление Viora',
-      company_desc_en: 'consulting division of Viora',
-      period_ru: 'Сентябрь 2025 – Январь 2026 · 4 месяца',
-      period_en: 'Sep 2025 – Jan 2026 · 4 months',
-      type: 'consulting',
-      bg: pastelBgClasses[1],
-      description_ru: 'Возглавил консалтинговое направление. Разработал образовательный продукт — полный сервис помощи клиентам в планировании строительства в Португалии с AI-интеграцией.',
-      description_en: 'Led the consulting division. Developed an educational product — a complete service for construction planning in Portugal with AI integration.',
-      projects: [
-        {
-          title_ru: 'Курс по планированию строительства',
-          title_en: 'Construction Planning Course',
-          desc_ru: 'Комплексный курс/сервис по планированию строительства в Португалии с AI-ассистентом, интерактивной картой и калькулятором.',
-          desc_en: 'Comprehensive course/service for construction planning in Portugal with AI assistant, interactive map and calculator.',
-          stack: ['AI Agents', 'Gemini', 'Perplexity', 'Interactive Maps'],
-          results_ru: ['Интегрированная система сбора данных через AI', 'База актуальных цен и подрядчиков', 'Калькулятор стоимости строительства'],
-          results_en: ['Integrated AI data collection system', 'Up-to-date prices and contractors database', 'Construction cost calculator'],
-          images: [
-            '/images/about/CleanShot_2026-02-15_at_15.14.012x_Large.jpeg',
-            '/images/about/CleanShot_2026-02-15_at_15.14.352x_Large.jpeg'
-          ]
         },
-      ],
-    },
-    {
-      role_ru: 'Продюсер цифровых продуктов',
-      role_en: 'Digital Products Producer',
-      company: 'Viora Development',
-      company_desc_ru: 'девелоперское направление Viora',
-      company_desc_en: 'development division of Viora',
-      period_ru: 'Сентябрь 2025 – Январь 2026 · 4 месяца',
-      period_en: 'Sep 2025 – Jan 2026 · 4 months',
-      type: 'product',
-      bg: pastelBgClasses[2],
-      description_ru: 'Создавал коммерческие предложения для инвестиционных строительных проектов: из архитектурных планов генерировал AI-визуализации и собирал промо-сайты.',
-      description_en: 'Created commercial proposals for investment construction projects: generated AI visualizations from architectural plans and built promo websites.',
-      projects: [
         {
-          title_ru: '17 коммерческих предложений',
-          title_en: '17 Commercial Proposals',
-          desc_ru: 'Из каждого плана/чертежа создавал визуализации готовых проектов и конверсионные промо-сайты для привлечения инвесторов.',
-          desc_en: 'Created visualizations of finished projects and conversion promo websites for investor attraction from each plan/blueprint.',
-          stack: ['Lovable.app', 'AI Visualization', 'Figma', 'HTML/CSS/JS'],
-          results_ru: ['17 готовых коммерческих предложений', 'Высокий уровень визуализации', 'Конверсионные сайты для инвесторов'],
-          results_en: ['17 ready commercial proposals', 'High-level visualizations', 'Conversion websites for investors'],
+          title_ru: '17 коммерческих предложений и промо-сайты',
+          title_en: '17 Commercial Proposals and Investor Sites',
+          desc_ru: 'Инициировал направление промо-материалов: визуализации по архитектурным планам, сайты для инвесторов и упаковка объектов под продажи.',
+          desc_en: 'Initiated the promo materials direction: plan-based visualizations, investor websites, and sales packaging for development projects.',
+          stack: ['Sora', 'Lovable.app', 'Figma', 'Investor Funnels'],
+          results_ru: ['17 коммерческих предложений', 'AI-визуализации объектов', 'Сайты под путь инвестора'],
+          results_en: ['17 commercial proposals', 'AI visualizations of properties', 'Websites tailored to investor journeys'],
+          links: [
+            { href: 'http://dev-l29.viorabuild.org', label_ru: 'dev-l29.viorabuild.org', label_en: 'dev-l29.viorabuild.org', external: true },
+            { href: 'http://dev-l30.viorabuild.org', label_ru: 'dev-l30.viorabuild.org', label_en: 'dev-l30.viorabuild.org', external: true },
+            { href: 'http://algarve-haven-ventures.lovable.app', label_ru: 'algarve-haven-ventures.lovable.app', label_en: 'algarve-haven-ventures.lovable.app', external: true },
+          ],
           images: [
             '/images/about/CleanShot_2026-02-15_at_15.15.202x_Large.jpeg',
             '/images/about/CleanShot_2026-02-15_at_15.15.042x_Large.jpeg',
             '/images/about/CleanShot_2026-02-15_at_15.15.262x_Large.jpeg',
             '/images/about/CleanShot_2026-02-15_at_15.15.522x_Large.jpeg'
+          ]
+        },
+        {
+          title_ru: 'Запуск продукта «Строительный Чекап»',
+          title_en: 'Launching “Construction Checkup”',
+          desc_ru: 'Вёл продукт от исследования рынка до MVP: структура программы, видео-контент, лендинг, платежи, AI-сбор данных, карта и калькулятор стоимости.',
+          desc_en: 'Led the product from market research to MVP: program structure, video content, landing page, payments, AI data collection, interactive map, and cost calculator.',
+          stack: ['Gemini', 'Perplexity', 'Interactive Maps', 'Product Management'],
+          results_ru: ['9 видео-модулей и 3 чек-листа', 'Интерактивная карта Португалии', 'Рабочий MVP с лендингом и воронкой'],
+          results_en: ['9 video modules and 3 checklists', 'Interactive Portugal map', 'Working MVP with landing page and funnel'],
+          link: '/cases/viora-build',
+          images: [
+            '/images/about/CleanShot_2026-02-15_at_15.14.012x_Large.jpeg',
+            '/images/about/CleanShot_2026-02-15_at_15.14.352x_Large.jpeg'
           ]
         },
       ],
@@ -258,8 +269,8 @@ const Contact = () => {
       icon: Workflow,
       bg: pastelBgClasses[0],
       type: 'nocode',
-      items: ['Notion (продвинутый)', 'ClickUp', 'Bitrix24', 'Zapier Pro', 'n8n', 'Make.com'],
-      items_en: ['Notion (advanced)', 'ClickUp', 'Bitrix24', 'Zapier Pro', 'n8n', 'Make.com'],
+      items: ['Notion (продвинутый)', 'ClickUp', 'Jira', 'amoCRM', 'Zapier Pro', 'n8n', 'Lovable.app'],
+      items_en: ['Notion (advanced)', 'ClickUp', 'Jira', 'amoCRM', 'Zapier Pro', 'n8n', 'Lovable.app'],
     },
     {
       title_ru: 'Код',
@@ -267,8 +278,8 @@ const Contact = () => {
       icon: Code2,
       bg: pastelBgClasses[1],
       type: 'code',
-      items: ['Python 3.10+', 'Flask / FastAPI', 'JavaScript', 'Vue.js / React', 'REST API', 'Git / GitHub'],
-      items_en: ['Python 3.10+', 'Flask / FastAPI', 'JavaScript', 'Vue.js / React', 'REST API', 'Git / GitHub'],
+      items: ['Python 3.10+', 'Flask / FastAPI', 'JavaScript', 'Vue.js / React', 'Tailwind CSS', 'REST API', 'Git / GitHub'],
+      items_en: ['Python 3.10+', 'Flask / FastAPI', 'JavaScript', 'Vue.js / React', 'Tailwind CSS', 'REST API', 'Git / GitHub'],
     },
     {
       title_ru: 'AI Инструменты',
@@ -276,28 +287,18 @@ const Contact = () => {
       icon: Bot,
       bg: pastelBgClasses[2],
       type: 'ai',
-      items: ['OpenAI API (GPT-4o, Whisper)', 'LangChain', 'LM Studio', 'AI-агенты', 'Промпт-инжиниринг'],
-      items_en: ['OpenAI API (GPT-4o, Whisper)', 'LangChain', 'LM Studio', 'AI Agents', 'Prompt Engineering'],
+      items: ['OpenAI API (GPT-4o, Whisper)', 'Gemini', 'Perplexity', 'LM Studio', 'Sora', 'AI-агенты'],
+      items_en: ['OpenAI API (GPT-4o, Whisper)', 'Gemini', 'Perplexity', 'LM Studio', 'Sora', 'AI Agents'],
     },
     {
-      title_ru: 'Базы данных',
-      title_en: 'Databases',
+      title_ru: 'Интеграции и аналитика',
+      title_en: 'Integrations & Analytics',
       icon: Database,
       bg: pastelBgClasses[3],
       type: 'infra',
-      items: ['SQLite', 'Google Sheets API', 'Notion API', 'Linux', 'Structured Logging', 'Prometheus'],
-      items_en: ['SQLite', 'Google Sheets API', 'Notion API', 'Linux', 'Structured Logging', 'Prometheus'],
+      items: ['SQLite', 'Gmail API', 'Google Drive API', 'Google Sheets API', 'Telegram Bot API', 'Power BI', 'Grafana'],
+      items_en: ['SQLite', 'Gmail API', 'Google Drive API', 'Google Sheets API', 'Telegram Bot API', 'Power BI', 'Grafana'],
     },
-  ];
-
-  // Key achievements mapped from settings to keep it alive
-  const achievements = [
-    { text_ru: `${settings.stats.projects}+ проектов по автоматизации`, text_en: `${settings.stats.projects}++ automation projects`, value: `${settings.stats.projects}+` },
-    { text_ru: `${settings.stats.templates}+ Notion шаблонов (80% в паблике)`, text_en: `${settings.stats.templates}+ Notion templates (80% public)`, value: `${settings.stats.templates}+` },
-    { text_ru: `${settings.stats.hours}+ часов обучающих сессий`, text_en: `${settings.stats.hours}+ hours of training sessions`, value: `${settings.stats.hours}+` },
-    { text_ru: '4 комплексные системы автоматизации в Viora Build', text_en: '4 complex automation systems at Viora Build', value: '4' },
-    { text_ru: '17 коммерческих предложений с визуализациями', text_en: '17 commercial proposals with visualizations', value: '17' },
-    { text_ru: 'Развитие 3 направлений бизнеса (Build, Consulting, Development)', text_en: '3 business divisions developed (Build, Consulting, Development)', value: '3' },
   ];
 
   const filteredExperience = activeExpFilter === 'all' ? workExperience : workExperience.filter(w => w.type === activeExpFilter);
@@ -425,6 +426,185 @@ const Contact = () => {
         </div>
       </section>
 
+      {/* Experience */}
+      <section id="experience" className="py-16 md:py-20 scroll-mt-20">
+        <div className="container">
+          <div className="max-w-5xl mx-auto space-y-8">
+            <AnimatedSection>
+              <div className="text-center space-y-3">
+                <h2 className="text-3xl md:text-4xl font-bold font-display">
+                  {isRu ? 'Опыт работы' : 'Work Experience'}
+                </h2>
+                <p className="text-muted-foreground max-w-3xl mx-auto">
+                  {isRu
+                    ? 'Собрал здесь компании и роли, в которых соединял операционное управление, автоматизации и запуск новых направлений.'
+                    : 'This is the part of my background where operations, automation, and new business directions came together.'}
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={80}>
+              <div className="flex flex-wrap justify-center gap-2">
+                {[
+                  { id: 'all', label_ru: 'Все', label_en: 'All' },
+                  { id: 'hybrid', label_ru: 'Системы и операционка', label_en: 'Systems & Operations' },
+                  { id: 'sales', label_ru: 'Продажи', label_en: 'Sales' },
+                  { id: 'freelance', label_ru: 'Фриланс', label_en: 'Freelance' },
+                ].map((filter) => (
+                  <Button
+                    key={filter.id}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setActiveExpFilter(filter.id)}
+                    className={`rounded-none border-2 shadow-[2px_2px_0px_0px_currentColor] transition-all ${
+                      activeExpFilter === filter.id
+                        ? 'bg-foreground text-background'
+                        : 'hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none'
+                    }`}
+                  >
+                    {isRu ? filter.label_ru : filter.label_en}
+                  </Button>
+                ))}
+              </div>
+            </AnimatedSection>
+
+            <div className="space-y-6">
+              {filteredExperience.map((item, index) => (
+                <AnimatedSection key={`${item.company}-${item.period_en}`} delay={index * 80}>
+                  <div className={`${item.bg} border-2 border-foreground shadow-[6px_6px_0px_0px_currentColor] p-6 md:p-8 space-y-6`}>
+                    <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                      <div className="space-y-3">
+                        <div className="space-y-1">
+                          <p className="text-xs font-bold uppercase tracking-[0.24em] text-foreground/70">
+                            {item.company}
+                            {' · '}
+                            {isRu ? item.company_desc_ru : item.company_desc_en}
+                          </p>
+                          <h3 className="text-2xl md:text-3xl font-bold font-display">
+                            {isRu ? item.role_ru : item.role_en}
+                          </h3>
+                        </div>
+                        <p className="text-sm font-medium text-foreground/80">
+                          {isRu ? item.period_ru : item.period_en}
+                        </p>
+                        <p className="max-w-3xl text-sm md:text-base leading-relaxed text-foreground/80">
+                          {isRu ? item.description_ru : item.description_en}
+                        </p>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2 lg:max-w-xs lg:justify-end">
+                        {((isRu ? item.highlights_ru : item.highlights_en) ?? []).map((highlight: string) => (
+                          <Badge key={highlight} variant="outline" className="bg-card text-xs font-bold uppercase tracking-wider">
+                            {highlight}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+
+                    {item.projects.length > 0 ? (
+                      <Accordion type="single" collapsible className="w-full">
+                        <AccordionItem value={`${item.company}-${index}`} className="border-0">
+                          <AccordionTrigger className="border-2 border-foreground bg-card px-5 py-4 text-left text-sm font-bold uppercase tracking-[0.22em] shadow-[4px_4px_0px_0px_currentColor] hover:no-underline">
+                            {isRu ? 'Ключевые результаты и инициативы' : 'Key Results and Initiatives'}
+                          </AccordionTrigger>
+                          <AccordionContent className="pt-5">
+                            <div className="grid gap-4 md:grid-cols-2">
+                              {item.projects.map((project, projectIndex: number) => (
+                                <div
+                                  key={`${project.title_en}-${projectIndex}`}
+                                  className="flex h-full flex-col gap-4 border-2 border-foreground bg-card p-5 shadow-[4px_4px_0px_0px_currentColor]"
+                                >
+                                  {project.images?.length ? (
+                                    <div className="overflow-hidden border-2 border-foreground">
+                                      <img
+                                        src={project.images[0]}
+                                        alt={isRu ? project.title_ru : project.title_en}
+                                        className="h-40 w-full object-cover"
+                                        loading="lazy"
+                                      />
+                                    </div>
+                                  ) : null}
+
+                                  <div className="space-y-3">
+                                    <div>
+                                      <h4 className="text-lg font-bold font-display">
+                                        {isRu ? project.title_ru : project.title_en}
+                                      </h4>
+                                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                                        {isRu ? project.desc_ru : project.desc_en}
+                                      </p>
+                                    </div>
+
+                                    <div className="flex flex-wrap gap-2">
+                                      {(project.stack ?? []).map((stackItem: string) => (
+                                        <span
+                                          key={stackItem}
+                                          className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider border border-foreground bg-muted/30"
+                                        >
+                                          {stackItem}
+                                        </span>
+                                      ))}
+                                    </div>
+
+                                    <ul className="space-y-2">
+                                      {(isRu ? project.results_ru : project.results_en).map((result: string) => (
+                                        <li key={result} className="flex items-start gap-2 text-sm text-muted-foreground">
+                                          <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-lime" />
+                                          {result}
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+
+                                  {project.link || project.links?.length ? (
+                                    <div className="mt-auto flex flex-wrap gap-2 pt-2">
+                                      {project.link ? (
+                                        <Link
+                                          to={project.link}
+                                          className="inline-flex items-center gap-2 border-2 border-foreground px-3 py-2 text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0px_0px_currentColor] transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-[4px_4px_0px_0px_currentColor]"
+                                        >
+                                          {isRu ? 'Открыть кейс' : 'Open case'}
+                                        </Link>
+                                      ) : null}
+
+                                      {(project.links ?? []).map((link) =>
+                                        link.external ? (
+                                          <a
+                                            key={link.href}
+                                            href={link.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 border-2 border-foreground px-3 py-2 text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0px_0px_currentColor] transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-[4px_4px_0px_0px_currentColor]"
+                                          >
+                                            {isRu ? link.label_ru : link.label_en}
+                                          </a>
+                                        ) : (
+                                          <Link
+                                            key={link.href}
+                                            to={link.href}
+                                            className="inline-flex items-center gap-2 border-2 border-foreground px-3 py-2 text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0px_0px_currentColor] transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-[4px_4px_0px_0px_currentColor]"
+                                          >
+                                            {isRu ? link.label_ru : link.label_en}
+                                          </Link>
+                                        )
+                                      )}
+                                    </div>
+                                  ) : null}
+                                </div>
+                              ))}
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
+                    ) : null}
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Key Achievements */}
       <section id="achievements" className="py-16 md:py-20 scroll-mt-20">
         <div className="container">
@@ -465,8 +645,33 @@ const Contact = () => {
                 {isRu ? 'Технический стек' : 'Tech Stack'}
               </h2>
             </AnimatedSection>
+            <AnimatedSection delay={60}>
+              <div className="mb-8 flex flex-wrap justify-center gap-2">
+                {[
+                  { id: 'all', label_ru: 'Все', label_en: 'All' },
+                  { id: 'nocode', label_ru: 'No-Code', label_en: 'No-Code' },
+                  { id: 'code', label_ru: 'Код', label_en: 'Code' },
+                  { id: 'ai', label_ru: 'AI', label_en: 'AI' },
+                  { id: 'infra', label_ru: 'Интеграции', label_en: 'Integrations' },
+                ].map((filter) => (
+                  <Button
+                    key={filter.id}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setActiveStackFilter(filter.id)}
+                    className={`rounded-none border-2 shadow-[2px_2px_0px_0px_currentColor] transition-all ${
+                      activeStackFilter === filter.id
+                        ? 'bg-foreground text-background'
+                        : 'hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none'
+                    }`}
+                  >
+                    {isRu ? filter.label_ru : filter.label_en}
+                  </Button>
+                ))}
+              </div>
+            </AnimatedSection>
             <div className="grid md:grid-cols-2 gap-6">
-              {techStack.map((category, ci) => (
+              {filteredStack.map((category, ci) => (
                 <AnimatedSection key={category.type} delay={ci * 100}>
                   <div className={`${category.bg} border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] rounded-none p-6 space-y-4 h-full`}>
                     <div className="flex items-center gap-3">
@@ -594,7 +799,7 @@ const Contact = () => {
 };
 
 // Reviews Carousel Component
-const ReviewsCarousel = ({ reviews, isRu }: { reviews: any[]; isRu: boolean }) => {
+const ReviewsCarousel = ({ reviews, isRu }: { reviews: ReviewItem[]; isRu: boolean }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 

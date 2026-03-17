@@ -19,6 +19,28 @@ export interface ProjectFeature {
   items_en: string[];
 }
 
+export interface PortfolioSection {
+  title_ru: string;
+  title_en: string;
+  body_ru: string;
+  body_en: string;
+  bullets_ru?: string[];
+  bullets_en?: string[];
+}
+
+export interface RelatedCase {
+  caseId: string;
+  title_ru: string;
+  title_en: string;
+  blurb_ru: string;
+  blurb_en: string;
+}
+
+export interface ExternalProjectLink {
+  label: string;
+  url: string;
+}
+
 export interface PortfolioProject {
   id: string;
   title_ru: string;
@@ -28,15 +50,29 @@ export interface PortfolioProject {
   summary_ru: string;
   summary_en: string;
   tags: string[];
-  features: ProjectFeature[];
-  results_ru: string[];
-  results_en: string[];
-  workflow: {
+  features?: ProjectFeature[];
+  results_ru?: string[];
+  results_en?: string[];
+  workflow?: {
     nodes: WorkflowNode[];
     connections: WorkflowConnection[];
   };
+  lead_ru?: string;
+  lead_en?: string;
+  role_ru?: string;
+  role_en?: string;
+  period_ru?: string;
+  period_en?: string;
+  location_ru?: string;
+  location_en?: string;
+  format_ru?: string;
+  format_en?: string;
+  tools_used?: string[];
+  sections?: PortfolioSection[];
+  related_cases?: RelatedCase[];
+  external_links?: ExternalProjectLink[];
   cost?: string;
-  type: 'automation' | 'vibecoding';
+  type: 'automation' | 'vibecoding' | 'company';
 }
 
 export const portfolioProjects: PortfolioProject[] = [
@@ -455,5 +491,202 @@ export const portfolioProjects: PortfolioProject[] = [
         { from: 'cu-update', to: 'report' },
       ],
     },
+  },
+
+  // ── Project 6 — Viora Build Company Case ──
+  {
+    id: 'viora-build',
+    title_ru: 'Viora Build',
+    title_en: 'Viora Build',
+    category_ru: 'Опыт работы',
+    category_en: 'Work Experience',
+    summary_ru: 'Строительная компания в Португалии, где я одновременно выстраивал цифровую инфраструктуру и управлял операционными процессами. За 1 год 8 месяцев помог стабилизировать 3 проекта вилл, внедрил 4 AI-инструмента и запустил новые направления: продажи, промо-материалы и продукт «Строительный Чекап».',
+    summary_en: 'A construction company in Portugal where I built digital infrastructure and managed operations in parallel. Over 1 year 8 months, I helped stabilize 3 villa projects, implemented 4 AI tools, and launched new directions: sales, promo materials, and the "Construction Checkup" product.',
+    tags: [
+      'Jira',
+      'ClickUp',
+      'Notion',
+      'Python',
+      'OpenAI API',
+      'amoCRM',
+      'Power BI',
+      'Grafana',
+    ],
+    lead_ru: 'Работал в двух ролях одновременно: выстраивал цифровую инфраструктуру компании и управлял операционными процессами на 3 строительных проектах вилл в Португалии.',
+    lead_en: 'Worked in two roles simultaneously: built the company’s digital infrastructure and managed operations across 3 villa construction projects in Portugal.',
+    role_ru: 'IT-специалист / Менеджер направления',
+    role_en: 'IT Specialist / Direction Manager',
+    period_ru: 'Июль 2024 — Февраль 2026 · 1 год 8 мес.',
+    period_en: 'Jul 2024 — Feb 2026 · 1 year 8 months',
+    location_ru: 'Португалия',
+    location_en: 'Portugal',
+    format_ru: 'Удалённо',
+    format_en: 'Remote',
+    tools_used: [
+      'Jira',
+      'ClickUp',
+      'Notion',
+      'Zapier',
+      'n8n',
+      'Python',
+      'OpenAI API',
+      'Whisper',
+      'LM Studio',
+      'Gemini',
+      'Perplexity',
+      'Flask',
+      'Vue.js',
+      'Tailwind CSS',
+      'Google Sheets API',
+      'Google Drive API',
+      'Gmail API',
+      'Telegram Bot API',
+      'amoCRM',
+      'Power BI',
+      'Grafana',
+      'Sora',
+      'Lovable.app',
+      'Figma',
+    ],
+    sections: [
+      {
+        title_ru: 'Управление проектами',
+        title_en: 'Project Management',
+        body_ru: 'Координировал полный цикл 3 проектов строительства вилл длительностью 6–12 месяцев: от планирования сроков и бюджетов до сдачи объекта клиенту.',
+        body_en: 'Coordinated the full lifecycle of 3 villa construction projects lasting 6–12 months each: from planning timelines and budgets to client handover.',
+        bullets_ru: [
+          'Согласование сроков, ресурсов и бюджетов с клиентами',
+          'Ежедневные синхронизации с командой и подрядчиками, планёрки, 1-on-1',
+          'Контроль статусов в Jira и еженедельная отчётность руководству',
+          'Подготовка документации, финализация и передача объектов клиентам',
+        ],
+        bullets_en: [
+          'Aligned timelines, resources, and budgets with clients',
+          'Ran daily syncs with the team and contractors, planning meetings, and 1-on-1s',
+          'Tracked statuses in Jira and prepared weekly management reports',
+          'Prepared documentation, finalized delivery, and handed over completed properties',
+        ],
+      },
+      {
+        title_ru: 'AI-автоматизации',
+        title_en: 'AI Automations',
+        body_ru: 'Разработал и внедрил 4 AI-инструмента, которые сократили операционные затраты команды на 30–40% и убрали ручную рутину в коммуникации, оценке задач и работе со сметами.',
+        body_en: 'Designed and implemented 4 AI tools that reduced team operating costs by 30–40% and removed manual routine from communication, task evaluation, and estimate workflows.',
+        bullets_ru: [
+          'Email AI Assistant для автоматической обработки 50+ писем в день',
+          'ClickUp Reports Agent для оценки качества и скорости работы команды',
+          'Construction AI Agent для цен, смет и совместной работы через Sheets',
+          'Telegram → ClickUp для создания задач из голосовых и текстовых сообщений',
+        ],
+        bullets_en: [
+          'Email AI Assistant for automatic processing of 50+ emails per day',
+          'ClickUp Reports Agent for team quality and speed evaluation',
+          'Construction AI Agent for prices, estimates, and Sheets collaboration',
+          'Telegram → ClickUp for creating tasks from voice and text messages',
+        ],
+      },
+      {
+        title_ru: 'Развитие бизнеса',
+        title_en: 'Business Development',
+        body_ru: 'Помог собрать операционную основу для роста компании: запустил отдел продаж, структурировал знания в Notion и встроил AI-ассистента для владельца.',
+        body_en: 'Helped build the operational backbone for growth: launched the sales function, structured company knowledge in Notion, and introduced an AI assistant for the founder.',
+        bullets_ru: [
+          'Разработал sales-воронку и бизнес-процессы',
+          'Нанял и обучил команду продаж за 3 месяца',
+          'Настроил CRM в amoCRM',
+          'Создал корпоративную базу знаний с SOP, шаблонами и процедурами',
+        ],
+        bullets_en: [
+          'Designed the sales funnel and business processes',
+          'Hired and trained the sales team in 3 months',
+          'Configured CRM workflows in amoCRM',
+          'Built a corporate knowledge base with SOPs, templates, and procedures',
+        ],
+      },
+      {
+        title_ru: 'Промо-материалы и сайты для инвесторов',
+        title_en: 'Promo Materials and Investor Websites',
+        body_ru: 'Инициировал направление по созданию коммерческих предложений и визуальных материалов для инвестиционных проектов компании.',
+        body_en: 'Initiated a new direction focused on commercial proposals and visual materials for the company’s investment projects.',
+        bullets_ru: [
+          'Подготовил 17 коммерческих предложений с AI-визуализациями',
+          'Генерировал внешний вид объектов на основе архитектурных планов и чертежей',
+          'Собирал конверсионные сайты, оптимизированные под путь инвестора',
+        ],
+        bullets_en: [
+          'Produced 17 commercial proposals with AI visualizations',
+          'Generated building exteriors from architectural plans and blueprints',
+          'Built conversion-oriented websites tailored to investor journeys',
+        ],
+      },
+      {
+        title_ru: 'Запуск продукта «Строительный Чекап»',
+        title_en: 'Launching “Construction Checkup”',
+        body_ru: 'Сопровождал полный цикл продукта для иностранцев, планирующих строить в Португалии: от исследования рынка до работающего MVP с лендингом и воронкой.',
+        body_en: 'Owned the full product cycle for foreigners planning to build in Portugal: from market research to a working MVP with a landing page and sales funnel.',
+        bullets_ru: [
+          'Провёл исследование рынка через Gemini и Perplexity',
+          'Спроектировал структуру продукта: 9 видео-модулей, 3 чек-листа и консультация',
+          'Организовал контент, лендинг, платежи и автоматизацию доступа',
+          'Разработал интерактивную карту Португалии и калькулятор стоимости строительства',
+        ],
+        bullets_en: [
+          'Researched the market using Gemini and Perplexity',
+          'Designed the product structure: 9 video modules, 3 checklists, and consulting',
+          'Coordinated content, landing page, payments, and access automation',
+          'Developed an interactive Portugal map and a construction cost calculator',
+        ],
+      },
+    ],
+    related_cases: [
+      {
+        caseId: 'email-ai',
+        title_ru: 'Email AI Ассистент',
+        title_en: 'Email AI Assistant',
+        blurb_ru: 'Автоматизировал входящую почту руководителя и экономил 30–40 минут в день.',
+        blurb_en: 'Automated the founder’s inbox and saved 30–40 minutes per day.',
+      },
+      {
+        caseId: 'clickup-reports',
+        title_ru: 'ClickUp Reports Agent',
+        title_en: 'ClickUp Reports Agent',
+        blurb_ru: 'Сделал объективную систему оценки команды без ручного анализа.',
+        blurb_en: 'Built an objective team evaluation workflow without manual review.',
+      },
+      {
+        caseId: 'construction-ai',
+        title_ru: 'Construction AI Agent',
+        title_en: 'Construction AI Agent',
+        blurb_ru: 'Ускорил работу сметчиков и добавил проверку ошибок до использования смет.',
+        blurb_en: 'Accelerated estimator workflows and caught estimate errors before use.',
+      },
+      {
+        caseId: 'telegram-clickup',
+        title_ru: 'Telegram → ClickUp',
+        title_en: 'Telegram → ClickUp',
+        blurb_ru: 'Позволил создавать задачи голосом и текстом без захода в ClickUp.',
+        blurb_en: 'Enabled task creation by voice and text without opening ClickUp.',
+      },
+    ],
+    external_links: [
+      { label: 'dev-l29.viorabuild.org', url: 'http://dev-l29.viorabuild.org' },
+      { label: 'dev-l30.viorabuild.org', url: 'http://dev-l30.viorabuild.org' },
+      { label: 'algarve-haven-ventures.lovable.app', url: 'http://algarve-haven-ventures.lovable.app' },
+    ],
+    results_ru: [
+      '3 проекта строительства вилл завершены в срок',
+      '4 AI-инструмента сократили операционные затраты команды на 30–40%',
+      'Собран работающий отдел продаж и CRM-процессы',
+      '17 коммерческих предложений подготовлены для инвестиционных проектов',
+      'MVP продукта «Строительный Чекап» запущен с лендингом и воронкой',
+    ],
+    results_en: [
+      '3 villa construction projects were delivered on time',
+      '4 AI tools reduced team operating costs by 30–40%',
+      'A working sales function and CRM processes were established',
+      '17 commercial proposals were produced for investment projects',
+      'The “Construction Checkup” MVP launched with a landing page and funnel',
+    ],
+    type: 'company',
   },
 ];

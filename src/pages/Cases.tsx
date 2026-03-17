@@ -19,8 +19,10 @@ const Cases = () => {
   const { i18n } = useTranslation();
   const isRu = i18n.language === "ru";
   const [searchParams, setSearchParams] = useSearchParams();
-  const initialType = searchParams.get('type') === 'vibecoding' ? 'vibecoding' : 'automation';
-  const [filter, setFilter] = useState<'automation' | 'vibecoding'>(initialType);
+  const typeParam = searchParams.get('type');
+  const initialType =
+    typeParam === 'vibecoding' || typeParam === 'company' ? typeParam : 'automation';
+  const [filter, setFilter] = useState<'automation' | 'vibecoding' | 'company'>(initialType);
 
   // Tool filter from URL param
   const toolFilter = searchParams.get('tool') || null;
@@ -40,12 +42,12 @@ const Cases = () => {
   // Sync filter with URL param changes (e.g. back button)
   useEffect(() => {
     const type = searchParams.get('type');
-    if (type === 'automation' || type === 'vibecoding') {
+    if (type === 'automation' || type === 'vibecoding' || type === 'company') {
       setFilter(type);
     }
   }, [searchParams]);
 
-  const handleFilterChange = (newFilter: 'automation' | 'vibecoding') => {
+  const handleFilterChange = (newFilter: 'automation' | 'vibecoding' | 'company') => {
     const newParams: Record<string, string> = { type: newFilter };
     if (toolFilter) newParams.tool = toolFilter;
     setFilter(newFilter);
@@ -106,6 +108,15 @@ const Cases = () => {
                 }`}
             >
               {isRu ? 'Вайбкодинг' : 'Vibecoding'}
+            </button>
+            <button
+              onClick={() => handleFilterChange('company')}
+              className={`px-6 py-2.5 text-sm font-bold uppercase tracking-wider transition-all rounded-none ${filter === 'company'
+                ? 'bg-foreground text-background'
+                : 'hover:bg-muted text-foreground'
+                }`}
+            >
+              {isRu ? 'Опыт' : 'Experience'}
             </button>
           </div>
         </div>
