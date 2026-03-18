@@ -431,176 +431,181 @@ const Contact = () => {
         <div className="container">
           <div className="max-w-5xl mx-auto space-y-8">
             <AnimatedSection>
-              <div className="text-center space-y-3">
-                <h2 className="text-3xl md:text-4xl font-bold font-display">
-                  {isRu ? 'Опыт работы' : 'Work Experience'}
-                </h2>
-                <p className="text-muted-foreground max-w-3xl mx-auto">
-                  {isRu
-                    ? 'Собрал здесь компании и роли, в которых соединял операционное управление, автоматизации и запуск новых направлений.'
-                    : 'This is the part of my background where operations, automation, and new business directions came together.'}
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={80}>
-              <div className="flex flex-wrap justify-center gap-2">
-                {[
-                  { id: 'all', label_ru: 'Все', label_en: 'All' },
-                  { id: 'hybrid', label_ru: 'Системы и операционка', label_en: 'Systems & Operations' },
-                  { id: 'sales', label_ru: 'Продажи', label_en: 'Sales' },
-                  { id: 'freelance', label_ru: 'Фриланс', label_en: 'Freelance' },
-                ].map((filter) => (
-                  <Button
-                    key={filter.id}
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setActiveExpFilter(filter.id)}
-                    className={`rounded-none border-2 shadow-[2px_2px_0px_0px_currentColor] transition-all ${
-                      activeExpFilter === filter.id
-                        ? 'bg-foreground text-background'
-                        : 'hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none'
-                    }`}
-                  >
-                    {isRu ? filter.label_ru : filter.label_en}
-                  </Button>
-                ))}
-              </div>
-            </AnimatedSection>
-
-            <div className="space-y-6">
-              {filteredExperience.map((item, index) => (
-                <AnimatedSection key={`${item.company}-${item.period_en}`} delay={index * 80}>
-                  <div className={`${item.bg} border-2 border-foreground shadow-[6px_6px_0px_0px_currentColor] p-6 md:p-8 space-y-6`}>
-                    <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                      <div className="space-y-3">
-                        <div className="space-y-1">
-                          <p className="text-xs font-bold uppercase tracking-[0.24em] text-foreground/70">
-                            {item.company}
-                            {' · '}
-                            {isRu ? item.company_desc_ru : item.company_desc_en}
-                          </p>
-                          <h3 className="text-2xl md:text-3xl font-bold font-display">
-                            {isRu ? item.role_ru : item.role_en}
-                          </h3>
-                        </div>
-                        <p className="text-sm font-medium text-foreground/80">
-                          {isRu ? item.period_ru : item.period_en}
-                        </p>
-                        <p className="max-w-3xl text-sm md:text-base leading-relaxed text-foreground/80">
-                          {isRu ? item.description_ru : item.description_en}
-                        </p>
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="work-experience" className="border-0">
+                  <AccordionTrigger className="border-2 border-foreground bg-card px-6 py-5 shadow-[6px_6px_0px_0px_currentColor] hover:no-underline">
+                    <div className="space-y-2 text-left">
+                      <h2 className="text-3xl md:text-4xl font-bold font-display">
+                        {isRu ? 'Опыт работы' : 'Work Experience'}
+                      </h2>
+                      <p className="text-sm md:text-base text-muted-foreground max-w-3xl">
+                        {isRu
+                          ? 'Собрал здесь компании и роли, в которых соединял операционное управление, автоматизации и запуск новых направлений.'
+                          : 'This is the part of my background where operations, automation, and new business directions came together.'}
+                      </p>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-8">
+                    <div className="space-y-8">
+                      <div className="flex flex-wrap justify-center gap-2">
+                        {[
+                          { id: 'all', label_ru: 'Все', label_en: 'All' },
+                          { id: 'hybrid', label_ru: 'Системы и операционка', label_en: 'Systems & Operations' },
+                          { id: 'sales', label_ru: 'Продажи', label_en: 'Sales' },
+                          { id: 'freelance', label_ru: 'Фриланс', label_en: 'Freelance' },
+                        ].map((filter) => (
+                          <Button
+                            key={filter.id}
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setActiveExpFilter(filter.id)}
+                            className={`rounded-none border-2 shadow-[2px_2px_0px_0px_currentColor] transition-all ${
+                              activeExpFilter === filter.id
+                                ? 'bg-foreground text-background'
+                                : 'hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none'
+                            }`}
+                          >
+                            {isRu ? filter.label_ru : filter.label_en}
+                          </Button>
+                        ))}
                       </div>
 
-                      <div className="flex flex-wrap gap-2 lg:max-w-xs lg:justify-end">
-                        {((isRu ? item.highlights_ru : item.highlights_en) ?? []).map((highlight: string) => (
-                          <Badge key={highlight} variant="outline" className="bg-card text-xs font-bold uppercase tracking-wider">
-                            {highlight}
-                          </Badge>
+                      <div className="space-y-6">
+                        {filteredExperience.map((item, index) => (
+                          <div key={`${item.company}-${item.period_en}`} className={`${item.bg} border-2 border-foreground shadow-[6px_6px_0px_0px_currentColor] p-6 md:p-8 space-y-6`}>
+                            <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                              <div className="space-y-3">
+                                <div className="space-y-1">
+                                  <p className="text-xs font-bold uppercase tracking-[0.24em] text-foreground/70">
+                                    {item.company}
+                                    {' · '}
+                                    {isRu ? item.company_desc_ru : item.company_desc_en}
+                                  </p>
+                                  <h3 className="text-2xl md:text-3xl font-bold font-display">
+                                    {isRu ? item.role_ru : item.role_en}
+                                  </h3>
+                                </div>
+                                <p className="text-sm font-medium text-foreground/80">
+                                  {isRu ? item.period_ru : item.period_en}
+                                </p>
+                                <p className="max-w-3xl text-sm md:text-base leading-relaxed text-foreground/80">
+                                  {isRu ? item.description_ru : item.description_en}
+                                </p>
+                              </div>
+
+                              <div className="flex flex-wrap gap-2 lg:max-w-xs lg:justify-end">
+                                {((isRu ? item.highlights_ru : item.highlights_en) ?? []).map((highlight: string) => (
+                                  <Badge key={highlight} variant="outline" className="bg-card text-xs font-bold uppercase tracking-wider">
+                                    {highlight}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </div>
+
+                            {item.projects.length > 0 ? (
+                              <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value={`${item.company}-${index}`} className="border-0">
+                                  <AccordionTrigger className="border-2 border-foreground bg-card px-5 py-4 text-left text-sm font-bold uppercase tracking-[0.22em] shadow-[4px_4px_0px_0px_currentColor] hover:no-underline">
+                                    {isRu ? 'Ключевые результаты и инициативы' : 'Key Results and Initiatives'}
+                                  </AccordionTrigger>
+                                  <AccordionContent className="pt-5">
+                                    <div className="grid gap-4 md:grid-cols-2">
+                                      {item.projects.map((project, projectIndex: number) => (
+                                        <div
+                                          key={`${project.title_en}-${projectIndex}`}
+                                          className="flex h-full flex-col gap-4 border-2 border-foreground bg-card p-5 shadow-[4px_4px_0px_0px_currentColor]"
+                                        >
+                                          {project.images?.length ? (
+                                            <div className="overflow-hidden border-2 border-foreground">
+                                              <img
+                                                src={project.images[0]}
+                                                alt={isRu ? project.title_ru : project.title_en}
+                                                className="h-40 w-full object-cover"
+                                                loading="lazy"
+                                              />
+                                            </div>
+                                          ) : null}
+
+                                          <div className="space-y-3">
+                                            <div>
+                                              <h4 className="text-lg font-bold font-display">
+                                                {isRu ? project.title_ru : project.title_en}
+                                              </h4>
+                                              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                                                {isRu ? project.desc_ru : project.desc_en}
+                                              </p>
+                                            </div>
+
+                                            <div className="flex flex-wrap gap-2">
+                                              {(project.stack ?? []).map((stackItem: string) => (
+                                                <span
+                                                  key={stackItem}
+                                                  className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider border border-foreground bg-muted/30"
+                                                >
+                                                  {stackItem}
+                                                </span>
+                                              ))}
+                                            </div>
+
+                                            <ul className="space-y-2">
+                                              {(isRu ? project.results_ru : project.results_en).map((result: string) => (
+                                                <li key={result} className="flex items-start gap-2 text-sm text-muted-foreground">
+                                                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-lime" />
+                                                  {result}
+                                                </li>
+                                              ))}
+                                            </ul>
+                                          </div>
+
+                                          {project.link || project.links?.length ? (
+                                            <div className="mt-auto flex flex-wrap gap-2 pt-2">
+                                              {project.link ? (
+                                                <Link
+                                                  to={project.link}
+                                                  className="inline-flex items-center gap-2 border-2 border-foreground px-3 py-2 text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0px_0px_currentColor] transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-[4px_4px_0px_0px_currentColor]"
+                                                >
+                                                  {isRu ? 'Открыть кейс' : 'Open case'}
+                                                </Link>
+                                              ) : null}
+
+                                              {(project.links ?? []).map((link) =>
+                                                link.external ? (
+                                                  <a
+                                                    key={link.href}
+                                                    href={link.href}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="inline-flex items-center gap-2 border-2 border-foreground px-3 py-2 text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0px_0px_currentColor] transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-[4px_4px_0px_0px_currentColor]"
+                                                  >
+                                                    {isRu ? link.label_ru : link.label_en}
+                                                  </a>
+                                                ) : (
+                                                  <Link
+                                                    key={link.href}
+                                                    to={link.href}
+                                                    className="inline-flex items-center gap-2 border-2 border-foreground px-3 py-2 text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0px_0px_currentColor] transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-[4px_4px_0px_0px_currentColor]"
+                                                  >
+                                                    {isRu ? link.label_ru : link.label_en}
+                                                  </Link>
+                                                )
+                                              )}
+                                            </div>
+                                          ) : null}
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </AccordionContent>
+                                </AccordionItem>
+                              </Accordion>
+                            ) : null}
+                          </div>
                         ))}
                       </div>
                     </div>
-
-                    {item.projects.length > 0 ? (
-                      <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value={`${item.company}-${index}`} className="border-0">
-                          <AccordionTrigger className="border-2 border-foreground bg-card px-5 py-4 text-left text-sm font-bold uppercase tracking-[0.22em] shadow-[4px_4px_0px_0px_currentColor] hover:no-underline">
-                            {isRu ? 'Ключевые результаты и инициативы' : 'Key Results and Initiatives'}
-                          </AccordionTrigger>
-                          <AccordionContent className="pt-5">
-                            <div className="grid gap-4 md:grid-cols-2">
-                              {item.projects.map((project, projectIndex: number) => (
-                                <div
-                                  key={`${project.title_en}-${projectIndex}`}
-                                  className="flex h-full flex-col gap-4 border-2 border-foreground bg-card p-5 shadow-[4px_4px_0px_0px_currentColor]"
-                                >
-                                  {project.images?.length ? (
-                                    <div className="overflow-hidden border-2 border-foreground">
-                                      <img
-                                        src={project.images[0]}
-                                        alt={isRu ? project.title_ru : project.title_en}
-                                        className="h-40 w-full object-cover"
-                                        loading="lazy"
-                                      />
-                                    </div>
-                                  ) : null}
-
-                                  <div className="space-y-3">
-                                    <div>
-                                      <h4 className="text-lg font-bold font-display">
-                                        {isRu ? project.title_ru : project.title_en}
-                                      </h4>
-                                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                                        {isRu ? project.desc_ru : project.desc_en}
-                                      </p>
-                                    </div>
-
-                                    <div className="flex flex-wrap gap-2">
-                                      {(project.stack ?? []).map((stackItem: string) => (
-                                        <span
-                                          key={stackItem}
-                                          className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider border border-foreground bg-muted/30"
-                                        >
-                                          {stackItem}
-                                        </span>
-                                      ))}
-                                    </div>
-
-                                    <ul className="space-y-2">
-                                      {(isRu ? project.results_ru : project.results_en).map((result: string) => (
-                                        <li key={result} className="flex items-start gap-2 text-sm text-muted-foreground">
-                                          <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-lime" />
-                                          {result}
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  </div>
-
-                                  {project.link || project.links?.length ? (
-                                    <div className="mt-auto flex flex-wrap gap-2 pt-2">
-                                      {project.link ? (
-                                        <Link
-                                          to={project.link}
-                                          className="inline-flex items-center gap-2 border-2 border-foreground px-3 py-2 text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0px_0px_currentColor] transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-[4px_4px_0px_0px_currentColor]"
-                                        >
-                                          {isRu ? 'Открыть кейс' : 'Open case'}
-                                        </Link>
-                                      ) : null}
-
-                                      {(project.links ?? []).map((link) =>
-                                        link.external ? (
-                                          <a
-                                            key={link.href}
-                                            href={link.href}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2 border-2 border-foreground px-3 py-2 text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0px_0px_currentColor] transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-[4px_4px_0px_0px_currentColor]"
-                                          >
-                                            {isRu ? link.label_ru : link.label_en}
-                                          </a>
-                                        ) : (
-                                          <Link
-                                            key={link.href}
-                                            to={link.href}
-                                            className="inline-flex items-center gap-2 border-2 border-foreground px-3 py-2 text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0px_0px_currentColor] transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-[4px_4px_0px_0px_currentColor]"
-                                          >
-                                            {isRu ? link.label_ru : link.label_en}
-                                          </Link>
-                                        )
-                                      )}
-                                    </div>
-                                  ) : null}
-                                </div>
-                              ))}
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                    ) : null}
-                  </div>
-                </AnimatedSection>
-              ))}
-            </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </AnimatedSection>
           </div>
         </div>
       </section>
