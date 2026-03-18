@@ -26,6 +26,9 @@ export interface PortfolioSection {
   body_en: string;
   bullets_ru?: string[];
   bullets_en?: string[];
+  outcomes_ru?: string[];
+  outcomes_en?: string[];
+  links?: ExternalProjectLink[];
 }
 
 export interface RelatedCase {
@@ -39,6 +42,7 @@ export interface RelatedCase {
 export interface ExternalProjectLink {
   label: string;
   url: string;
+  external?: boolean;
 }
 
 export interface PortfolioProject {
@@ -500,14 +504,15 @@ export const portfolioProjects: PortfolioProject[] = [
     title_en: 'Viora Build',
     category_ru: 'Опыт работы',
     category_en: 'Work Experience',
-    summary_ru: 'Строительная компания в Португалии, где я одновременно выстраивал цифровую инфраструктуру и управлял операционными процессами. За 1 год 8 месяцев помог стабилизировать 3 проекта вилл, внедрил 4 AI-инструмента и запустил новые направления: продажи, промо-материалы и продукт «Строительный Чекап».',
-    summary_en: 'A construction company in Portugal where I built digital infrastructure and managed operations in parallel. Over 1 year 8 months, I helped stabilize 3 villa projects, implemented 4 AI tools, and launched new directions: sales, promo materials, and the "Construction Checkup" product.',
+    summary_ru: 'Строительная компания в Португалии, где я совмещал операционное управление и роль инженера внедрения: запускал системы, обучал команду, автоматизировал продажи и документооборот, помогал со сметами и ERP, вёл отчётность и развивал клиентские цифровые сервисы.',
+    summary_en: 'A construction company in Portugal where I combined operations management with an implementation-engineer role: rolling out systems, training the team, automating sales and document workflows, helping with estimates and ERP, running reporting, and developing client-facing digital services.',
     tags: [
       'Jira',
       'ClickUp',
       'Notion',
       'Python',
       'OpenAI API',
+      'Visual Orc',
       'amoCRM',
       'Power BI',
       'Grafana',
@@ -526,6 +531,8 @@ export const portfolioProjects: PortfolioProject[] = [
       'Jira',
       'ClickUp',
       'Notion',
+      'Visual Orc',
+      'ERP',
       'Zapier',
       'n8n',
       'Python',
@@ -541,6 +548,7 @@ export const portfolioProjects: PortfolioProject[] = [
       'Google Drive API',
       'Gmail API',
       'Telegram Bot API',
+      'OCR',
       'amoCRM',
       'Power BI',
       'Grafana',
@@ -549,6 +557,32 @@ export const portfolioProjects: PortfolioProject[] = [
       'Figma',
     ],
     sections: [
+      {
+        title_ru: 'Роль инженера внедрения',
+        title_en: 'Implementation Engineer Role',
+        body_ru: 'В Viora Build я был связующим звеном между руководством, подрядчиками, командой и цифровыми инструментами: настраивал системы, адаптировал процессы под реальную работу на объектах и помогал команде переходить на новые способы работы.',
+        body_en: 'At Viora Build, I acted as the bridge between management, contractors, the team, and digital tools: configuring systems, adapting processes to real on-site work, and helping the team move into new ways of operating.',
+        bullets_ru: [
+          'Конфигурировал бизнес-системы и кастомные решения под процессы компании',
+          'Переводил задачи между менеджментом, исполнителями и цифровыми инструментами',
+          'Локализовал проблемы во внедряемых системах и сопровождал доработки',
+          'Проводил обучение, собирал вопросы и корректировал процессы после запуска',
+        ],
+        bullets_en: [
+          'Configured business systems and custom solutions around real company workflows',
+          'Translated needs between management, executors, and digital tools',
+          'Localized rollout issues inside the implemented systems and supported fixes',
+          'Ran training, collected questions, and adjusted processes after launch',
+        ],
+        outcomes_ru: [
+          'Системы внедрялись как рабочий инструмент, а не как формальность',
+          'Команда быстрее адаптировалась к новым процессам и программам',
+        ],
+        outcomes_en: [
+          'Systems were introduced as practical working tools, not as formal checkboxes',
+          'The team adapted faster to new processes and software',
+        ],
+      },
       {
         title_ru: 'Управление проектами',
         title_en: 'Project Management',
@@ -565,6 +599,14 @@ export const portfolioProjects: PortfolioProject[] = [
           'Ran daily syncs with the team and contractors, planning meetings, and 1-on-1s',
           'Tracked statuses in Jira and prepared weekly management reports',
           'Prepared documentation, finalized delivery, and handed over completed properties',
+        ],
+        outcomes_ru: [
+          '3 проекта вилл завершены в срок',
+          'Этапы стали прозрачнее для руководства и клиентов',
+        ],
+        outcomes_en: [
+          '3 villa projects were delivered on time',
+          'Project stages became more transparent for management and clients',
         ],
       },
       {
@@ -584,23 +626,156 @@ export const portfolioProjects: PortfolioProject[] = [
           'Construction AI Agent for prices, estimates, and Sheets collaboration',
           'Telegram → ClickUp for creating tasks from voice and text messages',
         ],
+        outcomes_ru: [
+          'Операционные затраты команды сократились на 30–40%',
+          'Повторяющиеся процессы перестали требовать ручного контроля',
+        ],
+        outcomes_en: [
+          'Team operating costs dropped by 30–40%',
+          'Repeated workflows stopped requiring constant manual control',
+        ],
+        links: [
+          { label: 'Email AI Assistant', url: '/cases/email-ai', external: false },
+          { label: 'ClickUp Reports Agent', url: '/cases/clickup-reports', external: false },
+          { label: 'Construction AI Agent', url: '/cases/construction-ai', external: false },
+          { label: 'Telegram → ClickUp', url: '/cases/telegram-clickup', external: false },
+        ],
       },
       {
-        title_ru: 'Развитие бизнеса',
-        title_en: 'Business Development',
-        body_ru: 'Помог собрать операционную основу для роста компании: запустил отдел продаж, структурировал знания в Notion и встроил AI-ассистента для владельца.',
-        body_en: 'Helped build the operational backbone for growth: launched the sales function, structured company knowledge in Notion, and introduced an AI assistant for the founder.',
+        title_ru: 'Внедрение и обучение команды',
+        title_en: 'Implementation & Team Enablement',
+        body_ru: 'Осваивал новые рабочие инструменты и переводил команду на них через структурированное внедрение: презентация, практические задания, сбор вопросов и последующая доработка процесса.',
+        body_en: 'Learned new operational tools and rolled the team onto them through structured enablement: presentation, practical tasks, question collection, and post-launch process refinement.',
         bullets_ru: [
-          'Разработал sales-воронку и бизнес-процессы',
-          'Нанял и обучил команду продаж за 3 месяца',
-          'Настроил CRM в amoCRM',
-          'Создал корпоративную базу знаний с SOP, шаблонами и процедурами',
+          'Изучил и внедрил новую программу Visual Orc для команды',
+          'Проводил обучение через презентации, практические задачи и разбор сложных кейсов',
+          'Собирал вопросы пользователей и устранял узкие места после запуска',
+          'Поддерживал переход команды на новые цифровые процессы без остановки операционки',
         ],
         bullets_en: [
-          'Designed the sales funnel and business processes',
-          'Hired and trained the sales team in 3 months',
-          'Configured CRM workflows in amoCRM',
-          'Built a corporate knowledge base with SOPs, templates, and procedures',
+          'Learned and rolled out the new Visual Orc software for the team',
+          'Ran training via presentations, practical tasks, and issue review sessions',
+          'Collected user questions and removed bottlenecks after launch',
+          'Supported the team’s move to new digital workflows without pausing operations',
+        ],
+        outcomes_ru: [
+          'Команда быстрее входила в новую систему и начинала работать в ней самостоятельно',
+          'Процессы внедрения стали управляемыми и повторяемыми',
+        ],
+        outcomes_en: [
+          'The team got into the new system faster and started using it independently',
+          'System rollouts became manageable and repeatable',
+        ],
+      },
+      {
+        title_ru: 'Автоматизация отдела продаж',
+        title_en: 'Sales Operations Automation',
+        body_ru: 'С нуля организовал отдел продаж из двух человек и собрал вокруг него цифровой контур: скрипты, транскрибация, перевод звонков, AI-анализ и автоматическую обратную связь по качеству продаж.',
+        body_en: 'Built a two-person sales function from scratch and wrapped it with a digital operations layer: scripts, transcription, translation, AI call analysis, and automated performance feedback.',
+        bullets_ru: [
+          'Подготовил скрипты продаж и базовые процессы для команды из 2 менеджеров',
+          'Настроил транскрибацию звонков, перенос в Notion и перевод на русский язык',
+          'Организовал анализ каждого звонка по промпту и автоматическую отправку метрик продажнику',
+          'Фиксировал результаты в Google Sheets для контроля динамики и прозрачности',
+        ],
+        bullets_en: [
+          'Prepared sales scripts and operating processes for a 2-person team',
+          'Set up call transcription, transfer to Notion, and Russian translation',
+          'Organized prompt-based analysis for every call and automatic KPI delivery to the salesperson',
+          'Stored results in Google Sheets for trend tracking and transparency',
+        ],
+        outcomes_ru: [
+          'Отдел продаж получил измеримую систему контроля качества',
+          'Разбор звонков перестал зависеть от ручного менеджерского контроля',
+          'Новые сотрудники могли быстрее входить в процесс продаж',
+        ],
+        outcomes_en: [
+          'The sales team received a measurable quality-control system',
+          'Call reviews stopped depending on manual managerial oversight',
+          'New salespeople could ramp up faster',
+        ],
+      },
+      {
+        title_ru: 'Сметы, ERP и база видов работ',
+        title_en: 'Estimates, ERP & Work Database',
+        body_ru: 'Помогал выстраивать цифровую основу для смет и строительного учёта: участвовал в настройке ERP, структурировал общую таблицу работ и материалов и развивал базу видов работ для дальнейшей автоматизации смет.',
+        body_en: 'Helped build the digital foundation for estimates and construction accounting: supported ERP setup, structured the shared works-and-materials table, and developed a work-types database for future estimate automation.',
+        bullets_ru: [
+          'Помогал настраивать ERP-систему для учёта строительных работ',
+          'Собирал общую таблицу с работами, материалами и логикой формирования смет',
+          'Создавал базу типов работ и структуру для дальнейшего расчёта смет',
+          'Использовал OCR чеков и AI-поиск стоимости работ и материалов как часть рабочего процесса',
+        ],
+        bullets_en: [
+          'Supported ERP setup for construction work accounting',
+          'Built the shared table of works, materials, and estimate logic',
+          'Created a work-types database for future estimate calculations',
+          'Used receipt OCR and AI-assisted price lookup for works and materials as part of the workflow',
+        ],
+        outcomes_ru: [
+          'Сметы и справочники стали более структурированными и пригодными для автоматизации',
+          'Команда получила единую базу работ и материалов вместо разрозненных таблиц',
+        ],
+        outcomes_en: [
+          'Estimates and internal references became more structured and automation-ready',
+          'The team got a unified work-and-material database instead of scattered tables',
+        ],
+        links: [
+          { label: 'Construction AI Agent', url: '/cases/construction-ai', external: false },
+        ],
+      },
+      {
+        title_ru: 'Клиентский, обучающий и документный порталы',
+        title_en: 'Client, Training & Document Portals',
+        body_ru: 'Развивал клиентские и внутренние порталы в Notion: от прозрачного клиентского кабинета по объекту до обучающего пространства и документооборота с правилами классификации и маршрутизации.',
+        body_en: 'Expanded client-facing and internal portals in Notion: from a transparent client workspace for each build to a training portal and a document workflow with classification and routing rules.',
+        bullets_ru: [
+          'Развил клиентский портал с прогрессом работ, сметой, бюджетом, графиком и медиа-отчётами',
+          'Создал портал обучения для адаптации и поддержки сотрудников',
+          'Автоматизировал документооборот компании и логику распределения документов по типам',
+          'Связал Google Почту, Google Drive и Notion в единый процесс обработки документов',
+        ],
+        bullets_en: [
+          'Expanded the client portal with work progress, estimates, budget, schedule, and photo/video reports',
+          'Created a training portal for onboarding and employee support',
+          'Automated the company’s document workflow and classification logic',
+          'Connected Gmail, Google Drive, and Notion into one document-processing flow',
+        ],
+        outcomes_ru: [
+          'Клиенты получили прозрачный доступ к объекту без лишних запросов в чатах',
+          'Документы стали храниться и обрабатываться по понятным правилам',
+          'Онбординг и обучение сотрудников стали быстрее и стабильнее',
+        ],
+        outcomes_en: [
+          'Clients gained transparent access to project status without extra messaging',
+          'Documents started being stored and processed through clear rules',
+          'Onboarding and team training became faster and more stable',
+        ],
+      },
+      {
+        title_ru: 'Финансовые операции и еженедельная отчётность',
+        title_en: 'Financial Operations & Weekly Reporting',
+        body_ru: 'Поддерживал финансовую операционку компании на уровне ежедневного контроля и регулярной отчётности: зарплаты, поиск платёжных документов, сверка операций и сбор еженедельных управленческих отчётов.',
+        body_en: 'Supported the company’s financial operations through day-to-day control and recurring reporting: payroll prep, payment-document lookup, transaction checks, and weekly management reporting.',
+        bullets_ru: [
+          'Вёл финансовые операции и помогал с проверкой платёжных документов',
+          'Участвовал в подготовке зарплат и финансовых сверках',
+          'Собирал еженедельные отчёты по направлениям работ в едином формате',
+          'Формулировал AI-промпты для OCR чеков, отчётности и вспомогательного анализа',
+        ],
+        bullets_en: [
+          'Handled financial operations and supported payment-document verification',
+          'Helped with payroll preparation and finance checks',
+          'Prepared weekly reports across workstreams in a unified format',
+          'Created AI prompts for receipt OCR, reporting, and supporting analysis',
+        ],
+        outcomes_ru: [
+          'Руководство быстрее получало управленческую картину по финансам и работам',
+          'Повторяющиеся отчётные задачи стали стандартизированными',
+        ],
+        outcomes_en: [
+          'Management received a faster operational picture across finance and delivery',
+          'Recurring reporting tasks became standardized',
         ],
       },
       {
@@ -617,6 +792,14 @@ export const portfolioProjects: PortfolioProject[] = [
           'Produced 17 commercial proposals with AI visualizations',
           'Generated building exteriors from architectural plans and blueprints',
           'Built conversion-oriented websites tailored to investor journeys',
+        ],
+        outcomes_ru: [
+          '17 инвестиционных предложений были быстро упакованы в понятный digital-формат',
+          'Презентационные материалы стали сильнее поддерживать продажи и переговоры',
+        ],
+        outcomes_en: [
+          '17 investment proposals were packaged into a clear digital format',
+          'Presentation materials started supporting sales and investor conversations more effectively',
         ],
       },
       {
@@ -635,6 +818,14 @@ export const portfolioProjects: PortfolioProject[] = [
           'Designed the product structure: 9 video modules, 3 checklists, and consulting',
           'Coordinated content, landing page, payments, and access automation',
           'Developed an interactive Portugal map and a construction cost calculator',
+        ],
+        outcomes_ru: [
+          'MVP продукта был доведён до рабочего состояния',
+          'Экспертиза компании превратилась в отдельный цифровой продукт',
+        ],
+        outcomes_en: [
+          'The product MVP reached a working launch state',
+          'The company’s expertise was turned into a standalone digital product',
         ],
       },
     ],
@@ -676,14 +867,20 @@ export const portfolioProjects: PortfolioProject[] = [
     results_ru: [
       '3 проекта строительства вилл завершены в срок',
       '4 AI-инструмента сократили операционные затраты команды на 30–40%',
-      'Собран работающий отдел продаж и CRM-процессы',
+      'Собран работающий отдел продаж с аналитикой звонков и KPI-обратной связью',
+      'Внедрены новые инструменты и обучение команды, включая Visual Orc',
+      'Настроены клиентский портал, портал обучения и автоматизированный документооборот',
+      'Финансовые операции и еженедельная отчётность переведены в более системный режим',
       '17 коммерческих предложений подготовлены для инвестиционных проектов',
       'MVP продукта «Строительный Чекап» запущен с лендингом и воронкой',
     ],
     results_en: [
       '3 villa construction projects were delivered on time',
       '4 AI tools reduced team operating costs by 30–40%',
-      'A working sales function and CRM processes were established',
+      'A working sales function with call analytics and KPI feedback was established',
+      'New tools and team enablement were rolled out, including Visual Orc',
+      'Client portal, training portal, and automated document workflow were implemented',
+      'Finance operations and weekly reporting became more systematic',
       '17 commercial proposals were produced for investment projects',
       'The “Construction Checkup” MVP launched with a landing page and funnel',
     ],

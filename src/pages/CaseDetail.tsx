@@ -168,6 +168,48 @@ const CaseDetail = () => {
                                         ))}
                                     </ul>
                                 ) : null}
+                                {((isRu ? section.outcomes_ru : section.outcomes_en) ?? []).length > 0 ? (
+                                    <div className="space-y-2 border-t border-foreground/10 pt-4">
+                                        <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                                            {isRu ? "Результат" : "Outcome"}
+                                        </p>
+                                        <ul className="space-y-2">
+                                            {((isRu ? section.outcomes_ru : section.outcomes_en) ?? []).map((item) => (
+                                                <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                                                    <Check className="h-4 w-4 mt-0.5 text-accent-lime shrink-0" />
+                                                    {item}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ) : null}
+                                {section.links && section.links.length > 0 ? (
+                                    <div className="flex flex-wrap gap-2 pt-2">
+                                        {section.links.map((item) =>
+                                            item.external === false ? (
+                                                <Link
+                                                    key={item.url}
+                                                    to={item.url}
+                                                    className="inline-flex items-center gap-2 border-2 border-foreground bg-background px-3 py-2 text-xs font-medium shadow-[2px_2px_0px_0px_currentColor] transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-[4px_4px_0px_0px_currentColor]"
+                                                >
+                                                    {item.label}
+                                                    <ArrowUpRight className="h-3.5 w-3.5" />
+                                                </Link>
+                                            ) : (
+                                                <a
+                                                    key={item.url}
+                                                    href={item.url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="inline-flex items-center gap-2 border-2 border-foreground bg-background px-3 py-2 text-xs font-medium shadow-[2px_2px_0px_0px_currentColor] transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-[4px_4px_0px_0px_currentColor]"
+                                                >
+                                                    {item.label}
+                                                    <ArrowUpRight className="h-3.5 w-3.5" />
+                                                </a>
+                                            )
+                                        )}
+                                    </div>
+                                ) : null}
                             </div>
                         ))}
                     </div>
