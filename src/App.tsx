@@ -36,6 +36,7 @@ const Terms = lazy(() => import("./pages/Terms"));
 const Cookies = lazy(() => import("./pages/Cookies"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const NotionTemplates = lazy(() => import("./pages/NotionTemplates"));
+const NotionTemplateDetail = lazy(() => import("./pages/NotionTemplateDetail"));
 
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPostDetail = lazy(() => import("./pages/BlogPostDetail"));
@@ -63,6 +64,7 @@ const App = () => (
                   <Route path="/:lang" element={<LanguageWrapper />}>
                     <Route index element={<Home />} />
                     <Route path="notion" element={<PageTransition><NotionTemplates /></PageTransition>} />
+                    <Route path="notion/:slug" element={<PageTransition><NotionTemplateDetail /></PageTransition>} />
                     <Route path="blog" element={<PageTransition><Blog /></PageTransition>} />
                     <Route path="blog/:slug" element={<PageTransition><BlogPostDetail /></PageTransition>} />
                     <Route path="courses" element={<PageTransition><Courses /></PageTransition>} />
