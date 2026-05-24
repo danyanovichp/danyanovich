@@ -37,6 +37,7 @@ const Cookies = lazy(() => import("./pages/Cookies"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const NotionTemplates = lazy(() => import("./pages/NotionTemplates"));
 const NotionTemplateDetail = lazy(() => import("./pages/NotionTemplateDetail"));
+const HermesMiniApp = lazy(() => import("./pages/HermesMiniApp"));
 
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPostDetail = lazy(() => import("./pages/BlogPostDetail"));
@@ -86,6 +87,7 @@ const App = () => (
                     <Route path="cookies" element={<PageTransition><Cookies /></PageTransition>} />
                     <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
                   </Route>
+                  <Route path="/hermes" element={<PageTransition><HermesMiniApp /></PageTransition>} />
                   <Route path="/notiontemplates" element={<Navigate to="/ru/notion" replace />} />
                   <Route path="*" element={<RootRedirect />} />
                 </Routes>

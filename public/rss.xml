@@ -5,7 +5,7 @@
     <link>https://danyanovich.site</link>
     <description>Notes about Notion, AI, automation, and Vibecoding. Showcase of cases and products.</description>
     <language>ru</language>
-    <lastBuildDate>Sat, 14 Mar 2026 07:36:55 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 24 May 2026 07:08:38 GMT</lastBuildDate>
 
     <item>
       <title><![CDATA[5 способов использовать AI агентов в малом бизнесе]]></title>
@@ -40,7 +40,7 @@
 - Единое место управления корреспонденцией в Notion
 - Черновик ответа готов сразу — одно нажатие переносит его в Gmail
 - Стоимость обслуживания: ~$20-30/мес]]></description>
-      <pubDate>Sat, 14 Mar 2026 07:36:55 GMT</pubDate>
+      <pubDate>Sun, 24 May 2026 07:08:38 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[ClickUp Reports Agent]]></title>
@@ -55,7 +55,7 @@
 - Сотрудники видят свой прогресс — мотивация и прозрачность
 - Экономия часов руководителя на ручной анализ
 - Полная история оценок для HR-решений и аналитики]]></description>
-      <pubDate>Sat, 14 Mar 2026 07:36:55 GMT</pubDate>
+      <pubDate>Sun, 24 May 2026 07:08:38 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Construction AI Agent]]></title>
@@ -70,7 +70,7 @@
 - Три режима работы: веб, CLI, API
 - Fallback на локальную LLM при недоступности OpenAI
 - Мониторинг нагрузки через Prometheus]]></description>
-      <pubDate>Sat, 14 Mar 2026 07:36:55 GMT</pubDate>
+      <pubDate>Sun, 24 May 2026 07:08:38 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Telegram to ClickUp]]></title>
@@ -84,7 +84,7 @@
 - Дубли не создаются — система обновляет существующую задачу
 - Прозрачность: Telegram-отчёт по каждому действию
 - Поддержка всех форматов аудио Telegram]]></description>
-      <pubDate>Sat, 14 Mar 2026 07:36:55 GMT</pubDate>
+      <pubDate>Sun, 24 May 2026 07:08:38 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Voice Call Task Manager]]></title>
@@ -98,7 +98,24 @@
 - Работает с 6 сотрудниками параллельно
 - Двойной канал: голос + Telegram = 100% охват
 - Перенос и изменение задач прямо во время звонка]]></description>
-      <pubDate>Sat, 14 Mar 2026 07:36:55 GMT</pubDate>
+      <pubDate>Sun, 24 May 2026 07:08:38 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Viora Build]]></title>
+      <link>https://danyanovich.site/ru/cases/viora-build</link>
+      <guid isPermaLink="false">case-viora-build</guid>
+      <description><![CDATA[Строительная компания в Португалии, где я совмещал операционное управление и роль инженера внедрения: запускал системы, обучал команду, автоматизировал продажи и документооборот, помогал со сметами и ERP, вёл отчётность и развивал клиентские цифровые сервисы.
+
+Результаты:
+- 3 проекта строительства вилл завершены в срок
+- 4 AI-инструмента сократили операционные затраты команды на 30–40%
+- Собран работающий отдел продаж с аналитикой звонков и KPI-обратной связью
+- Внедрены новые инструменты и обучение команды, включая Visual Orc
+- Настроены клиентский портал, портал обучения и автоматизированный документооборот
+- Финансовые операции и еженедельная отчётность переведены в более системный режим
+- 17 коммерческих предложений подготовлены для инвестиционных проектов
+- MVP продукта «Строительный Чекап» запущен с лендингом и воронкой]]></description>
+      <pubDate>Sun, 24 May 2026 07:08:38 GMT</pubDate>
     </item>
   </channel>
 </rss>
