@@ -37,6 +37,12 @@ const Cookies = lazy(() => import("./pages/Cookies"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const NotionTemplates = lazy(() => import("./pages/NotionTemplates"));
 const NotionTemplateDetail = lazy(() => import("./pages/NotionTemplateDetail"));
+const Businesses = lazy(() => import("./pages/Businesses"));
+const RoadmapNotion = lazy(() => import("./pages/RoadmapNotion"));
+const RoadmapVeggies = lazy(() => import("./pages/RoadmapVeggies"));
+const RoadmapWorkspaces = lazy(() => import("./pages/RoadmapWorkspaces"));
+const RoadmapAI = lazy(() => import("./pages/RoadmapAI"));
+const RoadmapContent = lazy(() => import("./pages/RoadmapContent"));
 
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPostDetail = lazy(() => import("./pages/BlogPostDetail"));
@@ -87,6 +93,12 @@ const App = () => (
                     <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
                   </Route>
                   <Route path="/notiontemplates" element={<Navigate to="/ru/notion" replace />} />
+                  <Route path="/businesses" element={<PageTransition><Businesses /></PageTransition>} />
+                  <Route path="/businesses/notion" element={<PageTransition><RoadmapNotion /></PageTransition>} />
+                  <Route path="/businesses/veggies" element={<PageTransition><RoadmapVeggies /></PageTransition>} />
+                  <Route path="/businesses/workspaces" element={<PageTransition><RoadmapWorkspaces /></PageTransition>} />
+                  <Route path="/businesses/ai" element={<PageTransition><RoadmapAI /></PageTransition>} />
+                  <Route path="/businesses/content" element={<PageTransition><RoadmapContent /></PageTransition>} />
                   <Route path="*" element={<RootRedirect />} />
                 </Routes>
               </Suspense>
