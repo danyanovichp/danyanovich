@@ -5,7 +5,7 @@
     <link>https://danyanovich.site</link>
     <description>Notes about Notion, AI, automation, and Vibecoding. Showcase of cases and products.</description>
     <language>ru</language>
-    <lastBuildDate>Sun, 24 May 2026 08:08:46 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 24 May 2026 08:16:05 GMT</lastBuildDate>
 
     <item>
       <title><![CDATA[5 способов использовать AI агентов в малом бизнесе]]></title>
@@ -29,6 +29,27 @@
       <pubDate>Tue, 05 Aug 2025 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title><![CDATA[The Agency Automation Advantage: как мы автоматизировали агентство на 69 воркфлоу]]></title>
+      <link>https://danyanovich.site/ru/blog/agency-automation-advantage</link>
+      <guid isPermaLink="false">blog-4</guid>
+      <description><![CDATA[Как одно агентство восстановило $28K ежемесячного дохода, автоматизировав 80% операций с помощью n8n, Notion и AI.]]></description>
+      <pubDate>Sun, 15 Mar 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Как масштабировать агентство без хаоса: OS для автоматизации]]></title>
+      <link>https://danyanovich.site/ru/blog/scale-agency-without-chaos</link>
+      <guid isPermaLink="false">blog-5</guid>
+      <description><![CDATA[69 проверенных автоматизаций для агентств — от клиентского онбординга до compliance. Система, а не набор хаотичных скриптов.]]></description>
+      <pubDate>Wed, 01 Apr 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Как я сделал RPG-игру в Notion: Solo Leveling]]></title>
+      <link>https://danyanovich.site/ru/blog/solo-leveling-notion-game</link>
+      <guid isPermaLink="false">blog-6</guid>
+      <description><![CDATA[Полноценная RPG с классами, уровнями, инвентарём и сражениями — целиком внутри Notion.]]></description>
+      <pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title><![CDATA[Email AI Ассистент]]></title>
       <link>https://danyanovich.site/ru/cases/email-ai</link>
       <guid isPermaLink="false">case-email-ai</guid>
@@ -40,7 +61,7 @@
 - Единое место управления корреспонденцией в Notion
 - Черновик ответа готов сразу — одно нажатие переносит его в Gmail
 - Стоимость обслуживания: ~$20-30/мес]]></description>
-      <pubDate>Sun, 24 May 2026 08:08:46 GMT</pubDate>
+      <pubDate>Sun, 24 May 2026 08:16:05 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[ClickUp Reports Agent]]></title>
@@ -55,7 +76,7 @@
 - Сотрудники видят свой прогресс — мотивация и прозрачность
 - Экономия часов руководителя на ручной анализ
 - Полная история оценок для HR-решений и аналитики]]></description>
-      <pubDate>Sun, 24 May 2026 08:08:46 GMT</pubDate>
+      <pubDate>Sun, 24 May 2026 08:16:05 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Construction AI Agent]]></title>
@@ -70,7 +91,7 @@
 - Три режима работы: веб, CLI, API
 - Fallback на локальную LLM при недоступности OpenAI
 - Мониторинг нагрузки через Prometheus]]></description>
-      <pubDate>Sun, 24 May 2026 08:08:46 GMT</pubDate>
+      <pubDate>Sun, 24 May 2026 08:16:05 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Telegram to ClickUp]]></title>
@@ -84,7 +105,7 @@
 - Дубли не создаются — система обновляет существующую задачу
 - Прозрачность: Telegram-отчёт по каждому действию
 - Поддержка всех форматов аудио Telegram]]></description>
-      <pubDate>Sun, 24 May 2026 08:08:46 GMT</pubDate>
+      <pubDate>Sun, 24 May 2026 08:16:05 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Voice Call Task Manager]]></title>
@@ -98,7 +119,7 @@
 - Работает с 6 сотрудниками параллельно
 - Двойной канал: голос + Telegram = 100% охват
 - Перенос и изменение задач прямо во время звонка]]></description>
-      <pubDate>Sun, 24 May 2026 08:08:46 GMT</pubDate>
+      <pubDate>Sun, 24 May 2026 08:16:05 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Viora Build]]></title>
@@ -115,7 +136,7 @@
 - Финансовые операции и еженедельная отчётность переведены в более системный режим
 - 17 коммерческих предложений подготовлены для инвестиционных проектов
 - MVP продукта «Строительный Чекап» запущен с лендингом и воронкой]]></description>
-      <pubDate>Sun, 24 May 2026 08:08:46 GMT</pubDate>
+      <pubDate>Sun, 24 May 2026 08:16:05 GMT</pubDate>
     </item>
   </channel>
 </rss>
