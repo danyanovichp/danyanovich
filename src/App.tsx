@@ -43,6 +43,7 @@ const RoadmapVeggies = lazy(() => import("./pages/RoadmapVeggies"));
 const RoadmapWorkspaces = lazy(() => import("./pages/RoadmapWorkspaces"));
 const RoadmapAI = lazy(() => import("./pages/RoadmapAI"));
 const RoadmapContent = lazy(() => import("./pages/RoadmapContent"));
+const WorkspacesLanding = lazy(() => import("./pages/WorkspacesLanding"));
 
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPostDetail = lazy(() => import("./pages/BlogPostDetail"));
@@ -99,6 +100,7 @@ const App = () => (
                   <Route path="/businesses/workspaces" element={<PageTransition><RoadmapWorkspaces /></PageTransition>} />
                   <Route path="/businesses/ai" element={<PageTransition><RoadmapAI /></PageTransition>} />
                   <Route path="/businesses/content" element={<PageTransition><RoadmapContent /></PageTransition>} />
+                  <Route path="/workspaces" element={<PageTransition><WorkspacesLanding /></PageTransition>} />
                   <Route path="*" element={<RootRedirect />} />
                 </Routes>
               </Suspense>

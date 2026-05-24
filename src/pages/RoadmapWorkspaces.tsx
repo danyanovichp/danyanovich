@@ -10,7 +10,7 @@ export default function RoadmapWorkspaces() {
     { titleRu: "Фаза 1: Упаковка", titleEn: "Phase 1: Packaging", steps: [
       { id: "w1-1", titleRu: "Дописать «Правила оформления рабочих пространств»", titleEn: "Finalize workspace rules doc", descRu: "Стандарты оформления, структура, naming conventions для всех будущих шаблонов", descEn: "Design standards, structure, naming conventions", status: "in-progress", priority: "high" },
       { id: "w1-2", titleRu: "Выбрать 3 флагманских шаблона для старта", titleEn: "Pick 3 flagship templates", descRu: "Например: маркетинг, разработка, HR — самые востребованные ниши", descEn: "Most in-demand niches: marketing, dev, HR", status: "todo", priority: "high" },
-      { id: "w1-3", titleRu: "Создать лендинг услуги", titleEn: "Create service landing page", descRu: "Страница на сайте: что входит, цена, примеры работ, отзывы", descEn: "Landing: what's included, pricing, examples, reviews", status: "todo", priority: "high" },
+      { id: "w1-3", titleRu: "Создать лендинг услуги", titleEn: "Create service landing page", descRu: "Страница на сайте: что входит, цена, примеры работ, отзывы. Готово!", descEn: "Landing: what's included, pricing, examples, reviews. Done!", status: "done", priority: "high" },
       { id: "w1-4", titleRu: "Собрать портфолио из 50+ проектов", titleEn: "Gather portfolio of 50+ projects", descRu: "Описания выполненных проектов + результаты (что улучшилось у клиентов)", descEn: "Project descriptions + measurable results", status: "todo", priority: "medium" },
     ]},
     { titleRu: "Фаза 2: Запуск", titleEn: "Phase 2: Launch", steps: [
