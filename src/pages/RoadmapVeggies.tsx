@@ -7,33 +7,52 @@ export default function RoadmapVeggies() {
   const { i18n } = useTranslation();
   const isRu = i18n.language === "ru";
 
+  const name = isRu ? "Свежий Угол" : "Fresh Corner";
+
   const phases: RoadmapPhase[] = [
     {
-      titleRu: "Фаза 1: Определение",
-      titleEn: "Phase 1: Definition",
+      titleRu: "Фаза 1: Запуск 🏗️",
+      titleEn: "Phase 1: Launch 🏗️",
       steps: [
-        { id: "v1-1", titleRu: "Собрать информацию о лавке", titleEn: "Collect shop info", descRu: "Локация, ассортимент, цены, часы работы, фото, конкурентная среда", descEn: "Location, assortment, prices, hours, photos, competition", status: "todo", priority: "high" },
-        { id: "v1-2", titleRu: "Создать Telegram-канал", titleEn: "Create Telegram channel", descRu: "Канал с ежедневным ассортиментом, ценами и фото. Подписчики — локальные жители", descEn: "Daily updates with assortment, prices, photos", status: "todo", priority: "high" },
-        { id: "v1-3", titleRu: "Создать контент-план на неделю", titleEn: "Weekly content plan", descRu: "Темы: новинки, сезонные продукты, рецепты, советы по выбору, «что сегодня привезли»", descEn: "New items, seasonal products, recipes, tips", status: "todo", priority: "high" },
+        { id: "v0-1", titleRu: "Выбор локации и подписание аренды", titleEn: "Location selection & lease", descRu: "ЖК Самолёт / Светлоград — приоритетные. Замер трафика, расчёт юнит-экономики. Помещение СНЯТО", descEn: "Priority residential complexes. Traffic measurement done. LEASE SIGNED", status: "done", priority: "high" },
+        { id: "v0-2", titleRu: "Регистрация ИП", titleEn: "Register sole proprietorship", descRu: "Патент или УСН 6%, ОКВЭД 47.21, расчётный счёт, эквайринг ≤ 1.5-2%", descEn: "Patent or simplified tax system, bank account, card terminal", status: "in-progress", priority: "high" },
+        { id: "v0-3", titleRu: "Ремонт помещения", titleEn: "Renovation", descRu: "Электрика 10 кВт ✅. Осталось: вода, слив, стены (белый + оливковый), пол (керамогранит), жёлтая линия, вывеска", descEn: "Electric done ✅. Left: water, walls, floor, sign", status: "in-progress", priority: "high" },
+        { id: "v0-4", titleRu: "Документы и разрешения", titleEn: "Permits & docs", descRu: "Роспотребнадзор, медкнижки, вывоз мусора, дератизация, огнетушители", descEn: "Sanitary permits, medical records, waste disposal, fire safety", status: "todo", priority: "high" },
+        { id: "v0-5", titleRu: "Заказ оборудования", titleEn: "Order equipment", descRu: "Холодильная горка, морозильник, стеллажи, касса Эвотор, весы, соковыжималка, кондиционер (критично)", descEn: "Fridge, freezer, shelves, cash register, scales, AC (critical!)", status: "todo", priority: "high" },
+        { id: "v0-6", titleRu: "Поставщики + первая закупка", titleEn: "Suppliers & first purchase", descRu: "Съездить на Привоз (Уральская) в 4:00, найти 2-3 поставщика на каждую категорию", descEn: "Visit wholesale market at 4 AM, find 2-3 suppliers per category", status: "todo", priority: "high" },
       ],
     },
     {
-      titleRu: "Фаза 2: Привлечение",
-      titleEn: "Phase 2: Acquisition",
+      titleRu: "Фаза 2: Маркетинг при запуске 📢",
+      titleEn: "Phase 2: Launch Marketing 📢",
       steps: [
-        { id: "v2-1", titleRu: "Запустить автоматический ежедневный пост", titleEn: "Auto daily post (cron)", descRu: "Cron-задача на Hermes: каждый день в 8:00 пост в Telegram-канал", descEn: "Cron job: daily 8 AM Telegram post via Hermes", status: "todo", priority: "high" },
-        { id: "v2-2", titleRu: "Посты в локальные чаты района", titleEn: "Posts in local chats", descRu: "Найти активные чаты района/города. Делать полезные посты без прямой рекламы", descEn: "Find local community chats, share useful content", status: "todo", priority: "medium" },
-        { id: "v2-3", titleRu: "Запустить реферальную программу", titleEn: "Referral program", descRu: "Приведи друга — скидка 10% обоим. Простая механика через Telegram", descEn: "Bring a friend — 10% off for both", status: "todo", priority: "low" },
-        { id: "v2-4", titleRu: "Мониторинг конкурентов", titleEn: "Competitor monitoring", descRu: "Еженедельный обзор: что пишут конкуренты, какие цены, какие акции", descEn: "Weekly competitor review", status: "todo", priority: "medium" },
+        { id: "v1-1", titleRu: "Создать Telegram-канал «Свежий Угол»", titleEn: "Create Telegram channel", descRu: "Ежедневный ассортимент, цены, фото. Канал для постоянных клиентов ЖК", descEn: "Daily updates with assortment, prices, photos for local residents", status: "todo", priority: "high" },
+        { id: "v1-2", titleRu: "Создать Telegram-бота для предзаказов", titleEn: "Create Telegram bot for pre-orders", descRu: "«Написал в бот → пакет ждёт на кассе». Без агрегаторов, маржа целая", descEn: "Order via bot → bag ready at checkout. No aggregator fees", status: "todo", priority: "high" },
+        { id: "v1-3", titleRu: "Газета «Скоро открытие»", titleEn: "Launch flyer distribution", descRu: "3 000-5 000 шт по почтовым ящикам в радиусе 500 м. Рецепты + акция «фреш бесплатно»", descEn: "3,000-5,000 flyers to mailboxes within 500m radius", status: "todo", priority: "high" },
+        { id: "v1-4", titleRu: "Заполнить Яндекс.Карты и Google Maps", titleEn: "Set up Yandex Maps & Google Maps", descRu: "Фото ремонта, описание, часы работы. QR-код на упаковке → страница отзывов", descEn: "Photos, description, hours. QR on packaging → review page", status: "todo", priority: "medium" },
+        { id: "v1-5", titleRu: "Визитки в заведения рядом", titleEn: "Business cards for nearby spots", descRu: "Салоны, кофейни, барбершопы в радиусе 300 м. «Соседям — скидка 10%»", descEn: "Salons, cafes, barbershops within 300m. 'Neighbor discount 10%'", status: "todo", priority: "medium" },
+        { id: "v1-6", titleRu: "Вывеска (LED, объёмные буквы)", titleEn: "Install LED sign", descRu: "1.5×0.6 м, видна с дороги. Белый картон + маркер «Скоро открытие» пока идёт ремонт", descEn: "1.5×0.6m, visible from road. Cardboard sign during renovation", status: "todo", priority: "high" },
       ],
     },
     {
-      titleRu: "Фаза 3: Масштабирование",
-      titleEn: "Phase 3: Scaling",
+      titleRu: "Фаза 3: Открытие и операционка 🚀",
+      titleEn: "Phase 3: Opening & Operations 🚀",
       steps: [
-        { id: "v3-1", titleRu: "Карточка товара с ценами на сайте", titleEn: "Product page on site", descRu: "Страница лавки на danyanovich.site с актуальным ассортиментом", descEn: "Shop page on danyanovich.site with live assortment", status: "todo", priority: "medium" },
-        { id: "v3-2", titleRu: "Доставка/самовывоз через чат-бота", titleEn: "Delivery via chat-bot", descRu: "Приём заказов через Telegram-бота или Mini App", descEn: "Order taking via Telegram bot", status: "todo", priority: "low" },
-        { id: "v3-3", titleRu: "Проанализировать метрики и оптимизировать", titleEn: "Analyze metrics & optimize", descRu: "Какие посты работают? Какое время лучшее для публикации? Что покупают чаще?", descEn: "Which posts work? Best posting time? Top items?", status: "todo", priority: "low" },
+        { id: "v2-1", titleRu: "Нанять и обучить 2 продавцов", titleEn: "Hire & train 2 sellers", descRu: "График 2/2. Обучение: приёмка, касса, скрипты продаж, выкладка, уценка", descEn: "2/2 schedule. Training: receiving, checkout, scripts, display", status: "todo", priority: "high" },
+        { id: "v2-2", titleRu: "Настроить Google Sheets для учёта", titleEn: "Set up Google Sheets accounting", descRu: "Ежедневный учёт: закупка, продажи, списания, остатки. Аналитика брака", descEn: "Daily tracking: purchases, sales, write-offs, leftovers", status: "todo", priority: "high" },
+        { id: "v2-3", titleRu: "Первый день — открытие!", titleEn: "Grand opening!", descRu: "Акция «Фреш бесплатно», сбор контактов в Telegram, фото/видео, Z-отчёт", descEn: "Free juice promo, collect Telegram contacts, photos, Z-report", status: "todo", priority: "high" },
+        { id: "v2-4", titleRu: "Запустить ежедневные посты в Telegram", titleEn: "Launch daily Telegram posts", descRu: "«Сегодня с Привоза» — ассортимент, цены, фото. Cron-задача на Hermes в 8:00", descEn: "'Today from market' — daily update via Hermes cron at 8 AM", status: "todo", priority: "high" },
+        { id: "v2-5", titleRu: "Программа лояльности", titleEn: "Loyalty program", descRu: "Карта постоянного покупателя, «Приведи друга», Премиум-клуб (топ-20 клиентов)", descEn: "Loyalty card, refer-a-friend program, top-20 premium club", status: "todo", priority: "medium" },
+      ],
+    },
+    {
+      titleRu: "Фаза 4: Рост 📈",
+      titleEn: "Phase 4: Growth 📈",
+      steps: [
+        { id: "v3-1", titleRu: "Нарезка и подготовка (добавленная стоимость)", titleEn: "Cut & prep (value add)", descRu: "Очищенный картофель (+50%), нарезанные фрукты, чищеные гранаты — рост маржи", descEn: "Peeled potatoes (+50%), cut fruit — margin boost", status: "todo", priority: "medium" },
+        { id: "v3-2", titleRu: "Кросс-сейл: крафтовый хлеб, сыры, кофе", titleEn: "Cross-sell: bread, cheese, coffee", descRu: "Маржа 300-400%. Увеличивает средний чек без роста аренды", descEn: "300-400% margin. Increases avg check without extra rent", status: "todo", priority: "low" },
+        { id: "v3-3", titleRu: "Доставка в радиусе 1-2 км", titleEn: "Delivery within 1-2 km", descRu: "Курьеры-подростки. Бесплатно от 1 000 ₽. Тяжёлые пакеты до двери", descEn: "Teen couriers. Free above 1000₽. Heavy bags to door", status: "todo", priority: "low" },
+        { id: "v3-4", titleRu: "B2B (HoReCa) — поставки заведениям", titleEn: "B2B (HoReCa) supplies", descRu: "Стать поставщиком для ближайших кофеен и ресторанов. Свежая зелень, томаты, ягоды", descEn: "Supply nearby cafes & restaurants. Fresh herbs, tomatoes, berries", status: "todo", priority: "low" },
       ],
     },
   ];
@@ -49,11 +68,15 @@ export default function RoadmapVeggies() {
             <Store size={20} />
           </div>
           <div>
-            <h1 className="text-2xl font-bold">{isRu ? "Овощная лавка" : "Veggie Shop"}</h1>
-            <p className="text-xs text-zinc-500">{isRu ? "Офлайн-бизнес · Ежедневное продвижение" : "Offline business · Daily promotion"}</p>
+            <h1 className="text-2xl font-bold">{isRu ? `Лавка «${name}»` : name}</h1>
+            <p className="text-xs text-zinc-500">
+              {isRu
+                ? "Краснодар · Овощи и фрукты · Помещение снято, идёт ремонт"
+                : "Krasnodar · Fruits & Veggies · Space leased, renovation in progress"}
+            </p>
           </div>
         </div>
-        <RoadmapView phases={phases} progress={{ done: 0, total: 10 }} />
+        <RoadmapView phases={phases} progress={{ done: 2, total: 21 }} />
       </div>
     </div>
   );
