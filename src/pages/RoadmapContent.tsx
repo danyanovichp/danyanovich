@@ -14,7 +14,7 @@ export default function RoadmapContent() {
       { id: "c1-4", titleRu: "Презентация «Как искать сотрудников в США»", titleEn: "US hiring presentation", descRu: "Готовая презентация — контент для лидогенерации", descEn: "Ready presentation — lead gen content", status: "done", priority: "medium" },
     ]},
     { titleRu: "Фаза 2: Продвижение", titleEn: "Phase 2: Promotion", steps: [
-      { id: "c2-1", titleRu: "Добавить все статьи на сайт в Blog-раздел", titleEn: "Add all articles to blog section", descRu: "Перенести существующие статьи из Notion на сайт", descEn: "Migrate existing articles from Notion to site", status: "todo", priority: "high" },
+        { id: "c2-1", titleRu: "Добавить все статьи на сайт в Blog-раздел", titleEn: "Add all articles to blog section", descRu: "Перенести существующие статьи из Notion на сайт (сделано: 3 новые статьи)", descEn: "Migrate existing articles from Notion to site (done: 3 new articles)", status: "done", priority: "high" },
       { id: "c2-2", titleRu: "SEO-оптимизация блога", titleEn: "Blog SEO optimization", descRu: "Ключевые слова, мета-описания, внутренняя перелинковка", descEn: "Keywords, meta descriptions, internal linking", status: "todo", priority: "medium" },
       { id: "c2-3", titleRu: "Запустить weekly-рассылку", titleEn: "Launch weekly newsletter", descRu: "Подборка: новая статья, новый шаблон, AI-инсайт", descEn: "Weekly roundup: new article, template, AI insight", status: "todo", priority: "low" },
     ]},
