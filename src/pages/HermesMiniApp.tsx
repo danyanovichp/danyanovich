@@ -1,310 +1,253 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
-  Bot, Zap, Clock, History, ListTodo, TrendingUp, MessageCircle,
-  Settings, ChevronRight, Plus, CheckCircle2, Circle, Trash2,
-  Search, Command, Smartphone, Laptop, Wifi, ExternalLink
+  Bot, Send, Zap, ListTodo, TrendingUp, Smartphone, History,
+  X, Check, Menu, Settings, MessageCircle, ExternalLink, Sparkles
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
-type Task = {
+type Message = {
   id: string;
+  role: "user" | "assistant";
   text: string;
-  done: boolean;
+  time: string;
 };
 
-type QuickCommand = {
-  label: string;
-  icon: React.ReactNode;
-  command: string;
-};
+const CHAT_KEY = "hermes_chat_history";
+const TASKS_KEY = "hermes_tasks";
 
-const STORAGE_KEY = "hermes_tasks";
+const QUICK_ACTIONS = [
+  { label: "Стратегия", icon: "📋", msg: "расскажи стратегию на месяц" },
+  { label: "Отчёт", icon: "📊", msg: "покажи статус всех бизнесов" },
+  { label: "Задачи", icon: "✅", msg: "что я должен сделать сегодня?" },
+  { label: "Овощи", icon: "🥬", msg: "овощная лавка" },
+];
 
 export default function HermesMiniApp() {
-  const [tasks, setTasks] = useState<Task[]>(() => {
+  const [messages, setMessages] = useState<Message[]>(() => {
     try {
-      const saved = Telegram?.WebApp?.CloudStorage?.getItem?.(STORAGE_KEY);
-      if (saved) return JSON.parse(saved as string);
+      const saved = localStorage.getItem(CHAT_KEY);
+      if (saved) return JSON.parse(saved);
     } catch {}
-    return [];
+    return [{
+      id: "0",
+      role: "assistant" as const,
+      text: "Привет, Дэн! 👋 Я Hermes — твой COO + CTO. Чем помогу?",
+      time: new Date().toLocaleTimeString("ru", { hour: "2-digit", minute: "2-digit" }),
+    }];
   });
-  const [newTaskText, setNewTaskText] = useState("");
-  const [synced, setSynced] = useState(false);
+  const [input, setInput] = useState("");
+  const [showSidebar, setShowSidebar] = useState(false);
   const [tg, setTg] = useState<any>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  // Detect Telegram Mini App or browser
   useEffect(() => {
     if (typeof window !== "undefined" && (window as any).Telegram?.WebApp) {
       const webapp = (window as any).Telegram.WebApp;
       webapp.ready();
       webapp.expand();
-      webapp.enableClosingConfirmation();
       setTg(webapp);
     }
   }, []);
 
-  // Load tasks from Telegram CloudStorage on mount
+  // Scroll to bottom on new messages
   useEffect(() => {
-    if (tg) {
-      tg.CloudStorage.getItem(STORAGE_KEY, (err: any, val: string | null) => {
-        if (!err && val) {
-          try { setTasks(JSON.parse(val)); } catch {}
-        }
-      });
-    }
-  }, [tg]);
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
-  // Save tasks to local state + Telegram CloudStorage
-  const saveTasks = useCallback((newTasks: Task[]) => {
-    setTasks(newTasks);
-    if (tg) {
-      tg.CloudStorage.setItem(STORAGE_KEY, JSON.stringify(newTasks), () => {
-        setSynced(true);
-        setTimeout(() => setSynced(false), 2000);
-      });
-    }
-  }, [tg]);
+  const saveMessages = (msgs: Message[]) => {
+    setMessages(msgs);
+    try { localStorage.setItem(CHAT_KEY, JSON.stringify(msgs)); } catch {}
+  };
 
-  // Send data to Hermes bot
-  const sendToBot = useCallback((data: string) => {
-    if (tg) {
-      tg.sendData(data);
-      tg.close();
-    }
-  }, [tg]);
+  const sendMessage = (text: string) => {
+    if (!text.trim()) return;
 
-  const addTask = () => {
-    if (!newTaskText.trim()) return;
-    const newTask: Task = {
+    const userMsg: Message = {
       id: Date.now().toString(),
-      text: newTaskText.trim(),
-      done: false,
+      role: "user",
+      text: text.trim(),
+      time: new Date().toLocaleTimeString("ru", { hour: "2-digit", minute: "2-digit" }),
     };
-    saveTasks([...tasks, newTask]);
-    setNewTaskText("");
-  };
 
-  const toggleTask = (id: string) => {
-    saveTasks(tasks.map(t => t.id === id ? { ...t, done: !t.done } : t));
-  };
+    const newMessages = [...messages, userMsg];
+    saveMessages(newMessages);
+    setInput("");
 
-  const deleteTask = (id: string) => {
-    saveTasks(tasks.filter(t => t.id !== id));
-  };
-
-  const quickCommands: QuickCommand[] = [
-    { label: "Новая задача", icon: <Plus size={16} />, command: "добавь задачу:" },
-    { label: "Что делать?", icon: <Zap size={16} />, command: "что мне делать сейчас?" },
-    { label: "Статус проектов", icon: <TrendingUp size={16} />, command: "статус всех бизнесов" },
-    { label: "Поиск в истории", icon: <Search size={16} />, command: "найди в истории:" },
-    { label: "Сменить модель", icon: <Laptop size={16} />, command: "/model" },
-    { label: "Овощная лавка", icon: <Smartphone size={16} />, command: "овощная лавка" },
-  ];
-
-  const doneCount = tasks.filter(t => t.done).length;
-  const totalCount = tasks.length;
-
-  const handleCommand = (cmd: QuickCommand) => {
-    // If it's a simple command, send directly
-    if (cmd.command.startsWith("/")) {
-      sendToBot(cmd.command);
+    // Send to Telegram
+    if (tg) {
+      tg.sendData(text.trim());
+      tg.close();
     } else {
-      sendToBot(cmd.command);
+      // Fallback: try opening Telegram deep link - but user might not have it
+      // Just add a hint
+      const hint: Message = {
+        id: (Date.now() + 1).toString(),
+        role: "assistant",
+        text: "⬆️ Сообщение отправлено! Открой Telegram, чтобы получить ответ.\n\n_Чат с Hermes работает в Telegram. Установи Mini App через @BotFather → /setmenubutton_",
+        time: new Date().toLocaleTimeString("ru", { hour: "2-digit", minute: "2-digit" }),
+      };
+      saveMessages([...newMessages, hint]);
+    }
+  };
+
+  const clearChat = () => {
+    const welcome = {
+      id: "welcome", role: "assistant" as const,
+      text: "Чат очищен. Чем займёмся?",
+      time: new Date().toLocaleTimeString("ru", { hour: "2-digit", minute: "2-digit" }),
+    };
+    saveMessages([welcome]);
+  };
+
+  const openInTelegram = () => {
+    if (tg) {
+      tg.sendData("привет");
+      tg.close();
+    } else {
+      window.location.href = "https://t.me/danyanovch_bot";
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage(input);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 text-white">
-      {/* Header */}
-      <div className="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur-lg border-b border-zinc-800">
-        <div className="flex items-center justify-between px-4 py-3">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-600 flex items-center justify-center shadow-lg shadow-violet-500/20">
-              <Bot size={18} className="text-white" />
-            </div>
-            <div>
-              <h1 className="text-sm font-semibold leading-tight">Hermes Agent</h1>
-              <div className="flex items-center gap-1.5 text-[10px] text-zinc-500">
-                <Wifi size={10} className={synced ? "text-emerald-400" : "text-zinc-600"} />
-                <span>{synced ? "Синхронизировано" : "deepseek-v4-flash"}</span>
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            {totalCount > 0 && (
-              <Badge variant="outline" className="text-[10px] h-5 px-2 border-zinc-700 text-zinc-400">
-                {doneCount}/{totalCount}
-              </Badge>
-            )}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="w-7 h-7 text-zinc-500 hover:text-white"
-              onClick={() => sendToBot("покажи статистику")}
-            >
-              <Settings size={14} />
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      <div className="px-4 py-3 space-y-4 pb-24">
-        {/* Quick Commands Grid */}
-        <div className="grid grid-cols-3 gap-2">
-          {quickCommands.map((cmd, i) => (
-            <button
-              key={i}
-              onClick={() => handleCommand(cmd)}
-              className="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-zinc-800/50 border border-zinc-800 
-                         hover:bg-zinc-800 hover:border-zinc-700 active:scale-95 transition-all"
-            >
-              <div className="w-7 h-7 rounded-lg bg-zinc-800 flex items-center justify-center text-violet-400">
-                {cmd.icon}
-              </div>
-              <span className="text-[10px] text-zinc-400 text-center leading-tight">{cmd.label}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Open Chat Button */}
-        <button
-          onClick={() => sendToBot("привет")}
-          className="w-full flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-violet-600/20 to-fuchsia-600/20 
-                     border border-violet-800/30 hover:from-violet-600/30 hover:to-fuchsia-600/30 active:scale-[0.98] transition-all"
-        >
-          <div className="flex items-center gap-2.5">
-            <MessageCircle size={16} className="text-violet-400" />
-            <span className="text-xs font-medium text-violet-300">Открыть чат с Hermes</span>
-          </div>
-          <ExternalLink size={14} className="text-violet-500" />
+    <div className="flex flex-col h-dvh bg-black text-white overflow-hidden">
+      {/* === STATUS BAR (Telegram-style) === */}
+      <div className="h-11 flex items-center justify-between px-4 bg-[#1a1a1a] border-b border-[#2b2b2b] shrink-0 safe-area-top">
+        <button onClick={() => setShowSidebar(!showSidebar)} className="w-8 h-8 flex items-center justify-center -ml-1 text-[#8e8e93] hover:text-white active:opacity-60">
+          <Menu size={20} />
         </button>
-
-        {/* Task Manager */}
-        <div>
-          <div className="flex items-center justify-between mb-2.5">
-            <div className="flex items-center gap-2">
-              <ListTodo size={14} className="text-zinc-500" />
-              <h2 className="text-xs font-medium text-zinc-400 uppercase tracking-wider">Задачи</h2>
-            </div>
-            {totalCount > 0 && (
-              <span className="text-[10px] text-zinc-600">{doneCount}/{totalCount} выполнено</span>
-            )}
+        <div className="flex items-center gap-2.5">
+          <div className="w-6 h-6 rounded-md bg-gradient-to-br from-violet-500 to-fuchsia-600 flex items-center justify-center shadow-sm">
+            <Bot size={13} className="text-white" />
           </div>
-
-          {/* Add Task */}
-          <div className="flex gap-2 mb-2.5">
-            <Input
-              value={newTaskText}
-              onChange={(e) => setNewTaskText(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && addTask()}
-              placeholder="Новая задача..."
-              className="h-9 text-xs bg-zinc-800/50 border-zinc-800 text-zinc-200 placeholder:text-zinc-600 
-                         focus-visible:ring-violet-500/30"
-            />
-            <Button
-              onClick={addTask}
-              size="icon"
-              className="h-9 w-9 bg-violet-600 hover:bg-violet-500 text-white shrink-0"
-            >
-              <Plus size={14} />
-            </Button>
-          </div>
-
-          {/* Task List */}
-          <div className="space-y-1">
-            {tasks.length === 0 && (
-              <div className="text-center py-6 text-zinc-600">
-                <ListTodo size={24} className="mx-auto mb-2 opacity-50" />
-                <p className="text-xs">Задач пока нет</p>
-                <p className="text-[10px] text-zinc-700 mt-1">Напиши или добавь новую задачу</p>
-              </div>
-            )}
-            {tasks.map((task) => (
-              <div
-                key={task.id}
-                className={`group flex items-center gap-2.5 p-2.5 rounded-lg border transition-all ${
-                  task.done
-                    ? "bg-zinc-800/20 border-zinc-800/30"
-                    : "bg-zinc-800/30 border-zinc-800/50 hover:bg-zinc-800/50"
-                }`}
-              >
-                <button
-                  onClick={() => toggleTask(task.id)}
-                  className="shrink-0 focus:outline-none"
-                >
-                  {task.done ? (
-                    <CheckCircle2 size={16} className="text-emerald-500" />
-                  ) : (
-                    <Circle size={16} className="text-zinc-600 group-hover:text-zinc-500 transition-colors" />
-                  )}
-                </button>
-                <span
-                  className={`flex-1 text-xs ${
-                    task.done ? "text-zinc-600 line-through" : "text-zinc-300"
-                  }`}
-                >
-                  {task.text}
-                </span>
-                <button
-                  onClick={() => deleteTask(task.id)}
-                  className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 focus:outline-none"
-                >
-                  <Trash2 size={12} className="text-zinc-600 hover:text-red-400" />
-                </button>
-              </div>
-            ))}
-          </div>
+          <span className="text-sm font-semibold">Hermes Agent</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
         </div>
-
-        {/* Session Info */}
-        <div className="rounded-xl bg-zinc-800/20 border border-zinc-800/50 p-3">
-          <div className="flex items-center gap-2 mb-2">
-            <Clock size={12} className="text-zinc-600" />
-            <span className="text-[10px] text-zinc-500 uppercase tracking-wider">Активная сессия</span>
-          </div>
-          <div className="grid grid-cols-2 gap-2 text-[11px]">
-            <div className="text-zinc-500">Модель</div>
-            <div className="text-zinc-300 text-right font-mono">deepseek-v4-flash</div>
-            <div className="text-zinc-500">Провайдер</div>
-            <div className="text-zinc-300 text-right font-mono">ollama-cloud</div>
-            <div className="text-zinc-500">Платформа</div>
-            <div className="text-zinc-300 text-right">Telegram</div>
-            <div className="text-zinc-500">Роль</div>
-            <div className="text-zinc-300 text-right">COO + CTO</div>
-          </div>
-        </div>
+        <button onClick={clearChat} className="w-8 h-8 flex items-center justify-center -mr-1 text-[#8e8e93] hover:text-white active:opacity-60">
+          <X size={18} />
+        </button>
       </div>
 
-      {/* Bottom Action Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-zinc-950/95 backdrop-blur-lg border-t border-zinc-800 px-4 py-3">
-        <div className="flex gap-2">
+      {/* === SIDEBAR (slide-over) === */}
+      {showSidebar && (
+        <div className="fixed inset-0 z-50 flex">
+          <div className="w-[260px] bg-[#1c1c1e] border-r border-[#2b2b2b] flex flex-col safe-area-top" onClick={(e) => e.stopPropagation()}>
+            <div className="h-11 flex items-center justify-between px-4 border-b border-[#2b2b2b]">
+              <span className="text-xs font-semibold text-[#8e8e93] uppercase tracking-wider">Меню</span>
+              <button onClick={() => setShowSidebar(false)} className="text-[#8e8e93] hover:text-white">
+                <X size={18} />
+              </button>
+            </div>
+            <div className="flex-1 p-3 space-y-1 overflow-y-auto">
+              <SidebarButton icon={<Zap size={16} />} label="Быстрые команды" onClick={() => setShowSidebar(false)} />
+              <SidebarButton icon={<ListTodo size={16} />} label="Задачи" onClick={() => {
+                setShowSidebar(false);
+                sendMessage("покажи мои задачи");
+              }} />
+              <SidebarButton icon={<TrendingUp size={16} />} label="Статус проектов" onClick={() => {
+                setShowSidebar(false);
+                sendMessage("статус всех бизнесов");
+              }} />
+              <SidebarButton icon={<History size={16} />} label="История" onClick={() => {
+                setShowSidebar(false);
+              }} />
+              <SidebarButton icon={<Smartphone size={16} />} label="Овощная лавка" onClick={() => {
+                setShowSidebar(false);
+                sendMessage("овощная лавка");
+              }} />
+              <div className="mt-4 pt-4 border-t border-[#2b2b2b]">
+                <SidebarButton icon={<Settings size={16} />} label="Инфо" onClick={() => setShowSidebar(false)} />
+              </div>
+            </div>
+            <div className="p-3 border-t border-[#2b2b2b]">
+              <div className="text-[10px] text-[#48484a] leading-relaxed">
+                <div>deepseek-v4-flash</div>
+                <div>COO + CTO</div>
+                <div className="mt-1">
+                  <button onClick={clearChat} className="text-[#ff453a] hover:text-[#ff6b6b]">Очистить чат</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex-1 bg-black/60" onClick={() => setShowSidebar(false)} />
+        </div>
+      )}
+
+      {/* === MESSAGES === */}
+      <div className="flex-1 overflow-y-auto px-3 py-2 space-y-2 scroll-smooth">
+        {messages.map((msg) => (
+          <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+            <div
+              className={`max-w-[82%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
+                msg.role === "user"
+                  ? "bg-[#0b93f6] text-white rounded-br-md"
+                  : "bg-[#1c1c1e] text-[#e5e5ea] rounded-bl-md"
+              }`}
+            >
+              {msg.text}
+              <div className={`text-[10px] mt-1 ${msg.role === "user" ? "text-white/60" : "text-[#48484a]"}`}>
+                {msg.time}
+              </div>
+            </div>
+          </div>
+        ))}
+        <div ref={messagesEndRef} />
+      </div>
+
+      {/* === QUICK ACTIONS (condensed for mobile) === */}
+      <div className="px-3 py-1.5 flex gap-1.5 overflow-x-auto shrink-0 scrollbar-none">
+        {QUICK_ACTIONS.map((a, i) => (
           <button
-            onClick={() => sendToBot("стратегия")}
-            className="flex-1 py-2.5 rounded-xl bg-zinc-800 border border-zinc-700 text-xs text-zinc-300 
-                       hover:bg-zinc-700 active:scale-[0.98] transition-all"
+            key={i}
+            onClick={() => sendMessage(a.msg)}
+            className="shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-full bg-[#1c1c1e] border border-[#2b2b2b] 
+                       text-[11px] text-[#8e8e93] hover:text-white hover:border-[#3a3a3c] active:scale-95 transition-all whitespace-nowrap"
           >
-            📋 Стратегия
+            <span>{a.icon}</span>
+            <span>{a.label}</span>
           </button>
+        ))}
+      </div>
+
+      {/* === INPUT BAR === */}
+      <div className="px-3 py-2 bg-[#1a1a1a] border-t border-[#2b2b2b] shrink-0 safe-area-bottom">
+        <div className="flex items-end gap-2">
+          <div className="flex-1 flex items-end bg-[#2c2c2e] rounded-2xl px-3 min-h-[40px]">
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Сообщение..."
+              className="flex-1 bg-transparent text-sm text-white placeholder-[#636366] py-2.5 outline-none resize-none max-h-[100px]"
+            />
+          </div>
           <button
-            onClick={() => sendToBot("отчёт по всем бизнесам")}
-            className="flex-1 py-2.5 rounded-xl bg-zinc-800 border border-zinc-700 text-xs text-zinc-300 
-                       hover:bg-zinc-700 active:scale-[0.98] transition-all"
+            onClick={() => sendMessage(input)}
+            disabled={!input.trim()}
+            className="w-10 h-10 rounded-full bg-[#0b93f6] flex items-center justify-center 
+                       disabled:bg-[#2c2c2e] disabled:text-[#636366] active:scale-90 transition-all shrink-0
+                       text-white"
           >
-            📊 Отчёт
-          </button>
-          <button
-            onClick={() => sendToBot("что я должен сделать сегодня?")}
-            className="flex-1 py-2.5 rounded-xl bg-violet-600 text-xs text-white font-medium 
-                       hover:bg-violet-500 active:scale-[0.98] transition-all shadow-lg shadow-violet-600/20"
-          >
-            ⚡ Что делать?
+            <Send size={16} className={!input.trim() ? "text-[#636366]" : "text-white"} />
           </button>
         </div>
       </div>
     </div>
+  );
+}
+
+function SidebarButton({ icon, label, onClick }: { icon: React.ReactNode; label: string; onClick: () => void }) {
+  return (
+    <button onClick={onClick} className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-[#e5e5ea] 
+                                         hover:bg-[#2c2c2e] active:bg-[#3a3a3c] transition-colors">
+      <span className="text-[#8e8e93]">{icon}</span>
+      <span>{label}</span>
+    </button>
   );
 }
