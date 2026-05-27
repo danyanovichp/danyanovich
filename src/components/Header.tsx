@@ -27,6 +27,8 @@ const Header = () => {
     navigate(newPath);
   };
 
+  const isRu = i18n.language === 'ru';
+
   const mainLinks = [
     { href: "/", label: t('nav.home') },
     { href: "/businesses", label: isRu ? 'БИЗНЕСЫ' : 'BUSINESSES' },
@@ -34,8 +36,6 @@ const Header = () => {
     { href: "/contact", label: i18n.language === 'ru' ? 'ОБО МНЕ' : 'ABOUT' },
     { href: "/support", label: t('nav.support') },
   ];
-
-  const isRu = i18n.language === 'ru';
 
   return (
     <header className="sticky top-0 z-50 bg-card border-b-2 border-foreground">

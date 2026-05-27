@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { HelmetProvider } from "react-helmet-async";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 import "./lib/i18n";
 import Header from "./components/Header";
 import PageTransition from "./components/PageTransition";
@@ -57,17 +58,18 @@ const PageLoader = () => (
 );
 
 const App = () => (
-  <HelmetProvider>
-    <ThemeProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-1">
-              <Suspense fallback={<PageLoader />}>
-                <Routes>
+  <ErrorBoundary>
+    <HelmetProvider>
+      <ThemeProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <main className="flex-1">
+                <Suspense fallback={<PageLoader />}>
+                  <Routes>
                   <Route path="/:lang" element={<LanguageWrapper />}>
                     <Route index element={<Home />} />
                     <Route path="notion" element={<PageTransition><NotionTemplates /></PageTransition>} />
@@ -109,10 +111,11 @@ const App = () => (
 
 
           </div>
-        </BrowserRouter>
+         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>
   </HelmetProvider>
+  </ErrorBoundary>
 );
 
 export default App;

@@ -11,7 +11,7 @@ const SVG_W = 1000;
 const SVG_H = 340;
 
 const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
-  const getNodeById = (id: string) => nodes.find((n) => n.id === id)!;
+  const getNodeById = (id: string) => nodes.find((n) => n.id === id);
 
   const getConnectionPoints = (from: WorkflowNode, to: WorkflowNode) => {
     const fromCx = (from.x / 100) * SVG_W + NODE_W / 2;
@@ -59,6 +59,8 @@ const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
         <defs>
           {connections.map((conn, i) => {
             const fromNode = getNodeById(conn.from);
+            const toNode = getNodeById(conn.to);
+            if (!fromNode || !toNode) return null;
             return (
               <linearGradient
                 key={`grad-${i}`}
@@ -66,7 +68,7 @@ const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
                 x1="0%" y1="0%" x2="100%" y2="0%"
               >
                 <stop offset="0%" stopColor={`hsl(${fromNode.color})`} stopOpacity="0.7" />
-                <stop offset="100%" stopColor={`hsl(${getNodeById(conn.to).color})`} stopOpacity="0.7" />
+                <stop offset="100%" stopColor={`hsl(${toNode.color})`} stopOpacity="0.7" />
               </linearGradient>
             );
           })}
@@ -76,6 +78,7 @@ const WorkflowDiagram = ({ nodes, connections }: WorkflowDiagramProps) => {
         {connections.map((conn, i) => {
           const fromNode = getNodeById(conn.from);
           const toNode = getNodeById(conn.to);
+          if (!fromNode || !toNode) return null;
           const { fromX, fromY, toX, toY } = getConnectionPoints(fromNode, toNode);
           const dx = toX - fromX;
           const dy = toY - fromY;
