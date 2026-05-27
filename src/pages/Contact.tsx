@@ -155,11 +155,28 @@ const Contact = () => {
       period_en: 'Jul 2024 – Feb 2026 · 1 year 8 mo.',
       type: 'hybrid',
       bg: pastelBgClasses[0],
-      description_ru: 'Совмещал операционное управление с ролью инженера внедрения: запускал и адаптировал системы под реальные процессы компании, обучал команду, связывал менеджмент, подрядчиков и инструменты, а параллельно держал в фокусе стройку, продажи, документооборот и клиентские сервисы.',
-      description_en: 'Combined operations management with an implementation-engineer role: launched and adapted systems around real company workflows, trained the team, connected management, contractors, and tools, while also staying responsible for construction operations, sales, document workflow, and client services.',
-      highlights_ru: ['3 проекта вилл завершены в срок', '4 AI-инструмента', '17 коммерческих предложений', 'MVP продукта запущен'],
-      highlights_en: ['3 villa projects delivered on time', '4 AI tools', '17 commercial proposals', 'MVP launched'],
+      description_ru: 'Совмещал операционное управление с ролью инженера внедрения: запускал и адаптировал системы под реальные процессы компании, обучал команду, связывал менеджмент, подрядчиков и инструменты, а параллельно держал в фокусе стройку, продажи, документооборот и клиентские сервисы.\n\nПричина ухода: закрытие компании.',
+      description_en: 'Combined operations management with an implementation-engineer role: launched and adapted systems around real company workflows, trained the team, connected management, contractors, and tools, while also staying responsible for construction operations, sales, document workflow, and client services.\n\nReason for leaving: company closure.',
+      highlights_ru: ['3 проекта вилл завершены в срок', '4 AI-инструмента', '17 коммерческих предложений', 'Отдел продаж с нуля'],
+      highlights_en: ['3 villa projects delivered on time', '4 AI tools', '17 commercial proposals', 'Sales team from scratch'],
       projects: [
+        {
+          title_ru: 'Управление строительными проектами',
+          title_en: 'Construction Project Management',
+          desc_ru: 'Координировал полный цикл 3 проектов строительства вилл длительностью 6–12 месяцев. Организовал еженедельные планёрки, 1-on-1 и чёткое распределение ответственности.',
+          desc_en: 'Coordinated the full lifecycle of 3 villa construction projects lasting 6–12 months. Organized weekly planning meetings, 1-on-1s, and clear role distribution.',
+          stack: ['Project Management', 'Jira', 'Excel Dashboards', 'Team Coordination'],
+          results_ru: [
+            'Все 3 проекта вилл успешно завершены в срок',
+            'Спас 1 проект от срыва за счет приоритизации, пересмотра scope и перераспределения ресурсов',
+            'Сроки сдачи этапов полностью нормализовались и стали прозрачными для клиентов'
+          ],
+          results_en: [
+            'All 3 villa projects successfully delivered on time',
+            'Saved 1 project from failure via task prioritization, scope review, and resource reallocation',
+            'Project stages became fully normalized and transparent for clients'
+          ]
+        },
         {
           title_ru: 'Visual Orc и обучение команды',
           title_en: 'Visual Orc Rollout',
@@ -215,6 +232,40 @@ const Contact = () => {
       ],
     },
     {
+      role_ru: 'Менеджер продукта / Руководитель направления',
+      role_en: 'Product Manager / Head of Direction',
+      company: 'Viora Consulting',
+      company_desc_ru: 'цифровой консалтинг, Португалия',
+      company_desc_en: 'digital consulting, Portugal',
+      period_ru: 'Август 2025 – Февраль 2026 · 7 мес.',
+      period_en: 'Aug 2025 – Feb 2026 · 7 mo.',
+      type: 'hybrid',
+      bg: pastelBgClasses[1],
+      description_ru: 'Запустил образовательный цифровой продукт «Строительный Чекап» для иностранцев в Португалии. Отвечал за весь жизненный цикл: от исследования рынка и ценообразования до создания контента, разработки воронки продаж и запуска MVP.\n\nПродукт успешно запущен на стадии MVP, проект приостановлен в связи с отсутствием дальнейшего финансирования.',
+      description_en: 'Launched the "Construction Checkup" educational digital product for expats in Portugal. Managed the entire lifecycle: from market research and pricing strategy to content creation, sales funnel design, and MVP launch.\n\nSuccessfully launched as MVP, suspended due to scaling funding changes.',
+      highlights_ru: ['1 MVP запущен с нуля', '9 видео-модулей', '2 инструмента автоматизации', 'Калькулятор смет'],
+      highlights_en: ['1 MVP launched from scratch', '9 video modules', '2 automation tools', 'Cost calculator'],
+      projects: [
+        {
+          title_ru: 'Запуск продукта «Строительный Чекап»',
+          title_en: 'Construction Checkup Product Launch',
+          desc_ru: 'Полный цикл создания образовательного продукта: спроектировал структуру (9 модулей, 3 чек-листа), настроил прием платежей, доступ к контенту, собрал лендинг и воронку продаж.',
+          desc_en: 'Full lifecycle creation of an educational product: designed the structure (9 modules, 3 checklists), set up payment gateway, content access, and built the landing page and sales funnel.',
+          stack: ['Product Launch', 'Notion', 'Loom', 'Figma', 'Stripe', 'n8n'],
+          results_ru: [
+            'Продукт полностью спроектирован и запущен с нуля за 4 месяца',
+            'Спроектирован и внедрен умный калькулятор стоимости строительства на ~20 параметров',
+            'Воронка продаж полностью автоматизирована: лендинг → оплата → доступ → консультация'
+          ],
+          results_en: [
+            'Product fully designed and launched from scratch in 4 months',
+            'Designed and implemented a smart construction cost calculator (~20 parameters)',
+            'Sales funnel fully automated: landing → payment → access → consultation'
+          ]
+        }
+      ]
+    },
+    {
       role_ru: 'Представитель банка',
       role_en: 'Bank Representative',
       company: 'Т-Банк',
@@ -224,9 +275,23 @@ const Contact = () => {
       period_en: 'Jun 2024 – Jun 2025 · 1 year 1 mo.',
       type: 'sales',
       bg: pastelBgClasses[3],
-      description_ru: 'Проведение встреч с клиентами и продажа банковских продуктов. Работа с возражениями и ведение переговоров. Работа в CRM и управление воронкой. Выполнение планов продаж. Развитые навыки коммуникации, убеждения и самостоятельного управления графиком.',
-      description_en: 'Conducting client meetings and selling banking products. Handling objections and negotiations. Working in CRM and pipeline management. Achieving sales targets. Developed communication, persuasion, and self-management skills.',
+      description_ru: 'Проведение встреч с клиентами и продажа банковских продуктов. Работа с возражениями и ведение переговоров. Работа в CRM и управление воронкой. Выполнение планов продаж.\n\nПричина ухода: смена работы на удаленный формат.',
+      description_en: 'Conducting client meetings and selling banking products. Handling objections and negotiations. Working in CRM and pipeline management. Achieving sales targets.\n\nReason for leaving: transition to remote work.',
       projects: [],
+    },
+    {
+      role_ru: 'Специалист поддержки клиентов',
+      role_en: 'Customer Support Specialist',
+      company: 'Точка Банк',
+      company_desc_ru: 'банк для бизнеса',
+      company_desc_en: 'business bank',
+      period_ru: 'Март 2023 – Май 2024 · 1 год 3 мес.',
+      period_en: 'Mar 2023 – May 2024 · 1 year 3 mo.',
+      type: 'sales',
+      bg: pastelBgClasses[2],
+      description_ru: 'Дистанционное обслуживание и техническая поддержка корпоративных клиентов. Консультирование по тарифам, настройке расчетно-кассового обслуживания, валютному контролю и работе в интернет-банке.',
+      description_en: 'Remote customer service and technical support for corporate clients. Consultations on tariffs, cash management services, currency control, and online banking systems.',
+      projects: []
     },
     {
       role_ru: 'Фриланс — Дэн Янович',
@@ -270,8 +335,8 @@ const Contact = () => {
       icon: Bot,
       bg: pastelBgClasses[2],
       type: 'ai',
-      items: ['OpenAI API (GPT-4o, Whisper)', 'Gemini', 'Perplexity', 'LM Studio', 'Sora', 'AI-агенты'],
-      items_en: ['OpenAI API (GPT-4o, Whisper)', 'Gemini', 'Perplexity', 'LM Studio', 'Sora', 'AI Agents'],
+      items: ['ИИ-агенты Notion', 'Автоматизации для бизнеса', 'Construction AI (сметы и цены)', 'Open Source решения (GitHub)', 'OpenAI API (GPT-4o, Whisper)', 'Gemini', 'LM Studio'],
+      items_en: ['Notion AI Agents', 'Business Automations', 'Construction AI (Estimates & Prices)', 'Open Source solutions (GitHub)', 'OpenAI API (GPT-4o, Whisper)', 'Gemini', 'LM Studio'],
     },
     {
       title_ru: 'Интеграции и аналитика',
@@ -374,9 +439,11 @@ const Contact = () => {
                 {/* Focus areas */}
                 <div className="grid sm:grid-cols-1 gap-3">
                   {[
-                    { ru: 'Проектирую цифровые штабы: С 2020 года реализовал более 50 проектов по внедрению рабочих пространств. Создаю инфраструктуру, в которой информация не теряется, а процессы становятся прозрачными и управляемыми.', en: 'Design digital headquarters: Since 2020, completed over 50 workspace implementation projects. I create infrastructure where information isn\'t lost, and processes become transparent and manageable.' },
+                    { ru: 'С 2020 года создаю и консультирую рабочие пространства, реализовал более 50 проектов по внедрению Notion, Buildin.AI и других инструментов для компаний различного масштаба. Разработал комплексные решения, повысившие эффективность рабочих процессов клиентов в среднем на 30%, создал библиотеку специализированных шаблонов для различных бизнес-задач и провел более 100 часов обучающих сессий, помогая командам максимально использовать возможности пространств.', en: 'Since 2020, I have been designing and consulting on workspaces, implementing over 50 projects rolling out Notion, Buildin.AI, and other tools for companies of various scales. Developed comprehensive solutions that increased client workflow efficiency by an average of 30%, built a library of specialized templates for diverse business needs, and conducted over 100 hours of training sessions, helping teams maximize their workspaces\' capabilities.' },
                     { ru: 'Автоматизирую сложные процессы: Настраиваю порядок в системно сложных нишах. Внедряю ERP-системы, настраиваю финансовый учет и создаю клиентские порталы там, где важна идеальная точность.', en: 'Automate complex processes: Bring order to systematically complex niches. Implement ERP systems, set up financial accounting, and create client portals where perfect accuracy is crucial.' },
                     { ru: 'Сшиваю структуру компании: Настраиваю связки между административными отделами и производством, чтобы задачи выполнялись вовремя, а логика работы была понятна каждому сотруднику.', en: 'Stitch company structure together: Setup connections between administrative departments and production, so tasks are completed on time and work logic is clear to everyone.' },
+                    { ru: 'Разрабатываю ИИ-агентов и автоматизации: Создаю интеллектуальных ассистентов для Notion, n8n и внутренние инструменты автоматизации рутины. Автор проекта Construction AI, который начинался как внутреннее решение, а вырос в коммерческий инструмент.', en: 'Develop AI agents and automations: Create smart assistants for Notion, n8n, and internal routine automations. Author of Construction AI, which started as an internal tool and expanded into a commercial product.' },
+                    { ru: 'Open Source продукты: Публикую и поддерживаю открытые решения для интеграций и повышения эффективности на GitHub.', en: 'Open Source products: Publish and maintain open-source integration and productivity solutions on GitHub.' },
                     { ru: 'Внедряю культуру работы: Провел более 100 часов обучающих сессий. Моя цель — не просто сделать, а интегрировать систему в жизнь команды.', en: 'Implement work culture: Conducted 100+ hours of training sessions. My goal is not just to build, but to integrate the system into the team\'s life.' },
                     { ru: 'Развиваю сообщество: Делюсь опытом и готовыми решениями в YouTube-канале и создаю специализированные шаблоны.', en: 'Develop community: Share experience and ready-made solutions on YouTube and create specialized templates.' },
                   ].map((item, i) => (

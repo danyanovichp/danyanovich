@@ -248,6 +248,164 @@ const NotionTemplates = () => {
         </div>
       </section>
 
+      {/* Workspaces Intro Section */}
+      <section className="py-16 md:py-24 bg-zinc-50 dark:bg-zinc-950 border-t-2 border-foreground relative overflow-hidden">
+        <div className="container relative z-10">
+          <div className="max-w-6xl mx-auto space-y-12">
+            
+            {/* Header Block */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div className="lg:col-span-7 space-y-6">
+                <Badge className="bg-pastel-blue text-foreground border-2 border-foreground shadow-[2px_2px_0px_0px_currentColor] text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-none">
+                  WORKSPACES
+                </Badge>
+                <h2 className="text-3xl md:text-5xl font-black font-display tracking-tight text-foreground leading-tight">
+                  {isRu 
+                    ? "Workspaces — готовые рабочие пространства для команд" 
+                    : "Workspaces — Ready-to-Use Spaces for Teams"}
+                </h2>
+                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light">
+                  {isRu 
+                    ? "Профессионально спроектированные шаблоны рабочих пространств (в Notion и других инструментах), чтобы команда быстро стартовала с уже структурированной системой — без сборки “с нуля”."
+                    : "Professionally designed workspace templates (in Notion and other tools) to help teams kickstart with a structured system instantly — no 'from scratch' building required."}
+                </p>
+                
+                {/* Quick Start (Быстрый старт) */}
+                <div className="bg-card border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] p-6 space-y-4 rounded-none">
+                  <h4 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">
+                    {isRu ? "⚡ БЫСТРЫЙ СТАРТ" : "⚡ QUICK START"}
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {[
+                      {
+                        step: "01",
+                        ru: "Выбрать шаблон в каталоге (ниже)",
+                        en: "Choose a template in the catalog (below)"
+                      },
+                      {
+                        step: "02",
+                        ru: "Посмотреть кейсы (как выглядит вживую)",
+                        en: "See case studies (how it looks in action)"
+                      },
+                      {
+                        step: "03",
+                        ru: "Обсудить внедрение / кастомизацию (Consulting)",
+                        en: "Discuss implementation / customization (Consulting)"
+                      }
+                    ].map((s, idx) => (
+                      <div key={idx} className="space-y-2">
+                        <div className="text-2xl font-black text-pastel-pink">{s.step}</div>
+                        <p className="text-xs text-foreground/80 font-bold leading-relaxed">
+                          {isRu ? s.ru : s.en}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Consulting Banner / CTA Card */}
+              <div className="lg:col-span-5 bg-pastel-yellow border-4 border-foreground shadow-[8px_8px_0px_0px_currentColor] p-8 space-y-6 rounded-none">
+                <h3 className="text-2xl font-black font-display text-foreground">
+                  {isRu ? "Нужна кастомизация под процессы?" : "Need Custom Implementation?"}
+                </h3>
+                <p className="text-sm text-foreground/80 font-semibold leading-relaxed">
+                  {isRu 
+                    ? "С 2020 года я помог более чем 50 компаниям выстроить эффективные рабочие пространства (Notion, Buildin.AI) и сэкономить сотни часов на проектировании операционных систем."
+                    : "Since 2020, I have helped over 50 companies build efficient workspaces (Notion, Buildin.AI) and save hundreds of hours spent designing operating systems."}
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-xs font-bold text-foreground">
+                    <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>{isRu ? "Интеграции (Notion ↔ календарь ↔ задачи ↔ другие)" : "Integrations (Notion ↔ calendar ↔ tasks ↔ other)"}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-bold text-foreground">
+                    <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>{isRu ? "Обучение команды и подробные регламенты" : "Team training & comprehensive guidelines"}</span>
+                  </div>
+                </div>
+                <Link
+                  to="/consulting"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-foreground text-background border-2 border-foreground shadow-[3px_3px_0px_0px_currentColor] hover:bg-transparent hover:text-foreground text-xs font-bold uppercase tracking-wider transition-all rounded-none"
+                >
+                  {isRu ? "Заказать консалтинг" : "Get Consulting"}
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Info Grid: Для кого & Что дает & Что входит */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              
+              {/* Для кого (For Whom) */}
+              <div className="bg-card border-2 border-foreground shadow-[6px_6px_0px_0px_currentColor] p-6 space-y-4 rounded-none">
+                <div className="w-10 h-10 rounded-none bg-pastel-purple/20 text-pastel-purple flex items-center justify-center border-2 border-foreground">
+                  <Users className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold font-display">{isRu ? "Для кого" : "For Whom"}</h3>
+                <ul className="space-y-2.5 text-xs text-muted-foreground font-medium">
+                  {[
+                    { ru: "Стартапы и молодые компании", en: "Startups & early-stage companies" },
+                    { ru: "Удалённые и распределённые команды", en: "Remote & distributed teams" },
+                    { ru: "Фрилансеры и агентства", en: "Freelancers & agencies" },
+                    { ru: "Компании, которые только внедряют систему управления проектами", en: "Companies newly adopting project management" }
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-pastel-purple shrink-0">▪</span>
+                      <span>{isRu ? item.ru : item.en}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Что даёт (What It Gives) */}
+              <div className="bg-card border-2 border-foreground shadow-[6px_6px_0px_0px_currentColor] p-6 space-y-4 rounded-none">
+                <div className="w-10 h-10 rounded-none bg-accent-lime/20 text-accent-lime flex items-center justify-center border-2 border-foreground">
+                  <Target className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold font-display">{isRu ? "Что даёт" : "What It Delivers"}</h3>
+                <ul className="space-y-2.5 text-xs text-muted-foreground font-medium">
+                  {[
+                    { ru: "Экономия времени на проектировании системы", en: "Saves time spent on designing systems" },
+                    { ru: "Быстрый онбординг и понятная структура", en: "Quick onboarding & clear structure" },
+                    { ru: "Прозрачность работы команды и задач", en: "Team transparency & task clarity" },
+                    { ru: "Гибкая кастомизация под процессы", en: "Flexible customization for your workflows" }
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-accent-lime shrink-0">▪</span>
+                      <span>{isRu ? item.ru : item.en}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Что входит (What's Included) */}
+              <div className="bg-card border-2 border-foreground shadow-[6px_6px_0px_0px_currentColor] p-6 space-y-4 rounded-none">
+                <div className="w-10 h-10 rounded-none bg-pastel-pink/20 text-pastel-pink flex items-center justify-center border-2 border-foreground">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold font-display">{isRu ? "Что входит (пакет)" : "What's Included (Package)"}</h3>
+                <ul className="space-y-2.5 text-xs text-muted-foreground font-medium">
+                  {[
+                    { ru: "Готовые шаблоны под разные типы команд (маркетинг, разработка, дизайн, HR)", en: "Ready-made templates for various team types (marketing, dev, design, HR)" },
+                    { ru: "Модульная архитектура (компоненты можно комбинировать)", en: "Modular architecture (combine components based on team needs)" },
+                    { ru: "Документация и руководства по кастомизации", en: "Documentation & guides for customization" },
+                    { ru: "Интеграции (Notion ↔ календарь ↔ задачи ↔ другие) по необходимости", en: "Integrations (Notion ↔ calendar ↔ tasks ↔ other) as needed" }
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-pastel-pink shrink-0">▪</span>
+                      <span>{isRu ? item.ru : item.en}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* Templates Grid with Filters */}
       <section className="py-8 md:py-16 border-t-2 border-foreground">
         <div className="container">
