@@ -11,6 +11,11 @@ const Cookies = () => {
     { name: isRu ? 'Политика cookies' : 'Cookie Policy', url: `${SITE_URL}/cookies` },
   ]);
 
+  const handleChangePreferences = () => {
+    localStorage.removeItem('cookieConsent');
+    window.location.reload();
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <SEO
@@ -152,6 +157,15 @@ const Cookies = () => {
                 </p>
               </>
             )}
+
+            <div className="mt-10 pt-8 border-t-2 border-foreground">
+              <button
+                onClick={handleChangePreferences}
+                className="bg-pastel-yellow text-black border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_currentColor] transition-all uppercase font-bold tracking-wider px-6 py-3 text-sm"
+              >
+                {isRu ? 'Изменить настройки cookies' : 'Change cookie preferences'}
+              </button>
+            </div>
           </div>
         </div>
       </section>

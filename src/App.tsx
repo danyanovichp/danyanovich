@@ -13,6 +13,7 @@ import PageTransition from "./components/PageTransition";
 import ScrollToTop from "./components/ScrollToTop";
 import LanguageWrapper from "./components/LanguageWrapper";
 import RootRedirect from "./components/RootRedirect";
+import CookieConsent from "./components/CookieConsent";
 
 
 
@@ -108,8 +109,7 @@ const App = () => (
               </Suspense>
             </main>
             <ScrollToTop />
-
-
+            <CookieConsent />
           </div>
          </BrowserRouter>
       </TooltipProvider>
