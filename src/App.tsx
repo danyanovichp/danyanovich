@@ -94,16 +94,19 @@ const App = () => (
                     <Route path="privacy" element={<PageTransition><Privacy /></PageTransition>} />
                     <Route path="terms" element={<PageTransition><Terms /></PageTransition>} />
                     <Route path="cookies" element={<PageTransition><Cookies /></PageTransition>} />
+                    <Route path="businesses" element={<PageTransition><Businesses /></PageTransition>} />
+                    <Route path="businesses/notion" element={<PageTransition><RoadmapNotion /></PageTransition>} />
+                    <Route path="businesses/veggies" element={<PageTransition><RoadmapVeggies /></PageTransition>} />
+                    <Route path="businesses/workspaces" element={<PageTransition><RoadmapWorkspaces /></PageTransition>} />
+                    <Route path="businesses/ai" element={<PageTransition><RoadmapAI /></PageTransition>} />
+                    <Route path="businesses/content" element={<PageTransition><RoadmapContent /></PageTransition>} />
+                    <Route path="workspaces" element={<PageTransition><WorkspacesLanding /></PageTransition>} />
                     <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
                   </Route>
                   <Route path="/notiontemplates" element={<Navigate to="/ru/notion" replace />} />
-                  <Route path="/businesses" element={<PageTransition><Businesses /></PageTransition>} />
-                  <Route path="/businesses/notion" element={<PageTransition><RoadmapNotion /></PageTransition>} />
-                  <Route path="/businesses/veggies" element={<PageTransition><RoadmapVeggies /></PageTransition>} />
-                  <Route path="/businesses/workspaces" element={<PageTransition><RoadmapWorkspaces /></PageTransition>} />
-                  <Route path="/businesses/ai" element={<PageTransition><RoadmapAI /></PageTransition>} />
-                  <Route path="/businesses/content" element={<PageTransition><RoadmapContent /></PageTransition>} />
-                  <Route path="/workspaces" element={<PageTransition><WorkspacesLanding /></PageTransition>} />
+                  <Route path="/businesses" element={<Navigate to="/ru/businesses" replace />} />
+                  <Route path="/businesses/*" element={<Navigate to="/ru/businesses" replace />} />
+                  <Route path="/workspaces" element={<Navigate to="/ru/workspaces" replace />} />
                   <Route path="*" element={<RootRedirect />} />
                 </Routes>
               </Suspense>

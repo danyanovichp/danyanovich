@@ -82,7 +82,7 @@ export default function Businesses() {
             {isRu ? "ПОРТФЕЛЬ" : "PORTFOLIO"}
           </div>
           <h1 className="text-3xl font-bold mb-2">
-            {isRu ? "Мои бизнесы" : "My Businesses"}
+            {isRu ? "Мои проекты" : "My Projects"}
           </h1>
           <p className="text-sm text-zinc-500">
             {isRu

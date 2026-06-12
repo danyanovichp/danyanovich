@@ -31,7 +31,7 @@ const Header = () => {
 
   const mainLinks = [
     { href: "/", label: t('nav.home') },
-    { href: "/businesses", label: isRu ? 'БИЗНЕСЫ' : 'BUSINESSES' },
+    { href: "/businesses", label: isRu ? 'ПРОЕКТЫ' : 'PROJECTS' },
     { href: "/cases", label: i18n.language === 'ru' ? 'КЕЙСЫ' : 'CASES' },
     { href: "/contact", label: i18n.language === 'ru' ? 'ОБО МНЕ' : 'ABOUT' },
     { href: "/support", label: t('nav.support') },

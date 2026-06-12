@@ -91,7 +91,7 @@ export default function WorkspacesPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-sky-900/20 via-transparent to-blue-900/20" />
         <div className="max-w-4xl mx-auto px-4 pt-16 pb-12 relative">
           <Link to="/businesses" className="inline-flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-300 mb-6">
-            ← {isRu ? "Все бизнесы" : "All businesses"}
+            ← {isRu ? "Все проекты" : "All projects"}
           </Link>
           <div className="flex items-start gap-4 mb-6">
             <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center shadow-lg shadow-sky-500/20 shrink-0">

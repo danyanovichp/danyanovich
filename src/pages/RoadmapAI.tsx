@@ -25,7 +25,7 @@ export default function RoadmapAI() {
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="max-w-3xl mx-auto px-4 py-12 space-y-6">
-        <Link to="/businesses" className="inline-flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-300"><ArrowLeft size={14} /> {isRu ? "Все бизнесы" : "All businesses"}</Link>
+        <Link to="/businesses" className="inline-flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-300"><ArrowLeft size={14} /> {isRu ? "Все проекты" : "All projects"}</Link>
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-violet-500/20 text-violet-400"><Bot size={20} /></div>
           <div><h1 className="text-2xl font-bold">{isRu ? "AI & Автоматизация" : "AI & Automation"}</h1><p className="text-xs text-zinc-500">{isRu ? "Промпты, агенты, интеграции" : "Prompts, agents, integrations"}</p></div>

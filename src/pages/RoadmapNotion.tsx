@@ -46,7 +46,7 @@ export default function RoadmapNotion() {
     <div className="min-h-screen bg-black text-white">
       <div className="max-w-3xl mx-auto px-4 py-12 space-y-6">
         <Link to="/businesses" className="inline-flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-300 transition-colors">
-          <ArrowLeft size={14} /> {isRu ? "Все бизнесы" : "All businesses"}
+          <ArrowLeft size={14} /> {isRu ? "Все проекты" : "All projects"}
         </Link>
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-amber-500/20 text-amber-400">
