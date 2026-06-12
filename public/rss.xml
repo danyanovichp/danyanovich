@@ -5,7 +5,7 @@
     <link>https://danyanovich.site</link>
     <description>Notes about Notion, AI, automation, and Vibecoding. Showcase of cases and products.</description>
     <language>ru</language>
-    <lastBuildDate>Wed, 27 May 2026 07:12:19 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 12 Jun 2026 06:26:34 GMT</lastBuildDate>
 
     <item>
       <title><![CDATA[5 способов использовать AI агентов в малом бизнесе]]></title>
@@ -61,7 +61,7 @@
 - Единое место управления корреспонденцией в Notion
 - Черновик ответа готов сразу — одно нажатие переносит его в Gmail
 - Стоимость обслуживания: ~$20-30/мес]]></description>
-      <pubDate>Wed, 27 May 2026 07:12:19 GMT</pubDate>
+      <pubDate>Fri, 12 Jun 2026 06:26:34 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[ClickUp Reports Agent]]></title>
@@ -76,7 +76,7 @@
 - Сотрудники видят свой прогресс — мотивация и прозрачность
 - Экономия часов руководителя на ручной анализ
 - Полная история оценок для HR-решений и аналитики]]></description>
-      <pubDate>Wed, 27 May 2026 07:12:19 GMT</pubDate>
+      <pubDate>Fri, 12 Jun 2026 06:26:34 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Construction AI Agent]]></title>
@@ -91,7 +91,7 @@
 - Три режима работы: веб, CLI, API
 - Fallback на локальную LLM при недоступности OpenAI
 - Мониторинг нагрузки через Prometheus]]></description>
-      <pubDate>Wed, 27 May 2026 07:12:19 GMT</pubDate>
+      <pubDate>Fri, 12 Jun 2026 06:26:34 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Telegram to ClickUp]]></title>
@@ -105,7 +105,7 @@
 - Дубли не создаются — система обновляет существующую задачу
 - Прозрачность: Telegram-отчёт по каждому действию
 - Поддержка всех форматов аудио Telegram]]></description>
-      <pubDate>Wed, 27 May 2026 07:12:19 GMT</pubDate>
+      <pubDate>Fri, 12 Jun 2026 06:26:34 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Voice Call Task Manager]]></title>
@@ -119,7 +119,7 @@
 - Работает с 6 сотрудниками параллельно
 - Двойной канал: голос + Telegram = 100% охват
 - Перенос и изменение задач прямо во время звонка]]></description>
-      <pubDate>Wed, 27 May 2026 07:12:19 GMT</pubDate>
+      <pubDate>Fri, 12 Jun 2026 06:26:34 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Viora Build]]></title>
@@ -136,7 +136,7 @@
 - Финансовые операции и еженедельная отчётность переведены в более системный режим
 - 17 коммерческих предложений подготовлены для инвестиционных проектов
 - MVP продукта «Строительный Чекап» запущен с лендингом и воронкой]]></description>
-      <pubDate>Wed, 27 May 2026 07:12:19 GMT</pubDate>
+      <pubDate>Fri, 12 Jun 2026 06:26:34 GMT</pubDate>
     </item>
   </channel>
 </rss>

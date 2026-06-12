@@ -23,6 +23,8 @@ export interface NotionTemplate {
   icon: string; // lucide icon name
   colorClass: string;
   bgClass: string;
+  screenshot?: string;
+  downloadUrl?: string;
 }
 
 // Category groups for filter tabs (matching easlo.co pattern)

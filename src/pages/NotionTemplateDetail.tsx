@@ -79,7 +79,7 @@ const NotionTemplateDetail = () => {
       ? template.features.ru
       : template.features.en
     : [];
-  const marketplaceUrl = `https://www.notion.com/templates/${template.slug}`;
+  const marketplaceUrl = template.downloadUrl || `https://www.notion.com/templates/${template.slug}`;
 
   // Related templates (same category group, exclude current)
   const relatedTemplates = allTemplates
@@ -238,13 +238,21 @@ const NotionTemplateDetail = () => {
           <div className="max-w-5xl mx-auto">
             <AnimatedSection delay={100}>
               <div
-                className={`${template.bgClass} rounded-2xl border-2 border-foreground shadow-[8px_8px_0px_0px_currentColor] p-8 md:p-16 flex items-center justify-center`}
+                className={`${template.bgClass} rounded-2xl border-2 border-foreground shadow-[8px_8px_0px_0px_currentColor] p-4 md:p-8 flex items-center justify-center overflow-hidden`}
               >
-                <div className="p-8 md:p-12 bg-white/70 backdrop-blur-sm rounded-xl">
-                  <IconComponent
-                    className={`w-32 h-32 md:w-48 md:h-48 ${template.colorClass}`}
+                {template.screenshot ? (
+                  <img
+                    src={template.screenshot}
+                    alt={template.name}
+                    className="w-full h-auto rounded-lg border-2 border-foreground shadow-[4px_4px_0px_0px_currentColor] object-cover max-h-[600px]"
                   />
-                </div>
+                ) : (
+                  <div className="p-8 md:p-12 bg-white/70 backdrop-blur-sm rounded-xl">
+                    <IconComponent
+                      className={`w-32 h-32 md:w-48 md:h-48 ${template.colorClass}`}
+                    />
+                  </div>
+                )}
               </div>
             </AnimatedSection>
           </div>
