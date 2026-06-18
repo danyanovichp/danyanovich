@@ -992,6 +992,2837 @@ var blogPosts = [
   }
 ];
 
+// src/data/notionTemplates.ts
+var paidTemplatesData = [
+  {
+    id: "ea16f21a-615e-49e0-b177-e2affd3cf2ca",
+    name: "Second Brain OS",
+    slug: "second-brain-os-903",
+    price: 39,
+    description: {
+      en: "A unified command center for thoughts, projects, and goals \u2014 where chaos turns into system, and random ideas become finished results.",
+      ru: "\u0415\u0434\u0438\u043D\u044B\u0439 \u043A\u043E\u043C\u0430\u043D\u0434\u043D\u044B\u0439 \u0446\u0435\u043D\u0442\u0440 \u0434\u043B\u044F \u043C\u044B\u0441\u043B\u0435\u0439, \u043F\u0440\u043E\u0435\u043A\u0442\u043E\u0432 \u0438 \u0446\u0435\u043B\u0435\u0439 \u2014 \u0433\u0434\u0435 \u0445\u0430\u043E\u0441 \u043F\u0440\u0435\u0432\u0440\u0430\u0449\u0430\u0435\u0442\u0441\u044F \u0432 \u0441\u0438\u0441\u0442\u0435\u043C\u0443, \u0430 \u0441\u043B\u0443\u0447\u0430\u0439\u043D\u044B\u0435 \u0438\u0434\u0435\u0438 \u0441\u0442\u0430\u043D\u043E\u0432\u044F\u0442\u0441\u044F \u0433\u043E\u0442\u043E\u0432\u044B\u043C\u0438 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u0430\u043C\u0438."
+    },
+    category: { en: "Second Brain", ru: "Second Brain" },
+    categoryGroup: "personal-productivity",
+    features: {
+      en: [
+        "Inbox capture system \u2014 all inputs flow through a structured pipeline",
+        "Three-tier hierarchy: Areas \u2192 Projects \u2192 Actions with relational linking",
+        "Project tracking with status pipeline and energy expenditure indicator",
+        "5-level urgency scale with weekly and monthly calendar views",
+        "Knowledge base: Notes flow from draft to final, grouped by notebook and topic",
+        "Resource management: Videos, articles, podcasts with status tracking",
+        "Processing pipeline: Inbox \u2192 Processing \u2192 Action \u2192 Result"
+      ],
+      ru: [
+        "\u0421\u0438\u0441\u0442\u0435\u043C\u0430 \u0437\u0430\u0445\u0432\u0430\u0442\u0430 Inbox \u2014 \u0432\u0441\u0435 \u0432\u0445\u043E\u0434\u044F\u0449\u0438\u0435 \u043F\u0440\u043E\u0445\u043E\u0434\u044F\u0442 \u0447\u0435\u0440\u0435\u0437 \u0441\u0442\u0440\u0443\u043A\u0442\u0443\u0440\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u043A\u043E\u043D\u0432\u0435\u0439\u0435\u0440",
+        "\u0422\u0440\u0451\u0445\u0443\u0440\u043E\u0432\u043D\u0435\u0432\u0430\u044F \u0438\u0435\u0440\u0430\u0440\u0445\u0438\u044F: \u041E\u0431\u043B\u0430\u0441\u0442\u0438 \u2192 \u041F\u0440\u043E\u0435\u043A\u0442\u044B \u2192 \u0414\u0435\u0439\u0441\u0442\u0432\u0438\u044F \u0441\u043E \u0441\u0432\u044F\u0437\u044F\u043C\u0438",
+        "\u041E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u043D\u0438\u0435 \u043F\u0440\u043E\u0435\u043A\u0442\u043E\u0432: \u0441\u0442\u0430\u0442\u0443\u0441\u044B, \u0441\u0440\u043E\u043A\u0438, \u0438\u043D\u0434\u0438\u043A\u0430\u0442\u043E\u0440 \u0437\u0430\u0442\u0440\u0430\u0442 \u044D\u043D\u0435\u0440\u0433\u0438\u0438",
+        "5-\u0443\u0440\u043E\u0432\u043D\u0435\u0432\u0430\u044F \u0448\u043A\u0430\u043B\u0430 \u0441\u0440\u043E\u0447\u043D\u043E\u0441\u0442\u0438 \u0441 \u043D\u0435\u0434\u0435\u043B\u044C\u043D\u044B\u043C \u0438 \u043C\u0435\u0441\u044F\u0447\u043D\u044B\u043C \u043A\u0430\u043B\u0435\u043D\u0434\u0430\u0440\u0451\u043C",
+        "\u0411\u0430\u0437\u0430 \u0437\u043D\u0430\u043D\u0438\u0439: \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u043E\u0442 \u0447\u0435\u0440\u043D\u043E\u0432\u0438\u043A\u0430 \u0434\u043E \u0444\u0438\u043D\u0430\u043B\u0430, \u0441\u0433\u0440\u0443\u043F\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u044B \u043F\u043E \u0442\u0435\u0442\u0440\u0430\u0434\u0438 \u0438 \u0442\u0435\u043C\u0435",
+        "\u0423\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u0440\u0435\u0441\u0443\u0440\u0441\u0430\u043C\u0438: \u0432\u0438\u0434\u0435\u043E, \u0441\u0442\u0430\u0442\u044C\u0438, \u043F\u043E\u0434\u043A\u0430\u0441\u0442\u044B \u0441 \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u043D\u0438\u0435\u043C \u0441\u0442\u0430\u0442\u0443\u0441\u0430",
+        "\u041A\u043E\u043D\u0432\u0435\u0439\u0435\u0440 \u043E\u0431\u0440\u0430\u0431\u043E\u0442\u043A\u0438: Inbox \u2192 \u041E\u0431\u0440\u0430\u0431\u043E\u0442\u043A\u0430 \u2192 \u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u2192 \u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+      ]
+    },
+    icon: "Brain",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20"
+  },
+  {
+    id: "2e7d872b-594c-816b-b466-00643d066f97",
+    name: "Real Estate OS",
+    slug: "real-estate-os-805",
+    price: 50,
+    description: {
+      en: "Manage your real estate business in one place. Track properties, contacts, deals through a pipeline, and schedule showings, calls, and meetings \u2014 all linked together.",
+      ru: "\u0423\u043F\u0440\u0430\u0432\u043B\u044F\u0439\u0442\u0435 \u0431\u0438\u0437\u043D\u0435\u0441\u043E\u043C \u043F\u043E \u043D\u0435\u0434\u0432\u0438\u0436\u0438\u043C\u043E\u0441\u0442\u0438 \u0432 \u043E\u0434\u043D\u043E\u043C \u043C\u0435\u0441\u0442\u0435. \u041E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u043E\u0431\u044A\u0435\u043A\u0442\u044B, \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u044B, \u0441\u0434\u0435\u043B\u043A\u0438 \u0447\u0435\u0440\u0435\u0437 \u043F\u0430\u0439\u043F\u043B\u0430\u0439\u043D \u0438 \u043F\u043B\u0430\u043D\u0438\u0440\u0443\u0439\u0442\u0435 \u043F\u043E\u043A\u0430\u0437\u044B, \u0437\u0432\u043E\u043D\u043A\u0438 \u0438 \u0432\u0441\u0442\u0440\u0435\u0447\u0438 \u2014 \u0432\u0441\u0451 \u0441\u0432\u044F\u0437\u0430\u043D\u043E."
+    },
+    category: { en: "Real Estate", ru: "\u041D\u0435\u0434\u0432\u0438\u0436\u0438\u043C\u043E\u0441\u0442\u044C" },
+    categoryGroup: "real-estate",
+    features: {
+      en: [
+        "Properties database with price, area, type, status, photos, and map view",
+        "Contacts database for buyers, sellers, agents with kanban by status",
+        "Deals pipeline: Qualification \u2192 Showing \u2192 Offer \u2192 Contract \u2192 Closed/Lost",
+        "Activities tracker for calls, meetings, showings with calendar and daily focus",
+        "Dashboard showing hot deals, today's tasks, and new properties",
+        "All databases linked by relations \u2014 every deal connects to property and client"
+      ],
+      ru: [
+        "\u0411\u0430\u0437\u0430 \u043E\u0431\u044A\u0435\u043A\u0442\u043E\u0432: \u0446\u0435\u043D\u0430, \u043F\u043B\u043E\u0449\u0430\u0434\u044C, \u0442\u0438\u043F, \u0441\u0442\u0430\u0442\u0443\u0441, \u0444\u043E\u0442\u043E \u0438 \u043A\u0430\u0440\u0442\u0430",
+        "\u0411\u0430\u0437\u0430 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u043E\u0432: \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u0438, \u043F\u0440\u043E\u0434\u0430\u0432\u0446\u044B, \u0430\u0433\u0435\u043D\u0442\u044B \u0441 \u043A\u0430\u043D\u0431\u0430\u043D \u043F\u043E \u0441\u0442\u0430\u0442\u0443\u0441\u0430\u043C",
+        "\u041F\u0430\u0439\u043F\u043B\u0430\u0439\u043D \u0441\u0434\u0435\u043B\u043E\u043A: \u041A\u0432\u0430\u043B\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u044F \u2192 \u041F\u043E\u043A\u0430\u0437 \u2192 \u041F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u2192 \u0414\u043E\u0433\u043E\u0432\u043E\u0440 \u2192 \u0417\u0430\u043A\u0440\u044B\u0442\u043E",
+        "\u0422\u0440\u0435\u043A\u0435\u0440 \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0435\u0439: \u0437\u0432\u043E\u043D\u043A\u0438, \u0432\u0441\u0442\u0440\u0435\u0447\u0438, \u043F\u043E\u043A\u0430\u0437\u044B \u0441 \u043A\u0430\u043B\u0435\u043D\u0434\u0430\u0440\u0451\u043C",
+        "\u0414\u0430\u0448\u0431\u043E\u0440\u0434: \u0433\u043E\u0440\u044F\u0447\u0438\u0435 \u0441\u0434\u0435\u043B\u043A\u0438, \u0437\u0430\u0434\u0430\u0447\u0438 \u043D\u0430 \u0441\u0435\u0433\u043E\u0434\u043D\u044F, \u043D\u043E\u0432\u044B\u0435 \u043E\u0431\u044A\u0435\u043A\u0442\u044B",
+        "\u0412\u0441\u0435 \u0431\u0430\u0437\u044B \u0441\u0432\u044F\u0437\u0430\u043D\u044B \u2014 \u043A\u0430\u0436\u0434\u0430\u044F \u0441\u0434\u0435\u043B\u043A\u0430 \u043F\u0440\u0438\u0432\u044F\u0437\u0430\u043D\u0430 \u043A \u043E\u0431\u044A\u0435\u043A\u0442\u0443 \u0438 \u043A\u043B\u0438\u0435\u043D\u0442\u0443"
+      ]
+    },
+    icon: "Building2",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20"
+  },
+  {
+    id: "2e7d872b-594c-81aa-84d1-006453b60d60",
+    name: "Freelance OS",
+    slug: "freelance-os-456",
+    price: 40,
+    description: {
+      en: "Manage freelance projects, clients, portfolio, and reviews in one workspace. Track active projects on a kanban and collect client reviews.",
+      ru: "\u0423\u043F\u0440\u0430\u0432\u043B\u044F\u0439\u0442\u0435 \u0444\u0440\u0438\u043B\u0430\u043D\u0441-\u043F\u0440\u043E\u0435\u043A\u0442\u0430\u043C\u0438, \u043A\u043B\u0438\u0435\u043D\u0442\u0430\u043C\u0438, \u043F\u043E\u0440\u0442\u0444\u043E\u043B\u0438\u043E \u0438 \u043E\u0442\u0437\u044B\u0432\u0430\u043C\u0438 \u0432 \u043E\u0434\u043D\u043E\u043C \u043F\u0440\u043E\u0441\u0442\u0440\u0430\u043D\u0441\u0442\u0432\u0435. \u041E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u043F\u0440\u043E\u0435\u043A\u0442\u044B \u043D\u0430 \u043A\u0430\u043D\u0431\u0430\u043D\u0435 \u0438 \u0441\u043E\u0431\u0438\u0440\u0430\u0439\u0442\u0435 \u043E\u0442\u0437\u044B\u0432\u044B."
+    },
+    category: { en: "Freelance", ru: "\u0424\u0440\u0438\u043B\u0430\u043D\u0441" },
+    categoryGroup: "freelance",
+    features: {
+      en: [
+        "Projects database with status tracking and Active Projects kanban board",
+        "Portfolio Showcase gallery for completed work",
+        "Clients database with Active Clients view",
+        "Knowledge Base for reference materials and guides",
+        "Reviews collection with New Reviews (5-star) for marketing",
+        "Main dashboard: Portfolio, Active Projects, Active Clients, New Reviews",
+        "Simple workflow: add client \u2192 create project \u2192 link \u2192 complete \u2192 review"
+      ],
+      ru: [
+        "\u0411\u0430\u0437\u0430 \u043F\u0440\u043E\u0435\u043A\u0442\u043E\u0432 \u0441 \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u043D\u0438\u0435\u043C \u0441\u0442\u0430\u0442\u0443\u0441\u043E\u0432 \u0438 \u043A\u0430\u043D\u0431\u0430\u043D\u043E\u043C \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0445 \u043F\u0440\u043E\u0435\u043A\u0442\u043E\u0432",
+        "\u0413\u0430\u043B\u0435\u0440\u0435\u044F \u043F\u043E\u0440\u0442\u0444\u043E\u043B\u0438\u043E \u0434\u043B\u044F \u0437\u0430\u0432\u0435\u0440\u0448\u0451\u043D\u043D\u044B\u0445 \u0440\u0430\u0431\u043E\u0442",
+        "\u0411\u0430\u0437\u0430 \u043A\u043B\u0438\u0435\u043D\u0442\u043E\u0432 \u0441 \u0432\u0438\u0434\u043E\u043C \xAB\u0410\u043A\u0442\u0438\u0432\u043D\u044B\u0435 \u043A\u043B\u0438\u0435\u043D\u0442\u044B\xBB",
+        "\u0411\u0430\u0437\u0430 \u0437\u043D\u0430\u043D\u0438\u0439 \u0434\u043B\u044F \u0441\u043F\u0440\u0430\u0432\u043E\u0447\u043D\u044B\u0445 \u043C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\u043E\u0432 \u0438 \u0440\u0443\u043A\u043E\u0432\u043E\u0434\u0441\u0442\u0432",
+        "\u041A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u044F \u043E\u0442\u0437\u044B\u0432\u043E\u0432: \u043D\u043E\u0432\u044B\u0435 \u043E\u0442\u0437\u044B\u0432\u044B (5 \u0437\u0432\u0451\u0437\u0434) \u0434\u043B\u044F \u043C\u0430\u0440\u043A\u0435\u0442\u0438\u043D\u0433\u0430",
+        "\u0413\u043B\u0430\u0432\u043D\u044B\u0439 \u0434\u0430\u0448\u0431\u043E\u0440\u0434: \u041F\u043E\u0440\u0442\u0444\u043E\u043B\u0438\u043E, \u041F\u0440\u043E\u0435\u043A\u0442\u044B, \u041A\u043B\u0438\u0435\u043D\u0442\u044B, \u041E\u0442\u0437\u044B\u0432\u044B",
+        "\u041F\u0440\u043E\u0441\u0442\u043E\u0439 \u0444\u043B\u043E\u0443: \u043A\u043B\u0438\u0435\u043D\u0442 \u2192 \u043F\u0440\u043E\u0435\u043A\u0442 \u2192 \u0441\u0432\u044F\u0437\u044C \u2192 \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043D\u0438\u0435 \u2192 \u043E\u0442\u0437\u044B\u0432"
+      ]
+    },
+    icon: "Briefcase",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20"
+  },
+  {
+    id: "2e7d872b-594c-8194-a7aa-0064e890e7fa",
+    name: "E-commerce OS",
+    slug: "e-commerce-os-261",
+    price: 25,
+    description: {
+      en: "Manage your online store in one place \u2014 track products and stock levels, process orders on a kanban board, plan marketing campaigns, and monitor income and expenses across multiple sales platforms.",
+      ru: "\u0423\u043F\u0440\u0430\u0432\u043B\u044F\u0439\u0442\u0435 \u0438\u043D\u0442\u0435\u0440\u043D\u0435\u0442-\u043C\u0430\u0433\u0430\u0437\u0438\u043D\u043E\u043C \u0432 \u043E\u0434\u043D\u043E\u043C \u043C\u0435\u0441\u0442\u0435 \u2014 \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u0442\u043E\u0432\u0430\u0440\u044B \u0438 \u043E\u0441\u0442\u0430\u0442\u043A\u0438, \u043E\u0431\u0440\u0430\u0431\u0430\u0442\u044B\u0432\u0430\u0439\u0442\u0435 \u0437\u0430\u043A\u0430\u0437\u044B \u043D\u0430 \u043A\u0430\u043D\u0431\u0430\u043D\u0435, \u043F\u043B\u0430\u043D\u0438\u0440\u0443\u0439\u0442\u0435 \u043C\u0430\u0440\u043A\u0435\u0442\u0438\u043D\u0433 \u0438 \u043A\u043E\u043D\u0442\u0440\u043E\u043B\u0438\u0440\u0443\u0439\u0442\u0435 \u0444\u0438\u043D\u0430\u043D\u0441\u044B."
+    },
+    category: { en: "E-commerce", ru: "\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u043D\u043D\u0430\u044F \u043A\u043E\u043C\u043C\u0435\u0440\u0446\u0438\u044F" },
+    categoryGroup: "operations",
+    features: {
+      en: [
+        "Product Catalog with stock tracking and Low Stock alerts",
+        "Order Management kanban \u2014 drag cards to update status",
+        "Marketing Planner with promo calendar and campaign registry",
+        "Finance Tracker \u2014 log income and expenses by category",
+        "Platform Directory \u2014 manage sales channels with commission rates",
+        "All databases connected \u2014 no switching between tools"
+      ],
+      ru: [
+        "\u041A\u0430\u0442\u0430\u043B\u043E\u0433 \u0442\u043E\u0432\u0430\u0440\u043E\u0432 \u0441 \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u043D\u0438\u0435\u043C \u043E\u0441\u0442\u0430\u0442\u043A\u043E\u0432 \u0438 \u043F\u0440\u0435\u0434\u0443\u043F\u0440\u0435\u0436\u0434\u0435\u043D\u0438\u044F\u043C\u0438",
+        "\u041A\u0430\u043D\u0431\u0430\u043D \u0437\u0430\u043A\u0430\u0437\u043E\u0432 \u2014 \u043F\u0435\u0440\u0435\u0442\u0430\u0441\u043A\u0438\u0432\u0430\u0439\u0442\u0435 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438 \u0434\u043B\u044F \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u044F \u0441\u0442\u0430\u0442\u0443\u0441\u0430",
+        "\u041F\u043B\u0430\u043D\u0435\u0440 \u043C\u0430\u0440\u043A\u0435\u0442\u0438\u043D\u0433\u0430: \u043A\u0430\u043B\u0435\u043D\u0434\u0430\u0440\u044C \u043F\u0440\u043E\u043C\u043E \u0438 \u0440\u0435\u0435\u0441\u0442\u0440 \u043A\u0430\u043C\u043F\u0430\u043D\u0438\u0439",
+        "\u0424\u0438\u043D\u0430\u043D\u0441\u043E\u0432\u044B\u0439 \u0442\u0440\u0435\u043A\u0435\u0440: \u0434\u043E\u0445\u043E\u0434\u044B \u0438 \u0440\u0430\u0441\u0445\u043E\u0434\u044B \u043F\u043E \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F\u043C",
+        "\u0414\u0438\u0440\u0435\u043A\u0442\u043E\u0440\u0438\u044F \u043F\u043B\u0430\u0442\u0444\u043E\u0440\u043C: \u043A\u0430\u043D\u0430\u043B\u044B \u043F\u0440\u043E\u0434\u0430\u0436 \u0438 \u043A\u043E\u043C\u0438\u0441\u0441\u0438\u0438",
+        "\u0412\u0441\u0435 \u0431\u0430\u0437\u044B \u0441\u0432\u044F\u0437\u0430\u043D\u044B \u2014 \u043D\u0435 \u043D\u0443\u0436\u043D\u043E \u043F\u0435\u0440\u0435\u043A\u043B\u044E\u0447\u0430\u0442\u044C\u0441\u044F \u043C\u0435\u0436\u0434\u0443 \u0438\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442\u0430\u043C\u0438"
+      ]
+    },
+    icon: "ShoppingCart",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20"
+  },
+  {
+    id: "2e7d872b-594c-810f-b50b-0064b3194503",
+    name: "Documents OS",
+    slug: "documents-os-1",
+    price: 20,
+    description: {
+      en: "Store, track, and manage all your important documents in one place. Set expiration dates, get renewal alerts, attach scans, log storage locations, and keep a version history \u2014 so nothing expires or gets lost.",
+      ru: "\u0425\u0440\u0430\u043D\u0438\u0442\u0435, \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u0438 \u0443\u043F\u0440\u0430\u0432\u043B\u044F\u0439\u0442\u0435 \u0432\u0441\u0435\u043C\u0438 \u0432\u0430\u0436\u043D\u044B\u043C\u0438 \u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0430\u043C\u0438 \u0432 \u043E\u0434\u043D\u043E\u043C \u043C\u0435\u0441\u0442\u0435. \u0423\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u044F \u043E\u0431 \u0438\u0441\u0442\u0435\u0447\u0435\u043D\u0438\u0438, \u0441\u043A\u0430\u043D\u044B, \u043C\u0435\u0441\u0442\u0430 \u0445\u0440\u0430\u043D\u0435\u043D\u0438\u044F \u0438 \u0438\u0441\u0442\u043E\u0440\u0438\u044F \u0432\u0435\u0440\u0441\u0438\u0439."
+    },
+    category: { en: "Documentation", ru: "\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u043E\u043E\u0431\u043E\u0440\u043E\u0442" },
+    categoryGroup: "operations",
+    features: {
+      en: [
+        "Documents database with type, status, owner, expiration date, and file scans",
+        "Expiration alerts \u2014 flags documents expiring within 30 days",
+        "Storage Locations database \u2014 track where originals are kept",
+        "Versions & Logs \u2014 log every change with version number and date",
+        "Dashboard: Attention gallery, Recently Updated list, Statistics view",
+        "Quick Start guide built right into the template"
+      ],
+      ru: [
+        "\u0411\u0430\u0437\u0430 \u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u043E\u0432: \u0442\u0438\u043F, \u0441\u0442\u0430\u0442\u0443\u0441, \u0432\u043B\u0430\u0434\u0435\u043B\u0435\u0446, \u0441\u0440\u043E\u043A \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044F, \u0441\u043A\u0430\u043D\u044B",
+        "\u0423\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u044F \u043E\u0431 \u0438\u0441\u0442\u0435\u0447\u0435\u043D\u0438\u0438 \u2014 \u043F\u043E\u043C\u0435\u0447\u0430\u0435\u0442 \u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B \u0437\u0430 30 \u0434\u043D\u0435\u0439",
+        "\u041C\u0435\u0441\u0442\u0430 \u0445\u0440\u0430\u043D\u0435\u043D\u0438\u044F: \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435, \u0433\u0434\u0435 \u043B\u0435\u0436\u0430\u0442 \u043E\u0440\u0438\u0433\u0438\u043D\u0430\u043B\u044B",
+        "\u0412\u0435\u0440\u0441\u0438\u0438 \u0438 \u043B\u043E\u0433\u0438: \u043A\u0430\u0436\u0434\u043E\u0435 \u0438\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u0435 \u0441 \u043D\u043E\u043C\u0435\u0440\u043E\u043C \u0432\u0435\u0440\u0441\u0438\u0438 \u0438 \u0434\u0430\u0442\u043E\u0439",
+        "\u0414\u0430\u0448\u0431\u043E\u0440\u0434: \u0433\u0430\u043B\u0435\u0440\u0435\u044F \u0432\u043D\u0438\u043C\u0430\u043D\u0438\u044F, \u043D\u0435\u0434\u0430\u0432\u043D\u0438\u0435 \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u044F, \u0441\u0442\u0430\u0442\u0438\u0441\u0442\u0438\u043A\u0430",
+        "\u0420\u0443\u043A\u043E\u0432\u043E\u0434\u0441\u0442\u0432\u043E Quick Start \u0432\u0441\u0442\u0440\u043E\u0435\u043D\u043E \u043F\u0440\u044F\u043C\u043E \u0432 \u0448\u0430\u0431\u043B\u043E\u043D"
+      ]
+    },
+    icon: "FileStack",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20"
+  },
+  {
+    id: "2e7d872b-594c-8101-ba20-0064c3973e7a",
+    name: "Ideas OS",
+    slug: "ideas-os-484",
+    price: 10,
+    description: {
+      en: "Capture, score, and develop ideas with ICE scoring (Impact, Confidence, Effort). Includes an inbox, best ideas gallery, process kanban, roadmap timeline, and idea connections table.",
+      ru: "\u0417\u0430\u0445\u0432\u0430\u0442\u044B\u0432\u0430\u0439\u0442\u0435, \u043E\u0446\u0435\u043D\u0438\u0432\u0430\u0439\u0442\u0435 \u0438 \u0440\u0430\u0437\u0432\u0438\u0432\u0430\u0439\u0442\u0435 \u0438\u0434\u0435\u0438 \u0441 ICE-\u0441\u043A\u043E\u0440\u0438\u043D\u0433\u043E\u043C. Inbox, \u0433\u0430\u043B\u0435\u0440\u0435\u044F \u043B\u0443\u0447\u0448\u0438\u0445 \u0438\u0434\u0435\u0439, \u043A\u0430\u043D\u0431\u0430\u043D \u043F\u0440\u043E\u0446\u0435\u0441\u0441\u0430, roadmap \u0438 \u0441\u0432\u044F\u0437\u0438 \u043C\u0435\u0436\u0434\u0443 \u0438\u0434\u0435\u044F\u043C\u0438."
+    },
+    category: { en: "Idea Management", ru: "\u0423\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u0438\u0434\u0435\u044F\u043C\u0438" },
+    categoryGroup: "personal-productivity",
+    features: {
+      en: [
+        "ICE Scoring \u2014 auto-calculated from Impact, Confidence, Effort (1-10)",
+        "Idea funnel: Inbox \u2192 Review \u2192 Incubator \u2192 In Progress \u2192 Done",
+        "Best Ideas gallery showing ideas with ICE Score > 20",
+        "Process kanban board for status management",
+        "Roadmap timeline view",
+        "Connections table \u2014 link ideas to each other for cross-pollination",
+        "Categories for theme grouping and Resources for supporting materials"
+      ],
+      ru: [
+        "ICE-\u0441\u043A\u043E\u0440\u0438\u043D\u0433: \u0430\u0432\u0442\u043E\u043F\u043E\u0434\u0441\u0447\u0451\u0442 \u043D\u0430 \u043E\u0441\u043D\u043E\u0432\u0435 \u0412\u043B\u0438\u044F\u043D\u0438\u044F, \u0423\u0432\u0435\u0440\u0435\u043D\u043D\u043E\u0441\u0442\u0438 \u0438 \u0423\u0441\u0438\u043B\u0438\u0439",
+        "\u0412\u043E\u0440\u043E\u043D\u043A\u0430 \u0438\u0434\u0435\u0439: Inbox \u2192 \u041E\u0431\u0437\u043E\u0440 \u2192 \u0418\u043D\u043A\u0443\u0431\u0430\u0442\u043E\u0440 \u2192 \u0412 \u0440\u0430\u0431\u043E\u0442\u0435 \u2192 \u0413\u043E\u0442\u043E\u0432\u043E",
+        "\u0413\u0430\u043B\u0435\u0440\u0435\u044F \u043B\u0443\u0447\u0448\u0438\u0445 \u0438\u0434\u0435\u0439 (ICE > 20)",
+        "\u041A\u0430\u043D\u0431\u0430\u043D-\u0434\u043E\u0441\u043A\u0430 \u0434\u043B\u044F \u0443\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0441\u0442\u0430\u0442\u0443\u0441\u0430\u043C\u0438",
+        "Roadmap \u2014 \u0442\u0430\u0439\u043C\u043B\u0430\u0439\u043D \u0438\u0434\u0435\u0439",
+        "\u0422\u0430\u0431\u043B\u0438\u0446\u0430 \u0441\u0432\u044F\u0437\u0435\u0439 \u2014 \u0441\u0432\u044F\u0437\u044B\u0432\u0430\u0439\u0442\u0435 \u0438\u0434\u0435\u0438 \u0434\u0440\u0443\u0433 \u0441 \u0434\u0440\u0443\u0433\u043E\u043C",
+        "\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438 \u0434\u043B\u044F \u0433\u0440\u0443\u043F\u043F\u0438\u0440\u043E\u0432\u043A\u0438 \u043F\u043E \u0442\u0435\u043C\u0430\u043C \u0438 \u0411\u0430\u0437\u0430 \u0440\u0435\u0441\u0443\u0440\u0441\u043E\u0432"
+      ]
+    },
+    icon: "Lightbulb",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20"
+  },
+  {
+    id: "2e7d872b-594c-81e4-be60-0064593cd736",
+    name: "90 Day Planning",
+    slug: "90-day-planning",
+    price: 5,
+    description: {
+      en: "Plan your quarter with linked goals, projects, and tasks. Track progress automatically, prioritize daily work, and reflect in a built-in journal with mood tracking. Four connected databases on one dashboard.",
+      ru: "\u0421\u0432\u044F\u0436\u0438\u0442\u0435 \u043A\u0432\u0430\u0440\u0442\u0430\u043B\u044C\u043D\u044B\u0435 \u0446\u0435\u043B\u0438 \u0441 \u043F\u0440\u043E\u0435\u043A\u0442\u0430\u043C\u0438 \u0438 \u0437\u0430\u0434\u0430\u0447\u0430\u043C\u0438 \u2014 \u0432\u0441\u0451 \u0432 \u043E\u0434\u043D\u043E\u043C \u0434\u0430\u0448\u0431\u043E\u0440\u0434\u0435. \u0424\u043E\u043A\u0443\u0441 \u0434\u043D\u044F, \u0438\u043D\u0431\u043E\u043A\u0441 \u0437\u0430\u0434\u0430\u0447, \u0442\u0430\u0439\u043C\u043B\u0430\u0439\u043D, \u043A\u0430\u043D\u0431\u0430\u043D \u0438 \u0434\u043D\u0435\u0432\u043D\u0438\u043A \u043D\u0430\u0441\u0442\u0440\u043E\u0435\u043D\u0438\u044F."
+    },
+    category: { en: "Planning & Goals", ru: "\u041F\u043B\u0430\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435 \u0438 \u0446\u0435\u043B\u0438" },
+    categoryGroup: "personal-productivity",
+    features: {
+      en: [
+        "4 connected databases: Goals, Projects, Tasks, Journal",
+        "Three-level hierarchy: Goals \u2192 Projects \u2192 Tasks",
+        "Automatic progress tracking \u2014 rolls up from tasks to goals",
+        "Daily Focus view \u2014 today's tasks grouped by priority",
+        "Task Inbox for undated tasks",
+        "Project timeline and kanban boards",
+        "Daily journal with mood tracking and calendar views",
+        "Dashboard homepage with Quick Start guide"
+      ],
+      ru: [
+        "4 \u0441\u0432\u044F\u0437\u0430\u043D\u043D\u044B\u0435 \u0431\u0430\u0437\u044B: \u0426\u0435\u043B\u0438, \u041F\u0440\u043E\u0435\u043A\u0442\u044B, \u0417\u0430\u0434\u0430\u0447\u0438, \u0414\u043D\u0435\u0432\u043D\u0438\u043A",
+        "\u0422\u0440\u0451\u0445\u0443\u0440\u043E\u0432\u043D\u0435\u0432\u0430\u044F \u0438\u0435\u0440\u0430\u0440\u0445\u0438\u044F: \u0426\u0435\u043B\u0438 \u2192 \u041F\u0440\u043E\u0435\u043A\u0442\u044B \u2192 \u0417\u0430\u0434\u0430\u0447\u0438",
+        "\u0410\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0435 \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u043D\u0438\u0435 \u043F\u0440\u043E\u0433\u0440\u0435\u0441\u0441\u0430 \u043E\u0442 \u0437\u0430\u0434\u0430\u0447 \u043A \u0446\u0435\u043B\u044F\u043C",
+        "\u0424\u043E\u043A\u0443\u0441 \u0434\u043D\u044F \u2014 \u0437\u0430\u0434\u0430\u0447\u0438 \u043D\u0430 \u0441\u0435\u0433\u043E\u0434\u043D\u044F \u043F\u043E \u043F\u0440\u0438\u043E\u0440\u0438\u0442\u0435\u0442\u0443",
+        "Inbox \u0434\u043B\u044F \u0437\u0430\u0434\u0430\u0447 \u0431\u0435\u0437 \u0434\u0430\u0442\u044B",
+        "\u0422\u0430\u0439\u043C\u043B\u0430\u0439\u043D \u043F\u0440\u043E\u0435\u043A\u0442\u043E\u0432 \u0438 \u043A\u0430\u043D\u0431\u0430\u043D-\u0434\u043E\u0441\u043A\u0438",
+        "\u0414\u043D\u0435\u0432\u043D\u0438\u043A \u043D\u0430\u0441\u0442\u0440\u043E\u0435\u043D\u0438\u044F \u0441 \u043A\u0430\u043B\u0435\u043D\u0434\u0430\u0440\u0451\u043C",
+        "\u0414\u0430\u0448\u0431\u043E\u0440\u0434 \u0441 \u0440\u0443\u043A\u043E\u0432\u043E\u0434\u0441\u0442\u0432\u043E\u043C Quick Start"
+      ]
+    },
+    icon: "Target",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20"
+  }
+];
+var freeTemplatesData = [
+  {
+    id: "6e55eeb1-0db5-42f4-ac5c-d6c178075607",
+    name: "Customer Success",
+    slug: "customer-success",
+    price: 0,
+    description: {
+      en: "Standardize client onboarding, track health, prioritize accounts, and surface upsell opportunities. Operate from one hub with guided pages and a unified Client Onboarding database.",
+      ru: "\u0421\u0442\u0430\u043D\u0434\u0430\u0440\u0442\u0438\u0437\u0438\u0440\u0443\u0439\u0442\u0435 \u043E\u043D\u0431\u043E\u0440\u0434\u0438\u043D\u0433 \u043A\u043B\u0438\u0435\u043D\u0442\u043E\u0432, \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435 \u0430\u043A\u043A\u0430\u0443\u043D\u0442\u043E\u0432, \u043F\u0440\u0438\u043E\u0440\u0438\u0442\u0438\u0437\u0438\u0440\u0443\u0439\u0442\u0435 \u0438 \u043D\u0430\u0445\u043E\u0434\u0438\u0442\u0435 \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u0438 \u0434\u043B\u044F \u0434\u043E\u043F\u0440\u043E\u0434\u0430\u0436. \u0412\u0441\u0451 \u0432 \u043E\u0434\u043D\u043E\u043C \u0445\u0430\u0431\u0435."
+    },
+    category: { en: "Customer Journey", ru: "\u041F\u0443\u0442\u044C \u043A\u043B\u0438\u0435\u043D\u0442\u0430" },
+    categoryGroup: "operations",
+    icon: "Heart",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20"
+  },
+  {
+    id: "2b3d872b-594c-814b-b32b-0064da74cf22",
+    name: "Consulting: Consultation Hours",
+    slug: "consulting-consultation-hours",
+    price: 0,
+    description: {
+      en: "Log every consulting session with clients, track hours, rates, payments, and outcomes. See who owes what, when the next session is, and how many package hours remain.",
+      ru: "\u0417\u0430\u043F\u0438\u0441\u044B\u0432\u0430\u0439\u0442\u0435 \u043A\u0430\u0436\u0434\u0443\u044E \u043A\u043E\u043D\u0441\u0443\u043B\u044C\u0442\u0430\u0446\u0438\u044E, \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u0447\u0430\u0441\u044B, \u0441\u0442\u0430\u0432\u043A\u0438, \u043F\u043B\u0430\u0442\u0435\u0436\u0438 \u0438 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u044B. \u0412\u0438\u0434\u0438\u0442\u0435, \u043A\u0442\u043E \u0434\u043E\u043B\u0436\u0435\u043D, \u043A\u043E\u0433\u0434\u0430 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0430\u044F \u0441\u0435\u0441\u0441\u0438\u044F \u0438 \u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0447\u0430\u0441\u043E\u0432 \u043E\u0441\u0442\u0430\u043B\u043E\u0441\u044C."
+    },
+    category: { en: "Operations", ru: "\u041E\u043F\u0435\u0440\u0430\u0446\u0438\u0438" },
+    categoryGroup: "operations",
+    icon: "Clock",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20"
+  },
+  {
+    id: "free-ai-tools-tracker",
+    name: "AI Tools Tracker",
+    slug: "ai-tools-tracker",
+    price: 0,
+    description: {
+      en: "System for organizing AI resources. Capture discoveries, compare features, track expenses. From scattered bookmarks to a curated intelligence hub that protects your budget.",
+      ru: "\u0421\u0438\u0441\u0442\u0435\u043C\u0430 \u0434\u043B\u044F \u043E\u0440\u0433\u0430\u043D\u0438\u0437\u0430\u0446\u0438\u0438 \u0418\u0418-\u0440\u0435\u0441\u0443\u0440\u0441\u043E\u0432. \u0417\u0430\u0445\u0432\u0430\u0442\u044B\u0432\u0430\u0439\u0442\u0435 \u043D\u0430\u0445\u043E\u0434\u043A\u0438, \u0441\u0440\u0430\u0432\u043D\u0438\u0432\u0430\u0439\u0442\u0435 \u0444\u0443\u043D\u043A\u0446\u0438\u0438, \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u0440\u0430\u0441\u0445\u043E\u0434\u044B. \u041E\u0442 \u0440\u0430\u0437\u0431\u0440\u043E\u0441\u0430\u043D\u043D\u044B\u0445 \u0437\u0430\u043A\u043B\u0430\u0434\u043E\u043A \u043A \u043A\u0443\u0440\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u043E\u043C\u0443 \u0445\u0430\u0431\u0443."
+    },
+    category: { en: "Product", ru: "\u041F\u0440\u043E\u0434\u0443\u043A\u0442" },
+    categoryGroup: "product",
+    icon: "Bot",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20"
+  },
+  {
+    id: "free-hypothesis-testing",
+    name: "Hypothesis Testing",
+    slug: "hypothesis-testing",
+    price: 0,
+    description: {
+      en: "System for experiment management. Formulate hypotheses, prioritize ideas, track results. From chaotic spreadsheets and chats to data-driven product growth based on verified insights.",
+      ru: "\u0421\u0438\u0441\u0442\u0435\u043C\u0430 \u0443\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u044D\u043A\u0441\u043F\u0435\u0440\u0438\u043C\u0435\u043D\u0442\u0430\u043C\u0438. \u0424\u043E\u0440\u043C\u0443\u043B\u0438\u0440\u0443\u0439\u0442\u0435 \u0433\u0438\u043F\u043E\u0442\u0435\u0437\u044B, \u043F\u0440\u0438\u043E\u0440\u0438\u0442\u0438\u0437\u0438\u0440\u0443\u0439\u0442\u0435 \u0438\u0434\u0435\u0438, \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u044B. \u041E\u0442 \u0445\u0430\u043E\u0441\u0430 \u043A data-driven \u0440\u043E\u0441\u0442\u0443."
+    },
+    category: { en: "Operations", ru: "\u041E\u043F\u0435\u0440\u0430\u0446\u0438\u0438" },
+    categoryGroup: "operations",
+    icon: "FlaskConical",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20"
+  },
+  {
+    id: "free-product-market-fit",
+    name: "Product-Market Fit",
+    slug: "product-market-fit",
+    price: 0,
+    description: {
+      en: "Track key metrics, map their dependencies, and test growth hypotheses. From scattered spreadsheets and data chaos to complete clarity on your product's health.",
+      ru: "\u041E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u043A\u043B\u044E\u0447\u0435\u0432\u044B\u0435 \u043C\u0435\u0442\u0440\u0438\u043A\u0438, \u043E\u0442\u043E\u0431\u0440\u0430\u0436\u0430\u0439\u0442\u0435 \u0437\u0430\u0432\u0438\u0441\u0438\u043C\u043E\u0441\u0442\u0438 \u0438 \u0442\u0435\u0441\u0442\u0438\u0440\u0443\u0439\u0442\u0435 \u0433\u0438\u043F\u043E\u0442\u0435\u0437\u044B \u0440\u043E\u0441\u0442\u0430. \u041E\u0442 \u0440\u0430\u0437\u0431\u0440\u043E\u0441\u0430\u043D\u043D\u044B\u0445 \u0442\u0430\u0431\u043B\u0438\u0446 \u043A \u043F\u043E\u043B\u043D\u043E\u0439 \u044F\u0441\u043D\u043E\u0441\u0442\u0438 \u043E \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435 \u043F\u0440\u043E\u0434\u0443\u043A\u0442\u0430."
+    },
+    category: { en: "Planning & Goals", ru: "\u041F\u043B\u0430\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435 \u0438 \u0446\u0435\u043B\u0438" },
+    categoryGroup: "product",
+    icon: "TrendingUp",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20"
+  },
+  {
+    id: "free-suppliers-database",
+    name: "Suppliers Database",
+    slug: "suppliers-database-01",
+    price: 0,
+    description: {
+      en: "Keep every supplier in one place \u2014 contacts, contracts, ratings, and order history. Compare alternatives, track payment terms, and never lose a vendor's details again.",
+      ru: "\u0414\u0435\u0440\u0436\u0438\u0442\u0435 \u043A\u0430\u0436\u0434\u043E\u0433\u043E \u043F\u043E\u0441\u0442\u0430\u0432\u0449\u0438\u043A\u0430 \u0432 \u043E\u0434\u043D\u043E\u043C \u043C\u0435\u0441\u0442\u0435 \u2014 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u044B, \u043A\u043E\u043D\u0442\u0440\u0430\u043A\u0442\u044B, \u0440\u0435\u0439\u0442\u0438\u043D\u0433\u0438 \u0438 \u0438\u0441\u0442\u043E\u0440\u0438\u044F \u0437\u0430\u043A\u0430\u0437\u043E\u0432. \u0421\u0440\u0430\u0432\u043D\u0438\u0432\u0430\u0439\u0442\u0435 \u0430\u043B\u044C\u0442\u0435\u0440\u043D\u0430\u0442\u0438\u0432\u044B \u0438 \u043D\u0438\u043A\u043E\u0433\u0434\u0430 \u043D\u0435 \u0442\u0435\u0440\u044F\u0439\u0442\u0435 \u0434\u0430\u043D\u043D\u044B\u0435 \u043F\u043E\u0441\u0442\u0430\u0432\u0449\u0438\u043A\u043E\u0432."
+    },
+    category: { en: "Operations", ru: "\u041E\u043F\u0435\u0440\u0430\u0446\u0438\u0438" },
+    categoryGroup: "operations",
+    icon: "Truck",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20"
+  },
+  {
+    id: "free-time-off-tracking",
+    name: "Time Off and Sick Leave Tracking",
+    slug: "time-off-and-sick-leave-tracking",
+    price: 0,
+    description: {
+      en: "Plan schedules, assign deputies, avoid conflicts. From staffing surprises to seamless continuity with a built-in team absence management system.",
+      ru: "\u041F\u043B\u0430\u043D\u0438\u0440\u0443\u0439\u0442\u0435 \u0433\u0440\u0430\u0444\u0438\u043A\u0438, \u043D\u0430\u0437\u043D\u0430\u0447\u0430\u0439\u0442\u0435 \u0437\u0430\u043C\u0435\u0441\u0442\u0438\u0442\u0435\u043B\u0435\u0439, \u0438\u0437\u0431\u0435\u0433\u0430\u0439\u0442\u0435 \u043A\u043E\u043D\u0444\u043B\u0438\u043A\u0442\u043E\u0432. \u041E\u0442 \u043A\u0430\u0434\u0440\u043E\u0432\u044B\u0445 \u0441\u044E\u0440\u043F\u0440\u0438\u0437\u043E\u0432 \u043A \u0431\u0435\u0441\u043F\u0435\u0440\u0435\u0431\u043E\u0439\u043D\u043E\u0439 \u0440\u0430\u0431\u043E\u0442\u0435 \u043A\u043E\u043C\u0430\u043D\u0434\u044B."
+    },
+    category: { en: "Operations", ru: "\u041E\u043F\u0435\u0440\u0430\u0446\u0438\u0438" },
+    categoryGroup: "operations",
+    icon: "CalendarOff",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20"
+  },
+  {
+    id: "free-accounts-receivable",
+    name: "Accounts Receivable Tracking",
+    slug: "accounts-receivable-tracking",
+    price: 0,
+    description: {
+      en: "Track every outstanding debt from first invoice to final payment. See who owes what, how long it's overdue, and where to focus your collection efforts \u2014 all in one structured hub.",
+      ru: "\u041E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u043A\u0430\u0436\u0434\u0443\u044E \u0437\u0430\u0434\u043E\u043B\u0436\u0435\u043D\u043D\u043E\u0441\u0442\u044C \u043E\u0442 \u043F\u0435\u0440\u0432\u043E\u0433\u043E \u0438\u043D\u0432\u043E\u0439\u0441\u0430 \u0434\u043E \u0444\u0438\u043D\u0430\u043B\u044C\u043D\u043E\u0439 \u043E\u043F\u043B\u0430\u0442\u044B. \u0412\u0438\u0434\u0438\u0442\u0435, \u043A\u0442\u043E \u0434\u043E\u043B\u0436\u0435\u043D, \u043D\u0430\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u043F\u0440\u043E\u0441\u0440\u043E\u0447\u0435\u043D\u043E \u0438 \u043D\u0430 \u0447\u0451\u043C \u0441\u0444\u043E\u043A\u0443\u0441\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F."
+    },
+    category: { en: "Operations", ru: "\u041E\u043F\u0435\u0440\u0430\u0446\u0438\u0438" },
+    categoryGroup: "finance",
+    icon: "Receipt",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20"
+  },
+  {
+    id: "free-sales-scripts",
+    name: "Sales Scripts",
+    slug: "sales-scripts",
+    price: 0,
+    description: {
+      en: "Your team's playbook for every sales conversation \u2014 from cold calls to closing deals. Store scripts, track what works, and give every rep the words that win.",
+      ru: "\u041F\u043B\u044D\u0439\u0431\u0443\u043A \u043A\u043E\u043C\u0430\u043D\u0434\u044B \u0434\u043B\u044F \u043A\u0430\u0436\u0434\u043E\u0433\u043E \u0440\u0430\u0437\u0433\u043E\u0432\u043E\u0440\u0430 \u2014 \u043E\u0442 \u0445\u043E\u043B\u043E\u0434\u043D\u044B\u0445 \u0437\u0432\u043E\u043D\u043A\u043E\u0432 \u0434\u043E \u0437\u0430\u043A\u0440\u044B\u0442\u0438\u044F \u0441\u0434\u0435\u043B\u043E\u043A. \u0425\u0440\u0430\u043D\u0438\u0442\u0435 \u0441\u043A\u0440\u0438\u043F\u0442\u044B \u0438 \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435, \u0447\u0442\u043E \u0440\u0430\u0431\u043E\u0442\u0430\u0435\u0442."
+    },
+    category: { en: "Operations", ru: "\u041E\u043F\u0435\u0440\u0430\u0446\u0438\u0438" },
+    categoryGroup: "marketing",
+    icon: "MessageSquareText",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20"
+  },
+  {
+    id: "free-product-backlog",
+    name: "Product Backlog",
+    slug: "product-backlog-571",
+    price: 0,
+    description: {
+      en: "Turn scattered feature requests into a prioritized roadmap. Score ideas with RICE, track sprints, assign teams, and ship what matters \u2014 all in one structured backlog.",
+      ru: "\u041F\u0440\u0435\u0432\u0440\u0430\u0442\u0438\u0442\u0435 \u0440\u0430\u0437\u0431\u0440\u043E\u0441\u0430\u043D\u043D\u044B\u0435 \u0437\u0430\u043F\u0440\u043E\u0441\u044B \u0432 \u043F\u0440\u0438\u043E\u0440\u0438\u0442\u0438\u0437\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u0440\u043E\u0430\u0434\u043C\u0430\u043F. \u041E\u0446\u0435\u043D\u0438\u0432\u0430\u0439\u0442\u0435 \u0438\u0434\u0435\u0438 \u0447\u0435\u0440\u0435\u0437 RICE, \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u0441\u043F\u0440\u0438\u043D\u0442\u044B \u0438 \u043F\u043E\u0441\u0442\u0430\u0432\u043B\u044F\u0439\u0442\u0435 \u0442\u043E, \u0447\u0442\u043E \u0432\u0430\u0436\u043D\u043E."
+    },
+    category: { en: "Product", ru: "\u041F\u0440\u043E\u0434\u0443\u043A\u0442" },
+    categoryGroup: "product",
+    icon: "ListTodo",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20"
+  },
+  {
+    id: "free-meal-planner",
+    name: "Meal Planner",
+    slug: "meal-planner-149",
+    price: 0,
+    description: {
+      en: `Save recipes, plan weekly menus, and track meal variety. From the eternal "what's for dinner" question to stress-free cooking and fewer takeout orders.`,
+      ru: "\u0421\u043E\u0445\u0440\u0430\u043D\u044F\u0439\u0442\u0435 \u0440\u0435\u0446\u0435\u043F\u0442\u044B, \u043F\u043B\u0430\u043D\u0438\u0440\u0443\u0439\u0442\u0435 \u0435\u0436\u0435\u043D\u0435\u0434\u0435\u043B\u044C\u043D\u043E\u0435 \u043C\u0435\u043D\u044E \u0438 \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u0440\u0430\u0437\u043D\u043E\u043E\u0431\u0440\u0430\u0437\u0438\u0435. \u041E\u0442 \u0432\u0435\u0447\u043D\u043E\u0433\u043E \xAB\u0447\u0442\u043E \u043D\u0430 \u0443\u0436\u0438\u043D\xBB \u043A \u0433\u043E\u0442\u043E\u0432\u043A\u0435 \u0431\u0435\u0437 \u0441\u0442\u0440\u0435\u0441\u0441\u0430."
+    },
+    category: { en: "Health & Fitness", ru: "\u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435" },
+    categoryGroup: "health",
+    icon: "UtensilsCrossed",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20"
+  },
+  {
+    id: "free-editorial-calendar",
+    name: "Editorial Calendar",
+    slug: "editorial-calendar-794",
+    price: 0,
+    description: {
+      en: "Capture ideas, schedule posts, manage editorial balance. From deadline panic to strategic posting with a built-in content planning system.",
+      ru: "\u0417\u0430\u0445\u0432\u0430\u0442\u044B\u0432\u0430\u0439\u0442\u0435 \u0438\u0434\u0435\u0438, \u043F\u043B\u0430\u043D\u0438\u0440\u0443\u0439\u0442\u0435 \u043F\u043E\u0441\u0442\u044B, \u0443\u043F\u0440\u0430\u0432\u043B\u044F\u0439\u0442\u0435 \u0440\u0435\u0434\u0430\u043A\u0446\u0438\u043E\u043D\u043D\u044B\u043C \u0431\u0430\u043B\u0430\u043D\u0441\u043E\u043C. \u041E\u0442 \u043F\u0430\u043D\u0438\u043A\u0438 \u0434\u0435\u0434\u043B\u0430\u0439\u043D\u043E\u0432 \u043A \u0441\u0442\u0440\u0430\u0442\u0435\u0433\u0438\u0447\u0435\u0441\u043A\u043E\u043C\u0443 \u043A\u043E\u043D\u0442\u0435\u043D\u0442-\u043F\u043B\u0430\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044E."
+    },
+    category: { en: "Social Media Planner", ru: "\u041A\u043E\u043D\u0442\u0435\u043D\u0442-\u043F\u043B\u0430\u043D" },
+    categoryGroup: "marketing",
+    icon: "CalendarDays",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20"
+  },
+  {
+    id: "free-team-time-tracking",
+    name: "Team Time Tracking",
+    slug: "team-time-tracking",
+    price: 0,
+    description: {
+      en: "Log hours, track workload, calculate project budgets. From spreadsheet chaos and guesswork to transparent, data-driven leadership with team resource management.",
+      ru: "\u0417\u0430\u043F\u0438\u0441\u044B\u0432\u0430\u0439\u0442\u0435 \u0447\u0430\u0441\u044B, \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u043D\u0430\u0433\u0440\u0443\u0437\u043A\u0443, \u0441\u0447\u0438\u0442\u0430\u0439\u0442\u0435 \u0431\u044E\u0434\u0436\u0435\u0442\u044B \u043F\u0440\u043E\u0435\u043A\u0442\u043E\u0432. \u041E\u0442 \u0442\u0430\u0431\u043B\u0438\u0446 \u0438 \u0434\u043E\u0433\u0430\u0434\u043E\u043A \u043A \u043F\u0440\u043E\u0437\u0440\u0430\u0447\u043D\u043E\u043C\u0443 \u0443\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u044E \u0440\u0435\u0441\u0443\u0440\u0441\u0430\u043C\u0438 \u043A\u043E\u043C\u0430\u043D\u0434\u044B."
+    },
+    category: { en: "Operations", ru: "\u041E\u043F\u0435\u0440\u0430\u0446\u0438\u0438" },
+    categoryGroup: "operations",
+    icon: "Timer",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20"
+  },
+  {
+    id: "free-courses-modules",
+    name: "Courses: Modules and Lessons",
+    slug: "courses-modules-and-lessons",
+    price: 0,
+    description: {
+      en: "Structure your online course from modules to individual lessons. Track content readiness, assign instructors, link lessons in sequence, and monitor student completion rates.",
+      ru: "\u0421\u0442\u0440\u0443\u043A\u0442\u0443\u0440\u0438\u0440\u0443\u0439\u0442\u0435 \u043E\u043D\u043B\u0430\u0439\u043D-\u043A\u0443\u0440\u0441 \u043E\u0442 \u043C\u043E\u0434\u0443\u043B\u0435\u0439 \u0434\u043E \u043E\u0442\u0434\u0435\u043B\u044C\u043D\u044B\u0445 \u0443\u0440\u043E\u043A\u043E\u0432. \u041E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u0433\u043E\u0442\u043E\u0432\u043D\u043E\u0441\u0442\u044C \u043A\u043E\u043D\u0442\u0435\u043D\u0442\u0430, \u043D\u0430\u0437\u043D\u0430\u0447\u0430\u0439\u0442\u0435 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440\u043E\u0432 \u0438 \u043A\u043E\u043D\u0442\u0440\u043E\u043B\u0438\u0440\u0443\u0439\u0442\u0435 \u043F\u0440\u043E\u0433\u0440\u0435\u0441\u0441 \u0441\u0442\u0443\u0434\u0435\u043D\u0442\u043E\u0432."
+    },
+    category: { en: "Teaching", ru: "\u041E\u0431\u0443\u0447\u0435\u043D\u0438\u0435" },
+    categoryGroup: "teaching",
+    icon: "GraduationCap",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20"
+  },
+  {
+    id: "free-objection-database",
+    name: "Objection Database",
+    slug: "objection-database",
+    price: 0,
+    description: {
+      en: "Equip your sales team with proven scripts for every customer objection. Categorize by type and funnel stage, track conversion rates, and train new reps faster with real dialogue examples.",
+      ru: "\u041E\u0441\u043D\u0430\u0441\u0442\u0438\u0442\u0435 \u043A\u043E\u043C\u0430\u043D\u0434\u0443 \u043F\u0440\u043E\u0434\u0430\u0436 \u0441\u043A\u0440\u0438\u043F\u0442\u0430\u043C\u0438 \u0434\u043B\u044F \u043A\u0430\u0436\u0434\u043E\u0433\u043E \u0432\u043E\u0437\u0440\u0430\u0436\u0435\u043D\u0438\u044F. \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0437\u0438\u0440\u0443\u0439\u0442\u0435, \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u043A\u043E\u043D\u0432\u0435\u0440\u0441\u0438\u0438 \u0438 \u043E\u0431\u0443\u0447\u0430\u0439\u0442\u0435 \u043D\u043E\u0432\u044B\u0445 \u0431\u044B\u0441\u0442\u0440\u0435\u0435 \u043D\u0430 \u0440\u0435\u0430\u043B\u044C\u043D\u044B\u0445 \u043F\u0440\u0438\u043C\u0435\u0440\u0430\u0445."
+    },
+    category: { en: "Marketing", ru: "\u041C\u0430\u0440\u043A\u0435\u0442\u0438\u043D\u0433" },
+    categoryGroup: "marketing",
+    icon: "Shield",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20"
+  },
+  {
+    id: "free-beauty-salon",
+    name: "Beauty Salon: Client Booking",
+    slug: "beauty-salon-client-booking",
+    price: 0,
+    description: {
+      en: "Manage every salon appointment from booking to payment. Track specialists, services, materials, client history, prepayments, bonus points, cancellations, and before/after photos.",
+      ru: "\u0423\u043F\u0440\u0430\u0432\u043B\u044F\u0439\u0442\u0435 \u043A\u0430\u0436\u0434\u043E\u0439 \u0437\u0430\u043F\u0438\u0441\u044C\u044E \u043E\u0442 \u0431\u0440\u043E\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F \u0434\u043E \u043E\u043F\u043B\u0430\u0442\u044B. \u041E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u0441\u043F\u0435\u0446\u0438\u0430\u043B\u0438\u0441\u0442\u043E\u0432, \u0443\u0441\u043B\u0443\u0433\u0438, \u0438\u0441\u0442\u043E\u0440\u0438\u044E \u043A\u043B\u0438\u0435\u043D\u0442\u043E\u0432, \u043F\u0440\u0435\u0434\u043E\u043F\u043B\u0430\u0442\u044B \u0438 \u0444\u043E\u0442\u043E\u0434\u043E/\u043F\u043E\u0441\u043B\u0435."
+    },
+    category: { en: "Operations", ru: "\u041E\u043F\u0435\u0440\u0430\u0446\u0438\u0438" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20"
+  },
+  {
+    id: "free-referral-program",
+    name: "Referral Program",
+    slug: "suppliers-database",
+    price: 0,
+    description: {
+      en: "Track every referral from registration to purchase. Monitor referrer performance, reward payouts, conversion rates, and referral quality \u2014 to grow your customer base through word of mouth.",
+      ru: "\u041E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u043A\u0430\u0436\u0434\u0443\u044E \u0440\u0435\u0444\u0435\u0440\u0430\u043B\u044C\u043D\u0443\u044E \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044E \u0434\u043E \u043F\u043E\u043A\u0443\u043F\u043A\u0438. \u041C\u043E\u043D\u0438\u0442\u043E\u0440\u044C\u0442\u0435 \u043F\u0440\u043E\u0438\u0437\u0432\u043E\u0434\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C, \u0432\u044B\u043F\u043B\u0430\u0442\u044B, \u043A\u043E\u043D\u0432\u0435\u0440\u0441\u0438\u0438 \u0438 \u043A\u0430\u0447\u0435\u0441\u0442\u0432\u043E \u0440\u0435\u0444\u0435\u0440\u0430\u043B\u043E\u0432."
+    },
+    category: { en: "Marketing", ru: "\u041C\u0430\u0440\u043A\u0435\u0442\u0438\u043D\u0433" },
+    categoryGroup: "marketing",
+    icon: "Users",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20"
+  },
+  {
+    id: "free-returns-refunds",
+    name: "Returns & Refunds",
+    slug: "returns-refunds",
+    price: 0,
+    description: {
+      en: "Turn returns from a headache into actionable data. Track every refund request, analyze reasons, spot problematic items and customers \u2014 and reduce return rates with clear insights.",
+      ru: "\u041F\u0440\u0435\u0432\u0440\u0430\u0442\u0438\u0442\u0435 \u0432\u043E\u0437\u0432\u0440\u0430\u0442\u044B \u0438\u0437 \u0433\u043E\u043B\u043E\u0432\u043D\u043E\u0439 \u0431\u043E\u043B\u0438 \u0432 \u0434\u0430\u043D\u043D\u044B\u0435. \u041E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u043A\u0430\u0436\u0434\u044B\u0439 \u0437\u0430\u043F\u0440\u043E\u0441, \u0430\u043D\u0430\u043B\u0438\u0437\u0438\u0440\u0443\u0439\u0442\u0435 \u043F\u0440\u0438\u0447\u0438\u043D\u044B \u0438 \u0441\u043D\u0438\u0436\u0430\u0439\u0442\u0435 \u043F\u0440\u043E\u0446\u0435\u043D\u0442 \u0432\u043E\u0437\u0432\u0440\u0430\u0442\u043E\u0432."
+    },
+    category: { en: "Operations", ru: "\u041E\u043F\u0435\u0440\u0430\u0446\u0438\u0438" },
+    categoryGroup: "operations",
+    icon: "RotateCcw",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20"
+  },
+  {
+    id: "free-quality-control",
+    name: "Quality Control",
+    slug: "quality-control",
+    price: 0,
+    description: {
+      en: "Log every quality inspection from incoming materials to customer complaints. Track defect rates, root causes, corrective actions, and financial losses \u2014 so quality issues never repeat.",
+      ru: "\u0417\u0430\u043F\u0438\u0441\u044B\u0432\u0430\u0439\u0442\u0435 \u043A\u0430\u0436\u0434\u0443\u044E \u0438\u043D\u0441\u043F\u0435\u043A\u0446\u0438\u044E \u043A\u0430\u0447\u0435\u0441\u0442\u0432\u0430. \u041E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u0443\u0440\u043E\u0432\u0435\u043D\u044C \u0434\u0435\u0444\u0435\u043A\u0442\u043E\u0432, \u043A\u043E\u0440\u043D\u0435\u0432\u044B\u0435 \u043F\u0440\u0438\u0447\u0438\u043D\u044B, \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u0438\u0440\u0443\u044E\u0449\u0438\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044F \u0438 \u0444\u0438\u043D\u0430\u043D\u0441\u043E\u0432\u044B\u0435 \u043F\u043E\u0442\u0435\u0440\u0438."
+    },
+    category: { en: "Operations", ru: "\u041E\u043F\u0435\u0440\u0430\u0446\u0438\u0438" },
+    categoryGroup: "operations",
+    icon: "CheckCircle",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20"
+  },
+  {
+    id: "free-idea-bank",
+    name: "Idea Bank",
+    slug: "idea-bank-959",
+    price: 0,
+    description: {
+      en: "Capture, evaluate, and develop ideas from spark to implementation. Score each idea by potential, urgency, and resources needed \u2014 then track status, next steps, and outcomes.",
+      ru: "\u0417\u0430\u0445\u0432\u0430\u0442\u044B\u0432\u0430\u0439\u0442\u0435, \u043E\u0446\u0435\u043D\u0438\u0432\u0430\u0439\u0442\u0435 \u0438 \u0440\u0430\u0437\u0432\u0438\u0432\u0430\u0439\u0442\u0435 \u0438\u0434\u0435\u0438 \u043E\u0442 \u0438\u0441\u043A\u0440\u044B \u0434\u043E \u0440\u0435\u0430\u043B\u0438\u0437\u0430\u0446\u0438\u0438. \u041E\u0446\u0435\u043D\u0438\u0432\u0430\u0439\u0442\u0435 \u043F\u043E \u043F\u043E\u0442\u0435\u043D\u0446\u0438\u0430\u043B\u0443, \u0441\u0440\u043E\u0447\u043D\u043E\u0441\u0442\u0438 \u0438 \u0440\u0435\u0441\u0443\u0440\u0441\u0430\u043C \u2014 \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u0441\u0442\u0430\u0442\u0443\u0441\u044B \u0438 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u044B."
+    },
+    category: { en: "Personal Productivity", ru: "\u041B\u0438\u0447\u043D\u0430\u044F \u043F\u0440\u043E\u0434\u0443\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u044C" },
+    categoryGroup: "personal-productivity",
+    icon: "Lightbulb",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20"
+  },
+  {
+    id: "free-customer-segmentation",
+    name: "Customer Segmentation",
+    slug: "customer-segmentation",
+    price: 0,
+    description: {
+      en: "Segment your customers by value, behavior, and engagement using RFM analysis, tier classification, and churn risk tracking. See exactly who drives your revenue \u2014 and who needs attention.",
+      ru: "\u0421\u0435\u0433\u043C\u0435\u043D\u0442\u0438\u0440\u0443\u0439\u0442\u0435 \u043A\u043B\u0438\u0435\u043D\u0442\u043E\u0432 \u043F\u043E \u0446\u0435\u043D\u043D\u043E\u0441\u0442\u0438, \u043F\u043E\u0432\u0435\u0434\u0435\u043D\u0438\u044E \u0438 \u0432\u043E\u0432\u043B\u0435\u0447\u0451\u043D\u043D\u043E\u0441\u0442\u0438 \u0447\u0435\u0440\u0435\u0437 RFM-\u0430\u043D\u0430\u043B\u0438\u0437, \u043A\u043B\u0430\u0441\u0441\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u044E \u043F\u043E \u0442\u0438\u0440\u0430\u043C \u0438 \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u043D\u0438\u0435 \u0440\u0438\u0441\u043A\u0430 \u043E\u0442\u0442\u043E\u043A\u0430."
+    },
+    category: { en: "Marketing", ru: "\u041C\u0430\u0440\u043A\u0435\u0442\u0438\u043D\u0433" },
+    categoryGroup: "marketing",
+    icon: "PieChart",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20"
+  },
+  {
+    id: "free-invoice-tracker",
+    name: "Invoice Tracker",
+    slug: "invoice-tracker-615",
+    price: 0,
+    description: {
+      en: "Track every invoice from draft to payment. See what's outstanding, what's overdue, and what's been paid \u2014 with dedicated views for clients, projects, reminders, and quarterly reports.",
+      ru: "\u041E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0439\u0442\u0435 \u043A\u0430\u0436\u0434\u044B\u0439 \u0438\u043D\u0432\u043E\u0439\u0441 \u043E\u0442 \u0447\u0435\u0440\u043D\u043E\u0432\u0438\u043A\u0430 \u0434\u043E \u043E\u043F\u043B\u0430\u0442\u044B. \u0412\u0438\u0434\u0438\u0442\u0435 \u0434\u0435\u0431\u0438\u0442\u043E\u0440\u043A\u0443, \u043F\u0440\u043E\u0441\u0440\u043E\u0447\u043A\u0443 \u0438 \u043E\u043F\u043B\u0430\u0442\u044B \u2014 \u0441 \u043E\u0442\u0434\u0435\u043B\u044C\u043D\u044B\u043C\u0438 \u0432\u0438\u0434\u0430\u043C\u0438 \u043F\u043E \u043A\u043B\u0438\u0435\u043D\u0442\u0430\u043C, \u043F\u0440\u043E\u0435\u043A\u0442\u0430\u043C \u0438 \u043E\u0442\u0447\u0451\u0442\u0430\u043C."
+    },
+    category: { en: "Personal Finance", ru: "\u041B\u0438\u0447\u043D\u044B\u0435 \u0444\u0438\u043D\u0430\u043D\u0441\u044B" },
+    categoryGroup: "finance",
+    icon: "FileText",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20"
+  },
+  {
+    id: "free-support-service",
+    name: "Support Service (Tickets)",
+    slug: "support-service-tickets",
+    price: 0,
+    description: {
+      en: "Turn every customer request into a trackable ticket with built-in SLA monitoring, multi-channel intake, escalation workflows, and satisfaction scoring \u2014 so nothing slips through the cracks.",
+      ru: "\u041F\u0440\u0435\u0432\u0440\u0430\u0442\u0438\u0442\u0435 \u043A\u0430\u0436\u0434\u044B\u0439 \u0437\u0430\u043F\u0440\u043E\u0441 \u0432 \u0442\u0438\u043A\u0435\u0442 \u0441 SLA-\u043C\u043E\u043D\u0438\u0442\u043E\u0440\u0438\u043D\u0433\u043E\u043C, \u043C\u043D\u043E\u0433\u043E\u043A\u0430\u043D\u0430\u043B\u044C\u043D\u044B\u043C \u043F\u0440\u0438\u0451\u043C\u043E\u043C, \u044D\u0441\u043A\u0430\u043B\u0430\u0446\u0438\u044F\u043C\u0438 \u0438 \u043E\u0446\u0435\u043D\u043A\u043E\u0439 \u0443\u0434\u043E\u0432\u043B\u0435\u0442\u0432\u043E\u0440\u0451\u043D\u043D\u043E\u0441\u0442\u0438."
+    },
+    category: { en: "Operations", ru: "\u041E\u043F\u0435\u0440\u0430\u0446\u0438\u0438" },
+    categoryGroup: "operations",
+    icon: "Headphones",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20"
+  },
+  {
+    id: "free-simple-tasks",
+    name: "Simple Tasks",
+    slug: "simple-tasks-n",
+    price: 0,
+    description: {
+      en: "Ideal for freelancers and managers struggling with routine. Use for daily planning of work tasks or personal projects.",
+      ru: "\u0418\u0434\u0435\u0430\u043B\u044C\u043D\u043E \u0434\u043B\u044F \u0444\u0440\u0438\u043B\u0430\u043D\u0441\u0435\u0440\u043E\u0432 \u0438 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u043E\u0432. \u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u0434\u043B\u044F \u0435\u0436\u0435\u0434\u043D\u0435\u0432\u043D\u043E\u0433\u043E \u043F\u043B\u0430\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F \u0440\u0430\u0431\u043E\u0447\u0438\u0445 \u0437\u0430\u0434\u0430\u0447 \u0438\u043B\u0438 \u043B\u0438\u0447\u043D\u044B\u0445 \u043F\u0440\u043E\u0435\u043A\u0442\u043E\u0432."
+    },
+    category: { en: "Personal Productivity", ru: "\u041B\u0438\u0447\u043D\u0430\u044F \u043F\u0440\u043E\u0434\u0443\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u044C" },
+    categoryGroup: "personal-productivity",
+    icon: "CheckSquare",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20"
+  },
+  {
+    id: "free-knowledge-base",
+    name: "Knowledge Base (Second Brain)",
+    slug: "knowledge-base-second-brain",
+    price: 0,
+    description: {
+      en: "Capture every insight, article, quote, and instruction \u2014 tag it, link it, and find it when it matters. Your thinking, finally organized.",
+      ru: "\u0417\u0430\u0445\u0432\u0430\u0442\u044B\u0432\u0430\u0439\u0442\u0435 \u043A\u0430\u0436\u0434\u0443\u044E \u0438\u0434\u0435\u044E, \u0441\u0442\u0430\u0442\u044C\u044E, \u0446\u0438\u0442\u0430\u0442\u0443 \u0438 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u044E \u2014 \u0442\u0435\u0433\u0438\u0440\u0443\u0439\u0442\u0435, \u0441\u0432\u044F\u0437\u044B\u0432\u0430\u0439\u0442\u0435 \u0438 \u043D\u0430\u0445\u043E\u0434\u0438\u0442\u0435, \u043A\u043E\u0433\u0434\u0430 \u043D\u0443\u0436\u043D\u043E. \u0412\u0430\u0448\u0435 \u043C\u044B\u0448\u043B\u0435\u043D\u0438\u0435, \u043D\u0430\u043A\u043E\u043D\u0435\u0446 \u043E\u0440\u0433\u0430\u043D\u0438\u0437\u043E\u0432\u0430\u043D\u043E."
+    },
+    category: { en: "Personal Productivity", ru: "\u041B\u0438\u0447\u043D\u0430\u044F \u043F\u0440\u043E\u0434\u0443\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u044C" },
+    categoryGroup: "personal-productivity",
+    icon: "BookOpen",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20"
+  },
+  {
+    id: "41550e87-8de8-4a9f-baf7-5c03a2f2988f",
+    name: "Manager's Weekly Planner",
+    slug: "manager-s-weekly-planner",
+    price: 35,
+    description: {
+      en: "Set clear weekly goals, break them into daily tasks with priorities, delegate work to your team, and run structured retrospectives \u2014 so you can spot what works, fix what doesn't, and repeat your best weeks.",
+      ru: "Set clear weekly goals, break them into daily tasks with priorities, delegate work to your team, and run structured retrospectives \u2014 so you can spot what works, fix what doesn't, and repeat your best weeks."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Target",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/manager-s-weekly-planner"
+  },
+  {
+    id: "58228156-8f5f-483b-9b1a-7a60917ccac1",
+    name: "Site Inspection Tracker",
+    slug: "site-inspection-tracker",
+    price: 39,
+    description: {
+      en: "Track site supervision from planning to closeout in one connected workspace. Manage sites, stages, work items, inspections, issues, and corrective actions so every finding has context, ownership, and follow-up",
+      ru: "Track site supervision from planning to closeout in one connected workspace. Manage sites, stages, work items, inspections, issues, and corrective actions so every finding has context, ownership, and follow-up"
+    },
+    category: { en: "Standard Operating Procedure (SOP)", ru: "Standard Operating Procedure (SOP)" },
+    categoryGroup: "operations",
+    icon: "Timer",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/site-inspection-tracker"
+  },
+  {
+    id: "5267356f-67c0-4a83-a5f1-ad12a84b5ec7",
+    name: "Investments OS",
+    slug: "investments-os",
+    price: 49,
+    description: {
+      en: "Track every asset, transaction, and dividend in one place. Set financial goals, monitor savings progress, and reflect on your investment decisions with a built-in journal \u2014 so your portfolio finally feels organized and intentional.",
+      ru: "Track every asset, transaction, and dividend in one place. Set financial goals, monitor savings progress, and reflect on your investment decisions with a built-in journal \u2014 so your portfolio finally feels organized and intentional."
+    },
+    category: { en: "Investing", ru: "Investing" },
+    categoryGroup: "finance",
+    icon: "TrendingUp",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/investments-os"
+  },
+  {
+    id: "0bf09185-b1f4-4a44-b52e-5706d11e8f6a",
+    name: "Corporate Knowledge Base",
+    slug: "corporate-knowledge-base",
+    price: 65,
+    description: {
+      en: "Turn scattered company knowledge into a structured, searchable library. Organize documents by topics and departments, track their lifecycle from draft to published, pin what matters most, and give your team instant answers through a built-in FAQ with priorities.",
+      ru: "Turn scattered company knowledge into a structured, searchable library. Organize documents by topics and departments, track their lifecycle from draft to published, pin what matters most, and give your team instant answers through a built-in FAQ with priorities."
+    },
+    category: { en: "Knowledge Base", ru: "Knowledge Base" },
+    categoryGroup: "operations",
+    icon: "Brain",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/corporate-knowledge-base"
+  },
+  {
+    id: "e22c5c42-5831-40b9-a8e1-e8ddb64f9e74",
+    name: "Goals Tracker",
+    slug: "goals-os-466",
+    price: 10,
+    description: {
+      en: "Set ambitious goals, break them into measurable key results, and launch initiatives on a visual roadmap \u2014 all linked by the OKR framework. Track progress from draft to done across quarters.",
+      ru: "Set ambitious goals, break them into measurable key results, and launch initiatives on a visual roadmap \u2014 all linked by the OKR framework. Track progress from draft to done across quarters."
+    },
+    category: { en: "Planning & Goals", ru: "Planning & Goals" },
+    categoryGroup: "personal-productivity",
+    icon: "Target",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/goals-os-466"
+  },
+  {
+    id: "78560f29-aba3-44ec-8b64-2ec48ad1caf1",
+    name: "SEO OS",
+    slug: "seo-os",
+    price: 50,
+    description: {
+      en: "Track keywords by position, manage content from idea to publish, fix technical issues by severity, and build links with a donor pipeline \u2014 all connected in one system. One source of truth instead of scattered spreadsheets",
+      ru: "Track keywords by position, manage content from idea to publish, fix technical issues by severity, and build links with a donor pipeline \u2014 all connected in one system. One source of truth instead of scattered spreadsheets"
+    },
+    category: { en: "SEO", ru: "SEO" },
+    categoryGroup: "marketing",
+    icon: "Search",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/seo-os"
+  },
+  {
+    id: "900ae4a4-ec45-439d-8df6-755ec09d2ec7",
+    name: "Company OS",
+    slug: "company-os-468",
+    price: 149,
+    description: {
+      en: "Run your entire company from one connected workspace. Manage tasks and projects, track quarterly goals, organize meetings, maintain a knowledge base, and keep your team aligned \u2014 everything linked and ready to use.",
+      ru: "Run your entire company from one connected workspace. Manage tasks and projects, track quarterly goals, organize meetings, maintain a knowledge base, and keep your team aligned \u2014 everything linked and ready to use."
+    },
+    category: { en: "Company Home Page", ru: "Company Home Page" },
+    categoryGroup: "operations",
+    icon: "Building2",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/company-os-468"
+  },
+  {
+    id: "ed9c3243-48d5-4ad7-be45-5e38c455e97f",
+    name: "Book Writing Planner",
+    slug: "book-writing-planner",
+    price: 29,
+    description: {
+      en: "Plan your book from first idea to final chapter. Organize manuscripts into chapters and scenes, build a cast of characters with roles and archetypes, create a world encyclopedia of locations, elements, history and magic \u2014 and track every writing session with word count goals and ",
+      ru: "Plan your book from first idea to final chapter. Organize manuscripts into chapters and scenes, build a cast of characters with roles and archetypes, create a world encyclopedia of locations, elements, history and magic \u2014 and track every writing session with word count goals and "
+    },
+    category: { en: "Hobbies", ru: "Hobbies" },
+    categoryGroup: "personal-productivity",
+    icon: "Target",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/book-writing-planner"
+  },
+  {
+    id: "c6301b54-be7a-4b54-a557-c4d2eb752e08",
+    name: "Book List",
+    slug: "book-list-300",
+    price: 0,
+    description: {
+      en: "Build your personal reading system: track what you read, capture key ideas and quotes, rate books, and see which insights you've actually applied in practice.",
+      ru: "Build your personal reading system: track what you read, capture key ideas and quotes, rate books, and see which insights you've actually applied in practice."
+    },
+    category: { en: "Personal Productivity", ru: "Personal Productivity" },
+    categoryGroup: "personal-productivity",
+    icon: "BookOpen",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/book-list-300"
+  },
+  {
+    id: "cdd57b95-2309-425a-becd-dde4c0196771",
+    name: "Investors Relations",
+    slug: "investors-relations",
+    price: 0,
+    description: {
+      en: "Lost track of an investor for 3 months? Investor database with mood tracking, update calendar, and cap table. See who's concerned, who's ready for follow-on, and whose commitments are overdue \u2014 in 30 seconds instead of an hour in Excel.",
+      ru: "Lost track of an investor for 3 months? Investor database with mood tracking, update calendar, and cap table. See who's concerned, who's ready for follow-on, and whose commitments are overdue \u2014 in 30 seconds instead of an hour in Excel."
+    },
+    category: { en: "Investing", ru: "Investing" },
+    categoryGroup: "finance",
+    icon: "Sparkles",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/investors-relations"
+  },
+  {
+    id: "b62bd21f-8ff3-433a-8f29-505554d2a2f3",
+    name: "Post\u2011Mortem (Project Review)",
+    slug: "post-mortem-project-review",
+    price: 0,
+    description: {
+      en: "System for Project Retrospectives. Identify root causes, link recurring issues, assign action items. From repeating the same mistakes to continuous team improvement.",
+      ru: "System for Project Retrospectives. Identify root causes, link recurring issues, assign action items. From repeating the same mistakes to continuous team improvement."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/post-mortem-project-review"
+  },
+  {
+    id: "794681ad-a8f8-4af6-977a-67e397a1d26b",
+    name: "Lead Magnet Funnel",
+    slug: "lead-magnet-funnel",
+    price: 0,
+    description: {
+      en: "Plan, launch, and measure every lead magnet in your funnel. Track subscriptions, email sequences, conversion rates, and revenue \u2014 so you double down on what actually brings customers.",
+      ru: "Plan, launch, and measure every lead magnet in your funnel. Track subscriptions, email sequences, conversion rates, and revenue \u2014 so you double down on what actually brings customers."
+    },
+    category: { en: "Marketing", ru: "Marketing" },
+    categoryGroup: "marketing",
+    icon: "Sparkles",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/lead-magnet-funnel"
+  },
+  {
+    id: "f05b5180-7016-460a-b326-d3f0d74b8d25",
+    name: "Daily To-Do List",
+    slug: "daily-to-do-list-204",
+    price: 0,
+    description: {
+      en: "Capture and organize daily tasks with priority, energy level, context tags, and time estimates. Mark what's for today, track status from start to done, and keep your day focused and realistic.",
+      ru: "Capture and organize daily tasks with priority, energy level, context tags, and time estimates. Mark what's for today, track status from start to done, and keep your day focused and realistic."
+    },
+    category: { en: "Personal Productivity", ru: "Personal Productivity" },
+    categoryGroup: "personal-productivity",
+    icon: "Sparkles",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/daily-to-do-list-204"
+  },
+  {
+    id: "e1d2fd62-1348-4a00-9b6a-8822c8f8efca",
+    name: "Learning Tracker",
+    slug: "learning-tracker-327",
+    price: 0,
+    description: {
+      en: "Organize all your courses and learning programs in one place. Track progress, lessons completed, platforms, costs, ratings, and certificates \u2014 so you always know what to learn next and how far you've come.",
+      ru: "Organize all your courses and learning programs in one place. Track progress, lessons completed, platforms, costs, ratings, and certificates \u2014 so you always know what to learn next and how far you've come."
+    },
+    category: { en: "Study Planner", ru: "Study Planner" },
+    categoryGroup: "teaching",
+    icon: "Timer",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/learning-tracker-327"
+  },
+  {
+    id: "d3b5aed8-f869-4be7-8deb-1104c523d8dc",
+    name: "SWOT Analysis",
+    slug: "swot-analysis-386",
+    price: 0,
+    description: {
+      en: "System for strategic planning. Collect factors, analyze connections, build an action plan. From chaotic notes on a whiteboard to a clear business development map",
+      ru: "System for strategic planning. Collect factors, analyze connections, build an action plan. From chaotic notes on a whiteboard to a clear business development map"
+    },
+    category: { en: "SWOT Analysis", ru: "SWOT Analysis" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/swot-analysis-386"
+  },
+  {
+    id: "563b5038-d84a-45f2-a49e-c4f7a5d65ff0",
+    name: "AI Prompt Base",
+    slug: "prompts-database-134",
+    price: 0,
+    description: {
+      en: "System for AI knowledge management. Capture successful prompts, organize by model, retrieve via smart tags. From losing context in endless chat history to building a personal library of proven AI assets",
+      ru: "System for AI knowledge management. Capture successful prompts, organize by model, retrieve via smart tags. From losing context in endless chat history to building a personal library of proven AI assets"
+    },
+    category: { en: "Product", ru: "Product" },
+    categoryGroup: "product",
+    icon: "Bot",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/prompts-database-134"
+  },
+  {
+    id: "4fa5dc1d-146f-4ad3-b2de-4da9a210c6d4",
+    name: "Content Strategy",
+    slug: "content-strategy-416",
+    price: 0,
+    description: {
+      en: "System for tracking content performance. Manage assets from idea to revenue, link related posts, and identify top performers. From random posting to a data-driven media machine",
+      ru: "System for tracking content performance. Manage assets from idea to revenue, link related posts, and identify top performers. From random posting to a data-driven media machine"
+    },
+    category: { en: "Marketing", ru: "Marketing" },
+    categoryGroup: "marketing",
+    icon: "CalendarDays",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/content-strategy-416"
+  },
+  {
+    id: "ed2080f0-9f3c-4b04-8085-1e33646c7c1c",
+    name: "Equipment Inventory",
+    slug: "equipment-inventory-475",
+    price: 0,
+    description: {
+      en: "Track every piece of equipment from purchase to decommission. Monitor condition, schedule maintenance, log repairs, and know exactly where each asset is and who owns it.",
+      ru: "Track every piece of equipment from purchase to decommission. Monitor condition, schedule maintenance, log repairs, and know exactly where each asset is and who owns it."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Truck",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/equipment-inventory-475"
+  },
+  {
+    id: "97c36db2-34a5-4161-b423-3efb059ee3f2",
+    name: "Team Knowledge Base",
+    slug: "team-knowledge-base",
+    price: 0,
+    description: {
+      en: "System for information management. Structure experience, link instructions, find answers. From knowledge loss during turnover and endless chat questions to an autonomous team workflow",
+      ru: "System for information management. Structure experience, link instructions, find answers. From knowledge loss during turnover and endless chat questions to an autonomous team workflow"
+    },
+    category: { en: "Team Planning", ru: "Team Planning" },
+    categoryGroup: "operations",
+    icon: "Brain",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/team-knowledge-base"
+  },
+  {
+    id: "a5ec2ffc-8a93-4199-a1e7-88cf8055a9df",
+    name: "Lecture Notes",
+    slug: "lecture-notes-146",
+    price: 0,
+    description: {
+      en: "A system for knowledge management. Capture lectures, link related topics, and track study progress. From scattered notebooks and files to structured, stress-free preparation",
+      ru: "A system for knowledge management. Capture lectures, link related topics, and track study progress. From scattered notebooks and files to structured, stress-free preparation"
+    },
+    category: { en: "Student Life", ru: "Student Life" },
+    categoryGroup: "teaching",
+    icon: "GraduationCap",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/lecture-notes-146"
+  },
+  {
+    id: "1c5bc7af-0ee8-4796-bdae-ae1d0b903203",
+    name: "Loan and Borrowing Tracker",
+    slug: "loan-and-borrowing-tracker",
+    price: 0,
+    description: {
+      en: "Keep every loan, installment, and credit card in one place. Track balances, payment schedules, interest rates, and repayment progress \u2014 so you always know what you owe and when.",
+      ru: "Keep every loan, installment, and credit card in one place. Track balances, payment schedules, interest rates, and repayment progress \u2014 so you always know what you owe and when."
+    },
+    category: { en: "Personal Finance", ru: "Personal Finance" },
+    categoryGroup: "finance",
+    icon: "Receipt",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/loan-and-borrowing-tracker"
+  },
+  {
+    id: "0b1f642a-817b-4a1f-8865-b0607d1db419",
+    name: "Subscriber Database (Segmentation)",
+    slug: "subscriber-database-segmentation",
+    price: 0,
+    description: {
+      en: "Segment your subscriber base by engagement, funnel stage, interests, and loyalty score. Track customer status, acquisition sources, and activity \u2014 so you send the right message to the right person.",
+      ru: "Segment your subscriber base by engagement, funnel stage, interests, and loyalty score. Track customer status, acquisition sources, and activity \u2014 so you send the right message to the right person."
+    },
+    category: { en: "Marketing", ru: "Marketing" },
+    categoryGroup: "marketing",
+    icon: "Users",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/subscriber-database-segmentation"
+  },
+  {
+    id: "2088452b-28ee-4ffb-8935-cc3b882a63a3",
+    name: "Contractors Database",
+    slug: "contractors-database",
+    price: 0,
+    description: {
+      en: "Build a structured database of freelancers and contractors with ratings, work quality, turnaround speed, and collaboration history. Find the right person for any project in seconds \u2014 based on real past results.",
+      ru: "Build a structured database of freelancers and contractors with ratings, work quality, turnaround speed, and collaboration history. Find the right person for any project in seconds \u2014 based on real past results."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Briefcase",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/contractors-database"
+  },
+  {
+    id: "e5a837e5-0b9e-4e7b-9636-01e6dd30e194",
+    name: "Customer Development",
+    slug: "customer-development",
+    price: 0,
+    description: {
+      en: "Structure every customer interview with fields for hypotheses, problems, insights, quotes, and product reactions. Validate assumptions, track willingness to pay, and turn conversations into actionable product decisions.",
+      ru: "Structure every customer interview with fields for hypotheses, problems, insights, quotes, and product reactions. Validate assumptions, track willingness to pay, and turn conversations into actionable product decisions."
+    },
+    category: { en: "Product", ru: "Product" },
+    categoryGroup: "product",
+    icon: "Heart",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/customer-development"
+  },
+  {
+    id: "e382e57e-b2d4-4e8d-aeba-af77d93a6b25",
+    name: "Change Log",
+    slug: "change-log",
+    price: 0,
+    description: {
+      en: "Forgot why you rolled back a feature three months ago? Changelog with change types, versions, before/after metrics, and critical changes. Find the bug history in 10 seconds instead of digging around in Slack",
+      ru: "Forgot why you rolled back a feature three months ago? Changelog with change types, versions, before/after metrics, and critical changes. Find the bug history in 10 seconds instead of digging around in Slack"
+    },
+    category: { en: "Documentation", ru: "Documentation" },
+    categoryGroup: "operations",
+    icon: "RotateCcw",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/change-log"
+  },
+  {
+    id: "557fefa2-1e36-474a-87cc-38ddeaf9021b",
+    name: "Sprints (Agile/Scrum)",
+    slug: "sprints-agile-scrum",
+    price: 0,
+    description: {
+      en: "System for Agile development. Plan cycles, track velocity, conduct retrospectives. From missed deadlines and confusion to a predictable release rhythm",
+      ru: "System for Agile development. Plan cycles, track velocity, conduct retrospectives. From missed deadlines and confusion to a predictable release rhythm"
+    },
+    category: { en: "Sprint Planning Meeting", ru: "Sprint Planning Meeting" },
+    categoryGroup: "product",
+    icon: "ListTodo",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/sprints-agile-scrum"
+  },
+  {
+    id: "fdcbe4d8-9cd8-4466-ab30-c37631ff89f0",
+    name: "Time Tracking",
+    slug: "time-tracking-649",
+    price: 0,
+    description: {
+      en: "System for time management. Track tasks, analyze productivity, calculate hourly costs. From lost days to full schedule control.",
+      ru: "System for time management. Track tasks, analyze productivity, calculate hourly costs. From lost days to full schedule control."
+    },
+    category: { en: "Personal Productivity", ru: "Personal Productivity" },
+    categoryGroup: "personal-productivity",
+    icon: "Clock",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/time-tracking-649"
+  },
+  {
+    id: "free-wellness-tracker-899",
+    name: "Wellness Tracker",
+    slug: "wellness-tracker-899",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Timer",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/wellness-tracker-899"
+  },
+  {
+    id: "free-lead-generation-858",
+    name: "Lead Generation",
+    slug: "lead-generation-858",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Users",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/lead-generation-858"
+  },
+  {
+    id: "free-ad-campaign-tracker-962",
+    name: "Ad Campaign Tracker",
+    slug: "ad-campaign-tracker-962",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Timer",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/ad-campaign-tracker-962"
+  },
+  {
+    id: "free-sop-standard-operating-procedures",
+    name: "SOP (Standard Operating Procedures)",
+    slug: "sop-standard-operating-procedures",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "FileStack",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/sop-standard-operating-procedures"
+  },
+  {
+    id: "free-client-database-temp",
+    name: "Client Database",
+    slug: "client-database-temp",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "BookOpen",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/client-database-temp"
+  },
+  {
+    id: "free-p-l-profit-and-loss-statement",
+    name: "P&L (Profit and Loss Statement)",
+    slug: "p-l-profit-and-loss-statement",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/p-l-profit-and-loss-statement"
+  },
+  {
+    id: "free-project-budget",
+    name: "Project Budget",
+    slug: "project-budget",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "PieChart",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/project-budget"
+  },
+  {
+    id: "free-inventory-management-175",
+    name: "Inventory Management",
+    slug: "inventory-management-175",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Truck",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/inventory-management-175"
+  },
+  {
+    id: "free-sales-pipeline-800",
+    name: "Sales Pipeline",
+    slug: "sales-pipeline-800",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "MessageSquareText",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/sales-pipeline-800"
+  },
+  {
+    id: "free-media-library-682",
+    name: "Media Library",
+    slug: "media-library-682",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "CalendarDays",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/media-library-682"
+  },
+  {
+    id: "free-projects-dashboard-124",
+    name: "Projects Dashboard",
+    slug: "projects-dashboard-124",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "PieChart",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/projects-dashboard-124"
+  },
+  {
+    id: "free-hiring-funnel",
+    name: "Hiring Funnel",
+    slug: "hiring-funnel",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/hiring-funnel"
+  },
+  {
+    id: "free-weekly-reports",
+    name: "Weekly Reports",
+    slug: "weekly-reports",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "CalendarDays",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/weekly-reports"
+  },
+  {
+    id: "free-partnerships-890",
+    name: "Partnerships",
+    slug: "partnerships-890",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/partnerships-890"
+  },
+  {
+    id: "free-mvp-tracker",
+    name: "MVP Tracker",
+    slug: "mvp-tracker",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Timer",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/mvp-tracker"
+  },
+  {
+    id: "free-investment-tracker-585",
+    name: "Investment Tracker",
+    slug: "investment-tracker-585",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Timer",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/investment-tracker-585"
+  },
+  {
+    id: "free-employee-database",
+    name: "Employee Database",
+    slug: "employee-database",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "BookOpen",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/employee-database"
+  },
+  {
+    id: "free-restaurant-menu-engineering",
+    name: "Restaurant: Menu Engineering",
+    slug: "restaurant-menu-engineering",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/restaurant-menu-engineering"
+  },
+  {
+    id: "free-competitor-analysis-384",
+    name: "Competitor Analysis",
+    slug: "competitor-analysis-384",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/competitor-analysis-384"
+  },
+  {
+    id: "free-shopping-tracker-527",
+    name: "Shopping Tracker",
+    slug: "shopping-tracker-527",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "ShoppingCart",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/shopping-tracker-527"
+  },
+  {
+    id: "free-inventory-tracking-454",
+    name: "Inventory Tracking",
+    slug: "inventory-tracking-454",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Timer",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/inventory-tracking-454"
+  },
+  {
+    id: "free-project-risks",
+    name: "Project Risks",
+    slug: "project-risks",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "ListTodo",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/project-risks"
+  },
+  {
+    id: "free-content-calendar-561",
+    name: "Content Calendar",
+    slug: "content-calendar-561",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "CalendarOff",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/content-calendar-561"
+  },
+  {
+    id: "free-workout-tracker-854",
+    name: "Workout Tracker",
+    slug: "workout-tracker-854",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Timer",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/workout-tracker-854"
+  },
+  {
+    id: "free-workouts-os",
+    name: "Workouts OS",
+    slug: "workouts-os",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/workouts-os"
+  },
+  {
+    id: "free-webinars-live-streams",
+    name: "Webinars & Live Streams",
+    slug: "webinars-live-streams",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/webinars-live-streams"
+  },
+  {
+    id: "free-bug-tracker-342",
+    name: "Bug Tracker",
+    slug: "bug-tracker-342",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Timer",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/bug-tracker-342"
+  },
+  {
+    id: "free-1-on-1-meetings",
+    name: "1-on-1 Meetings",
+    slug: "1-on-1-meetings",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "CalendarDays",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/1-on-1-meetings"
+  },
+  {
+    id: "free-fitness-memberships",
+    name: "Fitness: Memberships",
+    slug: "fitness-memberships",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Heart",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/fitness-memberships"
+  },
+  {
+    id: "free-construction-estimates-acts",
+    name: "Construction: Estimates & Acts",
+    slug: "construction-estimates-acts",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/construction-estimates-acts"
+  },
+  {
+    id: "free-carbon-footprint-tracker",
+    name: "Carbon Footprint Tracker",
+    slug: "carbon-footprint-tracker",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Timer",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/carbon-footprint-tracker"
+  },
+  {
+    id: "free-media-plan",
+    name: "Media Plan",
+    slug: "media-plan",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Target",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/media-plan"
+  },
+  {
+    id: "free-cash-book",
+    name: "Cash Book",
+    slug: "cash-book",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "BookOpen",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/cash-book"
+  },
+  {
+    id: "free-supply-tracker",
+    name: "Supply Tracker",
+    slug: "supply-tracker",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Timer",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/supply-tracker"
+  },
+  {
+    id: "free-testimonials-and-case-studies",
+    name: "Testimonials and Case Studies",
+    slug: "testimonials-and-case-studies",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "FlaskConical",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/testimonials-and-case-studies"
+  },
+  {
+    id: "free-meeting-planner-514",
+    name: "Meeting Planner",
+    slug: "meeting-planner-514",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Target",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/meeting-planner-514"
+  },
+  {
+    id: "free-travel-planner-234",
+    name: "Travel Planner",
+    slug: "travel-planner-234",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Target",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/travel-planner-234"
+  },
+  {
+    id: "free-new-hire-onboarding-548",
+    name: "New Hire Onboarding",
+    slug: "new-hire-onboarding-548",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Users",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/new-hire-onboarding-548"
+  },
+  {
+    id: "free-documents-tem-01",
+    name: "Document Repository",
+    slug: "documents-tem-01",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "FileStack",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/documents-tem-01"
+  },
+  {
+    id: "free-income-and-expenses-tracker",
+    name: "Income and Expenses Tracker",
+    slug: "income-and-expenses-tracker",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Timer",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/income-and-expenses-tracker"
+  },
+  {
+    id: "free-cleaning-schedule-197",
+    name: "Cleaning Schedule",
+    slug: "cleaning-schedule-197",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "CalendarOff",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/cleaning-schedule-197"
+  },
+  {
+    id: "free-strategic-objectives-okr",
+    name: "Strategic Objectives (OKR)",
+    slug: "strategic-objectives-okr",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/strategic-objectives-okr"
+  },
+  {
+    id: "free-home-budget-family",
+    name: "Home Budget (Family)",
+    slug: "home-budget-family",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "PieChart",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/home-budget-family"
+  },
+  {
+    id: "free-personal-crm-contacts",
+    name: "Personal CRM (Contacts)",
+    slug: "personal-crm-contacts",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Users",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/personal-crm-contacts"
+  },
+  {
+    id: "free-incident-management",
+    name: "Incident Management",
+    slug: "incident-management",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/incident-management"
+  },
+  {
+    id: "free-e-commerce-orders-shipments",
+    name: "E-commerce: Orders & Shipments",
+    slug: "e-commerce-orders-shipments",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "ShoppingCart",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/e-commerce-orders-shipments"
+  },
+  {
+    id: "free-habit-tracker-631",
+    name: "Habit Tracker",
+    slug: "habit-tracker-631",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Timer",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/habit-tracker-631"
+  },
+  {
+    id: "free-unit-economics",
+    name: "Unit Economics",
+    slug: "unit-economics",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/unit-economics"
+  },
+  {
+    id: "free-logistics-and-delivery",
+    name: "Logistics and Delivery",
+    slug: "logistics-and-delivery",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Truck",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/logistics-and-delivery"
+  },
+  {
+    id: "free-supplier-orders",
+    name: "Supplier Orders",
+    slug: "supplier-orders",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Truck",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/supplier-orders"
+  },
+  {
+    id: "free-cash-flow",
+    name: "Cash Flow",
+    slug: "cash-flow",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/cash-flow"
+  },
+  {
+    id: "free-advertising-os",
+    name: "Advertising OS",
+    slug: "advertising-os",
+    price: 79,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/advertising-os"
+  },
+  {
+    id: "free-career-os-738",
+    name: "Career OS",
+    slug: "career-os-738",
+    price: 57,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/career-os-738"
+  },
+  {
+    id: "free-business-os-690",
+    name: "Business OS",
+    slug: "business-os-690",
+    price: 68,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/business-os-690"
+  },
+  {
+    id: "free-travel-os-591",
+    name: "Travel OS",
+    slug: "travel-os-591",
+    price: 15,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Truck",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/travel-os-591"
+  },
+  {
+    id: "free-finance-os-668",
+    name: "Finance OS",
+    slug: "finance-os-668",
+    price: 23,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "PieChart",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/finance-os-668"
+  },
+  {
+    id: "free-content-os-824",
+    name: "Content OS",
+    slug: "content-os-824",
+    price: 59,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "CalendarDays",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/content-os-824"
+  },
+  {
+    id: "free-development-os",
+    name: "Development OS",
+    slug: "development-os",
+    price: 69,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Users",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/development-os"
+  },
+  {
+    id: "free-team-os-534",
+    name: "Team OS",
+    slug: "team-os-534",
+    price: 25,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Users",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/team-os-534"
+  },
+  {
+    id: "free-crypto-tracker-os",
+    name: "Crypto Tracker OS",
+    slug: "crypto-tracker-os",
+    price: 49,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Timer",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/crypto-tracker-os"
+  },
+  {
+    id: "free-students-progress",
+    name: "Students: Progress",
+    slug: "students-progress",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/students-progress"
+  },
+  {
+    id: "free-startup-os-995",
+    name: "Startup OS",
+    slug: "startup-os-995",
+    price: 49,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/startup-os-995"
+  },
+  {
+    id: "free-events-os",
+    name: "Events OS",
+    slug: "events-os",
+    price: 59,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "CalendarDays",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/events-os"
+  },
+  {
+    id: "free-equipment-tracker-01",
+    name: "Equipment Tracker",
+    slug: "equipment-tracker-01",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Timer",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/equipment-tracker-01"
+  },
+  {
+    id: "free-mastery-os",
+    name: "Mastery OS",
+    slug: "mastery-os",
+    price: 19,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/mastery-os"
+  },
+  {
+    id: "free-sales-os-324",
+    name: "Sales OS",
+    slug: "sales-os-324",
+    price: 39,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "MessageSquareText",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/sales-os-324"
+  },
+  {
+    id: "free-process-checklists",
+    name: "Process Checklists",
+    slug: "process-checklists",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/process-checklists"
+  },
+  {
+    id: "free-weekly-planner-486",
+    name: "Weekly Planner",
+    slug: "weekly-planner-486",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Target",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/weekly-planner-486"
+  },
+  {
+    id: "free-smm-os",
+    name: "SMM OS",
+    slug: "smm-os",
+    price: 69,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/smm-os"
+  },
+  {
+    id: "free-projects-os-221",
+    name: "Projects OS",
+    slug: "projects-os-221",
+    price: 55,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "ListTodo",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/projects-os-221"
+  },
+  {
+    id: "free-family-calendar",
+    name: "Family Calendar",
+    slug: "family-calendar",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "CalendarOff",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/family-calendar"
+  },
+  {
+    id: "free-construction-os",
+    name: "Construction OS",
+    slug: "construction-os",
+    price: 79,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/construction-os"
+  },
+  {
+    id: "free-kitchen-os",
+    name: "Kitchen OS",
+    slug: "kitchen-os",
+    price: 8,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/kitchen-os"
+  },
+  {
+    id: "free-life-os-235",
+    name: "Life OS",
+    slug: "life-os-235",
+    price: 25,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/life-os-235"
+  },
+  {
+    id: "free-agency-client-brief",
+    name: "Agency: Client Brief",
+    slug: "agency-client-brief",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/agency-client-brief"
+  },
+  {
+    id: "free-churn-analysis",
+    name: "Churn Analysis",
+    slug: "churn-analysis",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/churn-analysis"
+  },
+  {
+    id: "free-student-os-458",
+    name: "Student OS",
+    slug: "student-os-458",
+    price: 5,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/student-os-458"
+  },
+  {
+    id: "free-marketing-os-659",
+    name: "Marketing OS",
+    slug: "marketing-os-659",
+    price: 49,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/marketing-os-659"
+  },
+  {
+    id: "free-para-os-813",
+    name: "PARA OS",
+    slug: "para-os-813",
+    price: 20,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/para-os-813"
+  },
+  {
+    id: "free-gtd-os",
+    name: "GTD OS",
+    slug: "gtd-os",
+    price: 30,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/gtd-os"
+  },
+  {
+    id: "free-knowledge-base-os",
+    name: "Knowledge Base OS",
+    slug: "knowledge-base-os",
+    price: 19,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Brain",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/knowledge-base-os"
+  },
+  {
+    id: "free-journal-os-766",
+    name: "Journal OS",
+    slug: "journal-os-766",
+    price: 9,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "BookOpen",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/journal-os-766"
+  },
+  {
+    id: "free-apartment-renovation",
+    name: "Apartment Renovation",
+    slug: "apartment-renovation",
+    price: 39,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/apartment-renovation"
+  },
+  {
+    id: "free-family-os-915",
+    name: "Family OS",
+    slug: "family-os-915",
+    price: 29,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/family-os-915"
+  },
+  {
+    id: "free-notes-os-374",
+    name: "Notes OS",
+    slug: "notes-os-374",
+    price: 14,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "BookOpen",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/notes-os-374"
+  },
+  {
+    id: "free-languages-os",
+    name: "Languages OS",
+    slug: "languages-os",
+    price: 7,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/languages-os"
+  },
+  {
+    id: "free-references-os",
+    name: "References OS",
+    slug: "references-os",
+    price: 19,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/references-os"
+  },
+  {
+    id: "free-influencer-collaborations",
+    name: "Influencer Collaborations",
+    slug: "influencer-collaborations",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/influencer-collaborations"
+  },
+  {
+    id: "free-kanban-board-330",
+    name: "Kanban Board",
+    slug: "kanban-board-330",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/kanban-board-330"
+  },
+  {
+    id: "free-webinar-room",
+    name: "Webinar Room",
+    slug: "webinar-room",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/webinar-room"
+  },
+  {
+    id: "free-faq-base",
+    name: "FAQ Base",
+    slug: "faq-base",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "BookOpen",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/faq-base"
+  },
+  {
+    id: "free-subscription-tracker-363",
+    name: "Subscription Tracker",
+    slug: "subscription-tracker-363",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "MessageSquareText",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/subscription-tracker-363"
+  },
+  {
+    id: "free-warranty-tracker-923",
+    name: "Warranty Tracker",
+    slug: "warranty-tracker-923",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Timer",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/warranty-tracker-923"
+  },
+  {
+    id: "free-upsell-and-cross-sell",
+    name: "Upsell and Cross-sell",
+    slug: "upsell-and-cross-sell",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/upsell-and-cross-sell"
+  },
+  {
+    id: "free-portfolio-347",
+    name: "Portfolio",
+    slug: "portfolio-347",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/portfolio-347"
+  },
+  {
+    id: "free-loyalty-program",
+    name: "Loyalty Program",
+    slug: "loyalty-program",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/loyalty-program"
+  },
+  {
+    id: "free-email-campaigns",
+    name: "Email Campaigns",
+    slug: "email-campaigns",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "MessageSquareText",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/email-campaigns"
+  },
+  {
+    id: "free-tax-management",
+    name: "Tax Management",
+    slug: "tax-management",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/tax-management"
+  },
+  {
+    id: "free-seo-control",
+    name: "SEO Control",
+    slug: "seo-control",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "CheckCircle",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/seo-control"
+  },
+  {
+    id: "free-gratitude-journal-117",
+    name: "Gratitude Journal",
+    slug: "gratitude-journal-117",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "BookOpen",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/gratitude-journal-117"
+  },
+  {
+    id: "free-wishlist-873",
+    name: "Wishlist",
+    slug: "wishlist-873",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/wishlist-873"
+  },
+  {
+    id: "free-crypto-portfolio",
+    name: "Crypto Portfolio",
+    slug: "crypto-portfolio",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-lavender",
+    bgClass: "bg-pastel-lavender/20",
+    downloadUrl: "https://www.notion.com/templates/crypto-portfolio"
+  },
+  {
+    id: "free-m-a",
+    name: "M&A",
+    slug: "m-a",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/m-a"
+  },
+  {
+    id: "free-mood-tracker-123",
+    name: "Mood Tracker",
+    slug: "mood-tracker-123",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Timer",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/mood-tracker-123"
+  },
+  {
+    id: "free-product-roadmap-145",
+    name: "Product Roadmap",
+    slug: "product-roadmap-145",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-blue",
+    bgClass: "bg-pastel-blue/20",
+    downloadUrl: "https://www.notion.com/templates/product-roadmap-145"
+  },
+  {
+    id: "free-motivation-and-bonuses",
+    name: "Motivation and Bonuses",
+    slug: "motivation-and-bonuses",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/motivation-and-bonuses"
+  },
+  {
+    id: "free-kpis-okrs",
+    name: "KPIs & OKRs",
+    slug: "kpis-okrs",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/kpis-okrs"
+  },
+  {
+    id: "free-partner-marketing",
+    name: "Partner Marketing",
+    slug: "partner-marketing",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-accent-coral",
+    bgClass: "bg-accent-coral/20",
+    downloadUrl: "https://www.notion.com/templates/partner-marketing"
+  },
+  {
+    id: "free-nps-surveys",
+    name: "NPS Surveys",
+    slug: "nps-surveys",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-pink",
+    bgClass: "bg-pastel-pink/20",
+    downloadUrl: "https://www.notion.com/templates/nps-surveys"
+  },
+  {
+    id: "free-complaints-and-claims",
+    name: "Complaints and Claims",
+    slug: "complaints-and-claims",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-pastel-purple",
+    bgClass: "bg-pastel-purple/20",
+    downloadUrl: "https://www.notion.com/templates/complaints-and-claims"
+  },
+  {
+    id: "free-exit-strategy",
+    name: "Exit Strategy",
+    slug: "exit-strategy",
+    price: 0,
+    description: {
+      en: "Notion template by danyanovich. Open the template page to learn more and duplicate it into your workspace.",
+      ru: "\u0428\u0430\u0431\u043B\u043E\u043D Notion \u043E\u0442 danyanovich. \u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0430, \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u043E\u043B\u044C\u0448\u0435 \u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432 \u0441\u0432\u043E\u0439 \u0432\u043E\u0440\u043A\u0441\u043F\u0435\u0439\u0441."
+    },
+    category: { en: "Operations", ru: "Operations" },
+    categoryGroup: "operations",
+    icon: "Sparkles",
+    colorClass: "text-accent-lime",
+    bgClass: "bg-accent-lime/20",
+    downloadUrl: "https://www.notion.com/templates/exit-strategy"
+  }
+];
+var allTemplates = [...paidTemplatesData, ...freeTemplatesData];
+
 // src/seo/site.ts
 var SITE_URL = "https://danyanovich.site";
 var DEFAULT_LANGUAGE = "ru";
@@ -1011,6 +3842,8 @@ var staticSeoRoutes = [
   { path: "/faq", changefreq: "monthly", priority: 0.6 },
   { path: "/support", changefreq: "monthly", priority: 0.5 },
   { path: "/games/pixel-cafe-tycoon", changefreq: "monthly", priority: 0.4 },
+  { path: "/businesses", changefreq: "weekly", priority: 0.7 },
+  { path: "/workspaces", changefreq: "weekly", priority: 0.8 },
   { path: "/privacy", changefreq: "yearly", priority: 0.2 },
   { path: "/terms", changefreq: "yearly", priority: 0.2 },
   { path: "/cookies", changefreq: "yearly", priority: 0.2 }
@@ -1039,10 +3872,18 @@ var blogSeoRoutes = blogPosts.flatMap(
     priority: 0.75
   }))
 );
+var notionTemplateSeoRoutes = allTemplates.flatMap(
+  (template) => SUPPORTED_LANGUAGES.map((language) => ({
+    path: getLocalizedPath(language, `/notion/${template.slug}`),
+    changefreq: "monthly",
+    priority: 0.8
+  }))
+);
 var sitemapRoutes = [
   ...localizedSeoRoutes,
   ...blogSeoRoutes,
-  ...caseSeoRoutes
+  ...caseSeoRoutes,
+  ...notionTemplateSeoRoutes
 ];
 var prerenderRoutes = Array.from(
   new Set(sitemapRoutes.map((route) => route.path))

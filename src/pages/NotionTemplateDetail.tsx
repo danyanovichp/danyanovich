@@ -155,9 +155,10 @@ const NotionTemplateDetail = () => {
           name: template.name,
           description: isRu ? template.description.ru : template.description.en,
           price: template.price,
-          currency: "USD",
+          currency: "RUB",
           image: template.screenshot ? `${SITE_URL}${template.screenshot}` : `${SITE_URL}${DEFAULT_OG_IMAGE}`,
           url: `${SITE_URL}/${i18n.language}/notion/${template.slug}`,
+          availability: template.price === 0 ? 'https://schema.org/InStock' : undefined,
         })}
       />
 

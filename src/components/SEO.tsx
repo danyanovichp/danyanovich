@@ -166,23 +166,54 @@ export const getBlogSchema = (isRu: boolean) => ({
 });
 
 // Схема для шаблонов (коллекция продуктов)
-export const getTemplatesSchema = (isRu: boolean) => ({
-  '@context': 'https://schema.org',
-  '@type': 'CollectionPage',
-  '@id': `${BASE_URL}/templates#collection`,
-  name: isRu ? 'Шаблоны Notion' : 'Notion Templates',
-  description: isRu
-    ? 'Коллекция профессиональных шаблонов Notion для бизнеса и личного использования'
-    : 'Collection of professional Notion templates for business and personal use',
-  url: `${BASE_URL}/templates`,
-  author: {
-    '@id': `${BASE_URL}/#person`,
-  },
-  about: {
-    '@type': 'Thing',
-    name: 'Notion Templates',
-  },
-});
+export const getTemplatesSchema = (isRu: boolean, templates?: { name: string; description: string; price: number; url: string; image: string }[]) => {
+  const base: any = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${BASE_URL}/templates#collection`,
+    name: isRu ? 'Шаблоны Notion' : 'Notion Templates',
+    description: isRu
+      ? 'Коллекция профессиональных шаблонов Notion для бизнеса и личного использования'
+      : 'Collection of professional Notion templates for business and personal use',
+    url: `${BASE_URL}/templates`,
+    author: {
+      '@id': `${BASE_URL}/#person`,
+    },
+    about: {
+      '@type': 'Thing',
+      name: 'Notion Templates',
+    },
+  };
+
+  if (templates && templates.length > 0) {
+    base.mainEntity = {
+      '@type': 'ItemList',
+      itemListElement: templates.map((t, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: {
+          '@type': 'Product',
+          name: t.name,
+          description: t.description,
+          image: t.image,
+          url: t.url,
+          brand: {
+            '@type': 'Brand',
+            name: 'Dan Yanovich',
+          },
+          offers: {
+            '@type': 'Offer',
+            price: t.price,
+            priceCurrency: 'RUB',
+            availability: 'https://schema.org/InStock',
+          },
+        },
+      })),
+    };
+  }
+
+  return base;
+};
 
 // Схема для отдельного шаблона (продукт)
 export const getProductSchema = (product: {
@@ -192,6 +223,7 @@ export const getProductSchema = (product: {
   currency: string;
   image: string;
   url: string;
+  availability?: string;
 }) => ({
   '@context': 'https://schema.org',
   '@type': 'Product',
@@ -210,7 +242,7 @@ export const getProductSchema = (product: {
     '@type': 'Offer',
     price: product.price,
     priceCurrency: product.currency,
-    availability: 'https://schema.org/InStock',
+    availability: product.availability || 'https://schema.org/InStock',
     seller: {
       '@id': `${BASE_URL}/#person`,
     },

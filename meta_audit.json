@@ -1,0 +1,329 @@
+{
+  "https://notionbox.ru/shablony-notion/": {
+    "title": "Шаблоны Notion на русском | 50 Бесплатных шаблонов [2026]",
+    "description": "Хотите повысить свою продуктивность? Лучшие шаблоны для Notion на русском для бизнеса, работы, учёбы и планирования жизни.",
+    "og_title": "Шаблоны Notion на русском | 50 Бесплатных шаблонов [2026]",
+    "og_description": "Хотите повысить свою продуктивность? Лучшие шаблоны для Notion на русском для бизнеса, работы, учёбы и планирования жизни.",
+    "h1": "Шаблоны Notion",
+    "jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://notionbox.ru/#website",
+        "url": "https://notionbox.ru/",
+        "name": "NotionBox",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://notionbox.ru/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@context": "http://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@id": "https://notionbox.ru/shablony-notion/",
+              "name": "Шаблоны Notion"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@id": "https://notionbox.ru",
+              "name": "NotionBox"
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Где скачать шаблоны Notion?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "<p>Если вам необходимо скачать шаблон Notion, то этот список шаблонов – именно та площадка для начала работы. С помощью нашего списка можно выбрать шаблон, отвечающий за продуктивность,отслеживания финансов и т.д., перейти по ссылке на него бесплатно или же заплатить. Получив ссылку на шаблон Notion, импортируйте его в свое рабочее пространство Notion и начните использовать его для повышения продуктивности и организации работы.</p>"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Что такое шаблоны в Notion?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "<p>Шаблоны в Notion &#8212; это предварительно созданные структуры страниц или баз данных, которые можно использовать для различных целей, таких как планирование, управление проектами, создание заметок и т.д. Они позволяют вам быстро начать работу, предоставляя готовый формат для вашего контента.</p>"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Где найти лучшие шаблоны Notion?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "<p>Один из самых простых способов найти лучшие шаблоны Notion &#8212; посмотреть наш список из 50+ лучших шаблонов Notion. Он включает шаблоны для личной продуктивности, бизнеса, отслеживания финансов и т. д., что делает его отличным ресурсом для тех, кто хочет начать работу с Notion или оптимизировать свой рабочий процесс.</p>"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Как дублировать шаблон в свой аккаунт Notion?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "<p>Чтобы использовать шаблоны в Notion, выполните следующие шаги:</p><ul><li><strong>Шаг 1: Откройте шаблон</strong>. Войдите в свой аккаунт Notion. Далее зайдите в шаблон, который вы хотите дублировать.</li><li><strong>Шаг 2: Нажмите на кнопку Duplicate </strong><b>справа вверху</b>. Когда вы дублировали шаблон, Notion автоматически создаст его копию в вашей базе данных. Вы можете свободно редактировать и изменять эту копию по своему усмотрению, не затрагивая оригинальный шаблон.</li></ul>"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Какие типы шаблонов доступны на NotionBox?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "<p>NotionBox предоставляет широкий выбор шаблонов, включая:</p><ul><li>Планирование задач и проектов</li><li>Управление личными и профессиональными целями</li><li>Создание заметок и списков дел</li><li>Управление базами данных и таблицами</li><li>И многое другое.</li></ul>"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Могу ли я делиться своими шаблонами с другими пользователями?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "<p>Да, вы можете делиться своими шаблонами с другими пользователями Notion. Для этого скопируйте страницу шаблона, создайте публичную ссылку на нее и отправьте ее нужным людям.</p>"
+            }
+          }
+        ]
+      }
+    ],
+    "has_structured_data": true
+  },
+  "https://notionunion.com/": {
+    "title": "Готовые Notion шаблоны (templates) на русском от Notionunion",
+    "description": "Попробуйте наши шаблоны Notion для организации и систематизации работы, бизнеса, учебы или жизни. Скачайте бесплатные шаблоны с сайта, чтобы ознакомиться со всеми преимуществами ведения вашей деятельности в Notion.",
+    "og_title": "Готовые Notion шаблоны (templates) на русском от Notionunion",
+    "og_description": "Попробуйте наши шаблоны Notion для организации и систематизации работы, бизнеса, учебы или жизни. Скачайте бесплатные шаблоны с сайта, чтобы ознакомиться со всеми преимуществами ведения вашей деятельности в Notion.",
+    "h1": "Шаблоны Notion",
+    "jsonld": [],
+    "has_structured_data": false
+  },
+  "https://notionmari.com/templates": {
+    "title": "Шаблоны Notion",
+    "description": "База готовых шаблонов для работы в Notion",
+    "og_title": "Шаблоны Notion",
+    "og_description": "База готовых шаблонов для работы в Notion",
+    "h1": "шаблоны notion",
+    "jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://notionmari.com/#person",
+        "name": "Maria Gavrilova",
+        "alternateName": "Мария Гаврилова",
+        "jobTitle": "Notion Architect",
+        "description": "Notion Architect and Consultant. I help teams and agencies (5–100 people) build operational workspaces in Notion: projects, SOPs, knowledge bases, CRM, and onboarding.",
+        "url": "https://notionmari.com",
+        "image": "https://photo-indol-one.vercel.app/kp-teams/maria.jpg",
+        "email": "mailto:notion.marigavri@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lisbon",
+          "addressCountry": "PT"
+        },
+        "worksFor": {
+          "@type": "Organization",
+          "name": "notionmari.com",
+          "url": "https://notionmari.com"
+        },
+        "knowsAbout": [
+          "Notion",
+          "Notion implementation",
+          "Workspace architecture",
+          "CRM in Notion",
+          "Knowledge base in Notion",
+          "SOPs and operations",
+          "Team onboarding",
+          "Notion AI"
+        ],
+        "knowsLanguage": [
+          "en",
+          "ru"
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/marigavri/",
+          "https://www.notion.com/@marigavri",
+          "https://www.youtube.com/@mari_gavri",
+          "https://t.me/marigavri",
+          "https://t.me/+x_zeF0miyoY1MTli",
+          "https://instagram.com/_mari_gavri",
+          "https://www.threads.net/@_mari_gavri",
+          "https://vc.ru/id3855245",
+          "https://ru.pinterest.com/mari_gavri/"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": "https://notionmari.com/offer#service",
+        "name": "notionmari.com — Notion consulting for teams and agencies",
+        "description": "Notion consulting and implementation for teams of 5–100: workspace audits, full implementation (projects, SOPs, knowledge base, CRM), dashboards, onboarding, and ongoing support.",
+        "url": "https://notionmari.com/offer",
+        "image": "https://photo-indol-one.vercel.app/kp-teams/maria.jpg",
+        "priceRange": "$$",
+        "founder": {
+          "@id": "https://notionmari.com/#person"
+        },
+        "areaServed": [
+          {
+            "@type": "Place",
+            "name": "Worldwide"
+          },
+          {
+            "@type": "City",
+            "name": "Lisbon"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lisbon",
+          "addressCountry": "PT"
+        },
+        "knowsAbout": [
+          "Notion implementation",
+          "Notion consulting",
+          "Workspace architecture",
+          "CRM setup",
+          "Knowledge base setup",
+          "SOPs and operations",
+          "Team onboarding"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Notion services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Notion Audit & Roadmap",
+                "description": "1–2 weeks review of your current setup with a structured roadmap and recommended architecture."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Workspace Build",
+                "description": "3–6 weeks: design and build the system (projects, SOPs, knowledge base, CRM, dashboards) + team onboarding."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Support & Iteration",
+                "description": "Monthly support: ongoing improvements, new workflows, training and adoption."
+              }
+            }
+          ]
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/marigavri/",
+          "https://www.notion.com/@marigavri"
+        ]
+      }
+    ],
+    "has_structured_data": true
+  },
+  "https://nooka.pro/": {
+    "title": "Nooka Pro | Шаблоны Notion на русском | Индивидуальная разработка Notion",
+    "description": "Помогаю компаниям оцифровать и автоматизировать бизнес-процессы, фрилансерам — выстроить работу с проектами, и буквально каждому — упорядочить жизнь",
+    "og_title": "Nooka Pro | Шаблоны Notion на русском | Индивидуальная разработка Notion",
+    "og_description": "Помогаю компаниям оцифровать и автоматизировать бизнес-процессы, фрилансерам — выстроить работу с проектами, и буквально каждому — упорядочить жизнь",
+    "h1": "Рабочие пространства для команд и индивидуальные шаблоны Notion",
+    "jsonld": [],
+    "has_structured_data": false
+  },
+  "https://devby.io/news/notion-for-business": {
+    "title": "Лучшие Бесплатные Шаблоны Notion для Бизнеса: 24 Идеи для Организации Работы | dev.by",
+    "description": "Оптимизируйте бизнес-процессы с 24 бесплатными шаблонами Notion. Включает базы знаний, CRM, HR кабинеты, вебсайты и адаптацию сотрудников.",
+    "og_title": "Рассказываю, как использовать Notion для бизнеса. Внутри 24 бесплатных шаблона",
+    "og_description": "Notion — инструмент, который может значительно облегчить ведение бизнеса. В этой статье я расскажу, как можно использовать шаблоны Notion, чтобы создать базу знаний компании, управлять HR-процессами, вести CRM-воронки, адаптировать персонал, создавать веб-сайты и планировать встречи.",
+    "h1": "Рассказываю, как использовать Notion для бизнеса. Внутри 24 бесплатных шаблона",
+    "jsonld": [
+      {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://devby.io/news/notion-for-business"
+        },
+        "url": "https://devby.io/news/notion-for-business",
+        "datePublished": "2024-07-25T14:51:00+03:00",
+        "dateModified": "2024-07-24T15:57:33+03:00",
+        "headline": "Рассказываю, как использовать Notion для бизнеса. Внутри 24 бесплатных шаблона",
+        "description": "Оптимизируйте бизнес-процессы с 24 бесплатными шаблонами Notion. Включает базы знаний, CRM, HR кабинеты, вебсайты и адаптацию сотрудников.",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://devby.io/storage/images/42/95/17/60/derived/9a846568fb476c057e4f027da38726f9.jpg"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Отдел новостей"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "dev.by",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "/assets/logo-6fb2e86b23f09204944b25927b96125ad76f3039b51a85296f963f0f9c49c30a.png",
+            "width": 83,
+            "height": 32
+          }
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Главная",
+            "item": "https://devby.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Новости",
+            "item": "https://devby.io/news"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Рассказываю, как использовать Notion для бизнеса. Внутри 24 бесплатных шаблона",
+            "item": "https://devby.io/news/notion-for-business"
+          }
+        ]
+      }
+    ],
+    "has_structured_data": true
+  },
+  "https://wikiru.notion.site/03413e09ced648c0a41d94bbff385ca4": {
+    "title": "Notion",
+    "description": "A collaborative AI workspace, built on your company context. Build and orchestrate agents right alongside your team",
+    "og_title": "Notion | Where teams and agents work together",
+    "og_description": "A collaborative AI workspace, built on your company context. Build and orchestrate agents right alongside your team",
+    "h1": "",
+    "jsonld": [],
+    "has_structured_data": false
+  },
+  "https://vasilkov.digital/notion-templates": {
+    "title": "Шаблоны Notion",
+    "description": "Профессиональные Notion-шаблоны для жизни, профессиональной деятельности, стартапов и бизнеса",
+    "og_title": "Шаблоны Notion",
+    "og_description": "Профессиональные Notion-шаблоны для жизни, профессиональной деятельности, стартапов и бизнеса",
+    "h1": "",
+    "jsonld": [],
+    "has_structured_data": false
+  }
+}

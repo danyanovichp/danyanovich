@@ -15,8 +15,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import PageTransition from "@/components/PageTransition";
-import SEO from "@/components/SEO";
+import SEO, { getTemplatesSchema } from "@/components/SEO";
 import AnimatedSection from "@/components/AnimatedSection";
+import { SITE_URL, DEFAULT_OG_IMAGE } from "@/seo/site";
 import {
   allTemplates,
   categoryGroups,
@@ -187,6 +188,17 @@ const NotionTemplates = () => {
         titleEn="Notion Templates | Dan Yanovich"
         descriptionRu="Готовые рабочие пространства и шаблоны Notion для личной продуктивности и бизнеса."
         descriptionEn="Ready-made Notion workspaces and templates for personal productivity and business."
+        type="product"
+        structuredData={getTemplatesSchema(
+          isRu,
+          allTemplates.map((t) => ({
+            name: t.name,
+            description: isRu ? t.description.ru : t.description.en,
+            price: t.price,
+            url: `${SITE_URL}/${i18n.language}/notion/${t.slug}`,
+            image: t.screenshot ? `${SITE_URL}${t.screenshot}` : `${SITE_URL}${DEFAULT_OG_IMAGE}`,
+          }))
+        )}
       />
 
       {/* Hero Section */}
