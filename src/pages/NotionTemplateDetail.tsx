@@ -14,9 +14,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import PageTransition from "@/components/PageTransition";
-import SEO from "@/components/SEO";
+import SEO, { getProductSchema } from "@/components/SEO";
 import AnimatedSection from "@/components/AnimatedSection";
 import { getTemplateBySlug, allTemplates, type NotionTemplate } from "@/data/notionTemplates";
+import { SITE_URL, DEFAULT_OG_IMAGE } from "@/seo/site";
 import { useState } from "react";
 
 // Same icon map as in NotionTemplates
@@ -148,6 +149,16 @@ const NotionTemplateDetail = () => {
         titleEn={`${template.name} | Notion Templates`}
         descriptionRu={template.description.ru}
         descriptionEn={template.description.en}
+        image={template.screenshot || DEFAULT_OG_IMAGE}
+        type="product"
+        structuredData={getProductSchema({
+          name: template.name,
+          description: isRu ? template.description.ru : template.description.en,
+          price: template.price,
+          currency: "USD",
+          image: template.screenshot ? `${SITE_URL}${template.screenshot}` : `${SITE_URL}${DEFAULT_OG_IMAGE}`,
+          url: `${SITE_URL}/${i18n.language}/notion/${template.slug}`,
+        })}
       />
 
       {/* Back link */}

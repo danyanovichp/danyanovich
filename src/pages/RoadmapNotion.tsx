@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { LocalLink as Link } from "@/components/LocalLink";
 import RoadmapView, { RoadmapPhase } from "@/components/RoadmapView";
 import { ArrowLeft, FileText } from "lucide-react";
+import SEO from "@/components/SEO";
 
 export default function RoadmapNotion() {
   const { i18n, t } = useTranslation();
@@ -25,7 +26,7 @@ export default function RoadmapNotion() {
       steps: [
         { id: "n2-1", titleRu: "Добавить оставшиеся 138 шаблонов на сайт", titleEn: "Add remaining 138 templates to site", descRu: "Ты скидываешь ссылки — я парсю и добавляю в дата-файл", descEn: "You share links, I parse and add to data file", status: "in-progress", priority: "high" },
         { id: "n2-2", titleRu: "Починить фильтры на странице шаблонов", titleEn: "Fix template page filters", descRu: "Проверить в реальном браузере — React hydration может не работать в headless", descEn: "Check in real browser — React hydration issue", status: "todo", priority: "high" },
-        { id: "n2-3", titleRu: "SEO: robots.txt, sitemap, мета-теги для каждого шаблона", titleEn: "SEO: robots.txt, sitemap, meta tags per template", descRu: "Автоматическая генерация SEO-заголовков и описаний для всех 170+ страниц", descEn: "Auto-generated SEO headers for 170+ pages", status: "todo", priority: "medium" },
+        { id: "n2-3", titleRu: "SEO: robots.txt, sitemap, мета-теги для каждого шаблона ✅", titleEn: "SEO: robots.txt, sitemap, meta tags per template ✅", descRu: "Автоматическая генерация SEO-заголовков и описаний для всех 170+ страниц — DONE", descEn: "Auto-generated SEO headers for 170+ pages — DONE", status: "done", priority: "medium" },
         { id: "n2-4", titleRu: "Аналитика: подключить Yandex.Metrica и Google Analytics", titleEn: "Analytics: Yandex.Metrica + Google Analytics", descRu: "Отслеживание просмотров, кликов, конверсий в покупку", descEn: "Track views, clicks, purchase conversions", status: "todo", priority: "medium" },
       ],
     },
@@ -43,6 +44,13 @@ export default function RoadmapNotion() {
   ];
 
   return (
+    <>
+      <SEO
+        titleRu="Notion-шаблоны | Дэн Янович"
+        titleEn="Notion Templates | Dan Yanovich"
+        descriptionRu="170+ шаблонов Notion: Second Brain, Real Estate, E-commerce, Freelance и другие."
+        descriptionEn="170+ Notion templates: Second Brain, Real Estate, E-commerce, Freelance and more."
+      />
     <div className="min-h-screen bg-black text-white">
       <div className="max-w-3xl mx-auto px-4 py-12 space-y-6">
         <Link to="/businesses" className="inline-flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-300 transition-colors">
@@ -60,5 +68,6 @@ export default function RoadmapNotion() {
         <RoadmapView phases={phases} progress={{ done: 7, total: 14 }} />
       </div>
     </div>
+    </>
   );
 }

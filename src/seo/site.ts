@@ -1,5 +1,6 @@
 import { portfolioProjects } from "../data/portfolioProjects";
 import { blogPosts } from "../data/blogPosts";
+import { allTemplates } from "../data/notionTemplates";
 
 export const SITE_URL = "https://danyanovich.site";
 export const SITE_NAME = "Dan Yanovich";
@@ -43,6 +44,8 @@ const staticSeoRoutes: StaticSeoRoute[] = [
   { path: "/faq", changefreq: "monthly", priority: 0.6 },
   { path: "/support", changefreq: "monthly", priority: 0.5 },
   { path: "/games/pixel-cafe-tycoon", changefreq: "monthly", priority: 0.4 },
+  { path: "/businesses", changefreq: "weekly", priority: 0.7 },
+  { path: "/workspaces", changefreq: "weekly", priority: 0.8 },
   { path: "/privacy", changefreq: "yearly", priority: 0.2 },
   { path: "/terms", changefreq: "yearly", priority: 0.2 },
   { path: "/cookies", changefreq: "yearly", priority: 0.2 },
@@ -76,10 +79,19 @@ export const blogSeoRoutes: SeoRouteEntry[] = blogPosts.flatMap((post) =>
   })),
 );
 
+export const notionTemplateSeoRoutes: SeoRouteEntry[] = allTemplates.flatMap((template) =>
+  SUPPORTED_LANGUAGES.map((language) => ({
+    path: getLocalizedPath(language, `/notion/${template.slug}`),
+    changefreq: "monthly" as const,
+    priority: 0.8,
+  })),
+);
+
 export const sitemapRoutes: SeoRouteEntry[] = [
   ...localizedSeoRoutes,
   ...blogSeoRoutes,
   ...caseSeoRoutes,
+  ...notionTemplateSeoRoutes,
 ];
 
 export const prerenderRoutes = Array.from(

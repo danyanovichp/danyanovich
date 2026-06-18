@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { LocalLink as Link } from "@/components/LocalLink";
 import RoadmapView, { RoadmapPhase } from "@/components/RoadmapView";
 import { ArrowLeft, Store } from "lucide-react";
+import SEO from "@/components/SEO";
 
 export default function RoadmapVeggies() {
   const { i18n } = useTranslation();
@@ -58,6 +59,13 @@ export default function RoadmapVeggies() {
   ];
 
   return (
+    <>
+      <SEO
+        titleRu={`Лавка «Свежий Угол» | Дэн Янович`}
+        titleEn={`Fresh Corner | Dan Yanovich`}
+        descriptionRu="Краснодар · Овощи и фрукты · Дорожная карта запуска магазина"
+        descriptionEn="Krasnodar · Fruits & Veggies · Store launch roadmap"
+      />
     <div className="min-h-screen bg-black text-white">
       <div className="max-w-3xl mx-auto px-4 py-12 space-y-6">
         <Link to="/businesses" className="inline-flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-300 transition-colors">
@@ -79,5 +87,6 @@ export default function RoadmapVeggies() {
         <RoadmapView phases={phases} progress={{ done: 2, total: 21 }} />
       </div>
     </div>
+    </>
   );
 }

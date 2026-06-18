@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { LocalLink as Link } from "@/components/LocalLink";
 import RoadmapView, { RoadmapPhase } from "@/components/RoadmapView";
 import { ArrowLeft, Bot } from "lucide-react";
+import SEO from "@/components/SEO";
 
 export default function RoadmapAI() {
   const { i18n } = useTranslation();
@@ -23,6 +24,13 @@ export default function RoadmapAI() {
     ]},
   ];
   return (
+    <>
+      <SEO
+        titleRu="AI & Автоматизация | Дэн Янович"
+        titleEn="AI & Automation | Dan Yanovich"
+        descriptionRu="Промпты, агенты и интеграции с ИИ для Notion и рабочих процессов."
+        descriptionEn="Prompts, agents and AI integrations for Notion and workflows."
+      />
     <div className="min-h-screen bg-black text-white">
       <div className="max-w-3xl mx-auto px-4 py-12 space-y-6">
         <Link to="/businesses" className="inline-flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-300"><ArrowLeft size={14} /> {isRu ? "Все проекты" : "All projects"}</Link>
@@ -33,5 +41,6 @@ export default function RoadmapAI() {
         <RoadmapView phases={phases} progress={{ done: 3, total: 8 }} />
       </div>
     </div>
+    </>
   );
 }

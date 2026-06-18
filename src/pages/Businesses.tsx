@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { LocalLink as Link } from "@/components/LocalLink";
 import { ArrowRight, ArrowUpRight, FileText, Store, Briefcase, Bot, CheckCircle2, TrendingUp } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const businesses = [
   {
@@ -74,6 +75,13 @@ export default function Businesses() {
   const pct = Math.round((totalDone / totalAll) * 100);
 
   return (
+    <>
+      <SEO
+        titleRu="Мои проекты | Дэн Янович"
+        titleEn="My Projects | Dan Yanovich"
+        descriptionRu="Все проекты в одной экосистеме: Notion-шаблоны, Workspaces, AI & Автоматизация, Контент"
+        descriptionEn="All projects in one ecosystem: Notion templates, Workspaces, AI & Automation, Content"
+      />
     <div className="min-h-screen bg-black text-white">
       <div className="max-w-4xl mx-auto px-4 py-12 space-y-8">
         {/* Header */}
@@ -158,5 +166,6 @@ export default function Businesses() {
         </div>
       </div>
     </div>
+    </>
   );
 }

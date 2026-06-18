@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { LocalLink as Link } from "@/components/LocalLink";
 import RoadmapView, { RoadmapPhase } from "@/components/RoadmapView";
 import { ArrowLeft, Briefcase } from "lucide-react";
+import SEO from "@/components/SEO";
 
 export default function RoadmapWorkspaces() {
   const { i18n } = useTranslation();
@@ -20,6 +21,13 @@ export default function RoadmapWorkspaces() {
     ]},
   ];
   return (
+    <>
+      <SEO
+        titleRu="Workspaces Roadmap | Дэн Янович"
+        titleEn="Workspaces Roadmap | Dan Yanovich"
+        descriptionRu="Готовые Notion-пространства для команд — дорожная карта проекта"
+        descriptionEn="Ready-made Notion workspaces for teams — project roadmap"
+      />
     <div className="min-h-screen bg-black text-white">
       <div className="max-w-3xl mx-auto px-4 py-12 space-y-6">
         <Link to="/businesses" className="inline-flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-300"><ArrowLeft size={14} /> {isRu ? "Все проекты" : "All projects"}</Link>
@@ -30,5 +38,6 @@ export default function RoadmapWorkspaces() {
         <RoadmapView phases={phases} progress={{ done: 1, total: 7 }} />
       </div>
     </div>
+    </>
   );
 }

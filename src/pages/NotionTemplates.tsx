@@ -4,10 +4,10 @@ import {
   ArrowRight,
   Download,
   Eye,
-  FileText,
   ChevronRight,
   Bot,
   ExternalLink,
+  FileText,
   Search,
 } from "lucide-react";
 import { LocalLink as Link } from "@/components/LocalLink";
@@ -139,7 +139,7 @@ const NotionTemplates = () => {
 
   const stats = [
     {
-      value: "181",
+      value: "172",
       labelRu: "Шаблонов выпущено",
       labelEn: "Templates Released",
       icon: FileText,
